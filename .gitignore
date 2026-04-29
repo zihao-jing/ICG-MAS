@@ -1,7 +1,20 @@
+# Local data and documentation
+/data/
+/docs/
+/results/
+
+# Experiment results (keep the directory, ignore output files)
+/results/*
+!/results/.gitkeep
+
+# Server-specific environment files
+init_nibi.sh
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
 *$py.class
+/sbatch
 
 # C extensions
 *.so
