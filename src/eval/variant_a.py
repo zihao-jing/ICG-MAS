@@ -1,32 +1,33 @@
 """
 variant_a.py — Distributed isolated-agent evaluation (best-agent oracle).
 
-Two sharding settings:
+Primary sharding setting:
     A1: 1 supporting paragraph per agent.
         num_agents = num_supporting_paragraphs
         ICG = num_supporting - 1
 
-    A2: 2 supporting paragraphs per agent (last agent may get 1 if odd count).
-        num_agents = ceil(num_supporting / 2)
-        ICG = num_supporting - 2
-
-Each agent answers independently from its private shard only (isolated
-condition per the paper's Section 3.3).  The instance F1 is the maximum
-F1 over all agents — the oracle upper bound on isolated distributed solving.
+Each agent answers independently from its private shard only, with strict
+grounding — agents may not draw on outside knowledge.  The instance F1 is
+the maximum F1 over all agents (oracle upper bound on isolated performance).
 This is compared against Variant B (centralized, all evidence) to measure
 the performance gap attributable to evidence distribution.
+
+Strict grounding ensures that F1_A > 0 reliably indicates the shard
+contains sufficient information, enabling post-hoc filtering of
+single-paragraph-sufficient instances before ICG correlation analysis.
 
 Token budget T is the same per agent as the single agent in Variant B.
 
 Public API:
     run_variant_a1(instance, api_fn, model, max_tokens) -> dict
-    run_variant_a2(instance, api_fn, model, max_tokens) -> dict
     run_variant_a_batch(instances, setting, api_fn, model, max_tokens,
                         max_workers) -> list[dict]
 """
 
 from __future__ import annotations
 
+import concurrent.futures
+import re
 import random
 import sys
 import os
@@ -37,7 +38,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..",
 
 from utility.apis.base import APIRequest, APIResponse
 from .data_loader import get_supporting_paragraphs
-from .evaluate import answer_f1
+from .evaluate import answer_f1, majority_vote
 
 # ---------------------------------------------------------------------------
 # Prompt templates
@@ -45,9 +46,28 @@ from .evaluate import answer_f1
 
 SYSTEM_PROMPT = (
     "You are a question-answering assistant. "
-    "Answer based only on the provided evidence. "
-    "Be concise — give only the answer, no explanation."
+    "You must answer using ONLY the information stated in the provided paragraph. "
+    "Do not use any background knowledge or facts not explicitly written in the paragraph. "
+    "After any reasoning, output your final answer on the last line in this exact format:\n"
+    "ANSWER: <your concise answer>\n"
+    "If the paragraph does not contain sufficient information to answer the question, write:\n"
+    "ANSWER: Insufficient information."
 )
+
+# Refusal detection: answers matching this pattern are excluded from majority vote
+_REFUSAL_RE = re.compile(r'insufficient\s+information', re.IGNORECASE)
+
+
+def _is_refusal(ans: str) -> bool:
+    return not ans.strip() or bool(_REFUSAL_RE.search(ans.strip()))
+
+
+def _extract_answer(text: str) -> str:
+    """Extract the final answer from a response that may contain reasoning."""
+    matches = re.findall(r'ANSWER:\s*(.+)', text, re.IGNORECASE)
+    if matches:
+        return matches[-1].strip()
+    return text.strip()
 
 
 def _build_user_prompt(paragraph_texts: list[str], question: str) -> str:
@@ -58,7 +78,12 @@ def _build_user_prompt(paragraph_texts: list[str], question: str) -> str:
         evidence_block = "\n\n".join(
             f"[Paragraph {i+1}]\n{text}" for i, text in enumerate(paragraph_texts)
         )
-    return f"Evidence:\n{evidence_block}\n\nQuestion: {question}\n\nAnswer concisely."
+    return (
+        f"Paragraph:\n{evidence_block}\n\n"
+        f"Question: {question}\n\n"
+        f"Answer using only the paragraph above. "
+        f"If it does not contain enough information, respond: 'Insufficient information.'"
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -161,7 +186,7 @@ def _run_instance(
     agent_errors: list[str | None] = []
     for resp in responses:
         if resp.success and resp.content.strip():
-            agent_answers.append(resp.content.strip())
+            agent_answers.append(_extract_answer(resp.content.strip()))
             agent_errors.append(None)
         else:
             agent_answers.append("")
@@ -169,6 +194,7 @@ def _run_instance(
 
     agent_f1s: list[float] = [answer_f1(ans, instance) for ans in agent_answers]
 
+    # Oracle: best single-agent answer (upper bound on isolated performance)
     if agent_f1s:
         best_idx = agent_f1s.index(max(agent_f1s))
         f1 = agent_f1s[best_idx]
@@ -176,6 +202,16 @@ def _run_instance(
     else:
         f1 = 0.0
         pred = ""
+
+    # Majority vote: exclude refusals, then vote over remaining answers.
+    # This reflects the actual output of the multi-agent system (no oracle).
+    non_refusal = [a for a in agent_answers if not _is_refusal(a)]
+    if non_refusal:
+        mv_pred = majority_vote(non_refusal)
+        mv_f1 = answer_f1(mv_pred, instance)
+    else:
+        mv_pred = ""
+        mv_f1 = 0.0
 
     # Effective ICG = num_supporting - largest shard size
     # (differs from structural ICG when shard size > 1)
@@ -193,6 +229,8 @@ def _run_instance(
         "agent_shards": [[p["title"] for p in shard] for shard in shards],
         "pred": pred,
         "f1": f1,
+        "majority_vote_pred": mv_pred,
+        "majority_vote_f1": mv_f1,
     }
 
 
@@ -203,8 +241,8 @@ def _run_instance(
 def run_variant_a1(
     instance: dict,
     api_fn: Callable,
-    model: str = "google/gemma-4-26b-a4b-it",
-    max_tokens: int = 200,
+    model: str = "anthropic/claude-3.5-haiku",
+    max_tokens: int = 4096,
 ) -> dict:
     """Run Variant A1 (1 paragraph per agent) on a single instance.
 
@@ -219,8 +257,8 @@ def run_variant_a1(
 def run_variant_a2(
     instance: dict,
     api_fn: Callable,
-    model: str = "google/gemma-4-26b-a4b-it",
-    max_tokens: int = 200,
+    model: str = "anthropic/claude-3.5-haiku",
+    max_tokens: int = 4096,
     seed: int = 42,
 ) -> dict:
     """Run Variant A2 (2 paragraphs per agent) on a single instance."""
@@ -233,8 +271,8 @@ def run_variant_a2(
 def run_variant_a3(
     instance: dict,
     api_fn: Callable,
-    model: str = "google/gemma-4-26b-a4b-it",
-    max_tokens: int = 200,
+    model: str = "anthropic/claude-3.5-haiku",
+    max_tokens: int = 4096,
     seed: int = 42,
 ) -> dict:
     """Run Variant A3 (3 paragraphs per agent) on a single instance.
@@ -252,8 +290,8 @@ def run_variant_a_batch(
     instances: list[dict],
     setting: str,
     api_fn: Callable,
-    model: str = "google/gemma-4-26b-a4b-it",
-    max_tokens: int = 200,
+    model: str = "anthropic/claude-3.5-haiku",
+    max_tokens: int = 4096,
     max_workers: int = 5,
     seed: int = 42,
 ) -> list[dict]:
@@ -281,13 +319,27 @@ def run_variant_a_batch(
     if setting not in ("a1", "a2", "a3"):
         raise ValueError(f"setting must be 'a1', 'a2', or 'a3', got {setting!r}")
 
-    results: list[dict] = []
-    for i, inst in enumerate(instances):
+    def _run_one(idx_inst: tuple[int, dict]) -> tuple[int, dict]:
+        i, inst = idx_inst
         if setting == "a1":
-            result = run_variant_a1(inst, api_fn, model, max_tokens)
+            return i, run_variant_a1(inst, api_fn, model, max_tokens)
         elif setting == "a2":
-            result = run_variant_a2(inst, api_fn, model, max_tokens, seed=seed + i)
+            return i, run_variant_a2(inst, api_fn, model, max_tokens, seed=seed + i)
         else:
-            result = run_variant_a3(inst, api_fn, model, max_tokens, seed=seed + i)
-        results.append(result)
-    return results
+            return i, run_variant_a3(inst, api_fn, model, max_tokens, seed=seed + i)
+
+    total = len(instances)
+    done = 0
+    results: list[dict | None] = [None] * total
+    with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as pool:
+        futures = {
+            pool.submit(_run_one, (i, inst)): i
+            for i, inst in enumerate(instances)
+        }
+        for future in concurrent.futures.as_completed(futures):
+            i, result = future.result()
+            results[i] = result
+            done += 1
+            if done % 50 == 0 or done == total:
+                print(f"    [{done}/{total}] instances complete")
+    return results  # type: ignore[return-value]

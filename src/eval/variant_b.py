@@ -11,6 +11,8 @@ Public API:
 
 from __future__ import annotations
 
+import concurrent.futures
+import re
 import sys
 import os
 from typing import Callable
@@ -27,8 +29,13 @@ from .evaluate import answer_f1
 
 SYSTEM_PROMPT = (
     "You are a question-answering assistant. "
-    "Answer based on the provided evidence. "
-    "Be concise — give only the answer, no explanation."
+    "You will be given multiple paragraphs. Reason step by step through all of them together "
+    "to find the answer — you may chain information across paragraphs. "
+    "Do NOT introduce any facts not explicitly stated in the provided paragraphs. "
+    "After your reasoning, output your final answer on the last line in this exact format:\n"
+    "ANSWER: <your concise answer>\n"
+    "If the answer cannot be found even with this reasoning, write:\n"
+    "ANSWER: Insufficient information."
 )
 
 
@@ -37,7 +44,24 @@ def _build_user_prompt(paragraph_texts: list[str], question: str) -> str:
     evidence_block = "\n\n".join(
         f"[Paragraph {i+1}]\n{text}" for i, text in enumerate(paragraph_texts)
     )
-    return f"Evidence:\n{evidence_block}\n\nQuestion: {question}\n\nAnswer concisely."
+    return (
+        f"Paragraphs:\n{evidence_block}\n\n"
+        f"Question: {question}\n\n"
+        f"Reason step by step across all paragraphs. Do not use outside knowledge. "
+        f"Then output your final answer on the last line as: ANSWER: <answer>"
+    )
+
+
+def _extract_answer(text: str) -> str:
+    """Extract the final answer from a response that may contain reasoning.
+
+    Looks for the last 'ANSWER: <text>' line. Falls back to the full text
+    if the pattern is absent (e.g. model ignored the format instruction).
+    """
+    matches = re.findall(r'ANSWER:\s*(.+)', text, re.IGNORECASE)
+    if matches:
+        return matches[-1].strip()
+    return text.strip()
 
 
 # ---------------------------------------------------------------------------
@@ -47,8 +71,8 @@ def _build_user_prompt(paragraph_texts: list[str], question: str) -> str:
 def run_variant_b(
     instance: dict,
     api_fn: Callable,
-    model: str = "google/gemma-4-26b-a4b-it",
-    max_tokens: int = 200,
+    model: str = "anthropic/claude-3.5-haiku",
+    max_tokens: int = 4096,
 ) -> dict:
     """Run Variant B (centralized single agent) on one instance.
 
@@ -81,7 +105,8 @@ def run_variant_b(
 
     response: APIResponse = api_fn(request)
 
-    pred = response.content.strip() if response.success and response.content.strip() else ""
+    raw = response.content.strip() if response.success and response.content.strip() else ""
+    pred = _extract_answer(raw) if raw else ""
     f1 = answer_f1(pred, instance)
 
     return {
@@ -100,21 +125,29 @@ def run_variant_b(
 def run_variant_b_batch(
     instances: list[dict],
     api_fn: Callable,
-    model: str = "google/gemma-4-26b-a4b-it",
-    max_tokens: int = 200,
+    model: str = "anthropic/claude-3.5-haiku",
+    max_tokens: int = 4096,
+    max_workers: int = 5,
 ) -> list[dict]:
-    """Run Variant B over a list of instances, one at a time.
+    """Run Variant B over a list of instances concurrently.
 
     Args:
-        instances: List of MuSiQue instance dicts.
-        api_fn:    single_request-compatible callable.
-        model:     Model identifier string.
-        max_tokens: Per-request output token budget.
+        instances:   List of MuSiQue instance dicts.
+        api_fn:      single_request-compatible callable.
+        model:       Model identifier string.
+        max_tokens:  Per-request output token budget.
+        max_workers: Number of concurrent instance threads.
 
     Returns:
         List of result dicts in the same order as ``instances``.
     """
-    return [
-        run_variant_b(inst, api_fn, model, max_tokens)
-        for inst in instances
-    ]
+    results: list[dict | None] = [None] * len(instances)
+    with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as pool:
+        futures = {
+            pool.submit(run_variant_b, inst, api_fn, model, max_tokens): i
+            for i, inst in enumerate(instances)
+        }
+        for future in concurrent.futures.as_completed(futures):
+            i = futures[future]
+            results[i] = future.result()
+    return results  # type: ignore[return-value]

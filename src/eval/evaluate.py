@@ -193,16 +193,19 @@ def aggregate_by_stratum(
 
     Args:
         instance_results: List of dicts, each with:
-            ``icg``   (int)   — the instance's ICG value
-            ``f1_a``  (float) — Answer F1 for Variant A on this instance
-            ``f1_b``  (float) — Answer F1 for Variant B on this instance
+            ``icg``      (int)   — the instance's ICG value
+            ``f1_a``     (float) — oracle best-agent Answer F1 for Variant A
+            ``f1_b``     (float) — Answer F1 for Variant B
+            ``f1_a_mv``  (float, optional) — majority-vote Answer F1 for Variant A
 
     Returns:
         Dict mapping ICG → {
-            "n":       int,
-            "f1_a":    float,   mean Answer F1 for Variant A (isolated)
-            "f1_b":    float,   mean Answer F1 for Variant B (centralized/collaboration)
-            "delta":   float,   f1_b - f1_a  (communication gain; positive = B helps)
+            "n":          int,
+            "f1_a":       float,  mean oracle Answer F1 for Variant A
+            "f1_b":       float,  mean Answer F1 for Variant B
+            "delta":      float,  f1_b - f1_a  (oracle gap)
+            "f1_a_mv":    float,  mean majority-vote Answer F1 (if available)
+            "delta_mv":   float,  f1_b - f1_a_mv (majority-vote gap, if available)
         }
     """
     strata: dict[int, list[dict]] = {}
@@ -214,12 +217,17 @@ def aggregate_by_stratum(
         n = len(rows)
         mean_a = sum(r["f1_a"] for r in rows) / n
         mean_b = sum(r["f1_b"] for r in rows) / n
-        aggregated[icg] = {
+        entry: dict = {
             "n": n,
             "f1_a": mean_a,
             "f1_b": mean_b,
             "delta": mean_b - mean_a,
         }
+        if any("f1_a_mv" in r for r in rows):
+            mean_a_mv = sum(r.get("f1_a_mv", 0.0) for r in rows) / n
+            entry["f1_a_mv"] = mean_a_mv
+            entry["delta_mv"] = mean_b - mean_a_mv
+        aggregated[icg] = entry
     return aggregated
 
 
@@ -253,21 +261,40 @@ def print_results_table(
 ) -> None:
     """Print a formatted results table for one sharding setting.
 
+    Shows oracle best-agent F1 columns always; appends majority-vote columns
+    when ``f1_a_mv`` is present in the aggregated data.
+
     Args:
         aggregated:    Output of ``aggregate_by_stratum``.
         setting_label: Label inserted into the header (e.g. "A1" or "A2").
     """
-    header = (
-        f"ICG  | N      | F1_B (Centralized) | "
-        f"F1_{setting_label} (Isolated) | Delta (B-{setting_label})"
-    )
+    has_mv = any("f1_a_mv" in row for row in aggregated.values())
+
+    if has_mv:
+        header = (
+            f"ICG  | N      | F1_B (Central) | "
+            f"F1_{setting_label}_oracle | Delta_oracle | "
+            f"F1_{setting_label}_mv    | Delta_mv"
+        )
+    else:
+        header = (
+            f"ICG  | N      | F1_B (Centralized) | "
+            f"F1_{setting_label} (Isolated) | Delta (B-{setting_label})"
+        )
     sep = "-" * len(header)
     print(header)
     print(sep)
     for icg in sorted(aggregated):
         row = aggregated[icg]
-        print(
-            f"{icg:<4d} | {row['n']:<6d} | {row['f1_b']:<19.4f} | "
-            f"{row['f1_a']:<21.4f} | {row['delta']:+.4f}"
-        )
+        if has_mv:
+            print(
+                f"{icg:<4d} | {row['n']:<6d} | {row['f1_b']:<15.4f} | "
+                f"{row['f1_a']:<16.4f} | {row['delta']:+.4f}       | "
+                f"{row.get('f1_a_mv', 0.0):<13.4f} | {row.get('delta_mv', 0.0):+.4f}"
+            )
+        else:
+            print(
+                f"{icg:<4d} | {row['n']:<6d} | {row['f1_b']:<19.4f} | "
+                f"{row['f1_a']:<21.4f} | {row['delta']:+.4f}"
+            )
     print()

@@ -49,7 +49,7 @@ def _merge_results(
     """Merge per-instance A and B results into a joint list.
 
     Both lists must be in the same order (same instances).  Returns a list
-    of dicts with keys: id, icg, f1_a, f1_b.
+    of dicts with keys: id, icg, f1_a, f1_a_mv, f1_b.
     """
     b_by_id = {r["id"]: r for r in b_results}
     merged: list[dict] = []
@@ -59,8 +59,10 @@ def _merge_results(
             "id": a["id"],
             "icg": a["icg"],
             "f1_a": a["f1"],
+            "f1_a_mv": a.get("majority_vote_f1", 0.0),
             "f1_b": b["f1"] if b else 0.0,
             "pred_a": a["pred"],
+            "majority_vote_pred": a.get("majority_vote_pred", ""),
             "pred_b": b["pred"] if b else "",
             "agent_answers": a.get("agent_answers", []),
             "agent_errors": a.get("agent_errors", []),
@@ -135,7 +137,8 @@ def _write_detail_log(
                     fh.write(f"Agent {i+1}: [API ERROR: {err}]\n")
                 else:
                     fh.write(f"Agent {i+1}: {repr(ans)}  [F1: {f1_str}]\n")
-            fh.write(f"Best (pred_a): {repr(r['pred_a'])}  [F1: {r['f1_a']:.3f}]\n\n")
+            fh.write(f"Oracle pred:       {repr(r['pred_a'])}  [F1: {r['f1_a']:.3f}]\n")
+            fh.write(f"Majority-vote pred: {repr(r.get('majority_vote_pred', ''))}  [F1: {r.get('f1_a_mv', 0.0):.3f}]\n\n")
 
             fh.write("--- Variant B (Centralized) ---\n")
             error_b = r.get("error_b")
@@ -157,16 +160,16 @@ def main(argv: list[str] | None = None) -> None:
     )
     parser.add_argument("--data", default=None, help="Path to MuSiQue JSONL file")
     parser.add_argument(
-        "--min-hops", type=int, default=4,
-        help="Minimum number of supporting paragraphs per instance (default: 4)"
+        "--min-hops", type=int, default=2,
+        help="Minimum number of supporting paragraphs per instance (default: 2)"
     )
     parser.add_argument(
-        "--model", default="google/gemma-4-26b-a4b-it",
-        help="OpenRouter model string (default: google/gemma-4-26b-a4b-it)"
+        "--model", default="anthropic/claude-3.5-haiku",
+        help="OpenRouter model string (default: anthropic/claude-3.5-haiku)"
     )
     parser.add_argument(
-        "--max-tokens", type=int, default=1024,
-        help="Per-agent output token budget (default: 1024)"
+        "--max-tokens", type=int, default=4096,
+        help="Per-agent output token budget (default: 4096)"
     )
     parser.add_argument(
         "--max-workers", type=int, default=2,
@@ -181,8 +184,8 @@ def main(argv: list[str] | None = None) -> None:
         help="Base random seed for A2 paragraph shuffling (default: 42)"
     )
     parser.add_argument(
-        "--setting", choices=["a1", "a2", "a3", "all"], default="all",
-        help="Variant A sharding setting to run (default: all)"
+        "--setting", choices=["a1", "a2", "a3", "all"], default="a1",
+        help="Variant A sharding setting to run (default: a1)"
     )
     parser.add_argument(
         "--skip-b", action="store_true",
@@ -235,7 +238,8 @@ def main(argv: list[str] | None = None) -> None:
     if not args.skip_b:
         print(f"\nRunning Variant B (centralized, {len(instances)} instances)...")
         b_results = run_variant_b_batch(
-            instances, single_fn, args.model, args.max_tokens
+            instances, single_fn, args.model, args.max_tokens,
+            max_workers=args.max_workers,
         )
         b_mean_f1 = sum(r["f1"] for r in b_results) / max(len(b_results), 1)
         print(f"  Variant B mean F1: {b_mean_f1:.4f}")
@@ -280,8 +284,10 @@ def main(argv: list[str] | None = None) -> None:
             merged = [
                 {
                     "id": r["id"], "icg": r["icg"],
-                    "f1_a": r["f1"], "f1_b": 0.0,
-                    "pred_a": r["pred"], "pred_b": "",
+                    "f1_a": r["f1"], "f1_a_mv": r.get("majority_vote_f1", 0.0),
+                    "f1_b": 0.0,
+                    "pred_a": r["pred"], "majority_vote_pred": r.get("majority_vote_pred", ""),
+                    "pred_b": "",
                     "agent_answers": r.get("agent_answers", []),
                     "agent_errors": r.get("agent_errors", []),
                     "agent_shards": r.get("agent_shards", []),
@@ -297,14 +303,38 @@ def main(argv: list[str] | None = None) -> None:
         print(f"\n=== Results: Setting {label} ===")
         print_results_table(agg, setting_label=label)
 
-        # Correlation
+        # Oracle correlation — all instances
         corr = compute_correlation(merged)
-        print(f"  Pearson(ICG, Δ):  {corr['pearson']}")
-        print(f"  Spearman(ICG, Δ): {corr['spearman']}")
+        print(f"  Oracle  Pearson(ICG, Δ):  {corr['pearson']}")
+        print(f"  Oracle  Spearman(ICG, Δ): {corr['spearman']}")
+
+        # Majority-vote correlation — remap f1_a_mv → f1_a for reuse
+        merged_mv = [{**r, "f1_a": r.get("f1_a_mv", 0.0)} for r in merged]
+        corr_mv = compute_correlation(merged_mv)
+        print(f"  MajVote Pearson(ICG, Δ):  {corr_mv['pearson']}")
+        print(f"  MajVote Spearman(ICG, Δ): {corr_mv['spearman']}")
+
+        # Filtered correlations — exclude single-paragraph-sufficient instances
+        # (oracle F1_A > 0 means one shard was self-sufficient; not an ICG test)
+        filtered = [r for r in merged if r["f1_a"] == 0]
+        filtered_corr = compute_correlation(filtered)
+        filtered_mv = [{**r, "f1_a": r.get("f1_a_mv", 0.0)} for r in filtered]
+        filtered_corr_mv = compute_correlation(filtered_mv)
+        n_filtered = len(filtered)
+        n_removed = len(merged) - n_filtered
+        print(f"  Filtered ({n_removed} self-sufficient removed, n={n_filtered}):")
+        print(f"    Oracle  Pearson(ICG, Δ):  {filtered_corr['pearson']}")
+        print(f"    Oracle  Spearman(ICG, Δ): {filtered_corr['spearman']}")
+        print(f"    MajVote Pearson(ICG, Δ):  {filtered_corr_mv['pearson']}")
+        print(f"    MajVote Spearman(ICG, Δ): {filtered_corr_mv['spearman']}")
 
         all_output["settings"][setting] = {
             "aggregated": {str(k): v for k, v in agg.items()},
             "correlation": corr,
+            "correlation_mv": corr_mv,
+            "filtered_correlation": filtered_corr,
+            "filtered_correlation_mv": filtered_corr_mv,
+            "n_self_sufficient": n_removed,
             "instance_results": merged,
         }
 
@@ -316,10 +346,16 @@ def main(argv: list[str] | None = None) -> None:
         for res in all_output["settings"].values():
             pooled.extend(res["instance_results"])
         cross_corr = compute_correlation(pooled)
+        pooled_filtered = [r for r in pooled if r["f1_a"] == 0]
+        cross_corr_filtered = compute_correlation(pooled_filtered)
         all_output["cross_setting_correlation"] = cross_corr
-        print(f"\n=== Cross-setting correlation (pooled A1+A2+A3, ICG vs Δ) ===")
+        all_output["cross_setting_correlation_filtered"] = cross_corr_filtered
+        print(f"\n=== Cross-setting correlation (pooled, ICG vs Δ) ===")
         print(f"  Pearson:  {cross_corr['pearson']}")
         print(f"  Spearman: {cross_corr['spearman']}")
+        print(f"  Filtered (n={len(pooled_filtered)}):")
+        print(f"    Pearson:  {cross_corr_filtered['pearson']}")
+        print(f"    Spearman: {cross_corr_filtered['spearman']}")
 
     # ------------------------------------------------------------------
     # Save output
@@ -338,27 +374,39 @@ def main(argv: list[str] | None = None) -> None:
         ANNOTATION = """\
 Experiment: ICG MuSiQue Evaluation — Variant A (Isolated) vs Variant B (Centralized)
 ======================================================================================
-Settings:
-  A1  1 paragraph per agent  (effective ICG = num_hops - 1)
-      Each agent sees only one supporting paragraph. With 4-hop instances,
-      4 agents each hold 1 paragraph. The oracle best-agent F1 is reported.
+Design:
+  A1  1 paragraph per agent  —  ICG = num_supporting - 1
+      Each supporting paragraph is held by exactly one agent. Agents answer
+      independently using ONLY their assigned paragraph (strict grounding;
+      no outside knowledge permitted).
 
-  A2  2 paragraphs per agent  (effective ICG = num_hops - 2)
-      Each agent sees two supporting paragraphs. With 4-hop instances,
-      2 agents each hold 2 paragraphs. The oracle best-agent F1 is reported.
+  A2  2 paragraphs per agent  —  effective ICG = num_supporting - 2
+      Agents hold 2 supporting paragraphs each (last agent may hold 1 if odd).
+      Crucially, 2-hop instances under A2 collapse to a single agent holding
+      all evidence (ICG=0), providing a natural zero-ICG control group.
 
-  A3  3 paragraphs per agent  (effective ICG = num_hops - 3)
-      Each agent sees three supporting paragraphs. With 4-hop instances,
-      one agent holds 3 paragraphs and one holds 1. The oracle best-agent
-      F1 is reported.
+  Both A settings report two metrics:
+    - Oracle F1:       max F1 over all agents (upper bound on isolated perf)
+    - Majority-vote F1: F1 of the plurality answer after filtering refusals
+                        (reflects the actual multi-agent system output)
 
-  B   Centralized baseline — single agent sees all supporting paragraphs.
+  B   Centralized baseline — single agent sees all supporting paragraphs,
+      strictly grounded to provided evidence only, with explicit step-by-step
+      multi-hop reasoning instruction.
 
-Delta = F1_B - F1_Ax  (positive = centralized agent outperforms isolated agents)
-ICG   = Irreducible Communication Gap — the minimum number of supporting
-        paragraphs no single agent possesses. Higher ICG means agents need
-        more cross-agent communication to answer correctly.
-Hypothesis: Delta grows with ICG (more isolation → larger performance gap).
+ICG variation:
+  A1: ICG varies naturally via hop count (ICG=1,2,3 for 2/3/4-hop instances).
+  A2: ICG varies naturally (ICG=0,1,2 for 2/3/4-hop instances), including
+      the critical ICG=0 control point where Delta should approach zero.
+
+Filtering:
+  Single-paragraph-sufficient instances (oracle F1_A > 0) are excluded from
+  the filtered correlation. With strict grounding, this reliably indicates
+  the shard contained self-sufficient information — not an ICG test.
+  Correlations are reported both with and without this filter.
+
+Delta = F1_B - F1_A  (positive = centralized outperforms isolated)
+Hypothesis: Delta grows with ICG (higher hop count → larger gap).
 ======================================================================================
 
 """
@@ -373,25 +421,61 @@ Hypothesis: Delta grows with ICG (more isolation → larger performance gap).
             for setting, res in all_output["settings"].items():
                 label = setting.upper()
                 fh.write(f"=== Setting {label} ===\n")
-                header = (
-                    f"ICG  | N      | F1_B (Centralized) | "
-                    f"F1_{label} (Isolated) | Delta (B-{label})\n"
+                has_mv = any(
+                    "f1_a_mv" in row
+                    for row in res["aggregated"].values()
                 )
+                if has_mv:
+                    header = (
+                        f"ICG  | N      | F1_B (Central) | "
+                        f"F1_{label}_oracle | Delta_oracle | "
+                        f"F1_{label}_mv    | Delta_mv\n"
+                    )
+                else:
+                    header = (
+                        f"ICG  | N      | F1_B (Centralized) | "
+                        f"F1_{label} (Isolated) | Delta (B-{label})\n"
+                    )
                 fh.write(header)
                 fh.write("-" * len(header.rstrip()) + "\n")
                 for icg_str, row in sorted(res["aggregated"].items(), key=lambda x: int(x[0])):
-                    fh.write(
-                        f"{int(icg_str):<4d} | {row['n']:<6d} | {row['f1_b']:<19.4f} | "
-                        f"{row['f1_a']:<21.4f} | {row['delta']:+.4f}\n"
-                    )
+                    if has_mv:
+                        fh.write(
+                            f"{int(icg_str):<4d} | {row['n']:<6d} | {row['f1_b']:<15.4f} | "
+                            f"{row['f1_a']:<16.4f} | {row['delta']:+.4f}       | "
+                            f"{row.get('f1_a_mv', 0.0):<13.4f} | {row.get('delta_mv', 0.0):+.4f}\n"
+                        )
+                    else:
+                        fh.write(
+                            f"{int(icg_str):<4d} | {row['n']:<6d} | {row['f1_b']:<19.4f} | "
+                            f"{row['f1_a']:<21.4f} | {row['delta']:+.4f}\n"
+                        )
                 corr = res["correlation"]
-                fh.write(f"\n  Pearson(ICG, Δ):  {corr['pearson']}\n")
-                fh.write(f"  Spearman(ICG, Δ): {corr['spearman']}\n\n")
+                corr_mv = res.get("correlation_mv", {})
+                fh.write(f"\n  Oracle  Pearson(ICG, Δ):  {corr['pearson']}\n")
+                fh.write(f"  Oracle  Spearman(ICG, Δ): {corr['spearman']}\n")
+                if corr_mv:
+                    fh.write(f"  MajVote Pearson(ICG, Δ):  {corr_mv.get('pearson')}\n")
+                    fh.write(f"  MajVote Spearman(ICG, Δ): {corr_mv.get('spearman')}\n")
+                filtered_corr = res.get("filtered_correlation", {})
+                filtered_corr_mv = res.get("filtered_correlation_mv", {})
+                n_removed = res.get("n_self_sufficient", 0)
+                n_filtered = sum(row["n"] for row in res["aggregated"].values()) - n_removed
+                fh.write(f"  Self-sufficient removed: {n_removed}  (filtered n={n_filtered})\n")
+                fh.write(f"  Oracle  Pearson(ICG, Δ)  [filtered]: {filtered_corr.get('pearson')}\n")
+                fh.write(f"  Oracle  Spearman(ICG, Δ) [filtered]: {filtered_corr.get('spearman')}\n")
+                if filtered_corr_mv:
+                    fh.write(f"  MajVote Pearson(ICG, Δ)  [filtered]: {filtered_corr_mv.get('pearson')}\n")
+                    fh.write(f"  MajVote Spearman(ICG, Δ) [filtered]: {filtered_corr_mv.get('spearman')}\n")
+                fh.write("\n")
             if "cross_setting_correlation" in all_output:
                 cross_corr = all_output["cross_setting_correlation"]
+                cross_corr_f = all_output.get("cross_setting_correlation_filtered", {})
                 fh.write(f"=== Cross-setting correlation (pooled, ICG vs Δ) ===\n")
                 fh.write(f"  Pearson:  {cross_corr['pearson']}\n")
                 fh.write(f"  Spearman: {cross_corr['spearman']}\n")
+                fh.write(f"  Pearson  [filtered]: {cross_corr_f.get('pearson')}\n")
+                fh.write(f"  Spearman [filtered]: {cross_corr_f.get('spearman')}\n")
         print(f"Summary written to:       {summary_path}")
 
         # detail_<setting>.txt — one per setting
