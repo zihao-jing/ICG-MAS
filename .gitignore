@@ -1,7 +1,13 @@
+# macOS metadata
+.DS_Store
+
 # Local data and documentation
 /data/
 /docs/
 /results/
+
+# Paper repo (separate git repository)
+/Irreducible-Communication-Gap-Paper/
 
 # Experiment results (keep the directory, ignore output files)
 /results/*

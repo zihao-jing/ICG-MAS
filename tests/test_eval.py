@@ -626,7 +626,7 @@ class TestRunVariantA2:
 class TestRunVariantABatch:
     def test_invalid_setting_raises(self):
         with pytest.raises(ValueError, match="setting must be"):
-            run_variant_a_batch([], setting="a3", api_fn=None)
+            run_variant_a_batch([], setting="a99", api_fn=None)
 
     def test_a1_batch_processes_all(self):
         instances = [
