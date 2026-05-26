@@ -1,0 +1,786 @@
+{
+  "case_id": "III-24",
+  "case_name": "BFS Distance",
+  "paradigm": "Paradigm III",
+  "leetcode": {
+    "url": "https://leetcode.com/problems/01-matrix/",
+    "description": "This case is inspired by the LeetCode problem. The multi-agent version tests distributed computation and communication efficiency."
+  },
+  "metadata": {
+    "num_agents": 5,
+    "optimal_topology": "Dynamic message routing along graph edges",
+    "optimal_message_count": "O(N × E) - proportional to graph edges",
+    "theoretical_complexity": "O(N log N) or O(N²) - Global/Shuffle",
+    "output_type": "distributed",
+    "is_segmented": false
+  },
+  "task_description": "**Task: BFS Distance (Single-Source Shortest Path)**\n\nCompute shortest distance from source node 0 to all nodes in an unweighted graph.\n\n**Data Distribution:**\nTotal nodes: 40. Edges RANDOMLY distributed. Source: node 0.\n\n**Your Data (RANDOM edges):**\nAgent {agent_id} holds: {input_shard}\n\n**Algorithm:**\nBFS wave propagation. Messages must propagate along edges held by different agents.\n\n**Output:**\nDictionary mapping node_id to distance_from_source (-1 if unreachable).\n\n**Communication Protocol:**\nTopology: Multi-hop message passing along graph structure.\nAll agents must submit the same final answer using submit_result(complete_distance_dict).",
+  "agent_configs": [
+    {
+      "agent_id": 0,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 0\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: BFS Distance (Single-Source Shortest Path)**\n\nCompute shortest distance from source node 0 to all nodes in an unweighted graph.\n\n**Data Distribution:**\nTotal nodes: 40. Edges RANDOMLY distributed. Source: node 0.\n\n**Your Data (RANDOM edges):**\nAgent 0 holds: [(0, 30), (7, 1), (19, 33), (32, 25), (26, 38), (35, 20), (32, 1), (31, 38), (10, 36), (20, 17), (19, 28), (36, 38), (39, 25), (2, 29)]\n\n**Algorithm:**\nBFS wave propagation. Messages must propagate along edges held by different agents.\n\n**Output:**\nDictionary mapping node_id to distance_from_source (-1 if unreachable).\n\n**Communication Protocol:**\nTopology: Multi-hop message passing along graph structure.\nAll agents must submit the same final answer using submit_result(complete_distance_dict).",
+      "input_shard": [
+        [
+          0,
+          30
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          19,
+          33
+        ],
+        [
+          32,
+          25
+        ],
+        [
+          26,
+          38
+        ],
+        [
+          35,
+          20
+        ],
+        [
+          32,
+          1
+        ],
+        [
+          31,
+          38
+        ],
+        [
+          10,
+          36
+        ],
+        [
+          20,
+          17
+        ],
+        [
+          19,
+          28
+        ],
+        [
+          36,
+          38
+        ],
+        [
+          39,
+          25
+        ],
+        [
+          2,
+          29
+        ]
+      ],
+      "expected_output": {
+        "0": 0,
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 4,
+        "5": 3,
+        "6": 2,
+        "7": 3,
+        "8": 3,
+        "9": 3,
+        "10": 3,
+        "11": 3,
+        "12": 3,
+        "13": 2,
+        "14": 3,
+        "15": 3,
+        "16": 2,
+        "17": 2,
+        "18": 3,
+        "19": 2,
+        "20": 3,
+        "21": 3,
+        "22": 4,
+        "23": 2,
+        "24": 3,
+        "25": 2,
+        "26": 2,
+        "27": 3,
+        "28": 3,
+        "29": 1,
+        "30": 1,
+        "31": 2,
+        "32": 1,
+        "33": 3,
+        "34": 5,
+        "35": 3,
+        "36": 2,
+        "37": 2,
+        "38": 1,
+        "39": 2
+      }
+    },
+    {
+      "agent_id": 1,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 1\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: BFS Distance (Single-Source Shortest Path)**\n\nCompute shortest distance from source node 0 to all nodes in an unweighted graph.\n\n**Data Distribution:**\nTotal nodes: 40. Edges RANDOMLY distributed. Source: node 0.\n\n**Your Data (RANDOM edges):**\nAgent 1 holds: [(36, 37), (35, 22), (28, 11), (30, 37), (38, 19), (38, 0), (13, 14), (1, 11), (7, 26), (39, 38), (16, 5), (18, 1), (21, 19), (33, 26)]\n\n**Algorithm:**\nBFS wave propagation. Messages must propagate along edges held by different agents.\n\n**Output:**\nDictionary mapping node_id to distance_from_source (-1 if unreachable).\n\n**Communication Protocol:**\nTopology: Multi-hop message passing along graph structure.\nAll agents must submit the same final answer using submit_result(complete_distance_dict).",
+      "input_shard": [
+        [
+          36,
+          37
+        ],
+        [
+          35,
+          22
+        ],
+        [
+          28,
+          11
+        ],
+        [
+          30,
+          37
+        ],
+        [
+          38,
+          19
+        ],
+        [
+          38,
+          0
+        ],
+        [
+          13,
+          14
+        ],
+        [
+          1,
+          11
+        ],
+        [
+          7,
+          26
+        ],
+        [
+          39,
+          38
+        ],
+        [
+          16,
+          5
+        ],
+        [
+          18,
+          1
+        ],
+        [
+          21,
+          19
+        ],
+        [
+          33,
+          26
+        ]
+      ],
+      "expected_output": {
+        "0": 0,
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 4,
+        "5": 3,
+        "6": 2,
+        "7": 3,
+        "8": 3,
+        "9": 3,
+        "10": 3,
+        "11": 3,
+        "12": 3,
+        "13": 2,
+        "14": 3,
+        "15": 3,
+        "16": 2,
+        "17": 2,
+        "18": 3,
+        "19": 2,
+        "20": 3,
+        "21": 3,
+        "22": 4,
+        "23": 2,
+        "24": 3,
+        "25": 2,
+        "26": 2,
+        "27": 3,
+        "28": 3,
+        "29": 1,
+        "30": 1,
+        "31": 2,
+        "32": 1,
+        "33": 3,
+        "34": 5,
+        "35": 3,
+        "36": 2,
+        "37": 2,
+        "38": 1,
+        "39": 2
+      }
+    },
+    {
+      "agent_id": 2,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 2\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: BFS Distance (Single-Source Shortest Path)**\n\nCompute shortest distance from source node 0 to all nodes in an unweighted graph.\n\n**Data Distribution:**\nTotal nodes: 40. Edges RANDOMLY distributed. Source: node 0.\n\n**Your Data (RANDOM edges):**\nAgent 2 holds: [(11, 17), (39, 37), (6, 18), (26, 16), (34, 22), (24, 22), (26, 31), (23, 1), (17, 27), (3, 32), (30, 2), (30, 17), (24, 31), (19, 32)]\n\n**Algorithm:**\nBFS wave propagation. Messages must propagate along edges held by different agents.\n\n**Output:**\nDictionary mapping node_id to distance_from_source (-1 if unreachable).\n\n**Communication Protocol:**\nTopology: Multi-hop message passing along graph structure.\nAll agents must submit the same final answer using submit_result(complete_distance_dict).",
+      "input_shard": [
+        [
+          11,
+          17
+        ],
+        [
+          39,
+          37
+        ],
+        [
+          6,
+          18
+        ],
+        [
+          26,
+          16
+        ],
+        [
+          34,
+          22
+        ],
+        [
+          24,
+          22
+        ],
+        [
+          26,
+          31
+        ],
+        [
+          23,
+          1
+        ],
+        [
+          17,
+          27
+        ],
+        [
+          3,
+          32
+        ],
+        [
+          30,
+          2
+        ],
+        [
+          30,
+          17
+        ],
+        [
+          24,
+          31
+        ],
+        [
+          19,
+          32
+        ]
+      ],
+      "expected_output": {
+        "0": 0,
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 4,
+        "5": 3,
+        "6": 2,
+        "7": 3,
+        "8": 3,
+        "9": 3,
+        "10": 3,
+        "11": 3,
+        "12": 3,
+        "13": 2,
+        "14": 3,
+        "15": 3,
+        "16": 2,
+        "17": 2,
+        "18": 3,
+        "19": 2,
+        "20": 3,
+        "21": 3,
+        "22": 4,
+        "23": 2,
+        "24": 3,
+        "25": 2,
+        "26": 2,
+        "27": 3,
+        "28": 3,
+        "29": 1,
+        "30": 1,
+        "31": 2,
+        "32": 1,
+        "33": 3,
+        "34": 5,
+        "35": 3,
+        "36": 2,
+        "37": 2,
+        "38": 1,
+        "39": 2
+      }
+    },
+    {
+      "agent_id": 3,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 3\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: BFS Distance (Single-Source Shortest Path)**\n\nCompute shortest distance from source node 0 to all nodes in an unweighted graph.\n\n**Data Distribution:**\nTotal nodes: 40. Edges RANDOMLY distributed. Source: node 0.\n\n**Your Data (RANDOM edges):**\nAgent 3 holds: [(25, 8), (29, 0), (29, 16), (17, 26), (14, 8), (25, 9), (25, 2), (28, 13), (0, 32), (17, 33), (15, 23), (6, 30), (18, 19), (15, 3)]\n\n**Algorithm:**\nBFS wave propagation. Messages must propagate along edges held by different agents.\n\n**Output:**\nDictionary mapping node_id to distance_from_source (-1 if unreachable).\n\n**Communication Protocol:**\nTopology: Multi-hop message passing along graph structure.\nAll agents must submit the same final answer using submit_result(complete_distance_dict).",
+      "input_shard": [
+        [
+          25,
+          8
+        ],
+        [
+          29,
+          0
+        ],
+        [
+          29,
+          16
+        ],
+        [
+          17,
+          26
+        ],
+        [
+          14,
+          8
+        ],
+        [
+          25,
+          9
+        ],
+        [
+          25,
+          2
+        ],
+        [
+          28,
+          13
+        ],
+        [
+          0,
+          32
+        ],
+        [
+          17,
+          33
+        ],
+        [
+          15,
+          23
+        ],
+        [
+          6,
+          30
+        ],
+        [
+          18,
+          19
+        ],
+        [
+          15,
+          3
+        ]
+      ],
+      "expected_output": {
+        "0": 0,
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 4,
+        "5": 3,
+        "6": 2,
+        "7": 3,
+        "8": 3,
+        "9": 3,
+        "10": 3,
+        "11": 3,
+        "12": 3,
+        "13": 2,
+        "14": 3,
+        "15": 3,
+        "16": 2,
+        "17": 2,
+        "18": 3,
+        "19": 2,
+        "20": 3,
+        "21": 3,
+        "22": 4,
+        "23": 2,
+        "24": 3,
+        "25": 2,
+        "26": 2,
+        "27": 3,
+        "28": 3,
+        "29": 1,
+        "30": 1,
+        "31": 2,
+        "32": 1,
+        "33": 3,
+        "34": 5,
+        "35": 3,
+        "36": 2,
+        "37": 2,
+        "38": 1,
+        "39": 2
+      }
+    },
+    {
+      "agent_id": 4,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 4\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: BFS Distance (Single-Source Shortest Path)**\n\nCompute shortest distance from source node 0 to all nodes in an unweighted graph.\n\n**Data Distribution:**\nTotal nodes: 40. Edges RANDOMLY distributed. Source: node 0.\n\n**Your Data (RANDOM edges):**\nAgent 4 holds: [(12, 17), (31, 6), (13, 29), (8, 11), (14, 16), (24, 3), (22, 10), (37, 6), (5, 12), (25, 21), (19, 17), (33, 36), (33, 23), (23, 35), (3, 23), (10, 4), (23, 29), (6, 36)]\n\n**Algorithm:**\nBFS wave propagation. Messages must propagate along edges held by different agents.\n\n**Output:**\nDictionary mapping node_id to distance_from_source (-1 if unreachable).\n\n**Communication Protocol:**\nTopology: Multi-hop message passing along graph structure.\nAll agents must submit the same final answer using submit_result(complete_distance_dict).",
+      "input_shard": [
+        [
+          12,
+          17
+        ],
+        [
+          31,
+          6
+        ],
+        [
+          13,
+          29
+        ],
+        [
+          8,
+          11
+        ],
+        [
+          14,
+          16
+        ],
+        [
+          24,
+          3
+        ],
+        [
+          22,
+          10
+        ],
+        [
+          37,
+          6
+        ],
+        [
+          5,
+          12
+        ],
+        [
+          25,
+          21
+        ],
+        [
+          19,
+          17
+        ],
+        [
+          33,
+          36
+        ],
+        [
+          33,
+          23
+        ],
+        [
+          23,
+          35
+        ],
+        [
+          3,
+          23
+        ],
+        [
+          10,
+          4
+        ],
+        [
+          23,
+          29
+        ],
+        [
+          6,
+          36
+        ]
+      ],
+      "expected_output": {
+        "0": 0,
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 4,
+        "5": 3,
+        "6": 2,
+        "7": 3,
+        "8": 3,
+        "9": 3,
+        "10": 3,
+        "11": 3,
+        "12": 3,
+        "13": 2,
+        "14": 3,
+        "15": 3,
+        "16": 2,
+        "17": 2,
+        "18": 3,
+        "19": 2,
+        "20": 3,
+        "21": 3,
+        "22": 4,
+        "23": 2,
+        "24": 3,
+        "25": 2,
+        "26": 2,
+        "27": 3,
+        "28": 3,
+        "29": 1,
+        "30": 1,
+        "31": 2,
+        "32": 1,
+        "33": 3,
+        "34": 5,
+        "35": 3,
+        "36": 2,
+        "37": 2,
+        "38": 1,
+        "39": 2
+      }
+    }
+  ],
+  "expected_output": {
+    "type": "distributed",
+    "per_agent_values": [
+      {
+        "0": 0,
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 4,
+        "5": 3,
+        "6": 2,
+        "7": 3,
+        "8": 3,
+        "9": 3,
+        "10": 3,
+        "11": 3,
+        "12": 3,
+        "13": 2,
+        "14": 3,
+        "15": 3,
+        "16": 2,
+        "17": 2,
+        "18": 3,
+        "19": 2,
+        "20": 3,
+        "21": 3,
+        "22": 4,
+        "23": 2,
+        "24": 3,
+        "25": 2,
+        "26": 2,
+        "27": 3,
+        "28": 3,
+        "29": 1,
+        "30": 1,
+        "31": 2,
+        "32": 1,
+        "33": 3,
+        "34": 5,
+        "35": 3,
+        "36": 2,
+        "37": 2,
+        "38": 1,
+        "39": 2
+      },
+      {
+        "0": 0,
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 4,
+        "5": 3,
+        "6": 2,
+        "7": 3,
+        "8": 3,
+        "9": 3,
+        "10": 3,
+        "11": 3,
+        "12": 3,
+        "13": 2,
+        "14": 3,
+        "15": 3,
+        "16": 2,
+        "17": 2,
+        "18": 3,
+        "19": 2,
+        "20": 3,
+        "21": 3,
+        "22": 4,
+        "23": 2,
+        "24": 3,
+        "25": 2,
+        "26": 2,
+        "27": 3,
+        "28": 3,
+        "29": 1,
+        "30": 1,
+        "31": 2,
+        "32": 1,
+        "33": 3,
+        "34": 5,
+        "35": 3,
+        "36": 2,
+        "37": 2,
+        "38": 1,
+        "39": 2
+      },
+      {
+        "0": 0,
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 4,
+        "5": 3,
+        "6": 2,
+        "7": 3,
+        "8": 3,
+        "9": 3,
+        "10": 3,
+        "11": 3,
+        "12": 3,
+        "13": 2,
+        "14": 3,
+        "15": 3,
+        "16": 2,
+        "17": 2,
+        "18": 3,
+        "19": 2,
+        "20": 3,
+        "21": 3,
+        "22": 4,
+        "23": 2,
+        "24": 3,
+        "25": 2,
+        "26": 2,
+        "27": 3,
+        "28": 3,
+        "29": 1,
+        "30": 1,
+        "31": 2,
+        "32": 1,
+        "33": 3,
+        "34": 5,
+        "35": 3,
+        "36": 2,
+        "37": 2,
+        "38": 1,
+        "39": 2
+      },
+      {
+        "0": 0,
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 4,
+        "5": 3,
+        "6": 2,
+        "7": 3,
+        "8": 3,
+        "9": 3,
+        "10": 3,
+        "11": 3,
+        "12": 3,
+        "13": 2,
+        "14": 3,
+        "15": 3,
+        "16": 2,
+        "17": 2,
+        "18": 3,
+        "19": 2,
+        "20": 3,
+        "21": 3,
+        "22": 4,
+        "23": 2,
+        "24": 3,
+        "25": 2,
+        "26": 2,
+        "27": 3,
+        "28": 3,
+        "29": 1,
+        "30": 1,
+        "31": 2,
+        "32": 1,
+        "33": 3,
+        "34": 5,
+        "35": 3,
+        "36": 2,
+        "37": 2,
+        "38": 1,
+        "39": 2
+      },
+      {
+        "0": 0,
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 4,
+        "5": 3,
+        "6": 2,
+        "7": 3,
+        "8": 3,
+        "9": 3,
+        "10": 3,
+        "11": 3,
+        "12": 3,
+        "13": 2,
+        "14": 3,
+        "15": 3,
+        "16": 2,
+        "17": 2,
+        "18": 3,
+        "19": 2,
+        "20": 3,
+        "21": 3,
+        "22": 4,
+        "23": 2,
+        "24": 3,
+        "25": 2,
+        "26": 2,
+        "27": 3,
+        "28": 3,
+        "29": 1,
+        "30": 1,
+        "31": 2,
+        "32": 1,
+        "33": 3,
+        "34": 5,
+        "35": 3,
+        "36": 2,
+        "37": 2,
+        "38": 1,
+        "39": 2
+      }
+    ],
+    "is_segmented": false,
+    "verification_logic": "len(agent_outputs) == num_agents and all(agent_outputs[i] == expected_output for i in range(num_agents))",
+    "verification_logic_hint": "all(agent_outputs) == bfs(graph, source=0)",
+    "format_description": "ALL agents must submit their results using submit_result(answer). All agents should submit the same final answer after coordination."
+  },
+  "evaluation_metrics": {
+    "success_rate": "Percentage of agents that submitted correct answers over K trials",
+    "round_to_completion": "Number of communication rounds needed",
+    "communication_redundancy_ratio": "M_total / M_opt",
+    "topological_fidelity": "Jaccard(E_empirical, E_optimal)"
+  }
+}

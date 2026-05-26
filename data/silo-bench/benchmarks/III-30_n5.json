@@ -1,0 +1,690 @@
+{
+  "case_id": "III-30",
+  "case_name": "Matrix Multiply",
+  "paradigm": "Paradigm III",
+  "leetcode": {
+    "url": "https://leetcode.com/problems/sparse-matrix-multiplication/",
+    "description": "This case is inspired by the LeetCode problem. The multi-agent version tests distributed computation and communication efficiency."
+  },
+  "metadata": {
+    "num_agents": 5,
+    "optimal_topology": "All-to-all for row result sharing",
+    "optimal_message_count": "O(N²) = O(dim²) elements communicated",
+    "theoretical_complexity": "O(N log N) or O(N²) - Global/Shuffle",
+    "output_type": "distributed",
+    "is_segmented": false
+  },
+  "task_description": "**Task: Distributed Matrix Multiplication**\n\nCompute C = A × B where matrix A is row-partitioned across agents.\n\n**Data Distribution:**\nMatrix 5×5. Each agent has rows of A and complete B.\n\n**Your Data:**\nAgent {agent_id} holds: {input_shard}\n- A_rows: Your assigned rows from A\n- A_row_indices: Which rows you have\n- B_matrix: Complete matrix B\n\n**Algorithm:**\nC[i,j] = Σ(A[i,k] × B[k,j]) for k = 0 to 4\nYou can compute your assigned rows locally, then share.\n\n**Output:**\nThe complete 5×5 result matrix C.\n\n**Communication Protocol:**\nTopology: All-to-All for sharing computed rows.\nAll agents must submit the same final answer using submit_result(C).",
+  "agent_configs": [
+    {
+      "agent_id": 0,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 0\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: Distributed Matrix Multiplication**\n\nCompute C = A × B where matrix A is row-partitioned across agents.\n\n**Data Distribution:**\nMatrix 5×5. Each agent has rows of A and complete B.\n\n**Your Data:**\nAgent 0 holds: {'type': 'rows_and_full_B', 'A_rows': [[3, 1, 4, 5, 8]], 'A_row_indices': [0], 'B_matrix': [[5, 6, 6, 9, 8], [8, 2, 7, 10, 5], [8, 3, 3, 6, 7], [10, 10, 7, 2, 2], [3, 6, 4, 6, 6]]}\n- A_rows: Your assigned rows from A\n- A_row_indices: Which rows you have\n- B_matrix: Complete matrix B\n\n**Algorithm:**\nC[i,j] = Σ(A[i,k] × B[k,j]) for k = 0 to 4\nYou can compute your assigned rows locally, then share.\n\n**Output:**\nThe complete 5×5 result matrix C.\n\n**Communication Protocol:**\nTopology: All-to-All for sharing computed rows.\nAll agents must submit the same final answer using submit_result(C).",
+      "input_shard": {
+        "type": "rows_and_full_B",
+        "A_rows": [
+          [
+            3,
+            1,
+            4,
+            5,
+            8
+          ]
+        ],
+        "A_row_indices": [
+          0
+        ],
+        "B_matrix": [
+          [
+            5,
+            6,
+            6,
+            9,
+            8
+          ],
+          [
+            8,
+            2,
+            7,
+            10,
+            5
+          ],
+          [
+            8,
+            3,
+            3,
+            6,
+            7
+          ],
+          [
+            10,
+            10,
+            7,
+            2,
+            2
+          ],
+          [
+            3,
+            6,
+            4,
+            6,
+            6
+          ]
+        ]
+      },
+      "expected_output": [
+        [
+          129,
+          130,
+          104,
+          119,
+          115
+        ],
+        [
+          190,
+          132,
+          145,
+          180,
+          144
+        ],
+        [
+          242,
+          167,
+          185,
+          244,
+          202
+        ],
+        [
+          167,
+          146,
+          143,
+          163,
+          129
+        ],
+        [
+          279,
+          182,
+          199,
+          232,
+          188
+        ]
+      ]
+    },
+    {
+      "agent_id": 1,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 1\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: Distributed Matrix Multiplication**\n\nCompute C = A × B where matrix A is row-partitioned across agents.\n\n**Data Distribution:**\nMatrix 5×5. Each agent has rows of A and complete B.\n\n**Your Data:**\nAgent 1 holds: {'type': 'rows_and_full_B', 'A_rows': [[2, 8, 6, 5, 6]], 'A_row_indices': [1], 'B_matrix': [[5, 6, 6, 9, 8], [8, 2, 7, 10, 5], [8, 3, 3, 6, 7], [10, 10, 7, 2, 2], [3, 6, 4, 6, 6]]}\n- A_rows: Your assigned rows from A\n- A_row_indices: Which rows you have\n- B_matrix: Complete matrix B\n\n**Algorithm:**\nC[i,j] = Σ(A[i,k] × B[k,j]) for k = 0 to 4\nYou can compute your assigned rows locally, then share.\n\n**Output:**\nThe complete 5×5 result matrix C.\n\n**Communication Protocol:**\nTopology: All-to-All for sharing computed rows.\nAll agents must submit the same final answer using submit_result(C).",
+      "input_shard": {
+        "type": "rows_and_full_B",
+        "A_rows": [
+          [
+            2,
+            8,
+            6,
+            5,
+            6
+          ]
+        ],
+        "A_row_indices": [
+          1
+        ],
+        "B_matrix": [
+          [
+            5,
+            6,
+            6,
+            9,
+            8
+          ],
+          [
+            8,
+            2,
+            7,
+            10,
+            5
+          ],
+          [
+            8,
+            3,
+            3,
+            6,
+            7
+          ],
+          [
+            10,
+            10,
+            7,
+            2,
+            2
+          ],
+          [
+            3,
+            6,
+            4,
+            6,
+            6
+          ]
+        ]
+      },
+      "expected_output": [
+        [
+          129,
+          130,
+          104,
+          119,
+          115
+        ],
+        [
+          190,
+          132,
+          145,
+          180,
+          144
+        ],
+        [
+          242,
+          167,
+          185,
+          244,
+          202
+        ],
+        [
+          167,
+          146,
+          143,
+          163,
+          129
+        ],
+        [
+          279,
+          182,
+          199,
+          232,
+          188
+        ]
+      ]
+    },
+    {
+      "agent_id": 2,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 2\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: Distributed Matrix Multiplication**\n\nCompute C = A × B where matrix A is row-partitioned across agents.\n\n**Data Distribution:**\nMatrix 5×5. Each agent has rows of A and complete B.\n\n**Your Data:**\nAgent 2 holds: {'type': 'rows_and_full_B', 'A_rows': [[6, 9, 9, 5, 6]], 'A_row_indices': [2], 'B_matrix': [[5, 6, 6, 9, 8], [8, 2, 7, 10, 5], [8, 3, 3, 6, 7], [10, 10, 7, 2, 2], [3, 6, 4, 6, 6]]}\n- A_rows: Your assigned rows from A\n- A_row_indices: Which rows you have\n- B_matrix: Complete matrix B\n\n**Algorithm:**\nC[i,j] = Σ(A[i,k] × B[k,j]) for k = 0 to 4\nYou can compute your assigned rows locally, then share.\n\n**Output:**\nThe complete 5×5 result matrix C.\n\n**Communication Protocol:**\nTopology: All-to-All for sharing computed rows.\nAll agents must submit the same final answer using submit_result(C).",
+      "input_shard": {
+        "type": "rows_and_full_B",
+        "A_rows": [
+          [
+            6,
+            9,
+            9,
+            5,
+            6
+          ]
+        ],
+        "A_row_indices": [
+          2
+        ],
+        "B_matrix": [
+          [
+            5,
+            6,
+            6,
+            9,
+            8
+          ],
+          [
+            8,
+            2,
+            7,
+            10,
+            5
+          ],
+          [
+            8,
+            3,
+            3,
+            6,
+            7
+          ],
+          [
+            10,
+            10,
+            7,
+            2,
+            2
+          ],
+          [
+            3,
+            6,
+            4,
+            6,
+            6
+          ]
+        ]
+      },
+      "expected_output": [
+        [
+          129,
+          130,
+          104,
+          119,
+          115
+        ],
+        [
+          190,
+          132,
+          145,
+          180,
+          144
+        ],
+        [
+          242,
+          167,
+          185,
+          244,
+          202
+        ],
+        [
+          167,
+          146,
+          143,
+          163,
+          129
+        ],
+        [
+          279,
+          182,
+          199,
+          232,
+          188
+        ]
+      ]
+    },
+    {
+      "agent_id": 3,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 3\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: Distributed Matrix Multiplication**\n\nCompute C = A × B where matrix A is row-partitioned across agents.\n\n**Data Distribution:**\nMatrix 5×5. Each agent has rows of A and complete B.\n\n**Your Data:**\nAgent 3 holds: {'type': 'rows_and_full_B', 'A_rows': [[1, 7, 2, 6, 10]], 'A_row_indices': [3], 'B_matrix': [[5, 6, 6, 9, 8], [8, 2, 7, 10, 5], [8, 3, 3, 6, 7], [10, 10, 7, 2, 2], [3, 6, 4, 6, 6]]}\n- A_rows: Your assigned rows from A\n- A_row_indices: Which rows you have\n- B_matrix: Complete matrix B\n\n**Algorithm:**\nC[i,j] = Σ(A[i,k] × B[k,j]) for k = 0 to 4\nYou can compute your assigned rows locally, then share.\n\n**Output:**\nThe complete 5×5 result matrix C.\n\n**Communication Protocol:**\nTopology: All-to-All for sharing computed rows.\nAll agents must submit the same final answer using submit_result(C).",
+      "input_shard": {
+        "type": "rows_and_full_B",
+        "A_rows": [
+          [
+            1,
+            7,
+            2,
+            6,
+            10
+          ]
+        ],
+        "A_row_indices": [
+          3
+        ],
+        "B_matrix": [
+          [
+            5,
+            6,
+            6,
+            9,
+            8
+          ],
+          [
+            8,
+            2,
+            7,
+            10,
+            5
+          ],
+          [
+            8,
+            3,
+            3,
+            6,
+            7
+          ],
+          [
+            10,
+            10,
+            7,
+            2,
+            2
+          ],
+          [
+            3,
+            6,
+            4,
+            6,
+            6
+          ]
+        ]
+      },
+      "expected_output": [
+        [
+          129,
+          130,
+          104,
+          119,
+          115
+        ],
+        [
+          190,
+          132,
+          145,
+          180,
+          144
+        ],
+        [
+          242,
+          167,
+          185,
+          244,
+          202
+        ],
+        [
+          167,
+          146,
+          143,
+          163,
+          129
+        ],
+        [
+          279,
+          182,
+          199,
+          232,
+          188
+        ]
+      ]
+    },
+    {
+      "agent_id": 4,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 4\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: Distributed Matrix Multiplication**\n\nCompute C = A × B where matrix A is row-partitioned across agents.\n\n**Data Distribution:**\nMatrix 5×5. Each agent has rows of A and complete B.\n\n**Your Data:**\nAgent 4 holds: {'type': 'rows_and_full_B', 'A_rows': [[4, 10, 10, 9, 3]], 'A_row_indices': [4], 'B_matrix': [[5, 6, 6, 9, 8], [8, 2, 7, 10, 5], [8, 3, 3, 6, 7], [10, 10, 7, 2, 2], [3, 6, 4, 6, 6]]}\n- A_rows: Your assigned rows from A\n- A_row_indices: Which rows you have\n- B_matrix: Complete matrix B\n\n**Algorithm:**\nC[i,j] = Σ(A[i,k] × B[k,j]) for k = 0 to 4\nYou can compute your assigned rows locally, then share.\n\n**Output:**\nThe complete 5×5 result matrix C.\n\n**Communication Protocol:**\nTopology: All-to-All for sharing computed rows.\nAll agents must submit the same final answer using submit_result(C).",
+      "input_shard": {
+        "type": "rows_and_full_B",
+        "A_rows": [
+          [
+            4,
+            10,
+            10,
+            9,
+            3
+          ]
+        ],
+        "A_row_indices": [
+          4
+        ],
+        "B_matrix": [
+          [
+            5,
+            6,
+            6,
+            9,
+            8
+          ],
+          [
+            8,
+            2,
+            7,
+            10,
+            5
+          ],
+          [
+            8,
+            3,
+            3,
+            6,
+            7
+          ],
+          [
+            10,
+            10,
+            7,
+            2,
+            2
+          ],
+          [
+            3,
+            6,
+            4,
+            6,
+            6
+          ]
+        ]
+      },
+      "expected_output": [
+        [
+          129,
+          130,
+          104,
+          119,
+          115
+        ],
+        [
+          190,
+          132,
+          145,
+          180,
+          144
+        ],
+        [
+          242,
+          167,
+          185,
+          244,
+          202
+        ],
+        [
+          167,
+          146,
+          143,
+          163,
+          129
+        ],
+        [
+          279,
+          182,
+          199,
+          232,
+          188
+        ]
+      ]
+    }
+  ],
+  "expected_output": {
+    "type": "distributed",
+    "per_agent_values": [
+      [
+        [
+          129,
+          130,
+          104,
+          119,
+          115
+        ],
+        [
+          190,
+          132,
+          145,
+          180,
+          144
+        ],
+        [
+          242,
+          167,
+          185,
+          244,
+          202
+        ],
+        [
+          167,
+          146,
+          143,
+          163,
+          129
+        ],
+        [
+          279,
+          182,
+          199,
+          232,
+          188
+        ]
+      ],
+      [
+        [
+          129,
+          130,
+          104,
+          119,
+          115
+        ],
+        [
+          190,
+          132,
+          145,
+          180,
+          144
+        ],
+        [
+          242,
+          167,
+          185,
+          244,
+          202
+        ],
+        [
+          167,
+          146,
+          143,
+          163,
+          129
+        ],
+        [
+          279,
+          182,
+          199,
+          232,
+          188
+        ]
+      ],
+      [
+        [
+          129,
+          130,
+          104,
+          119,
+          115
+        ],
+        [
+          190,
+          132,
+          145,
+          180,
+          144
+        ],
+        [
+          242,
+          167,
+          185,
+          244,
+          202
+        ],
+        [
+          167,
+          146,
+          143,
+          163,
+          129
+        ],
+        [
+          279,
+          182,
+          199,
+          232,
+          188
+        ]
+      ],
+      [
+        [
+          129,
+          130,
+          104,
+          119,
+          115
+        ],
+        [
+          190,
+          132,
+          145,
+          180,
+          144
+        ],
+        [
+          242,
+          167,
+          185,
+          244,
+          202
+        ],
+        [
+          167,
+          146,
+          143,
+          163,
+          129
+        ],
+        [
+          279,
+          182,
+          199,
+          232,
+          188
+        ]
+      ],
+      [
+        [
+          129,
+          130,
+          104,
+          119,
+          115
+        ],
+        [
+          190,
+          132,
+          145,
+          180,
+          144
+        ],
+        [
+          242,
+          167,
+          185,
+          244,
+          202
+        ],
+        [
+          167,
+          146,
+          143,
+          163,
+          129
+        ],
+        [
+          279,
+          182,
+          199,
+          232,
+          188
+        ]
+      ]
+    ],
+    "is_segmented": false,
+    "verification_logic": "len(agent_outputs) == num_agents and all(agent_outputs[i] == expected_output for i in range(num_agents))",
+    "verification_logic_hint": "all(agent_outputs) == np.matmul(A, B)",
+    "format_description": "ALL agents must submit their results using submit_result(answer). All agents should submit the same final answer after coordination."
+  },
+  "evaluation_metrics": {
+    "success_rate": "Percentage of agents that submitted correct answers over K trials",
+    "round_to_completion": "Number of communication rounds needed",
+    "communication_redundancy_ratio": "M_total / M_opt",
+    "topological_fidelity": "Jaccard(E_empirical, E_optimal)"
+  }
+}

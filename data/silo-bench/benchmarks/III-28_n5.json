@@ -1,0 +1,786 @@
+{
+  "case_id": "III-28",
+  "case_name": "PageRank Step",
+  "paradigm": "Paradigm III",
+  "leetcode": {
+    "url": "https://leetcode.com/problems/course-schedule/",
+    "description": "This case is inspired by the LeetCode problem. The multi-agent version tests distributed computation and communication efficiency."
+  },
+  "metadata": {
+    "num_agents": 5,
+    "optimal_topology": "Node-based partitioning with message routing",
+    "optimal_message_count": "O(N × E) - proportional to edges",
+    "theoretical_complexity": "O(N log N) or O(N²) - Global/Shuffle",
+    "output_type": "distributed",
+    "is_segmented": false
+  },
+  "task_description": "**Task: PageRank (One Iteration)**\n\nCompute one iteration of PageRank on a directed graph.\n\n**Data Distribution:**\nTotal nodes: 40. Edges RANDOMLY distributed. Initial ranks: uniform.\n\n**Your Data (RANDOM edges):**\nAgent {agent_id} holds: {input_shard}\n\n**Algorithm:**\nrank'[v] = (1-d)/40 + d × Σ(rank[u]/out_degree[u]) for all u→v\nwhere d = 0.85 (damping factor)\n\n**Output:**\nDictionary mapping node_id to rank_value.\n\n**Communication Protocol:**\nTopology: All-to-All with message routing along edges.\nAll agents must submit the same final answer using submit_result(complete_rank_dict).",
+  "agent_configs": [
+    {
+      "agent_id": 0,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 0\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: PageRank (One Iteration)**\n\nCompute one iteration of PageRank on a directed graph.\n\n**Data Distribution:**\nTotal nodes: 40. Edges RANDOMLY distributed. Initial ranks: uniform.\n\n**Your Data (RANDOM edges):**\nAgent 0 holds: [(5, 17), (11, 23), (34, 27), (11, 31), (8, 7), (36, 0), (4, 16), (25, 21), (27, 5), (35, 37), (39, 17), (24, 0), (5, 30), (36, 33)]\n\n**Algorithm:**\nrank'[v] = (1-d)/40 + d × Σ(rank[u]/out_degree[u]) for all u→v\nwhere d = 0.85 (damping factor)\n\n**Output:**\nDictionary mapping node_id to rank_value.\n\n**Communication Protocol:**\nTopology: All-to-All with message routing along edges.\nAll agents must submit the same final answer using submit_result(complete_rank_dict).",
+      "input_shard": [
+        [
+          5,
+          17
+        ],
+        [
+          11,
+          23
+        ],
+        [
+          34,
+          27
+        ],
+        [
+          11,
+          31
+        ],
+        [
+          8,
+          7
+        ],
+        [
+          36,
+          0
+        ],
+        [
+          4,
+          16
+        ],
+        [
+          25,
+          21
+        ],
+        [
+          27,
+          5
+        ],
+        [
+          35,
+          37
+        ],
+        [
+          39,
+          17
+        ],
+        [
+          24,
+          0
+        ],
+        [
+          5,
+          30
+        ],
+        [
+          36,
+          33
+        ]
+      ],
+      "expected_output": {
+        "0": 0.069271,
+        "1": 0.00375,
+        "2": 0.014375,
+        "3": 0.014375,
+        "4": 0.00375,
+        "5": 0.023938,
+        "6": 0.019688,
+        "7": 0.025,
+        "8": 0.008,
+        "9": 0.030313,
+        "10": 0.035625,
+        "11": 0.00375,
+        "12": 0.056875,
+        "13": 0.009063,
+        "14": 0.02925,
+        "15": 0.025,
+        "16": 0.021458,
+        "17": 0.019688,
+        "18": 0.019688,
+        "19": 0.00375,
+        "20": 0.014375,
+        "21": 0.009063,
+        "22": 0.009063,
+        "23": 0.035625,
+        "24": 0.026771,
+        "25": 0.035625,
+        "26": 0.010833,
+        "27": 0.010833,
+        "28": 0.009063,
+        "29": 0.00375,
+        "30": 0.025,
+        "31": 0.014375,
+        "32": 0.014375,
+        "33": 0.07175,
+        "34": 0.009063,
+        "35": 0.014375,
+        "36": 0.025,
+        "37": 0.023938,
+        "38": 0.053333,
+        "39": 0.019688
+      }
+    },
+    {
+      "agent_id": 1,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 1\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: PageRank (One Iteration)**\n\nCompute one iteration of PageRank on a directed graph.\n\n**Data Distribution:**\nTotal nodes: 40. Edges RANDOMLY distributed. Initial ranks: uniform.\n\n**Your Data (RANDOM edges):**\nAgent 1 holds: [(16, 12), (23, 15), (2, 33), (27, 33), (22, 37), (13, 32), (14, 39), (34, 0), (34, 26), (12, 33), (30, 24), (6, 9), (33, 18), (36, 6)]\n\n**Algorithm:**\nrank'[v] = (1-d)/40 + d × Σ(rank[u]/out_degree[u]) for all u→v\nwhere d = 0.85 (damping factor)\n\n**Output:**\nDictionary mapping node_id to rank_value.\n\n**Communication Protocol:**\nTopology: All-to-All with message routing along edges.\nAll agents must submit the same final answer using submit_result(complete_rank_dict).",
+      "input_shard": [
+        [
+          16,
+          12
+        ],
+        [
+          23,
+          15
+        ],
+        [
+          2,
+          33
+        ],
+        [
+          27,
+          33
+        ],
+        [
+          22,
+          37
+        ],
+        [
+          13,
+          32
+        ],
+        [
+          14,
+          39
+        ],
+        [
+          34,
+          0
+        ],
+        [
+          34,
+          26
+        ],
+        [
+          12,
+          33
+        ],
+        [
+          30,
+          24
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          33,
+          18
+        ],
+        [
+          36,
+          6
+        ]
+      ],
+      "expected_output": {
+        "0": 0.069271,
+        "1": 0.00375,
+        "2": 0.014375,
+        "3": 0.014375,
+        "4": 0.00375,
+        "5": 0.023938,
+        "6": 0.019688,
+        "7": 0.025,
+        "8": 0.008,
+        "9": 0.030313,
+        "10": 0.035625,
+        "11": 0.00375,
+        "12": 0.056875,
+        "13": 0.009063,
+        "14": 0.02925,
+        "15": 0.025,
+        "16": 0.021458,
+        "17": 0.019688,
+        "18": 0.019688,
+        "19": 0.00375,
+        "20": 0.014375,
+        "21": 0.009063,
+        "22": 0.009063,
+        "23": 0.035625,
+        "24": 0.026771,
+        "25": 0.035625,
+        "26": 0.010833,
+        "27": 0.010833,
+        "28": 0.009063,
+        "29": 0.00375,
+        "30": 0.025,
+        "31": 0.014375,
+        "32": 0.014375,
+        "33": 0.07175,
+        "34": 0.009063,
+        "35": 0.014375,
+        "36": 0.025,
+        "37": 0.023938,
+        "38": 0.053333,
+        "39": 0.019688
+      }
+    },
+    {
+      "agent_id": 2,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 2\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: PageRank (One Iteration)**\n\nCompute one iteration of PageRank on a directed graph.\n\n**Data Distribution:**\nTotal nodes: 40. Edges RANDOMLY distributed. Initial ranks: uniform.\n\n**Your Data (RANDOM edges):**\nAgent 2 holds: [(32, 7), (35, 18), (3, 10), (35, 39), (39, 38), (29, 25), (36, 23), (7, 33), (0, 10), (4, 5), (28, 0), (8, 38), (2, 38), (26, 23)]\n\n**Algorithm:**\nrank'[v] = (1-d)/40 + d × Σ(rank[u]/out_degree[u]) for all u→v\nwhere d = 0.85 (damping factor)\n\n**Output:**\nDictionary mapping node_id to rank_value.\n\n**Communication Protocol:**\nTopology: All-to-All with message routing along edges.\nAll agents must submit the same final answer using submit_result(complete_rank_dict).",
+      "input_shard": [
+        [
+          32,
+          7
+        ],
+        [
+          35,
+          18
+        ],
+        [
+          3,
+          10
+        ],
+        [
+          35,
+          39
+        ],
+        [
+          39,
+          38
+        ],
+        [
+          29,
+          25
+        ],
+        [
+          36,
+          23
+        ],
+        [
+          7,
+          33
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          28,
+          0
+        ],
+        [
+          8,
+          38
+        ],
+        [
+          2,
+          38
+        ],
+        [
+          26,
+          23
+        ]
+      ],
+      "expected_output": {
+        "0": 0.069271,
+        "1": 0.00375,
+        "2": 0.014375,
+        "3": 0.014375,
+        "4": 0.00375,
+        "5": 0.023938,
+        "6": 0.019688,
+        "7": 0.025,
+        "8": 0.008,
+        "9": 0.030313,
+        "10": 0.035625,
+        "11": 0.00375,
+        "12": 0.056875,
+        "13": 0.009063,
+        "14": 0.02925,
+        "15": 0.025,
+        "16": 0.021458,
+        "17": 0.019688,
+        "18": 0.019688,
+        "19": 0.00375,
+        "20": 0.014375,
+        "21": 0.009063,
+        "22": 0.009063,
+        "23": 0.035625,
+        "24": 0.026771,
+        "25": 0.035625,
+        "26": 0.010833,
+        "27": 0.010833,
+        "28": 0.009063,
+        "29": 0.00375,
+        "30": 0.025,
+        "31": 0.014375,
+        "32": 0.014375,
+        "33": 0.07175,
+        "34": 0.009063,
+        "35": 0.014375,
+        "36": 0.025,
+        "37": 0.023938,
+        "38": 0.053333,
+        "39": 0.019688
+      }
+    },
+    {
+      "agent_id": 3,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 3\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: PageRank (One Iteration)**\n\nCompute one iteration of PageRank on a directed graph.\n\n**Data Distribution:**\nTotal nodes: 40. Edges RANDOMLY distributed. Initial ranks: uniform.\n\n**Your Data (RANDOM edges):**\nAgent 3 holds: [(10, 2), (2, 34), (33, 0), (14, 23), (37, 12), (26, 35), (0, 24), (5, 38), (14, 5), (2, 24), (35, 30), (32, 33), (27, 37), (25, 13)]\n\n**Algorithm:**\nrank'[v] = (1-d)/40 + d × Σ(rank[u]/out_degree[u]) for all u→v\nwhere d = 0.85 (damping factor)\n\n**Output:**\nDictionary mapping node_id to rank_value.\n\n**Communication Protocol:**\nTopology: All-to-All with message routing along edges.\nAll agents must submit the same final answer using submit_result(complete_rank_dict).",
+      "input_shard": [
+        [
+          10,
+          2
+        ],
+        [
+          2,
+          34
+        ],
+        [
+          33,
+          0
+        ],
+        [
+          14,
+          23
+        ],
+        [
+          37,
+          12
+        ],
+        [
+          26,
+          35
+        ],
+        [
+          0,
+          24
+        ],
+        [
+          5,
+          38
+        ],
+        [
+          14,
+          5
+        ],
+        [
+          2,
+          24
+        ],
+        [
+          35,
+          30
+        ],
+        [
+          32,
+          33
+        ],
+        [
+          27,
+          37
+        ],
+        [
+          25,
+          13
+        ]
+      ],
+      "expected_output": {
+        "0": 0.069271,
+        "1": 0.00375,
+        "2": 0.014375,
+        "3": 0.014375,
+        "4": 0.00375,
+        "5": 0.023938,
+        "6": 0.019688,
+        "7": 0.025,
+        "8": 0.008,
+        "9": 0.030313,
+        "10": 0.035625,
+        "11": 0.00375,
+        "12": 0.056875,
+        "13": 0.009063,
+        "14": 0.02925,
+        "15": 0.025,
+        "16": 0.021458,
+        "17": 0.019688,
+        "18": 0.019688,
+        "19": 0.00375,
+        "20": 0.014375,
+        "21": 0.009063,
+        "22": 0.009063,
+        "23": 0.035625,
+        "24": 0.026771,
+        "25": 0.035625,
+        "26": 0.010833,
+        "27": 0.010833,
+        "28": 0.009063,
+        "29": 0.00375,
+        "30": 0.025,
+        "31": 0.014375,
+        "32": 0.014375,
+        "33": 0.07175,
+        "34": 0.009063,
+        "35": 0.014375,
+        "36": 0.025,
+        "37": 0.023938,
+        "38": 0.053333,
+        "39": 0.019688
+      }
+    },
+    {
+      "agent_id": 4,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 4\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: PageRank (One Iteration)**\n\nCompute one iteration of PageRank on a directed graph.\n\n**Data Distribution:**\nTotal nodes: 40. Edges RANDOMLY distributed. Initial ranks: uniform.\n\n**Your Data (RANDOM edges):**\nAgent 4 holds: [(30, 38), (18, 38), (14, 28), (25, 39), (38, 12), (22, 25), (18, 12), (30, 16), (16, 30), (5, 9), (10, 6), (17, 14), (27, 14), (27, 8), (25, 22), (38, 3), (13, 20), (19, 36)]\n\n**Algorithm:**\nrank'[v] = (1-d)/40 + d × Σ(rank[u]/out_degree[u]) for all u→v\nwhere d = 0.85 (damping factor)\n\n**Output:**\nDictionary mapping node_id to rank_value.\n\n**Communication Protocol:**\nTopology: All-to-All with message routing along edges.\nAll agents must submit the same final answer using submit_result(complete_rank_dict).",
+      "input_shard": [
+        [
+          30,
+          38
+        ],
+        [
+          18,
+          38
+        ],
+        [
+          14,
+          28
+        ],
+        [
+          25,
+          39
+        ],
+        [
+          38,
+          12
+        ],
+        [
+          22,
+          25
+        ],
+        [
+          18,
+          12
+        ],
+        [
+          30,
+          16
+        ],
+        [
+          16,
+          30
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          10,
+          6
+        ],
+        [
+          17,
+          14
+        ],
+        [
+          27,
+          14
+        ],
+        [
+          27,
+          8
+        ],
+        [
+          25,
+          22
+        ],
+        [
+          38,
+          3
+        ],
+        [
+          13,
+          20
+        ],
+        [
+          19,
+          36
+        ]
+      ],
+      "expected_output": {
+        "0": 0.069271,
+        "1": 0.00375,
+        "2": 0.014375,
+        "3": 0.014375,
+        "4": 0.00375,
+        "5": 0.023938,
+        "6": 0.019688,
+        "7": 0.025,
+        "8": 0.008,
+        "9": 0.030313,
+        "10": 0.035625,
+        "11": 0.00375,
+        "12": 0.056875,
+        "13": 0.009063,
+        "14": 0.02925,
+        "15": 0.025,
+        "16": 0.021458,
+        "17": 0.019688,
+        "18": 0.019688,
+        "19": 0.00375,
+        "20": 0.014375,
+        "21": 0.009063,
+        "22": 0.009063,
+        "23": 0.035625,
+        "24": 0.026771,
+        "25": 0.035625,
+        "26": 0.010833,
+        "27": 0.010833,
+        "28": 0.009063,
+        "29": 0.00375,
+        "30": 0.025,
+        "31": 0.014375,
+        "32": 0.014375,
+        "33": 0.07175,
+        "34": 0.009063,
+        "35": 0.014375,
+        "36": 0.025,
+        "37": 0.023938,
+        "38": 0.053333,
+        "39": 0.019688
+      }
+    }
+  ],
+  "expected_output": {
+    "type": "distributed",
+    "per_agent_values": [
+      {
+        "0": 0.069271,
+        "1": 0.00375,
+        "2": 0.014375,
+        "3": 0.014375,
+        "4": 0.00375,
+        "5": 0.023938,
+        "6": 0.019688,
+        "7": 0.025,
+        "8": 0.008,
+        "9": 0.030313,
+        "10": 0.035625,
+        "11": 0.00375,
+        "12": 0.056875,
+        "13": 0.009063,
+        "14": 0.02925,
+        "15": 0.025,
+        "16": 0.021458,
+        "17": 0.019688,
+        "18": 0.019688,
+        "19": 0.00375,
+        "20": 0.014375,
+        "21": 0.009063,
+        "22": 0.009063,
+        "23": 0.035625,
+        "24": 0.026771,
+        "25": 0.035625,
+        "26": 0.010833,
+        "27": 0.010833,
+        "28": 0.009063,
+        "29": 0.00375,
+        "30": 0.025,
+        "31": 0.014375,
+        "32": 0.014375,
+        "33": 0.07175,
+        "34": 0.009063,
+        "35": 0.014375,
+        "36": 0.025,
+        "37": 0.023938,
+        "38": 0.053333,
+        "39": 0.019688
+      },
+      {
+        "0": 0.069271,
+        "1": 0.00375,
+        "2": 0.014375,
+        "3": 0.014375,
+        "4": 0.00375,
+        "5": 0.023938,
+        "6": 0.019688,
+        "7": 0.025,
+        "8": 0.008,
+        "9": 0.030313,
+        "10": 0.035625,
+        "11": 0.00375,
+        "12": 0.056875,
+        "13": 0.009063,
+        "14": 0.02925,
+        "15": 0.025,
+        "16": 0.021458,
+        "17": 0.019688,
+        "18": 0.019688,
+        "19": 0.00375,
+        "20": 0.014375,
+        "21": 0.009063,
+        "22": 0.009063,
+        "23": 0.035625,
+        "24": 0.026771,
+        "25": 0.035625,
+        "26": 0.010833,
+        "27": 0.010833,
+        "28": 0.009063,
+        "29": 0.00375,
+        "30": 0.025,
+        "31": 0.014375,
+        "32": 0.014375,
+        "33": 0.07175,
+        "34": 0.009063,
+        "35": 0.014375,
+        "36": 0.025,
+        "37": 0.023938,
+        "38": 0.053333,
+        "39": 0.019688
+      },
+      {
+        "0": 0.069271,
+        "1": 0.00375,
+        "2": 0.014375,
+        "3": 0.014375,
+        "4": 0.00375,
+        "5": 0.023938,
+        "6": 0.019688,
+        "7": 0.025,
+        "8": 0.008,
+        "9": 0.030313,
+        "10": 0.035625,
+        "11": 0.00375,
+        "12": 0.056875,
+        "13": 0.009063,
+        "14": 0.02925,
+        "15": 0.025,
+        "16": 0.021458,
+        "17": 0.019688,
+        "18": 0.019688,
+        "19": 0.00375,
+        "20": 0.014375,
+        "21": 0.009063,
+        "22": 0.009063,
+        "23": 0.035625,
+        "24": 0.026771,
+        "25": 0.035625,
+        "26": 0.010833,
+        "27": 0.010833,
+        "28": 0.009063,
+        "29": 0.00375,
+        "30": 0.025,
+        "31": 0.014375,
+        "32": 0.014375,
+        "33": 0.07175,
+        "34": 0.009063,
+        "35": 0.014375,
+        "36": 0.025,
+        "37": 0.023938,
+        "38": 0.053333,
+        "39": 0.019688
+      },
+      {
+        "0": 0.069271,
+        "1": 0.00375,
+        "2": 0.014375,
+        "3": 0.014375,
+        "4": 0.00375,
+        "5": 0.023938,
+        "6": 0.019688,
+        "7": 0.025,
+        "8": 0.008,
+        "9": 0.030313,
+        "10": 0.035625,
+        "11": 0.00375,
+        "12": 0.056875,
+        "13": 0.009063,
+        "14": 0.02925,
+        "15": 0.025,
+        "16": 0.021458,
+        "17": 0.019688,
+        "18": 0.019688,
+        "19": 0.00375,
+        "20": 0.014375,
+        "21": 0.009063,
+        "22": 0.009063,
+        "23": 0.035625,
+        "24": 0.026771,
+        "25": 0.035625,
+        "26": 0.010833,
+        "27": 0.010833,
+        "28": 0.009063,
+        "29": 0.00375,
+        "30": 0.025,
+        "31": 0.014375,
+        "32": 0.014375,
+        "33": 0.07175,
+        "34": 0.009063,
+        "35": 0.014375,
+        "36": 0.025,
+        "37": 0.023938,
+        "38": 0.053333,
+        "39": 0.019688
+      },
+      {
+        "0": 0.069271,
+        "1": 0.00375,
+        "2": 0.014375,
+        "3": 0.014375,
+        "4": 0.00375,
+        "5": 0.023938,
+        "6": 0.019688,
+        "7": 0.025,
+        "8": 0.008,
+        "9": 0.030313,
+        "10": 0.035625,
+        "11": 0.00375,
+        "12": 0.056875,
+        "13": 0.009063,
+        "14": 0.02925,
+        "15": 0.025,
+        "16": 0.021458,
+        "17": 0.019688,
+        "18": 0.019688,
+        "19": 0.00375,
+        "20": 0.014375,
+        "21": 0.009063,
+        "22": 0.009063,
+        "23": 0.035625,
+        "24": 0.026771,
+        "25": 0.035625,
+        "26": 0.010833,
+        "27": 0.010833,
+        "28": 0.009063,
+        "29": 0.00375,
+        "30": 0.025,
+        "31": 0.014375,
+        "32": 0.014375,
+        "33": 0.07175,
+        "34": 0.009063,
+        "35": 0.014375,
+        "36": 0.025,
+        "37": 0.023938,
+        "38": 0.053333,
+        "39": 0.019688
+      }
+    ],
+    "is_segmented": false,
+    "verification_logic": "len(agent_outputs) == num_agents and all(agent_outputs[i] == expected_output for i in range(num_agents))",
+    "verification_logic_hint": "all(agent_outputs) == pagerank_iter(graph)",
+    "format_description": "ALL agents must submit their results using submit_result(answer). All agents should submit the same final answer after coordination."
+  },
+  "evaluation_metrics": {
+    "success_rate": "Percentage of agents that submitted correct answers over K trials",
+    "round_to_completion": "Number of communication rounds needed",
+    "communication_redundancy_ratio": "M_total / M_opt",
+    "topological_fidelity": "Jaccard(E_empirical, E_optimal)"
+  }
+}

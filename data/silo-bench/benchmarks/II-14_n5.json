@@ -1,0 +1,240 @@
+{
+  "case_id": "II-14",
+  "case_name": "1D Life Game",
+  "paradigm": "Paradigm II",
+  "leetcode": {
+    "url": "https://leetcode.com/problems/game-of-life/",
+    "description": "This case is inspired by the LeetCode problem. The multi-agent version tests distributed computation and communication efficiency."
+  },
+  "metadata": {
+    "num_agents": 5,
+    "optimal_topology": "Chain with repeated boundary exchange",
+    "optimal_message_count": "O(5 * (N-1))",
+    "theoretical_complexity": "O(N) - Structured Mesh with Locality",
+    "output_type": "distributed",
+    "is_segmented": true
+  },
+  "task_description": "**Task: 1D Life Game (Cellular Automaton)**\n\nSimulate a 1D cellular automaton for 5 steps.\n\n**Agent Ordering:**\nAgents arranged sequentially: 0 ↔ 1 ↔ 2 ↔ ... ↔ {max_id}\n\n**Your Data (Position {agent_id}):**\nInitial segment: {input_shard}\n\n**Algorithm:**\n- Each cell's next state depends on (left, self, right)\n- Rule: cell becomes 1 iff exactly one of (left, self, right) is 1\n- Exchange boundary cells with neighbors at EACH step\n\n**Output:**\nEach agent submits their own final segment after 5 steps.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ {max_id}). Repeated boundary exchange.\nEach agent submits their own segment using submit_result(your_final_segment).",
+  "agent_configs": [
+    {
+      "agent_id": 0,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 0\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: 1D Life Game (Cellular Automaton)**\n\nSimulate a 1D cellular automaton for 5 steps.\n\n**Agent Ordering:**\nAgents arranged sequentially: 0 ↔ 1 ↔ 2 ↔ ... ↔ 4\n\n**Your Data (Position 0):**\nInitial segment: [0, 0, 1, 1, 1, 0, 0, 0, 1, 0]\n\n**Algorithm:**\n- Each cell's next state depends on (left, self, right)\n- Rule: cell becomes 1 iff exactly one of (left, self, right) is 1\n- Exchange boundary cells with neighbors at EACH step\n\n**Output:**\nEach agent submits their own final segment after 5 steps.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 4). Repeated boundary exchange.\nEach agent submits their own segment using submit_result(your_final_segment).",
+      "input_shard": [
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "expected_output": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "agent_id": 1,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 1\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: 1D Life Game (Cellular Automaton)**\n\nSimulate a 1D cellular automaton for 5 steps.\n\n**Agent Ordering:**\nAgents arranged sequentially: 0 ↔ 1 ↔ 2 ↔ ... ↔ 4\n\n**Your Data (Position 1):**\nInitial segment: [0, 1, 1, 1, 1, 0, 1, 0, 1, 0]\n\n**Algorithm:**\n- Each cell's next state depends on (left, self, right)\n- Rule: cell becomes 1 iff exactly one of (left, self, right) is 1\n- Exchange boundary cells with neighbors at EACH step\n\n**Output:**\nEach agent submits their own final segment after 5 steps.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 4). Repeated boundary exchange.\nEach agent submits their own segment using submit_result(your_final_segment).",
+      "input_shard": [
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0
+      ],
+      "expected_output": [
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "agent_id": 2,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 2\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: 1D Life Game (Cellular Automaton)**\n\nSimulate a 1D cellular automaton for 5 steps.\n\n**Agent Ordering:**\nAgents arranged sequentially: 0 ↔ 1 ↔ 2 ↔ ... ↔ 4\n\n**Your Data (Position 2):**\nInitial segment: [1, 1, 0, 0, 0, 1, 1, 1, 1, 0]\n\n**Algorithm:**\n- Each cell's next state depends on (left, self, right)\n- Rule: cell becomes 1 iff exactly one of (left, self, right) is 1\n- Exchange boundary cells with neighbors at EACH step\n\n**Output:**\nEach agent submits their own final segment after 5 steps.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 4). Repeated boundary exchange.\nEach agent submits their own segment using submit_result(your_final_segment).",
+      "input_shard": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0
+      ],
+      "expected_output": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "agent_id": 3,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 3\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: 1D Life Game (Cellular Automaton)**\n\nSimulate a 1D cellular automaton for 5 steps.\n\n**Agent Ordering:**\nAgents arranged sequentially: 0 ↔ 1 ↔ 2 ↔ ... ↔ 4\n\n**Your Data (Position 3):**\nInitial segment: [1, 1, 1, 0, 1, 1, 1, 0, 1, 0]\n\n**Algorithm:**\n- Each cell's next state depends on (left, self, right)\n- Rule: cell becomes 1 iff exactly one of (left, self, right) is 1\n- Exchange boundary cells with neighbors at EACH step\n\n**Output:**\nEach agent submits their own final segment after 5 steps.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 4). Repeated boundary exchange.\nEach agent submits their own segment using submit_result(your_final_segment).",
+      "input_shard": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0
+      ],
+      "expected_output": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "agent_id": 4,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 4\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: 1D Life Game (Cellular Automaton)**\n\nSimulate a 1D cellular automaton for 5 steps.\n\n**Agent Ordering:**\nAgents arranged sequentially: 0 ↔ 1 ↔ 2 ↔ ... ↔ 4\n\n**Your Data (Position 4):**\nInitial segment: [0, 0, 1, 0, 0, 0, 0, 0, 1, 1]\n\n**Algorithm:**\n- Each cell's next state depends on (left, self, right)\n- Rule: cell becomes 1 iff exactly one of (left, self, right) is 1\n- Exchange boundary cells with neighbors at EACH step\n\n**Output:**\nEach agent submits their own final segment after 5 steps.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 4). Repeated boundary exchange.\nEach agent submits their own segment using submit_result(your_final_segment).",
+      "input_shard": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "expected_output": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0
+      ]
+    }
+  ],
+  "expected_output": {
+    "type": "distributed",
+    "per_agent_values": [
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0
+      ]
+    ],
+    "is_segmented": true,
+    "verification_logic": "len(agent_outputs) == num_agents and all(agent_outputs[i] == expected_output[i] for i in range(num_agents))",
+    "verification_logic_hint": "concat(agent_outputs) == life_game(global_input, steps)",
+    "format_description": "ALL agents must submit their results using submit_result(answer). Each agent submits their own portion of the result."
+  },
+  "evaluation_metrics": {
+    "success_rate": "Percentage of agents that submitted correct answers over K trials",
+    "round_to_completion": "Number of communication rounds needed",
+    "communication_redundancy_ratio": "M_total / M_opt",
+    "topological_fidelity": "Jaccard(E_empirical, E_optimal)"
+  }
+}

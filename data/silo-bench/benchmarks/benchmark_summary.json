@@ -1,0 +1,219 @@
+{
+  "total_cases": 30,
+  "paradigm_i_cases": 10,
+  "paradigm_ii_cases": 10,
+  "paradigm_iii_cases": 10,
+  "num_agents": 100,
+  "case_list": [
+    {
+      "case_id": "I-01",
+      "name": "Global Max",
+      "paradigm": "Paradigm I",
+      "optimal_topology": "Star (all agents → leader) or Tree, then broadcast result",
+      "is_segmented": false
+    },
+    {
+      "case_id": "I-02",
+      "name": "Word Frequency",
+      "paradigm": "Paradigm I",
+      "optimal_topology": "Star (all agents → leader) then broadcast",
+      "is_segmented": false
+    },
+    {
+      "case_id": "I-03",
+      "name": "Distributed Vote",
+      "paradigm": "Paradigm I",
+      "optimal_topology": "Star or Tree with histogram aggregation, then broadcast",
+      "is_segmented": false
+    },
+    {
+      "case_id": "I-04",
+      "name": "Any Match",
+      "paradigm": "Paradigm I",
+      "optimal_topology": "Star with early termination or broadcast",
+      "is_segmented": false
+    },
+    {
+      "case_id": "I-05",
+      "name": "Range Count",
+      "paradigm": "Paradigm I",
+      "optimal_topology": "Star (all agents → leader) then broadcast",
+      "is_segmented": false
+    },
+    {
+      "case_id": "I-06",
+      "name": "Checksum",
+      "paradigm": "Paradigm I",
+      "optimal_topology": "Star (all agents → leader) then broadcast",
+      "is_segmented": false
+    },
+    {
+      "case_id": "I-07",
+      "name": "Average Value",
+      "paradigm": "Paradigm I",
+      "optimal_topology": "Star (all agents → leader with (sum, count)) then broadcast",
+      "is_segmented": false
+    },
+    {
+      "case_id": "I-08",
+      "name": "Set Union Size",
+      "paradigm": "Paradigm I",
+      "optimal_topology": "Star or hash-based partitioning, then broadcast",
+      "is_segmented": false
+    },
+    {
+      "case_id": "I-09",
+      "name": "Top-K Select",
+      "paradigm": "Paradigm I",
+      "optimal_topology": "Star (all agents → leader with local top-K) then broadcast",
+      "is_segmented": false
+    },
+    {
+      "case_id": "I-10",
+      "name": "Standard Deviation",
+      "paradigm": "Paradigm I",
+      "optimal_topology": "Star with two-phase protocol and broadcast",
+      "is_segmented": false
+    },
+    {
+      "case_id": "II-11",
+      "name": "Prefix Sum",
+      "paradigm": "Paradigm II",
+      "optimal_topology": "Chain (Agent 0 → 1 → 2 → ... → N-1)",
+      "is_segmented": true
+    },
+    {
+      "case_id": "II-12",
+      "name": "Moving Average",
+      "paradigm": "Paradigm II",
+      "optimal_topology": "Chain with bidirectional boundary exchange, then share result",
+      "is_segmented": false
+    },
+    {
+      "case_id": "II-13",
+      "name": "Longest Palindrome",
+      "paradigm": "Paradigm II",
+      "optimal_topology": "Chain with prefix/suffix exchange, then broadcast result",
+      "is_segmented": false
+    },
+    {
+      "case_id": "II-14",
+      "name": "1D Life Game",
+      "paradigm": "Paradigm II",
+      "optimal_topology": "Chain with repeated boundary exchange",
+      "is_segmented": true
+    },
+    {
+      "case_id": "II-15",
+      "name": "Pattern Search",
+      "paradigm": "Paradigm II",
+      "optimal_topology": "Chain with state passing (0 → 1 → 2 → ...), then broadcast result",
+      "is_segmented": false
+    },
+    {
+      "case_id": "II-16",
+      "name": "Trapping Rain",
+      "paradigm": "Paradigm II",
+      "optimal_topology": "Chain with bidirectional pass, then aggregate and broadcast",
+      "is_segmented": false
+    },
+    {
+      "case_id": "II-17",
+      "name": "Diff Array",
+      "paradigm": "Paradigm II",
+      "optimal_topology": "Chain (each agent → next agent), then collect and broadcast",
+      "is_segmented": false
+    },
+    {
+      "case_id": "II-18",
+      "name": "List Ranking",
+      "paradigm": "Paradigm II",
+      "optimal_topology": "Chain or pointer-jumping tree",
+      "is_segmented": false
+    },
+    {
+      "case_id": "II-19",
+      "name": "Merge Neighbors",
+      "paradigm": "Paradigm II",
+      "optimal_topology": "Chain with boundary comparison, then collect and broadcast",
+      "is_segmented": false
+    },
+    {
+      "case_id": "II-20",
+      "name": "Pipeline Hash",
+      "paradigm": "Paradigm II",
+      "optimal_topology": "Chain with strict sequential processing",
+      "is_segmented": true
+    },
+    {
+      "case_id": "III-21",
+      "name": "Distributed Sort",
+      "paradigm": "Paradigm III",
+      "optimal_topology": "All-to-all or sample-based partitioning",
+      "is_segmented": true
+    },
+    {
+      "case_id": "III-22",
+      "name": "Median of Medians",
+      "paradigm": "Paradigm III",
+      "optimal_topology": "Iterative broadcast and aggregation",
+      "is_segmented": false
+    },
+    {
+      "case_id": "III-23",
+      "name": "Graph Components",
+      "paradigm": "Paradigm III",
+      "optimal_topology": "Hash-based partitioning or all-to-all coordination",
+      "is_segmented": false
+    },
+    {
+      "case_id": "III-24",
+      "name": "BFS Distance",
+      "paradigm": "Paradigm III",
+      "optimal_topology": "Dynamic message routing along graph edges",
+      "is_segmented": false
+    },
+    {
+      "case_id": "III-25",
+      "name": "K-Means Iteration",
+      "paradigm": "Paradigm III",
+      "optimal_topology": "Shuffle by cluster ID or all-to-all",
+      "is_segmented": false
+    },
+    {
+      "case_id": "III-26",
+      "name": "Global Distinct",
+      "paradigm": "Paradigm III",
+      "optimal_topology": "Hash-based shuffle (all-to-all by hash)",
+      "is_segmented": false
+    },
+    {
+      "case_id": "III-27",
+      "name": "Collaborative Filtering",
+      "paradigm": "Paradigm III",
+      "optimal_topology": "Broadcast or hash-based partitioning",
+      "is_segmented": false
+    },
+    {
+      "case_id": "III-28",
+      "name": "PageRank Step",
+      "paradigm": "Paradigm III",
+      "optimal_topology": "Node-based partitioning with message routing",
+      "is_segmented": false
+    },
+    {
+      "case_id": "III-29",
+      "name": "Load Balance",
+      "paradigm": "Paradigm III",
+      "optimal_topology": "All-to-all share tasks + one coordinator (or all compute)",
+      "is_segmented": false
+    },
+    {
+      "case_id": "III-30",
+      "name": "Matrix Multiply",
+      "paradigm": "Paradigm III",
+      "optimal_topology": "All-to-all for row result sharing",
+      "is_segmented": false
+    }
+  ]
+}

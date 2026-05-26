@@ -1,0 +1,4380 @@
+{
+  "case_id": "III-27",
+  "case_name": "Collaborative Filtering",
+  "paradigm": "Paradigm III",
+  "leetcode": {
+    "url": "https://leetcode.com/problems/two-sum/",
+    "description": "This case is inspired by the LeetCode problem. The multi-agent version tests distributed computation and communication efficiency."
+  },
+  "metadata": {
+    "num_agents": 50,
+    "optimal_topology": "Broadcast or hash-based partitioning",
+    "optimal_message_count": "O(users × items) = O(N²)",
+    "theoretical_complexity": "O(N log N) or O(N²) - Global/Shuffle",
+    "output_type": "distributed",
+    "is_segmented": false
+  },
+  "task_description": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent {agent_id} holds: {input_shard} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+  "agent_configs": [
+    {
+      "agent_id": 0,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 0\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 0 holds: {'users': {129: [0.16110673687115706, 0.09982646451699895, 0.5673718994597935, 0.7691410208748478, 0.16706816659708978], 3: [0.978236676473026, 0.2498905546275425, 0.5340111771328006, 0.7682572587975635, 0.013062806481757283]}, 'items': {103: [0.0708574392787269, 0.10559505622501242, 0.389234055385689, 0.3931958794919216, 0.13968692143503048], 7: [0.41456365215146973, 0.22680245049438075, 0.2906798272350688, 0.5393847581040975, 0.7895999006357313], 77: [0.9106535510701768, 0.058700559975977784, 0.9017128877376372, 0.7760501061294012, 0.8873653797638181], 147: [0.7212614490071029, 0.5366578886871046, 0.6592634381440035, 0.9145850865949213, 0.4419038855775811]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "129": [
+            0.16110673687115706,
+            0.09982646451699895,
+            0.5673718994597935,
+            0.7691410208748478,
+            0.16706816659708978
+          ],
+          "3": [
+            0.978236676473026,
+            0.2498905546275425,
+            0.5340111771328006,
+            0.7682572587975635,
+            0.013062806481757283
+          ]
+        },
+        "items": {
+          "103": [
+            0.0708574392787269,
+            0.10559505622501242,
+            0.389234055385689,
+            0.3931958794919216,
+            0.13968692143503048
+          ],
+          "7": [
+            0.41456365215146973,
+            0.22680245049438075,
+            0.2906798272350688,
+            0.5393847581040975,
+            0.7895999006357313
+          ],
+          "77": [
+            0.9106535510701768,
+            0.058700559975977784,
+            0.9017128877376372,
+            0.7760501061294012,
+            0.8873653797638181
+          ],
+          "147": [
+            0.7212614490071029,
+            0.5366578886871046,
+            0.6592634381440035,
+            0.9145850865949213,
+            0.4419038855775811
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 1,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 1\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 1 holds: {'users': {92: [0.7488242928367519, 0.47021536605064906, 0.9624858376230147, 0.47582445129392437, 0.32089025091542733], 27: [0.430973396552225, 0.8152301692163579, 0.9462405848821682, 0.8966959044696355, 0.16385478142758192], 63: [0.2338239279138904, 0.21084428822525725, 0.8433528702024075, 0.1643051759773826, 0.7576206015378125], 132: [0.10748631173041712, 0.044509818271758594, 0.2725362185221253, 0.6532805008757618, 0.8728014593479614]}, 'items': {123: [0.8248408109500938, 0.7980976300543923, 0.5132646608770826, 0.25815368097657376, 0.047170555893164434], 145: [0.3378449449838662, 0.33796784312234096, 0.32210649870303787, 0.16303695191079826, 0.2952922123863885]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "92": [
+            0.7488242928367519,
+            0.47021536605064906,
+            0.9624858376230147,
+            0.47582445129392437,
+            0.32089025091542733
+          ],
+          "27": [
+            0.430973396552225,
+            0.8152301692163579,
+            0.9462405848821682,
+            0.8966959044696355,
+            0.16385478142758192
+          ],
+          "63": [
+            0.2338239279138904,
+            0.21084428822525725,
+            0.8433528702024075,
+            0.1643051759773826,
+            0.7576206015378125
+          ],
+          "132": [
+            0.10748631173041712,
+            0.044509818271758594,
+            0.2725362185221253,
+            0.6532805008757618,
+            0.8728014593479614
+          ]
+        },
+        "items": {
+          "123": [
+            0.8248408109500938,
+            0.7980976300543923,
+            0.5132646608770826,
+            0.25815368097657376,
+            0.047170555893164434
+          ],
+          "145": [
+            0.3378449449838662,
+            0.33796784312234096,
+            0.32210649870303787,
+            0.16303695191079826,
+            0.2952922123863885
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 2,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 2\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 2 holds: {'users': {72: [0.9734612825580582, 0.9780366924494704, 0.1563904784480905, 0.36070591154849996, 0.28853454355314057], 12: [0.6209948954480161, 0.9108253472478978, 0.8002114390860467, 0.6192231470823165, 0.7239889645557479], 98: [0.13305899808153654, 0.7438202127750038, 0.7465311745376454, 0.11379129659363829, 0.2640819573359823], 91: [0.7237573308796367, 0.6403203723212656, 0.8091896900004634, 0.734866201746857, 0.15163431295844654], 135: [0.3486577198972035, 0.6652334338366482, 0.7040353286425486, 0.67450041522264, 0.47919896713828514], 79: [0.8460010944079488, 0.810284081943986, 0.673192783350663, 0.617927094334937, 0.3331295624020738]}, 'items': {}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "72": [
+            0.9734612825580582,
+            0.9780366924494704,
+            0.1563904784480905,
+            0.36070591154849996,
+            0.28853454355314057
+          ],
+          "12": [
+            0.6209948954480161,
+            0.9108253472478978,
+            0.8002114390860467,
+            0.6192231470823165,
+            0.7239889645557479
+          ],
+          "98": [
+            0.13305899808153654,
+            0.7438202127750038,
+            0.7465311745376454,
+            0.11379129659363829,
+            0.2640819573359823
+          ],
+          "91": [
+            0.7237573308796367,
+            0.6403203723212656,
+            0.8091896900004634,
+            0.734866201746857,
+            0.15163431295844654
+          ],
+          "135": [
+            0.3486577198972035,
+            0.6652334338366482,
+            0.7040353286425486,
+            0.67450041522264,
+            0.47919896713828514
+          ],
+          "79": [
+            0.8460010944079488,
+            0.810284081943986,
+            0.673192783350663,
+            0.617927094334937,
+            0.3331295624020738
+          ]
+        },
+        "items": {}
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 3,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 3\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 3 holds: {'users': {148: [0.2468372908081733, 0.8667841770785711, 0.10151576124890249, 0.8306469968429847, 0.3181556286122531], 2: [0.007436026722725142, 0.9062431900413995, 0.537241378749659, 0.0977387726061093, 0.2631740299611892], 102: [0.7615557209067262, 0.10041884487907715, 0.17861134873864837, 0.5367327429243416, 0.18620296713480233], 32: [0.666280343733731, 0.5226680635598201, 0.9477029512300951, 0.8139294555288837, 0.6615276947396164], 113: [0.5246099527977403, 0.10823528467550625, 0.5694890692695208, 0.6460793176541604, 0.8869161448973598]}, 'items': {124: [0.5157216892971941, 0.06558058041319614, 0.43111454451304265, 0.7599991833357618, 0.6911983090319053]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "148": [
+            0.2468372908081733,
+            0.8667841770785711,
+            0.10151576124890249,
+            0.8306469968429847,
+            0.3181556286122531
+          ],
+          "2": [
+            0.007436026722725142,
+            0.9062431900413995,
+            0.537241378749659,
+            0.0977387726061093,
+            0.2631740299611892
+          ],
+          "102": [
+            0.7615557209067262,
+            0.10041884487907715,
+            0.17861134873864837,
+            0.5367327429243416,
+            0.18620296713480233
+          ],
+          "32": [
+            0.666280343733731,
+            0.5226680635598201,
+            0.9477029512300951,
+            0.8139294555288837,
+            0.6615276947396164
+          ],
+          "113": [
+            0.5246099527977403,
+            0.10823528467550625,
+            0.5694890692695208,
+            0.6460793176541604,
+            0.8869161448973598
+          ]
+        },
+        "items": {
+          "124": [
+            0.5157216892971941,
+            0.06558058041319614,
+            0.43111454451304265,
+            0.7599991833357618,
+            0.6911983090319053
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 4,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 4\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 4 holds: {'users': {121: [0.2685826287607136, 0.069597490794166, 0.3852091294643727, 0.9137795050965809, 0.0593728029161007], 84: [0.3013062573018922, 0.7370933630416245, 0.2144820453563795, 0.7927590857132951, 0.28852249440474476], 28: [0.5067556522006506, 0.47482132306441416, 0.2971042864525103, 0.4562405122669796, 0.8304391769888857], 73: [0.8264210758606653, 0.4280176463776997, 0.04214832494213683, 0.12716582074775062, 0.7524747971141955], 131: [0.424261936090493, 0.642696439988417, 0.7612675950295845, 0.7565939472956413, 0.8953803741349162]}, 'items': {61: [0.7054558660813566, 0.11619042422471604, 0.9899166753550047, 0.700750484765307, 0.6329737040252538]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "121": [
+            0.2685826287607136,
+            0.069597490794166,
+            0.3852091294643727,
+            0.9137795050965809,
+            0.0593728029161007
+          ],
+          "84": [
+            0.3013062573018922,
+            0.7370933630416245,
+            0.2144820453563795,
+            0.7927590857132951,
+            0.28852249440474476
+          ],
+          "28": [
+            0.5067556522006506,
+            0.47482132306441416,
+            0.2971042864525103,
+            0.4562405122669796,
+            0.8304391769888857
+          ],
+          "73": [
+            0.8264210758606653,
+            0.4280176463776997,
+            0.04214832494213683,
+            0.12716582074775062,
+            0.7524747971141955
+          ],
+          "131": [
+            0.424261936090493,
+            0.642696439988417,
+            0.7612675950295845,
+            0.7565939472956413,
+            0.8953803741349162
+          ]
+        },
+        "items": {
+          "61": [
+            0.7054558660813566,
+            0.11619042422471604,
+            0.9899166753550047,
+            0.700750484765307,
+            0.6329737040252538
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 5,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 5\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 5 holds: {'users': {21: [0.22863320466527326, 0.2815728107299871, 0.7738950684482548, 0.1327758970334515, 0.8940644472994576], 118: [0.45308289833920035, 0.33323633823071686, 0.20270021383330483, 0.8795471003168348, 0.034260542173425224]}, 'items': {38: [0.07163135190940706, 0.7786768979179051, 0.7533244044391317, 0.5656097375869811, 0.38036270724636456], 140: [0.7158562386254752, 0.6810864848684034, 0.7066051088210323, 0.9333692168690318, 0.788588756173254], 23: [0.6507414301435853, 0.5711231985317687, 0.25269213394972867, 0.865657799068957, 0.6757614638377094], 100: [0.7233337640906656, 0.5563586334416109, 0.2676329974443078, 0.4137626984030568, 0.7961796871581744]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "21": [
+            0.22863320466527326,
+            0.2815728107299871,
+            0.7738950684482548,
+            0.1327758970334515,
+            0.8940644472994576
+          ],
+          "118": [
+            0.45308289833920035,
+            0.33323633823071686,
+            0.20270021383330483,
+            0.8795471003168348,
+            0.034260542173425224
+          ]
+        },
+        "items": {
+          "38": [
+            0.07163135190940706,
+            0.7786768979179051,
+            0.7533244044391317,
+            0.5656097375869811,
+            0.38036270724636456
+          ],
+          "140": [
+            0.7158562386254752,
+            0.6810864848684034,
+            0.7066051088210323,
+            0.9333692168690318,
+            0.788588756173254
+          ],
+          "23": [
+            0.6507414301435853,
+            0.5711231985317687,
+            0.25269213394972867,
+            0.865657799068957,
+            0.6757614638377094
+          ],
+          "100": [
+            0.7233337640906656,
+            0.5563586334416109,
+            0.2676329974443078,
+            0.4137626984030568,
+            0.7961796871581744
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 6,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 6\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 6 holds: {'users': {15: [0.2949624975852658, 0.4276858598466431, 0.09265676057789463, 0.5966220249072949, 0.5939151819134136], 52: [0.3940431134875094, 0.7264741813978919, 0.8449038853417574, 0.5174599517108032, 0.535098308751295], 74: [0.5751751859403208, 0.18315176790397247, 0.18933929145819361, 0.2597513810071769, 0.36000009515089326], 80: [0.4356402099270217, 0.536070564300845, 0.42815783240238414, 0.40784118639992384, 0.34705649146792517]}, 'items': {43: [0.7367102193604969, 0.8181406313862717, 0.9602541384205215, 0.7344275196730466, 0.07835156607634863], 69: [0.3304446561764782, 0.8641129889686371, 0.944443627380478, 0.6547831047452514, 0.42784347558501157]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "15": [
+            0.2949624975852658,
+            0.4276858598466431,
+            0.09265676057789463,
+            0.5966220249072949,
+            0.5939151819134136
+          ],
+          "52": [
+            0.3940431134875094,
+            0.7264741813978919,
+            0.8449038853417574,
+            0.5174599517108032,
+            0.535098308751295
+          ],
+          "74": [
+            0.5751751859403208,
+            0.18315176790397247,
+            0.18933929145819361,
+            0.2597513810071769,
+            0.36000009515089326
+          ],
+          "80": [
+            0.4356402099270217,
+            0.536070564300845,
+            0.42815783240238414,
+            0.40784118639992384,
+            0.34705649146792517
+          ]
+        },
+        "items": {
+          "43": [
+            0.7367102193604969,
+            0.8181406313862717,
+            0.9602541384205215,
+            0.7344275196730466,
+            0.07835156607634863
+          ],
+          "69": [
+            0.3304446561764782,
+            0.8641129889686371,
+            0.944443627380478,
+            0.6547831047452514,
+            0.42784347558501157
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 7,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 7\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 7 holds: {'users': {125: [0.43894739818029005, 0.06639453517655891, 0.04518813589397741, 0.2049070796394722, 0.05503294615661691], 20: [0.36057720783718294, 0.6207196108210866, 0.35219528241666953, 0.5995267036970703, 0.16868402557601403], 13: [0.1066269785099151, 0.2820466449850286, 0.5305037571480234, 0.5196174373576367, 0.8069704481546507], 31: [0.8677201077887112, 0.5575651836430953, 0.8811268819135407, 0.3462442347574348, 0.546285356142559], 96: [0.5963118710519708, 0.22445945543347479, 0.19102980310687212, 0.5554869275919314, 0.9112222735536357]}, 'items': {81: [0.04564198949667453, 0.19132049952375696, 0.7455435422859868, 0.24998269893226566, 0.33784764732306427]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "125": [
+            0.43894739818029005,
+            0.06639453517655891,
+            0.04518813589397741,
+            0.2049070796394722,
+            0.05503294615661691
+          ],
+          "20": [
+            0.36057720783718294,
+            0.6207196108210866,
+            0.35219528241666953,
+            0.5995267036970703,
+            0.16868402557601403
+          ],
+          "13": [
+            0.1066269785099151,
+            0.2820466449850286,
+            0.5305037571480234,
+            0.5196174373576367,
+            0.8069704481546507
+          ],
+          "31": [
+            0.8677201077887112,
+            0.5575651836430953,
+            0.8811268819135407,
+            0.3462442347574348,
+            0.546285356142559
+          ],
+          "96": [
+            0.5963118710519708,
+            0.22445945543347479,
+            0.19102980310687212,
+            0.5554869275919314,
+            0.9112222735536357
+          ]
+        },
+        "items": {
+          "81": [
+            0.04564198949667453,
+            0.19132049952375696,
+            0.7455435422859868,
+            0.24998269893226566,
+            0.33784764732306427
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 8,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 8\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 8 holds: {'users': {9: [0.3276262914323773, 0.8321731937860498, 0.8651583931781285, 0.053136750406514666, 0.09252970556348772], 104: [0.41452097602806526, 0.6804766657994903, 0.2076232522148962, 0.7172654150940131, 0.8224487285025246], 25: [0.3351516242138777, 0.9404758442923778, 0.6592067805979362, 0.7518667743104412, 0.20076392655597897]}, 'items': {17: [0.9735230240086165, 0.45607577499213925, 0.5497810709469242, 0.9985228824712651, 0.22120628019069], 97: [0.27675842016713215, 0.0072321002273363355, 0.2583199151157778, 0.6184560832681545, 0.08928934236332897], 143: [0.09628920026240795, 0.13825862301753855, 0.3278874295385156, 0.1638559311250184, 0.4446553345936797]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "9": [
+            0.3276262914323773,
+            0.8321731937860498,
+            0.8651583931781285,
+            0.053136750406514666,
+            0.09252970556348772
+          ],
+          "104": [
+            0.41452097602806526,
+            0.6804766657994903,
+            0.2076232522148962,
+            0.7172654150940131,
+            0.8224487285025246
+          ],
+          "25": [
+            0.3351516242138777,
+            0.9404758442923778,
+            0.6592067805979362,
+            0.7518667743104412,
+            0.20076392655597897
+          ]
+        },
+        "items": {
+          "17": [
+            0.9735230240086165,
+            0.45607577499213925,
+            0.5497810709469242,
+            0.9985228824712651,
+            0.22120628019069
+          ],
+          "97": [
+            0.27675842016713215,
+            0.0072321002273363355,
+            0.2583199151157778,
+            0.6184560832681545,
+            0.08928934236332897
+          ],
+          "143": [
+            0.09628920026240795,
+            0.13825862301753855,
+            0.3278874295385156,
+            0.1638559311250184,
+            0.4446553345936797
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 9,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 9\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 9 holds: {'users': {68: [0.061933887861778336, 0.025501442030544608, 0.5616652937393837, 0.7065884654104084, 0.15633517851719347], 42: [0.6674997015344671, 0.25191977327196713, 0.9101222985782013, 0.3042863183165887, 0.3254251868452489], 142: [0.8225259090383498, 0.8051454339224475, 0.40016423559131087, 0.651343065034006, 0.7514685960541836]}, 'items': {98: [0.08664938210031314, 0.6296242404265959, 0.21447688360756934, 0.4432938827280558, 0.38893663778099286], 68: [0.4084717244573719, 0.17887192422902343, 0.8308668215439995, 0.5196253936065519, 0.5262322780988685], 47: [0.15405715988242275, 0.9524385782718119, 0.464697250369565, 0.14716763941199773, 0.045709727625534935]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "68": [
+            0.061933887861778336,
+            0.025501442030544608,
+            0.5616652937393837,
+            0.7065884654104084,
+            0.15633517851719347
+          ],
+          "42": [
+            0.6674997015344671,
+            0.25191977327196713,
+            0.9101222985782013,
+            0.3042863183165887,
+            0.3254251868452489
+          ],
+          "142": [
+            0.8225259090383498,
+            0.8051454339224475,
+            0.40016423559131087,
+            0.651343065034006,
+            0.7514685960541836
+          ]
+        },
+        "items": {
+          "98": [
+            0.08664938210031314,
+            0.6296242404265959,
+            0.21447688360756934,
+            0.4432938827280558,
+            0.38893663778099286
+          ],
+          "68": [
+            0.4084717244573719,
+            0.17887192422902343,
+            0.8308668215439995,
+            0.5196253936065519,
+            0.5262322780988685
+          ],
+          "47": [
+            0.15405715988242275,
+            0.9524385782718119,
+            0.464697250369565,
+            0.14716763941199773,
+            0.045709727625534935
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 10,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 10\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 10 holds: {'users': {105: [0.5626302712090259, 0.18827718560810625, 0.03509750125100297, 0.8787383649703487, 0.34122549328529583], 33: [0.12012011718352689, 0.6345897369471611, 0.751275877014468, 0.6962177357187783, 0.6808048598138878], 136: [0.2727582433460636, 0.16154763825443397, 0.6014086655381972, 0.40153933248574947, 0.21917444306312628]}, 'items': {30: [0.6909193637405681, 0.20612365916817177, 0.13259149706502504, 0.6150490848338647, 0.5609424839664162], 131: [0.6613900723517755, 0.01589624662723943, 0.891708450794509, 0.04238104727594605, 0.3391438605833914], 56: [0.8983908996204528, 0.15522477641749677, 0.023222896323532582, 0.5278363232656283, 0.3094246512348797]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "105": [
+            0.5626302712090259,
+            0.18827718560810625,
+            0.03509750125100297,
+            0.8787383649703487,
+            0.34122549328529583
+          ],
+          "33": [
+            0.12012011718352689,
+            0.6345897369471611,
+            0.751275877014468,
+            0.6962177357187783,
+            0.6808048598138878
+          ],
+          "136": [
+            0.2727582433460636,
+            0.16154763825443397,
+            0.6014086655381972,
+            0.40153933248574947,
+            0.21917444306312628
+          ]
+        },
+        "items": {
+          "30": [
+            0.6909193637405681,
+            0.20612365916817177,
+            0.13259149706502504,
+            0.6150490848338647,
+            0.5609424839664162
+          ],
+          "131": [
+            0.6613900723517755,
+            0.01589624662723943,
+            0.891708450794509,
+            0.04238104727594605,
+            0.3391438605833914
+          ],
+          "56": [
+            0.8983908996204528,
+            0.15522477641749677,
+            0.023222896323532582,
+            0.5278363232656283,
+            0.3094246512348797
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 11,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 11\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 11 holds: {'users': {57: [0.006854909491988415, 0.6715668142034146, 0.26171607790602436, 0.7132068479338581, 0.1243772705947872], 133: [0.7205594683353624, 0.7282720418892713, 0.6188264979775892, 0.11543467877034663, 0.12412991969420517], 22: [0.5610462285748296, 0.8347472133329477, 0.18100541967562644, 0.38119758240163937, 0.9724894409580368], 112: [0.9379915115906439, 0.9912003754971939, 0.5695033414023593, 0.6067031142578302, 0.21732480576546298]}, 'items': {70: [0.13271486193333937, 0.5059362210613977, 0.19581187136482148, 0.013947494171044461, 0.9002125765096053], 146: [0.823064152406712, 0.08034726637209266, 0.742799654248872, 0.7985451956757205, 0.7458657016962542]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "57": [
+            0.006854909491988415,
+            0.6715668142034146,
+            0.26171607790602436,
+            0.7132068479338581,
+            0.1243772705947872
+          ],
+          "133": [
+            0.7205594683353624,
+            0.7282720418892713,
+            0.6188264979775892,
+            0.11543467877034663,
+            0.12412991969420517
+          ],
+          "22": [
+            0.5610462285748296,
+            0.8347472133329477,
+            0.18100541967562644,
+            0.38119758240163937,
+            0.9724894409580368
+          ],
+          "112": [
+            0.9379915115906439,
+            0.9912003754971939,
+            0.5695033414023593,
+            0.6067031142578302,
+            0.21732480576546298
+          ]
+        },
+        "items": {
+          "70": [
+            0.13271486193333937,
+            0.5059362210613977,
+            0.19581187136482148,
+            0.013947494171044461,
+            0.9002125765096053
+          ],
+          "146": [
+            0.823064152406712,
+            0.08034726637209266,
+            0.742799654248872,
+            0.7985451956757205,
+            0.7458657016962542
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 12,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 12\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 12 holds: {'users': {50: [0.8571513719154344, 0.6515069854195579, 0.3268917540625961, 0.7748025446342253, 0.5426348558540377], 130: [0.1014208359183586, 0.3456165470719421, 0.8698199314271262, 0.9331265207246848, 0.43324109945724765], 85: [0.7755120527583609, 0.33154644634218877, 0.784161056981, 0.2885385570220498, 0.506480518925023], 43: [0.9993305373597553, 0.4922542474351457, 0.9603612448986344, 0.8431484489084506, 0.02007046413699931]}, 'items': {136: [0.11141965922963948, 0.7650425895519741, 0.7683623993522256, 0.419975332028357, 0.2667221541004693], 67: [0.7840833247405213, 0.08646955843398718, 0.3777649893753432, 0.21310330911689102, 0.683859213900294]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "50": [
+            0.8571513719154344,
+            0.6515069854195579,
+            0.3268917540625961,
+            0.7748025446342253,
+            0.5426348558540377
+          ],
+          "130": [
+            0.1014208359183586,
+            0.3456165470719421,
+            0.8698199314271262,
+            0.9331265207246848,
+            0.43324109945724765
+          ],
+          "85": [
+            0.7755120527583609,
+            0.33154644634218877,
+            0.784161056981,
+            0.2885385570220498,
+            0.506480518925023
+          ],
+          "43": [
+            0.9993305373597553,
+            0.4922542474351457,
+            0.9603612448986344,
+            0.8431484489084506,
+            0.02007046413699931
+          ]
+        },
+        "items": {
+          "136": [
+            0.11141965922963948,
+            0.7650425895519741,
+            0.7683623993522256,
+            0.419975332028357,
+            0.2667221541004693
+          ],
+          "67": [
+            0.7840833247405213,
+            0.08646955843398718,
+            0.3777649893753432,
+            0.21310330911689102,
+            0.683859213900294
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 13,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 13\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 13 holds: {'users': {67: [0.6145745038047854, 0.434343519031839, 0.14506668165929293, 0.059236441801902795, 0.37984471636987227], 44: [0.8189983096675038, 0.3811698974149105, 0.09562749621338384, 0.43537998900401, 0.6731845744637854]}, 'items': {62: [0.5908814252183655, 0.2491836241843045, 0.19501923040408087, 0.6256490225911705, 0.9957069903708998], 5: [0.912728293298676, 0.4157136922449446, 0.445039345052046, 0.2514235147550796, 0.9011417110796996], 51: [0.24364626065697348, 0.8237063039943905, 0.4577319443346034, 0.15733401804420633, 0.5512947663014167], 111: [0.43787467579673744, 0.09987020267215108, 0.5455450027716814, 0.3630180119475943, 0.5547706602212964]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "67": [
+            0.6145745038047854,
+            0.434343519031839,
+            0.14506668165929293,
+            0.059236441801902795,
+            0.37984471636987227
+          ],
+          "44": [
+            0.8189983096675038,
+            0.3811698974149105,
+            0.09562749621338384,
+            0.43537998900401,
+            0.6731845744637854
+          ]
+        },
+        "items": {
+          "62": [
+            0.5908814252183655,
+            0.2491836241843045,
+            0.19501923040408087,
+            0.6256490225911705,
+            0.9957069903708998
+          ],
+          "5": [
+            0.912728293298676,
+            0.4157136922449446,
+            0.445039345052046,
+            0.2514235147550796,
+            0.9011417110796996
+          ],
+          "51": [
+            0.24364626065697348,
+            0.8237063039943905,
+            0.4577319443346034,
+            0.15733401804420633,
+            0.5512947663014167
+          ],
+          "111": [
+            0.43787467579673744,
+            0.09987020267215108,
+            0.5455450027716814,
+            0.3630180119475943,
+            0.5547706602212964
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 14,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 14\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 14 holds: {'users': {56: [0.7234626482206357, 0.38516780939306006, 0.25074111923862386, 0.003206485778857515, 0.021896903686205116]}, 'items': {76: [0.8225109912487267, 0.2746991053664257, 0.47886247267119264, 0.823100285158049, 0.1706082350360445], 128: [0.7119669038090252, 0.21899910197425088, 0.5829391594539065, 0.5652379604160839, 0.21721265472174645], 108: [0.5842134034412261, 0.9214157037030581, 0.952132769744946, 0.47706796776955673, 0.700831213277358], 65: [0.590596706912605, 0.5703809898976181, 0.8868363026536308, 0.964737512215772, 0.14208347876489313], 18: [0.17628416507903522, 0.6690257385926256, 0.49619825929495176, 0.9792845896137194, 0.3875621877178552]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "56": [
+            0.7234626482206357,
+            0.38516780939306006,
+            0.25074111923862386,
+            0.003206485778857515,
+            0.021896903686205116
+          ]
+        },
+        "items": {
+          "76": [
+            0.8225109912487267,
+            0.2746991053664257,
+            0.47886247267119264,
+            0.823100285158049,
+            0.1706082350360445
+          ],
+          "128": [
+            0.7119669038090252,
+            0.21899910197425088,
+            0.5829391594539065,
+            0.5652379604160839,
+            0.21721265472174645
+          ],
+          "108": [
+            0.5842134034412261,
+            0.9214157037030581,
+            0.952132769744946,
+            0.47706796776955673,
+            0.700831213277358
+          ],
+          "65": [
+            0.590596706912605,
+            0.5703809898976181,
+            0.8868363026536308,
+            0.964737512215772,
+            0.14208347876489313
+          ],
+          "18": [
+            0.17628416507903522,
+            0.6690257385926256,
+            0.49619825929495176,
+            0.9792845896137194,
+            0.3875621877178552
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 15,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 15\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 15 holds: {'users': {}, 'items': {28: [0.43349960058007575, 0.6591147728694805, 0.389869596655238, 0.6295768682323981, 0.9269969700717936], 101: [0.5384679561436267, 0.9116712371668615, 0.795913350887383, 0.9738772737306115, 0.931129869813579], 120: [0.631146554572016, 0.8083163588178465, 0.8040032233908897, 0.88418989188434, 0.18242082269147497], 4: [0.02481218432928789, 0.19969879034876237, 0.8686987771567782, 0.3366646315981986, 0.3827991453959333], 72: [0.927200057795166, 0.17521250556704326, 0.8530264104110534, 0.3346024647428072, 0.26775171698759714], 29: [0.38640075620903325, 0.5138221339012523, 0.7092560097164141, 0.004766448529939793, 0.7879442430212825]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {},
+        "items": {
+          "28": [
+            0.43349960058007575,
+            0.6591147728694805,
+            0.389869596655238,
+            0.6295768682323981,
+            0.9269969700717936
+          ],
+          "101": [
+            0.5384679561436267,
+            0.9116712371668615,
+            0.795913350887383,
+            0.9738772737306115,
+            0.931129869813579
+          ],
+          "120": [
+            0.631146554572016,
+            0.8083163588178465,
+            0.8040032233908897,
+            0.88418989188434,
+            0.18242082269147497
+          ],
+          "4": [
+            0.02481218432928789,
+            0.19969879034876237,
+            0.8686987771567782,
+            0.3366646315981986,
+            0.3827991453959333
+          ],
+          "72": [
+            0.927200057795166,
+            0.17521250556704326,
+            0.8530264104110534,
+            0.3346024647428072,
+            0.26775171698759714
+          ],
+          "29": [
+            0.38640075620903325,
+            0.5138221339012523,
+            0.7092560097164141,
+            0.004766448529939793,
+            0.7879442430212825
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 16,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 16\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 16 holds: {'users': {64: [0.6569012620365349, 0.36605219736826466, 0.5897052750440757, 0.05242182288566377, 0.7938060225262045], 37: [0.3848654786102872, 0.5067857719824526, 0.24291576997022468, 0.28916928367720707, 0.14933231717946227]}, 'items': {66: [0.5200833550167808, 0.9764629896848567, 0.6498603318907463, 0.7621872047037725, 0.11147543636103185], 19: [0.0065158527687185774, 0.4332171402009135, 0.08833448695888102, 0.19627885468029693, 0.6920755426977393], 85: [0.049064711800662075, 0.4529894224932821, 0.39704309821859285, 0.5830079554026788, 0.4631636182120181], 48: [0.20465276571007862, 0.3716949130294863, 0.5534491028643915, 0.2225880043529639, 0.5763446952472842]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "64": [
+            0.6569012620365349,
+            0.36605219736826466,
+            0.5897052750440757,
+            0.05242182288566377,
+            0.7938060225262045
+          ],
+          "37": [
+            0.3848654786102872,
+            0.5067857719824526,
+            0.24291576997022468,
+            0.28916928367720707,
+            0.14933231717946227
+          ]
+        },
+        "items": {
+          "66": [
+            0.5200833550167808,
+            0.9764629896848567,
+            0.6498603318907463,
+            0.7621872047037725,
+            0.11147543636103185
+          ],
+          "19": [
+            0.0065158527687185774,
+            0.4332171402009135,
+            0.08833448695888102,
+            0.19627885468029693,
+            0.6920755426977393
+          ],
+          "85": [
+            0.049064711800662075,
+            0.4529894224932821,
+            0.39704309821859285,
+            0.5830079554026788,
+            0.4631636182120181
+          ],
+          "48": [
+            0.20465276571007862,
+            0.3716949130294863,
+            0.5534491028643915,
+            0.2225880043529639,
+            0.5763446952472842
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 17,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 17\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 17 holds: {'users': {69: [0.2552593639678187, 0.011071150754816461, 0.31425570018376714, 0.25836511444095633, 0.699217701273827], 139: [0.17830566529468073, 0.34057196387560584, 0.5997019553794499, 0.723898689432716, 0.01311150079406831]}, 'items': {86: [0.8961164551444321, 0.5547506925165252, 0.2746522715003923, 0.468533989135803, 0.7714724889875327], 0: [0.13527519010537847, 0.8455832999220947, 0.8953112229988082, 0.2392439953897716, 0.5985579302456789], 80: [0.5256515300364542, 0.9157000714595703, 0.8266407247230407, 0.05317989061586814, 0.2852368234394612], 35: [0.9746717469081905, 0.7390164139987258, 0.7962177560393641, 0.5447230956193944, 0.5831608917455992]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "69": [
+            0.2552593639678187,
+            0.011071150754816461,
+            0.31425570018376714,
+            0.25836511444095633,
+            0.699217701273827
+          ],
+          "139": [
+            0.17830566529468073,
+            0.34057196387560584,
+            0.5997019553794499,
+            0.723898689432716,
+            0.01311150079406831
+          ]
+        },
+        "items": {
+          "86": [
+            0.8961164551444321,
+            0.5547506925165252,
+            0.2746522715003923,
+            0.468533989135803,
+            0.7714724889875327
+          ],
+          "0": [
+            0.13527519010537847,
+            0.8455832999220947,
+            0.8953112229988082,
+            0.2392439953897716,
+            0.5985579302456789
+          ],
+          "80": [
+            0.5256515300364542,
+            0.9157000714595703,
+            0.8266407247230407,
+            0.05317989061586814,
+            0.2852368234394612
+          ],
+          "35": [
+            0.9746717469081905,
+            0.7390164139987258,
+            0.7962177560393641,
+            0.5447230956193944,
+            0.5831608917455992
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 18,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 18\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 18 holds: {'users': {78: [0.6226716074734931, 0.4584203239930271, 0.39814915035827236, 0.31468461530010594, 0.16239352907920912], 62: [0.9167998257949047, 0.38583884306703076, 0.04484466710649704, 0.585137836993285, 0.26036598134284417], 53: [0.24124375652369257, 0.520460736144929, 0.8849063446267204, 0.38261922320557107, 0.5408791475812639], 46: [0.18778910096861656, 0.42545925748027924, 0.9717528784104231, 0.2701288089693016, 0.7238329993120737], 61: [0.8327260198199735, 0.613108410366674, 0.3239764203075357, 0.26171983652672604, 0.2075409676592167]}, 'items': {11: [0.3557830290567896, 0.3809812414690341, 0.34261725243915175, 0.8588661985086109, 0.7094879029628869]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "78": [
+            0.6226716074734931,
+            0.4584203239930271,
+            0.39814915035827236,
+            0.31468461530010594,
+            0.16239352907920912
+          ],
+          "62": [
+            0.9167998257949047,
+            0.38583884306703076,
+            0.04484466710649704,
+            0.585137836993285,
+            0.26036598134284417
+          ],
+          "53": [
+            0.24124375652369257,
+            0.520460736144929,
+            0.8849063446267204,
+            0.38261922320557107,
+            0.5408791475812639
+          ],
+          "46": [
+            0.18778910096861656,
+            0.42545925748027924,
+            0.9717528784104231,
+            0.2701288089693016,
+            0.7238329993120737
+          ],
+          "61": [
+            0.8327260198199735,
+            0.613108410366674,
+            0.3239764203075357,
+            0.26171983652672604,
+            0.2075409676592167
+          ]
+        },
+        "items": {
+          "11": [
+            0.3557830290567896,
+            0.3809812414690341,
+            0.34261725243915175,
+            0.8588661985086109,
+            0.7094879029628869
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 19,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 19\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 19 holds: {'users': {126: [0.6611610261540101, 0.1438988407026892, 0.3305359525477176, 0.41435039819398145, 0.5572246530701819], 59: [0.05275937191043978, 0.1773502416385757, 0.6381491335044586, 0.3776151630219742, 0.7144970818958135], 140: [0.28923624848196816, 0.25350485761588415, 0.5368684675869233, 0.08365683595500673, 0.2831753545093324]}, 'items': {133: [0.6725734601865263, 0.8168632969324869, 0.5977846760037759, 0.6106926077969783, 0.6105848629497466], 15: [0.30879331761236906, 0.6599488207771974, 0.7251771404368185, 0.8238692411534059, 0.5955866683040127], 89: [0.3480853361996834, 0.08871968844997602, 0.6484018327150852, 0.7628582100722336, 0.7165796701275905]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "126": [
+            0.6611610261540101,
+            0.1438988407026892,
+            0.3305359525477176,
+            0.41435039819398145,
+            0.5572246530701819
+          ],
+          "59": [
+            0.05275937191043978,
+            0.1773502416385757,
+            0.6381491335044586,
+            0.3776151630219742,
+            0.7144970818958135
+          ],
+          "140": [
+            0.28923624848196816,
+            0.25350485761588415,
+            0.5368684675869233,
+            0.08365683595500673,
+            0.2831753545093324
+          ]
+        },
+        "items": {
+          "133": [
+            0.6725734601865263,
+            0.8168632969324869,
+            0.5977846760037759,
+            0.6106926077969783,
+            0.6105848629497466
+          ],
+          "15": [
+            0.30879331761236906,
+            0.6599488207771974,
+            0.7251771404368185,
+            0.8238692411534059,
+            0.5955866683040127
+          ],
+          "89": [
+            0.3480853361996834,
+            0.08871968844997602,
+            0.6484018327150852,
+            0.7628582100722336,
+            0.7165796701275905
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 20,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 20\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 20 holds: {'users': {106: [0.0828644452063152, 0.45499217694507277, 0.17598839253375909, 0.7032037865235911, 0.10019673670833851], 77: [0.06379646540409423, 0.4825872874165362, 0.8671942985515264, 0.3220811648364459, 0.5964868908433826], 66: [0.7688674651475853, 0.8434689743008679, 0.09654976572646767, 0.677046691317787, 0.34672013528163037], 35: [0.19530601508975132, 0.4766729634365604, 0.5747062461708551, 0.41987073499228067, 0.7458559534482906], 93: [0.8914633475646283, 0.017185140740445415, 0.04642438638555069, 0.9100044896962907, 0.03889605254547035]}, 'items': {116: [0.6805893065660235, 0.31552731540084944, 0.3897561685710642, 0.45755047421997364, 0.3351710919915565]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "106": [
+            0.0828644452063152,
+            0.45499217694507277,
+            0.17598839253375909,
+            0.7032037865235911,
+            0.10019673670833851
+          ],
+          "77": [
+            0.06379646540409423,
+            0.4825872874165362,
+            0.8671942985515264,
+            0.3220811648364459,
+            0.5964868908433826
+          ],
+          "66": [
+            0.7688674651475853,
+            0.8434689743008679,
+            0.09654976572646767,
+            0.677046691317787,
+            0.34672013528163037
+          ],
+          "35": [
+            0.19530601508975132,
+            0.4766729634365604,
+            0.5747062461708551,
+            0.41987073499228067,
+            0.7458559534482906
+          ],
+          "93": [
+            0.8914633475646283,
+            0.017185140740445415,
+            0.04642438638555069,
+            0.9100044896962907,
+            0.03889605254547035
+          ]
+        },
+        "items": {
+          "116": [
+            0.6805893065660235,
+            0.31552731540084944,
+            0.3897561685710642,
+            0.45755047421997364,
+            0.3351710919915565
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 21,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 21\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 21 holds: {'users': {1: [0.6324020991608863, 0.5522154056211336, 0.782788352811393, 0.9483768035193268, 0.788868362079028]}, 'items': {127: [0.3736461417145658, 0.13077991326291583, 0.8678782293489039, 0.6909399605537445, 0.0033457656543534053], 90: [0.47432098710979687, 0.9913744926577399, 0.9898584382763967, 0.5547511877911776, 0.18475792555407433], 45: [0.23435608203163383, 0.5281633855799232, 0.8151810389729788, 0.36263822494769216, 0.5732803555756665], 31: [0.8024211894273404, 0.7187752764683087, 0.9492004970821581, 0.8117836050289442, 0.8298615250900877], 25: [0.9343398831605254, 0.16713172543390886, 0.9325618308245157, 0.730355904058666, 0.1874973916352799]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "1": [
+            0.6324020991608863,
+            0.5522154056211336,
+            0.782788352811393,
+            0.9483768035193268,
+            0.788868362079028
+          ]
+        },
+        "items": {
+          "127": [
+            0.3736461417145658,
+            0.13077991326291583,
+            0.8678782293489039,
+            0.6909399605537445,
+            0.0033457656543534053
+          ],
+          "90": [
+            0.47432098710979687,
+            0.9913744926577399,
+            0.9898584382763967,
+            0.5547511877911776,
+            0.18475792555407433
+          ],
+          "45": [
+            0.23435608203163383,
+            0.5281633855799232,
+            0.8151810389729788,
+            0.36263822494769216,
+            0.5732803555756665
+          ],
+          "31": [
+            0.8024211894273404,
+            0.7187752764683087,
+            0.9492004970821581,
+            0.8117836050289442,
+            0.8298615250900877
+          ],
+          "25": [
+            0.9343398831605254,
+            0.16713172543390886,
+            0.9325618308245157,
+            0.730355904058666,
+            0.1874973916352799
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 22,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 22\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 22 holds: {'users': {137: [0.4146417323846967, 0.07216317123928773, 0.18262595811306948, 0.8037463606292866, 0.30320791492041066], 122: [0.6712444103811107, 0.405102315206314, 0.8632321271919322, 0.7545256993489678, 0.3046966321824006], 58: [0.6102072716852575, 0.04757808530052132, 0.08364399402318512, 0.5132451167658585, 0.23077194549890578], 7: [0.33366250932338326, 0.5537979903871995, 0.03137444741741291, 0.715529414715669, 0.9074192461085686]}, 'items': {126: [0.9537381615121826, 0.1610513224651472, 0.6029163813160318, 0.6654410424897019, 0.49598451361198825], 139: [0.8854651977603957, 0.455416350939694, 0.7093678001887644, 0.31828021396112594, 0.5977264151800297]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "137": [
+            0.4146417323846967,
+            0.07216317123928773,
+            0.18262595811306948,
+            0.8037463606292866,
+            0.30320791492041066
+          ],
+          "122": [
+            0.6712444103811107,
+            0.405102315206314,
+            0.8632321271919322,
+            0.7545256993489678,
+            0.3046966321824006
+          ],
+          "58": [
+            0.6102072716852575,
+            0.04757808530052132,
+            0.08364399402318512,
+            0.5132451167658585,
+            0.23077194549890578
+          ],
+          "7": [
+            0.33366250932338326,
+            0.5537979903871995,
+            0.03137444741741291,
+            0.715529414715669,
+            0.9074192461085686
+          ]
+        },
+        "items": {
+          "126": [
+            0.9537381615121826,
+            0.1610513224651472,
+            0.6029163813160318,
+            0.6654410424897019,
+            0.49598451361198825
+          ],
+          "139": [
+            0.8854651977603957,
+            0.455416350939694,
+            0.7093678001887644,
+            0.31828021396112594,
+            0.5977264151800297
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 23,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 23\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 23 holds: {'users': {49: [0.2990926049919027, 0.34481737093376175, 0.31162842052336603, 0.35843309088526654, 0.2797738804103459], 54: [0.5294629047805134, 0.8575954397648589, 0.7135185015939487, 0.9790359824551418, 0.6521398863596837]}, 'items': {94: [0.46444239119086184, 0.6267838000409371, 0.296672002573937, 0.7964071134302494, 0.5626219988815386], 92: [0.8385844417748952, 0.17269918554310215, 0.6290694019642447, 0.8557555682387733, 0.8310086111682761], 24: [0.12536936536743604, 0.9485444099098997, 0.6285353705053481, 0.20100667939434314, 0.9285749153302016], 88: [0.9543570468707759, 0.22954772641637666, 0.4986472254208759, 0.8981599468262939, 0.7471716407366235]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "49": [
+            0.2990926049919027,
+            0.34481737093376175,
+            0.31162842052336603,
+            0.35843309088526654,
+            0.2797738804103459
+          ],
+          "54": [
+            0.5294629047805134,
+            0.8575954397648589,
+            0.7135185015939487,
+            0.9790359824551418,
+            0.6521398863596837
+          ]
+        },
+        "items": {
+          "94": [
+            0.46444239119086184,
+            0.6267838000409371,
+            0.296672002573937,
+            0.7964071134302494,
+            0.5626219988815386
+          ],
+          "92": [
+            0.8385844417748952,
+            0.17269918554310215,
+            0.6290694019642447,
+            0.8557555682387733,
+            0.8310086111682761
+          ],
+          "24": [
+            0.12536936536743604,
+            0.9485444099098997,
+            0.6285353705053481,
+            0.20100667939434314,
+            0.9285749153302016
+          ],
+          "88": [
+            0.9543570468707759,
+            0.22954772641637666,
+            0.4986472254208759,
+            0.8981599468262939,
+            0.7471716407366235
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 24,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 24\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 24 holds: {'users': {138: [0.13565708935460918, 0.6920896341423777, 0.6893165425897401, 0.6993612093842867, 0.7398013015327585], 115: [0.3887763777204589, 0.17332543607415707, 0.9632181872385671, 0.08347143678832747, 0.6959344645004029], 29: [0.7887193723875018, 0.4456146223158447, 0.7481464980223116, 0.226662544681266, 0.6205935618943401]}, 'items': {102: [0.5222069732006526, 0.12647836305894622, 0.3095218670992047, 0.5232614943282957, 0.8333269200128341], 107: [0.7071653900443367, 0.5829061796842566, 0.40816599136299603, 0.9503361184970844, 0.9685546850599757], 39: [0.06993502134393326, 0.9356331554696704, 0.6150131089219667, 0.620648360850917, 0.18998991070705729]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "138": [
+            0.13565708935460918,
+            0.6920896341423777,
+            0.6893165425897401,
+            0.6993612093842867,
+            0.7398013015327585
+          ],
+          "115": [
+            0.3887763777204589,
+            0.17332543607415707,
+            0.9632181872385671,
+            0.08347143678832747,
+            0.6959344645004029
+          ],
+          "29": [
+            0.7887193723875018,
+            0.4456146223158447,
+            0.7481464980223116,
+            0.226662544681266,
+            0.6205935618943401
+          ]
+        },
+        "items": {
+          "102": [
+            0.5222069732006526,
+            0.12647836305894622,
+            0.3095218670992047,
+            0.5232614943282957,
+            0.8333269200128341
+          ],
+          "107": [
+            0.7071653900443367,
+            0.5829061796842566,
+            0.40816599136299603,
+            0.9503361184970844,
+            0.9685546850599757
+          ],
+          "39": [
+            0.06993502134393326,
+            0.9356331554696704,
+            0.6150131089219667,
+            0.620648360850917,
+            0.18998991070705729
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 25,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 25\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 25 holds: {'users': {47: [0.08863017113214133, 0.26712971979157896, 0.6292900926723889, 0.506828375673286, 0.015601311762981518], 39: [0.585027887656551, 0.949105126131523, 0.12603926874244864, 0.10447047180779057, 0.9218889186483911], 111: [0.0783002048709035, 0.7242588801166209, 0.012450817836097028, 0.6958628860166874, 0.43662672113957535]}, 'items': {40: [0.7317180062632813, 0.9531839113630497, 0.4517956117378761, 0.5990946221796646, 0.9111007343766186], 21: [0.9799592678265193, 0.5030365303484509, 0.008342607941594027, 0.9465445909838812, 0.8899743283839379], 130: [0.42036906886618775, 0.554144854167678, 0.8337055872035493, 0.919872268240443, 0.6563246962968066]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "47": [
+            0.08863017113214133,
+            0.26712971979157896,
+            0.6292900926723889,
+            0.506828375673286,
+            0.015601311762981518
+          ],
+          "39": [
+            0.585027887656551,
+            0.949105126131523,
+            0.12603926874244864,
+            0.10447047180779057,
+            0.9218889186483911
+          ],
+          "111": [
+            0.0783002048709035,
+            0.7242588801166209,
+            0.012450817836097028,
+            0.6958628860166874,
+            0.43662672113957535
+          ]
+        },
+        "items": {
+          "40": [
+            0.7317180062632813,
+            0.9531839113630497,
+            0.4517956117378761,
+            0.5990946221796646,
+            0.9111007343766186
+          ],
+          "21": [
+            0.9799592678265193,
+            0.5030365303484509,
+            0.008342607941594027,
+            0.9465445909838812,
+            0.8899743283839379
+          ],
+          "130": [
+            0.42036906886618775,
+            0.554144854167678,
+            0.8337055872035493,
+            0.919872268240443,
+            0.6563246962968066
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 26,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 26\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 26 holds: {'users': {40: [0.5138719227775177, 0.43199055818389165, 0.3112764697309709, 0.2511019781683703, 0.06667274954021485], 60: [0.13870941704340845, 0.9988088120294988, 0.18334379171079107, 0.20672872500246775, 0.4962457807509809]}, 'items': {105: [0.8506407210521941, 0.30908862872767495, 0.7560359199435015, 0.17112963708446782, 0.7908808158519793], 57: [0.6762459201633969, 0.8443651389858848, 0.6359638966527712, 0.8094882634731118, 0.6144047426152303], 22: [0.014534541272009371, 0.3998795389892592, 0.14173920078164948, 0.634394422329475, 0.9586324631390885], 46: [0.3305568598377032, 0.8721616180301892, 0.09736543665998076, 0.6870661090261903, 0.5925399111667837]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "40": [
+            0.5138719227775177,
+            0.43199055818389165,
+            0.3112764697309709,
+            0.2511019781683703,
+            0.06667274954021485
+          ],
+          "60": [
+            0.13870941704340845,
+            0.9988088120294988,
+            0.18334379171079107,
+            0.20672872500246775,
+            0.4962457807509809
+          ]
+        },
+        "items": {
+          "105": [
+            0.8506407210521941,
+            0.30908862872767495,
+            0.7560359199435015,
+            0.17112963708446782,
+            0.7908808158519793
+          ],
+          "57": [
+            0.6762459201633969,
+            0.8443651389858848,
+            0.6359638966527712,
+            0.8094882634731118,
+            0.6144047426152303
+          ],
+          "22": [
+            0.014534541272009371,
+            0.3998795389892592,
+            0.14173920078164948,
+            0.634394422329475,
+            0.9586324631390885
+          ],
+          "46": [
+            0.3305568598377032,
+            0.8721616180301892,
+            0.09736543665998076,
+            0.6870661090261903,
+            0.5925399111667837
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 27,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 27\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 27 holds: {'users': {97: [0.09872164027212016, 0.9761800104868794, 0.9354789343794746, 0.4092841507407946, 0.23067792972854606], 109: [0.8788421691601571, 0.32973217539119026, 0.28418247418032005, 0.987445769279495, 0.583279454951906], 18: [0.36203567900132005, 0.8566722257716272, 0.3137024169195216, 0.332530857882976, 0.7772771632207485], 70: [0.11445417193220919, 0.8524587630238516, 0.2909603498215063, 0.7911256333355721, 0.6080106468120882], 76: [0.5731250368104281, 0.3672827025950507, 0.9046940025858011, 0.5652322707118395, 0.15560955797164677]}, 'items': {26: [0.8737302080260567, 0.9472058932974425, 0.2615001923159669, 0.3132916610028058, 0.28490113618000723]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "97": [
+            0.09872164027212016,
+            0.9761800104868794,
+            0.9354789343794746,
+            0.4092841507407946,
+            0.23067792972854606
+          ],
+          "109": [
+            0.8788421691601571,
+            0.32973217539119026,
+            0.28418247418032005,
+            0.987445769279495,
+            0.583279454951906
+          ],
+          "18": [
+            0.36203567900132005,
+            0.8566722257716272,
+            0.3137024169195216,
+            0.332530857882976,
+            0.7772771632207485
+          ],
+          "70": [
+            0.11445417193220919,
+            0.8524587630238516,
+            0.2909603498215063,
+            0.7911256333355721,
+            0.6080106468120882
+          ],
+          "76": [
+            0.5731250368104281,
+            0.3672827025950507,
+            0.9046940025858011,
+            0.5652322707118395,
+            0.15560955797164677
+          ]
+        },
+        "items": {
+          "26": [
+            0.8737302080260567,
+            0.9472058932974425,
+            0.2615001923159669,
+            0.3132916610028058,
+            0.28490113618000723
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 28,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 28\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 28 holds: {'users': {65: [0.7614585484860653, 0.861214914986624, 0.9613834616401011, 0.5633337681609242, 0.8886261223989272], 87: [0.6931338394224241, 0.3620171483657585, 0.3716481988697792, 0.2863520921403929, 0.03591786789340601]}, 'items': {82: [0.7854301750067431, 0.9716671362311461, 0.5093719822392498, 0.510248792113241, 0.014745951424352755], 37: [0.18392442048101365, 0.15769063659527505, 0.5017284040035269, 0.5663092085226283, 0.7106933400330852], 114: [0.3661859087186812, 0.4565969190623862, 0.8269609354152604, 0.8040289667169314, 0.8317020864525836], 78: [0.832049009233273, 0.648883127428597, 0.939901868540302, 0.5214151052561887, 0.8591057727017934]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "65": [
+            0.7614585484860653,
+            0.861214914986624,
+            0.9613834616401011,
+            0.5633337681609242,
+            0.8886261223989272
+          ],
+          "87": [
+            0.6931338394224241,
+            0.3620171483657585,
+            0.3716481988697792,
+            0.2863520921403929,
+            0.03591786789340601
+          ]
+        },
+        "items": {
+          "82": [
+            0.7854301750067431,
+            0.9716671362311461,
+            0.5093719822392498,
+            0.510248792113241,
+            0.014745951424352755
+          ],
+          "37": [
+            0.18392442048101365,
+            0.15769063659527505,
+            0.5017284040035269,
+            0.5663092085226283,
+            0.7106933400330852
+          ],
+          "114": [
+            0.3661859087186812,
+            0.4565969190623862,
+            0.8269609354152604,
+            0.8040289667169314,
+            0.8317020864525836
+          ],
+          "78": [
+            0.832049009233273,
+            0.648883127428597,
+            0.939901868540302,
+            0.5214151052561887,
+            0.8591057727017934
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 29,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 29\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 29 holds: {'users': {88: [0.8571181237123373, 0.9382341380536406, 0.6892487350769, 0.9319681358005057, 0.33962302783786724], 6: [0.9073475416933194, 0.39268602739223457, 0.7604122648498112, 0.0340724121624113, 0.6583973464253389], 134: [0.9640717379896598, 0.7451552309381089, 0.29181028904119255, 0.35827317675618797, 0.0595838618156006], 36: [0.3472129062363978, 0.3415489080495251, 0.48510488562114895, 0.5717373774201607, 0.8485937197176379]}, 'items': {110: [0.8018652378795192, 0.42347819349658455, 0.8238289320992598, 0.9216721905462412, 0.24278365684859482], 118: [0.9371967650514018, 0.017948993329454543, 0.5223093009648085, 0.6571356580979584, 0.6925871173858438]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "88": [
+            0.8571181237123373,
+            0.9382341380536406,
+            0.6892487350769,
+            0.9319681358005057,
+            0.33962302783786724
+          ],
+          "6": [
+            0.9073475416933194,
+            0.39268602739223457,
+            0.7604122648498112,
+            0.0340724121624113,
+            0.6583973464253389
+          ],
+          "134": [
+            0.9640717379896598,
+            0.7451552309381089,
+            0.29181028904119255,
+            0.35827317675618797,
+            0.0595838618156006
+          ],
+          "36": [
+            0.3472129062363978,
+            0.3415489080495251,
+            0.48510488562114895,
+            0.5717373774201607,
+            0.8485937197176379
+          ]
+        },
+        "items": {
+          "110": [
+            0.8018652378795192,
+            0.42347819349658455,
+            0.8238289320992598,
+            0.9216721905462412,
+            0.24278365684859482
+          ],
+          "118": [
+            0.9371967650514018,
+            0.017948993329454543,
+            0.5223093009648085,
+            0.6571356580979584,
+            0.6925871173858438
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 30,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 30\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 30 holds: {'users': {34: [0.3044127077989761, 0.5277234572725565, 0.30744488870341424, 0.27386931350536803, 0.865255761531173]}, 'items': {134: [0.14302037419524805, 0.9170800034772729, 0.7354518667002271, 0.5636280179540593, 0.2712341427125814], 64: [0.28228718998187885, 0.23904706423660282, 0.8733230543941894, 0.44101768059148005, 0.8257817092574409], 10: [0.6420310434935904, 0.6531404625157124, 0.3111816621677619, 0.5683908173255511, 0.24676414635832744], 79: [0.8570453127779648, 0.8620571966539383, 0.6851436355767874, 0.8390579081955841, 0.5509136048528445], 83: [0.7845911180278891, 0.961844519139065, 0.5378507682210776, 0.8491118039234097, 0.6932498532707408]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "34": [
+            0.3044127077989761,
+            0.5277234572725565,
+            0.30744488870341424,
+            0.27386931350536803,
+            0.865255761531173
+          ]
+        },
+        "items": {
+          "134": [
+            0.14302037419524805,
+            0.9170800034772729,
+            0.7354518667002271,
+            0.5636280179540593,
+            0.2712341427125814
+          ],
+          "64": [
+            0.28228718998187885,
+            0.23904706423660282,
+            0.8733230543941894,
+            0.44101768059148005,
+            0.8257817092574409
+          ],
+          "10": [
+            0.6420310434935904,
+            0.6531404625157124,
+            0.3111816621677619,
+            0.5683908173255511,
+            0.24676414635832744
+          ],
+          "79": [
+            0.8570453127779648,
+            0.8620571966539383,
+            0.6851436355767874,
+            0.8390579081955841,
+            0.5509136048528445
+          ],
+          "83": [
+            0.7845911180278891,
+            0.961844519139065,
+            0.5378507682210776,
+            0.8491118039234097,
+            0.6932498532707408
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 31,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 31\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 31 holds: {'users': {81: [0.45406417592039483, 0.21017573088619368, 0.7351935953144204, 0.07827696329095946, 0.12762025466120164]}, 'items': {58: [0.12336123427456092, 0.5057386361288314, 0.43904288963395643, 0.050358594754163266, 0.8429641693097958], 95: [0.22106494233252172, 0.5796414981190186, 0.8363920729655624, 0.015699958508688883, 0.021290294302907076], 113: [0.6552129987701845, 0.8066859677745459, 0.30472544194328166, 0.039394570730719836, 0.8644348079577115], 149: [0.11289773821937521, 0.5769989952512197, 0.5255582963027137, 0.062235909985288274, 0.9209588786838955], 36: [0.32628035526487087, 0.6910486605035815, 0.39832768611050484, 0.8191276149357195, 0.5154350242068857]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "81": [
+            0.45406417592039483,
+            0.21017573088619368,
+            0.7351935953144204,
+            0.07827696329095946,
+            0.12762025466120164
+          ]
+        },
+        "items": {
+          "58": [
+            0.12336123427456092,
+            0.5057386361288314,
+            0.43904288963395643,
+            0.050358594754163266,
+            0.8429641693097958
+          ],
+          "95": [
+            0.22106494233252172,
+            0.5796414981190186,
+            0.8363920729655624,
+            0.015699958508688883,
+            0.021290294302907076
+          ],
+          "113": [
+            0.6552129987701845,
+            0.8066859677745459,
+            0.30472544194328166,
+            0.039394570730719836,
+            0.8644348079577115
+          ],
+          "149": [
+            0.11289773821937521,
+            0.5769989952512197,
+            0.5255582963027137,
+            0.062235909985288274,
+            0.9209588786838955
+          ],
+          "36": [
+            0.32628035526487087,
+            0.6910486605035815,
+            0.39832768611050484,
+            0.8191276149357195,
+            0.5154350242068857
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 32,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 32\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 32 holds: {'users': {103: [0.9063690243280917, 0.7062634131769667, 0.39324426792691625, 0.33769323196508816, 0.7930966635697894], 55: [0.023197023743243506, 0.5945140019367747, 0.031457278547248446, 0.928051762413128, 0.7876424440125402]}, 'items': {138: [0.07952454248826779, 0.7004727959174744, 0.3888524469254996, 0.4450758820158902, 0.9667346289382412], 32: [0.0011668516026114295, 0.6409814652055397, 0.41703380395687106, 0.860958572357522, 0.12062577607502845], 104: [0.780741149788986, 0.2544113464413774, 0.25609299582058587, 0.32656819648953683, 0.4399332265718612], 42: [0.8139556922275901, 0.8784514797498972, 0.22257320795657565, 0.7359236981603513, 0.9557080602842463]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "103": [
+            0.9063690243280917,
+            0.7062634131769667,
+            0.39324426792691625,
+            0.33769323196508816,
+            0.7930966635697894
+          ],
+          "55": [
+            0.023197023743243506,
+            0.5945140019367747,
+            0.031457278547248446,
+            0.928051762413128,
+            0.7876424440125402
+          ]
+        },
+        "items": {
+          "138": [
+            0.07952454248826779,
+            0.7004727959174744,
+            0.3888524469254996,
+            0.4450758820158902,
+            0.9667346289382412
+          ],
+          "32": [
+            0.0011668516026114295,
+            0.6409814652055397,
+            0.41703380395687106,
+            0.860958572357522,
+            0.12062577607502845
+          ],
+          "104": [
+            0.780741149788986,
+            0.2544113464413774,
+            0.25609299582058587,
+            0.32656819648953683,
+            0.4399332265718612
+          ],
+          "42": [
+            0.8139556922275901,
+            0.8784514797498972,
+            0.22257320795657565,
+            0.7359236981603513,
+            0.9557080602842463
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 33,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 33\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 33 holds: {'users': {23: [0.5103722203244996, 0.3097250730835145, 0.6462259002604882, 0.5264925110945807, 0.3920797638348791], 30: [0.8063283767342636, 0.11024348797340722, 0.7636543913205244, 0.07614300854615774, 0.6989339289966402], 95: [0.5821280579138625, 0.9611766216411314, 0.10660948737611275, 0.09653471306089467, 0.8131343008393137], 147: [0.6079804879564769, 0.8420649056736143, 0.5869187839771323, 0.015306916888021549, 0.4353217905318626], 4: [0.3086886956235537, 0.21686773598345743, 0.1960869337454927, 0.8820569156160377, 0.5149734649283801]}, 'items': {137: [0.7541758011339825, 0.18768583521539417, 0.1330817744774313, 0.5867501937552377, 0.948806147386586]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "23": [
+            0.5103722203244996,
+            0.3097250730835145,
+            0.6462259002604882,
+            0.5264925110945807,
+            0.3920797638348791
+          ],
+          "30": [
+            0.8063283767342636,
+            0.11024348797340722,
+            0.7636543913205244,
+            0.07614300854615774,
+            0.6989339289966402
+          ],
+          "95": [
+            0.5821280579138625,
+            0.9611766216411314,
+            0.10660948737611275,
+            0.09653471306089467,
+            0.8131343008393137
+          ],
+          "147": [
+            0.6079804879564769,
+            0.8420649056736143,
+            0.5869187839771323,
+            0.015306916888021549,
+            0.4353217905318626
+          ],
+          "4": [
+            0.3086886956235537,
+            0.21686773598345743,
+            0.1960869337454927,
+            0.8820569156160377,
+            0.5149734649283801
+          ]
+        },
+        "items": {
+          "137": [
+            0.7541758011339825,
+            0.18768583521539417,
+            0.1330817744774313,
+            0.5867501937552377,
+            0.948806147386586
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 34,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 34\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 34 holds: {'users': {17: [0.3634418205546286, 0.8434151794128275, 0.9106994226242575, 0.3908886047318275, 0.5363290574646349], 114: [0.6276634824883458, 0.2903920453932851, 0.9700324223790954, 0.9111946350484226, 0.4601231014197519], 101: [0.8098003494161429, 0.7657827871263538, 0.9600081524137464, 0.678994045590299, 0.6388671871494688], 71: [0.8546217612103991, 0.7012035712608278, 0.4342095283209312, 0.41988940023236454, 0.7171853784425705]}, 'items': {117: [0.7730592175774642, 0.9445901968488535, 0.9711378967996117, 0.822179824999545, 0.1403482335729973], 87: [0.7903571833661002, 0.9583279348137788, 0.545281887625997, 0.853764896211658, 0.19875784101896576]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "17": [
+            0.3634418205546286,
+            0.8434151794128275,
+            0.9106994226242575,
+            0.3908886047318275,
+            0.5363290574646349
+          ],
+          "114": [
+            0.6276634824883458,
+            0.2903920453932851,
+            0.9700324223790954,
+            0.9111946350484226,
+            0.4601231014197519
+          ],
+          "101": [
+            0.8098003494161429,
+            0.7657827871263538,
+            0.9600081524137464,
+            0.678994045590299,
+            0.6388671871494688
+          ],
+          "71": [
+            0.8546217612103991,
+            0.7012035712608278,
+            0.4342095283209312,
+            0.41988940023236454,
+            0.7171853784425705
+          ]
+        },
+        "items": {
+          "117": [
+            0.7730592175774642,
+            0.9445901968488535,
+            0.9711378967996117,
+            0.822179824999545,
+            0.1403482335729973
+          ],
+          "87": [
+            0.7903571833661002,
+            0.9583279348137788,
+            0.545281887625997,
+            0.853764896211658,
+            0.19875784101896576
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 35,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 35\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 35 holds: {'users': {128: [0.607903087057562, 0.9886573130767137, 0.8676496186956999, 0.2993930071876205, 0.2558506570877169]}, 'items': {121: [0.7214377661898556, 0.33907283944821265, 0.34519512549361, 0.42102982907132214, 0.3494392933568149], 54: [0.8098073443215706, 0.7579685363757958, 0.8361156911261516, 0.3290345080498741, 0.3045900557617256], 59: [0.5139329364831392, 0.06295126086835712, 0.010096950525056214, 0.004707481844125394, 0.27168472288263], 52: [0.4677793561668824, 0.9802757683218367, 0.9421863744664781, 0.8216251817075333, 0.2458639844618804], 16: [0.7622481928195015, 0.5681260988989919, 0.712033258793198, 0.5960890788499315, 0.40632978346411996]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "128": [
+            0.607903087057562,
+            0.9886573130767137,
+            0.8676496186956999,
+            0.2993930071876205,
+            0.2558506570877169
+          ]
+        },
+        "items": {
+          "121": [
+            0.7214377661898556,
+            0.33907283944821265,
+            0.34519512549361,
+            0.42102982907132214,
+            0.3494392933568149
+          ],
+          "54": [
+            0.8098073443215706,
+            0.7579685363757958,
+            0.8361156911261516,
+            0.3290345080498741,
+            0.3045900557617256
+          ],
+          "59": [
+            0.5139329364831392,
+            0.06295126086835712,
+            0.010096950525056214,
+            0.004707481844125394,
+            0.27168472288263
+          ],
+          "52": [
+            0.4677793561668824,
+            0.9802757683218367,
+            0.9421863744664781,
+            0.8216251817075333,
+            0.2458639844618804
+          ],
+          "16": [
+            0.7622481928195015,
+            0.5681260988989919,
+            0.712033258793198,
+            0.5960890788499315,
+            0.40632978346411996
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 36,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 36\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 36 holds: {'users': {}, 'items': {12: [0.4321029968272102, 0.08795834487047383, 0.4009393103876856, 0.41871391893675747, 0.9069507398146843], 14: [0.7548667538084994, 0.13567255595731254, 0.13920573056751917, 0.3251335672061144, 0.2163363310003421], 112: [0.2154616776280457, 0.34582473720310114, 0.9406112227603108, 0.7266460189194526, 0.9226640742323255], 74: [0.3499227172409747, 0.8024745764705433, 0.23426845904306282, 0.4930685573594472, 0.07327125961562175], 34: [0.5400682937490529, 0.11962887129333, 0.7347426150713879, 0.3546866582518047, 0.9508810052512819], 27: [0.3875197431925539, 0.41817888997249475, 0.6478733267216761, 0.7678050807197477, 0.6112021726090364]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {},
+        "items": {
+          "12": [
+            0.4321029968272102,
+            0.08795834487047383,
+            0.4009393103876856,
+            0.41871391893675747,
+            0.9069507398146843
+          ],
+          "14": [
+            0.7548667538084994,
+            0.13567255595731254,
+            0.13920573056751917,
+            0.3251335672061144,
+            0.2163363310003421
+          ],
+          "112": [
+            0.2154616776280457,
+            0.34582473720310114,
+            0.9406112227603108,
+            0.7266460189194526,
+            0.9226640742323255
+          ],
+          "74": [
+            0.3499227172409747,
+            0.8024745764705433,
+            0.23426845904306282,
+            0.4930685573594472,
+            0.07327125961562175
+          ],
+          "34": [
+            0.5400682937490529,
+            0.11962887129333,
+            0.7347426150713879,
+            0.3546866582518047,
+            0.9508810052512819
+          ],
+          "27": [
+            0.3875197431925539,
+            0.41817888997249475,
+            0.6478733267216761,
+            0.7678050807197477,
+            0.6112021726090364
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 37,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 37\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 37 holds: {'users': {19: [0.6337914443387106, 0.3990448282646534, 0.49762539514274007, 0.802672501625727, 0.4255593972918359], 146: [0.7793437597679231, 0.53689688473288, 0.6054432079509173, 0.4882169887542809, 0.16139718151100302], 0: [0.6480348811785226, 0.7619143029580997, 0.13365832890982876, 0.4849614534528399, 0.19214642787002745], 144: [0.019160811367561204, 0.09789708665076025, 0.6475162770519199, 0.10210627440708064, 0.15241304268434885], 120: [0.4327587694621625, 0.8875705594958285, 0.5330403623653701, 0.8134570907006963, 0.8333297054921373]}, 'items': {109: [0.8642493873366641, 0.06827216516641899, 0.624072365675699, 0.06253582566142746, 0.05589339657690828]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "19": [
+            0.6337914443387106,
+            0.3990448282646534,
+            0.49762539514274007,
+            0.802672501625727,
+            0.4255593972918359
+          ],
+          "146": [
+            0.7793437597679231,
+            0.53689688473288,
+            0.6054432079509173,
+            0.4882169887542809,
+            0.16139718151100302
+          ],
+          "0": [
+            0.6480348811785226,
+            0.7619143029580997,
+            0.13365832890982876,
+            0.4849614534528399,
+            0.19214642787002745
+          ],
+          "144": [
+            0.019160811367561204,
+            0.09789708665076025,
+            0.6475162770519199,
+            0.10210627440708064,
+            0.15241304268434885
+          ],
+          "120": [
+            0.4327587694621625,
+            0.8875705594958285,
+            0.5330403623653701,
+            0.8134570907006963,
+            0.8333297054921373
+          ]
+        },
+        "items": {
+          "109": [
+            0.8642493873366641,
+            0.06827216516641899,
+            0.624072365675699,
+            0.06253582566142746,
+            0.05589339657690828
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 38,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 38\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 38 holds: {'users': {14: [0.34755304209668847, 0.7576926934936344, 0.6346019058122855, 0.787107876241591, 0.1141506057617705], 48: [0.0057665369433400615, 0.11127579639737128, 0.37433870495797994, 0.6423536323169811, 0.656987242080682]}, 'items': {50: [0.7645383402100275, 0.6200471563828246, 0.497124238037306, 0.7413995300948262, 0.9193486556062985], 20: [0.7866237740075749, 0.6406611135326091, 0.32346467137999657, 0.04090901580128081, 0.30817088679440086], 142: [0.614112931952915, 0.925135862379288, 0.5441929230756806, 0.08792954438638001, 0.636531273013219], 55: [0.6862987746314577, 0.7962469794524765, 0.37680270030206287, 0.4595092182662559, 0.19795375334946996]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "14": [
+            0.34755304209668847,
+            0.7576926934936344,
+            0.6346019058122855,
+            0.787107876241591,
+            0.1141506057617705
+          ],
+          "48": [
+            0.0057665369433400615,
+            0.11127579639737128,
+            0.37433870495797994,
+            0.6423536323169811,
+            0.656987242080682
+          ]
+        },
+        "items": {
+          "50": [
+            0.7645383402100275,
+            0.6200471563828246,
+            0.497124238037306,
+            0.7413995300948262,
+            0.9193486556062985
+          ],
+          "20": [
+            0.7866237740075749,
+            0.6406611135326091,
+            0.32346467137999657,
+            0.04090901580128081,
+            0.30817088679440086
+          ],
+          "142": [
+            0.614112931952915,
+            0.925135862379288,
+            0.5441929230756806,
+            0.08792954438638001,
+            0.636531273013219
+          ],
+          "55": [
+            0.6862987746314577,
+            0.7962469794524765,
+            0.37680270030206287,
+            0.4595092182662559,
+            0.19795375334946996
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 39,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 39\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 39 holds: {'users': {117: [0.9128096724068381, 0.5197122973242896, 0.3964532159718278, 0.21774432732647597, 0.9220160836080806], 124: [0.3636621660322735, 0.7904391086859998, 0.7490516841482427, 0.07817181213353375, 0.33991319949676524], 26: [0.6582606834230377, 0.08206464819571546, 0.19966118095243368, 0.6775564177218852, 0.19697460789611865], 107: [0.29328272745560435, 0.3385464186791023, 0.45407042627797867, 0.9880030001646449, 0.5591867992995679], 143: [0.18574431875500286, 0.7934895516414312, 0.9470729976559356, 0.4325093291931903, 0.8561481101582049], 99: [0.2029124491549844, 0.474805154699109, 0.33607560877503495, 0.03634876211488236, 0.3218474099385459]}, 'items': {}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "117": [
+            0.9128096724068381,
+            0.5197122973242896,
+            0.3964532159718278,
+            0.21774432732647597,
+            0.9220160836080806
+          ],
+          "124": [
+            0.3636621660322735,
+            0.7904391086859998,
+            0.7490516841482427,
+            0.07817181213353375,
+            0.33991319949676524
+          ],
+          "26": [
+            0.6582606834230377,
+            0.08206464819571546,
+            0.19966118095243368,
+            0.6775564177218852,
+            0.19697460789611865
+          ],
+          "107": [
+            0.29328272745560435,
+            0.3385464186791023,
+            0.45407042627797867,
+            0.9880030001646449,
+            0.5591867992995679
+          ],
+          "143": [
+            0.18574431875500286,
+            0.7934895516414312,
+            0.9470729976559356,
+            0.4325093291931903,
+            0.8561481101582049
+          ],
+          "99": [
+            0.2029124491549844,
+            0.474805154699109,
+            0.33607560877503495,
+            0.03634876211488236,
+            0.3218474099385459
+          ]
+        },
+        "items": {}
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 40,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 40\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 40 holds: {'users': {75: [0.46249914623213306, 0.9132086158991953, 0.18762671603093284, 0.6462771191962465, 0.31919253560747574], 82: [0.0713864285155279, 0.22449949863559682, 0.7601637760757706, 0.6998286170186472, 0.5158356911913515]}, 'items': {3: [0.08641663560526813, 0.13835723724573312, 0.6846515619372004, 0.3233307095648129, 0.240126350724424], 148: [0.9609332799294672, 0.7156274644136259, 0.8639444561673831, 0.10142232645847848, 0.8871464027015903], 84: [0.33659667096137214, 0.22780586639138367, 0.08158041089109447, 0.4951787353824809, 0.38254679288873117], 71: [0.32013513507528846, 0.7119238128120525, 0.29425058570845364, 0.03765897633805093, 0.47583137758764127]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "75": [
+            0.46249914623213306,
+            0.9132086158991953,
+            0.18762671603093284,
+            0.6462771191962465,
+            0.31919253560747574
+          ],
+          "82": [
+            0.0713864285155279,
+            0.22449949863559682,
+            0.7601637760757706,
+            0.6998286170186472,
+            0.5158356911913515
+          ]
+        },
+        "items": {
+          "3": [
+            0.08641663560526813,
+            0.13835723724573312,
+            0.6846515619372004,
+            0.3233307095648129,
+            0.240126350724424
+          ],
+          "148": [
+            0.9609332799294672,
+            0.7156274644136259,
+            0.8639444561673831,
+            0.10142232645847848,
+            0.8871464027015903
+          ],
+          "84": [
+            0.33659667096137214,
+            0.22780586639138367,
+            0.08158041089109447,
+            0.4951787353824809,
+            0.38254679288873117
+          ],
+          "71": [
+            0.32013513507528846,
+            0.7119238128120525,
+            0.29425058570845364,
+            0.03765897633805093,
+            0.47583137758764127
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 41,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 41\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 41 holds: {'users': {10: [0.3139706721123965, 0.2208714834198171, 0.5434984414836495, 0.6882767509396028, 0.8047546295229846], 16: [0.25253687881321984, 0.4541440911084652, 0.035533592132694136, 0.86767731484445, 0.40667294650309505]}, 'items': {91: [0.5171563339576833, 0.9415929548022558, 0.21557105417353317, 0.704304524351861, 0.6972453541909568], 41: [0.5046807925029694, 0.7968555903808392, 0.043285432633460186, 0.5684541613976106, 0.19123037200306725], 99: [0.3901916673074297, 0.47670834514614113, 0.387092982998798, 0.9298028134276621, 0.38774875316975965], 63: [0.9986811984671037, 0.7530417438738094, 0.2795645264644886, 0.9594784255308412, 0.05279738357669572]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "10": [
+            0.3139706721123965,
+            0.2208714834198171,
+            0.5434984414836495,
+            0.6882767509396028,
+            0.8047546295229846
+          ],
+          "16": [
+            0.25253687881321984,
+            0.4541440911084652,
+            0.035533592132694136,
+            0.86767731484445,
+            0.40667294650309505
+          ]
+        },
+        "items": {
+          "91": [
+            0.5171563339576833,
+            0.9415929548022558,
+            0.21557105417353317,
+            0.704304524351861,
+            0.6972453541909568
+          ],
+          "41": [
+            0.5046807925029694,
+            0.7968555903808392,
+            0.043285432633460186,
+            0.5684541613976106,
+            0.19123037200306725
+          ],
+          "99": [
+            0.3901916673074297,
+            0.47670834514614113,
+            0.387092982998798,
+            0.9298028134276621,
+            0.38774875316975965
+          ],
+          "63": [
+            0.9986811984671037,
+            0.7530417438738094,
+            0.2795645264644886,
+            0.9594784255308412,
+            0.05279738357669572
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 42,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 42\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 42 holds: {'users': {45: [0.37959935281337576, 0.9451009578912681, 0.9937309404953825, 0.35070315659858764, 0.4740346985153874], 127: [0.6296376924648334, 0.9896890564129927, 0.7633252466520049, 0.5480055316019365, 0.6098247129571822], 145: [0.7833444698114018, 0.7692233501685639, 0.38980297835863886, 0.9357459042941059, 0.8837219190564997]}, 'items': {44: [0.04926617545872225, 0.4687522144062194, 0.024516529078919658, 0.8429791603235529, 0.13897405493225123], 119: [0.6260041931753358, 0.7680284274124918, 0.19176341418328424, 0.3672220600372431, 0.4227622187922374], 115: [0.3176298319419837, 0.9614133413617342, 0.38409856600266357, 0.9068433843027919, 0.27826210931567597]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "45": [
+            0.37959935281337576,
+            0.9451009578912681,
+            0.9937309404953825,
+            0.35070315659858764,
+            0.4740346985153874
+          ],
+          "127": [
+            0.6296376924648334,
+            0.9896890564129927,
+            0.7633252466520049,
+            0.5480055316019365,
+            0.6098247129571822
+          ],
+          "145": [
+            0.7833444698114018,
+            0.7692233501685639,
+            0.38980297835863886,
+            0.9357459042941059,
+            0.8837219190564997
+          ]
+        },
+        "items": {
+          "44": [
+            0.04926617545872225,
+            0.4687522144062194,
+            0.024516529078919658,
+            0.8429791603235529,
+            0.13897405493225123
+          ],
+          "119": [
+            0.6260041931753358,
+            0.7680284274124918,
+            0.19176341418328424,
+            0.3672220600372431,
+            0.4227622187922374
+          ],
+          "115": [
+            0.3176298319419837,
+            0.9614133413617342,
+            0.38409856600266357,
+            0.9068433843027919,
+            0.27826210931567597
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 43,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 43\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 43 holds: {'users': {}, 'items': {53: [0.007689108213902451, 0.5513597556522188, 0.2930495380039767, 0.1302365779366833, 0.7703771843253899], 141: [0.6889366461689035, 0.6227831624393848, 0.35751552771485107, 0.2720633797892623, 0.5402551638522526], 1: [0.0017041976107947665, 0.3892763037341216, 0.30837987287432456, 0.6471708956038175, 0.46771161826955654], 13: [0.19575064874217174, 0.08346944113737975, 0.927782373886416, 0.3248212573585242, 0.18375108029721565], 6: [0.19084436389773818, 0.9062389599970821, 0.06994857581682479, 0.10039773849235656, 0.09143878217672485], 144: [0.8225761091136448, 0.03544692219507506, 0.038172437195400755, 0.5332215339290995, 0.9744979476368028]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {},
+        "items": {
+          "53": [
+            0.007689108213902451,
+            0.5513597556522188,
+            0.2930495380039767,
+            0.1302365779366833,
+            0.7703771843253899
+          ],
+          "141": [
+            0.6889366461689035,
+            0.6227831624393848,
+            0.35751552771485107,
+            0.2720633797892623,
+            0.5402551638522526
+          ],
+          "1": [
+            0.0017041976107947665,
+            0.3892763037341216,
+            0.30837987287432456,
+            0.6471708956038175,
+            0.46771161826955654
+          ],
+          "13": [
+            0.19575064874217174,
+            0.08346944113737975,
+            0.927782373886416,
+            0.3248212573585242,
+            0.18375108029721565
+          ],
+          "6": [
+            0.19084436389773818,
+            0.9062389599970821,
+            0.06994857581682479,
+            0.10039773849235656,
+            0.09143878217672485
+          ],
+          "144": [
+            0.8225761091136448,
+            0.03544692219507506,
+            0.038172437195400755,
+            0.5332215339290995,
+            0.9744979476368028
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 44,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 44\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 44 holds: {'users': {5: [0.26426919276322425, 0.15340979995669202, 0.36440227491293886, 0.3198902562514796, 0.9644094176507089], 24: [0.31205330330824266, 0.8864957106126191, 0.5486670472974039, 0.23369694057029688, 0.21792336339004115], 119: [0.504694206827724, 0.8149388029660206, 0.6045359775560543, 0.40840082587892546, 0.43448324875252364], 116: [0.008779377014315748, 0.14201991475427722, 0.09104465963160047, 0.3368512176951658, 0.49443995094363846]}, 'items': {106: [0.7805229244433827, 0.40992462525856965, 0.19602995850239613, 0.965061861304515, 0.1527173893571021], 96: [0.09143718027133207, 0.45159232929195325, 0.5259542146332494, 0.7303857923229221, 0.22607821409958084]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "5": [
+            0.26426919276322425,
+            0.15340979995669202,
+            0.36440227491293886,
+            0.3198902562514796,
+            0.9644094176507089
+          ],
+          "24": [
+            0.31205330330824266,
+            0.8864957106126191,
+            0.5486670472974039,
+            0.23369694057029688,
+            0.21792336339004115
+          ],
+          "119": [
+            0.504694206827724,
+            0.8149388029660206,
+            0.6045359775560543,
+            0.40840082587892546,
+            0.43448324875252364
+          ],
+          "116": [
+            0.008779377014315748,
+            0.14201991475427722,
+            0.09104465963160047,
+            0.3368512176951658,
+            0.49443995094363846
+          ]
+        },
+        "items": {
+          "106": [
+            0.7805229244433827,
+            0.40992462525856965,
+            0.19602995850239613,
+            0.965061861304515,
+            0.1527173893571021
+          ],
+          "96": [
+            0.09143718027133207,
+            0.45159232929195325,
+            0.5259542146332494,
+            0.7303857923229221,
+            0.22607821409958084
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 45,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 45\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 45 holds: {'users': {83: [0.3564373536856934, 0.21021681011472282, 0.7770301377794394, 0.7851646636554657, 0.17855441625190716], 110: [0.014543023873373362, 0.6119579207885997, 0.6159290338611175, 0.43359084806464043, 0.6070340125129985], 94: [0.21333796396294802, 0.020261870043984498, 0.17951064474996004, 0.10259960380003874, 0.13988071091211274]}, 'items': {60: [0.9220910716569392, 0.2184509902075824, 0.11964034288881631, 0.2895764924468739, 0.08416926547290737], 75: [0.7989516788618296, 0.4113675525998438, 0.7873727364565807, 0.2780390956592539, 0.4337272972653964], 33: [0.5666724770129279, 0.07051104528166607, 0.8567259431102446, 0.2831160621575345, 0.09402269763579563]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "83": [
+            0.3564373536856934,
+            0.21021681011472282,
+            0.7770301377794394,
+            0.7851646636554657,
+            0.17855441625190716
+          ],
+          "110": [
+            0.014543023873373362,
+            0.6119579207885997,
+            0.6159290338611175,
+            0.43359084806464043,
+            0.6070340125129985
+          ],
+          "94": [
+            0.21333796396294802,
+            0.020261870043984498,
+            0.17951064474996004,
+            0.10259960380003874,
+            0.13988071091211274
+          ]
+        },
+        "items": {
+          "60": [
+            0.9220910716569392,
+            0.2184509902075824,
+            0.11964034288881631,
+            0.2895764924468739,
+            0.08416926547290737
+          ],
+          "75": [
+            0.7989516788618296,
+            0.4113675525998438,
+            0.7873727364565807,
+            0.2780390956592539,
+            0.4337272972653964
+          ],
+          "33": [
+            0.5666724770129279,
+            0.07051104528166607,
+            0.8567259431102446,
+            0.2831160621575345,
+            0.09402269763579563
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 46,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 46\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 46 holds: {'users': {100: [0.8347386838336942, 0.3927653021253611, 0.5435607795556806, 0.4405906907747844, 0.5504489280286536], 90: [0.3797762574253738, 0.945558822526314, 0.02125199839715941, 0.7862796145122745, 0.9528546149475287]}, 'items': {73: [0.7187227854602223, 0.12862812250945344, 0.9311158722416009, 0.7960774714802358, 0.21033481155624034], 122: [0.7114207276133383, 0.9156623769305889, 0.9877144759679558, 0.23764537414560227, 0.3472172086816533], 93: [0.30089270128283896, 0.23406387136064, 0.27402977466766, 0.29556402049313446, 0.38179018770966955], 135: [0.1929039984563784, 0.6046348054613412, 0.06800015105114077, 0.5948792007766671, 0.5753509917139562]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "100": [
+            0.8347386838336942,
+            0.3927653021253611,
+            0.5435607795556806,
+            0.4405906907747844,
+            0.5504489280286536
+          ],
+          "90": [
+            0.3797762574253738,
+            0.945558822526314,
+            0.02125199839715941,
+            0.7862796145122745,
+            0.9528546149475287
+          ]
+        },
+        "items": {
+          "73": [
+            0.7187227854602223,
+            0.12862812250945344,
+            0.9311158722416009,
+            0.7960774714802358,
+            0.21033481155624034
+          ],
+          "122": [
+            0.7114207276133383,
+            0.9156623769305889,
+            0.9877144759679558,
+            0.23764537414560227,
+            0.3472172086816533
+          ],
+          "93": [
+            0.30089270128283896,
+            0.23406387136064,
+            0.27402977466766,
+            0.29556402049313446,
+            0.38179018770966955
+          ],
+          "135": [
+            0.1929039984563784,
+            0.6046348054613412,
+            0.06800015105114077,
+            0.5948792007766671,
+            0.5753509917139562
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 47,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 47\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 47 holds: {'users': {149: [0.07740905936659259, 0.469180944126671, 0.6493924648554977, 0.23573400167597958, 0.43986183445808014], 8: [0.5757680733322644, 0.34967362821657366, 0.8805073179271199, 0.753662699574383, 0.5444757276463456], 38: [0.12432231818385309, 0.506038703304385, 0.5973202758748621, 0.2607009733747151, 0.31322815327292686]}, 'items': {49: [0.6172873353641183, 0.3593741883905158, 0.10556390657082149, 0.1199674454130758, 0.24109489192422529], 9: [0.8833198861201603, 0.017617759056439475, 0.8805125641352624, 0.6148940326970359, 0.9968085676904402], 129: [0.5651004911489075, 0.28056847309587596, 0.04743943547664553, 0.4899880583010955, 0.8132378077133542]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "149": [
+            0.07740905936659259,
+            0.469180944126671,
+            0.6493924648554977,
+            0.23573400167597958,
+            0.43986183445808014
+          ],
+          "8": [
+            0.5757680733322644,
+            0.34967362821657366,
+            0.8805073179271199,
+            0.753662699574383,
+            0.5444757276463456
+          ],
+          "38": [
+            0.12432231818385309,
+            0.506038703304385,
+            0.5973202758748621,
+            0.2607009733747151,
+            0.31322815327292686
+          ]
+        },
+        "items": {
+          "49": [
+            0.6172873353641183,
+            0.3593741883905158,
+            0.10556390657082149,
+            0.1199674454130758,
+            0.24109489192422529
+          ],
+          "9": [
+            0.8833198861201603,
+            0.017617759056439475,
+            0.8805125641352624,
+            0.6148940326970359,
+            0.9968085676904402
+          ],
+          "129": [
+            0.5651004911489075,
+            0.28056847309587596,
+            0.04743943547664553,
+            0.4899880583010955,
+            0.8132378077133542
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 48,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 48\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 48 holds: {'users': {89: [0.9644725774531486, 0.35197188752272235, 0.49018713977704265, 0.68027710903431, 0.2865284069609154], 108: [0.4692969354766605, 0.6388408301636183, 0.16164149068297906, 0.3809545860185988, 0.8794780908685264], 141: [0.6291030144426726, 0.13823173468866845, 0.6726952957905105, 0.9290993181705309, 0.6992945648864396]}, 'items': {132: [0.3328283781989071, 0.0004047091905461375, 0.8340916436310525, 0.45010418853363143, 0.4884430992400334], 8: [0.30113577215286547, 0.14101564446279868, 0.6560072856572096, 0.19749753986978558, 0.36795485990221133], 125: [0.5165310780735952, 0.9562829821644585, 0.7518391684445878, 0.8191244323020374, 0.20415444880917166]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "89": [
+            0.9644725774531486,
+            0.35197188752272235,
+            0.49018713977704265,
+            0.68027710903431,
+            0.2865284069609154
+          ],
+          "108": [
+            0.4692969354766605,
+            0.6388408301636183,
+            0.16164149068297906,
+            0.3809545860185988,
+            0.8794780908685264
+          ],
+          "141": [
+            0.6291030144426726,
+            0.13823173468866845,
+            0.6726952957905105,
+            0.9290993181705309,
+            0.6992945648864396
+          ]
+        },
+        "items": {
+          "132": [
+            0.3328283781989071,
+            0.0004047091905461375,
+            0.8340916436310525,
+            0.45010418853363143,
+            0.4884430992400334
+          ],
+          "8": [
+            0.30113577215286547,
+            0.14101564446279868,
+            0.6560072856572096,
+            0.19749753986978558,
+            0.36795485990221133
+          ],
+          "125": [
+            0.5165310780735952,
+            0.9562829821644585,
+            0.7518391684445878,
+            0.8191244323020374,
+            0.20415444880917166
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    },
+    {
+      "agent_id": 49,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 49\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Collaborative Filtering (Top User-Item Pairs)**\n\nFind the top 3 user-item pairs with highest compatibility scores (dot product).\n\n**Data Distribution:**\nUser/Item vectors RANDOMLY distributed. Each has 5-dim feature vector.\n\n**Your Data (RANDOM):**\nAgent 49 holds: {'users': {123: [0.6157528478880119, 0.842373814148141, 0.20674516101972207, 0.6136394436275693, 0.4025731662963282], 51: [0.8574765638461634, 0.38366035781088903, 0.03628250923523457, 0.8720567857250513, 0.17483941163694217], 11: [0.3330211375210931, 0.5404560573885985, 0.5598175498523226, 0.04932343931033223, 0.4808855910159221], 86: [0.7121659862153726, 0.23106678290986793, 0.42494912360288795, 0.520341336507977, 0.20019689620977454], 41: [0.4259236145384404, 0.7733052602941396, 0.6708419207589169, 0.047954640468594545, 0.831995484606055]}, 'items': {2: [0.4785977521615482, 0.34558580480769774, 0.46075885132008054, 0.768644350527199, 0.1983124201535147]}} (dict with \"users\" and \"items\" keys)\n\n**Algorithm:**\n1. Compute dot products for ALL (user, item) pairs\n2. Find top 3 pairs with highest scores\n3. score(user, item) = dot_product(user_vector, item_vector)\n\n**Output:**\nList of top 3 tuples: [(user_id, item_id, score), ...]\n\n**Communication Protocol:**\nTopology: All-to-All. This is O(users × items) computation.\nAll agents must submit the same final answer using submit_result([(uid, iid, score), ...]).",
+      "input_shard": {
+        "users": {
+          "123": [
+            0.6157528478880119,
+            0.842373814148141,
+            0.20674516101972207,
+            0.6136394436275693,
+            0.4025731662963282
+          ],
+          "51": [
+            0.8574765638461634,
+            0.38366035781088903,
+            0.03628250923523457,
+            0.8720567857250513,
+            0.17483941163694217
+          ],
+          "11": [
+            0.3330211375210931,
+            0.5404560573885985,
+            0.5598175498523226,
+            0.04932343931033223,
+            0.4808855910159221
+          ],
+          "86": [
+            0.7121659862153726,
+            0.23106678290986793,
+            0.42494912360288795,
+            0.520341336507977,
+            0.20019689620977454
+          ],
+          "41": [
+            0.4259236145384404,
+            0.7733052602941396,
+            0.6708419207589169,
+            0.047954640468594545,
+            0.831995484606055
+          ]
+        },
+        "items": {
+          "2": [
+            0.4785977521615482,
+            0.34558580480769774,
+            0.46075885132008054,
+            0.768644350527199,
+            0.1983124201535147
+          ]
+        }
+      },
+      "expected_output": [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    }
+  ],
+  "expected_output": {
+    "type": "distributed",
+    "per_agent_values": [
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ],
+      [
+        [
+          65,
+          31,
+          3.3373
+        ],
+        [
+          65,
+          101,
+          3.3364
+        ],
+        [
+          54,
+          101,
+          3.1955
+        ]
+      ]
+    ],
+    "is_segmented": false,
+    "verification_logic": "len(agent_outputs) == num_agents and all(agent_outputs[i] == expected_output for i in range(num_agents))",
+    "verification_logic_hint": "all(agent_outputs) == top_dot_products(users, items)",
+    "format_description": "ALL agents must submit their results using submit_result(answer). All agents should submit the same final answer after coordination."
+  },
+  "evaluation_metrics": {
+    "success_rate": "Percentage of agents that submitted correct answers over K trials",
+    "round_to_completion": "Number of communication rounds needed",
+    "communication_redundancy_ratio": "M_total / M_opt",
+    "topological_fidelity": "Jaccard(E_empirical, E_optimal)"
+  }
+}

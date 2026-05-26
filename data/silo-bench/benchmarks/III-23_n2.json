@@ -1,0 +1,201 @@
+{
+  "case_id": "III-23",
+  "case_name": "Graph Components",
+  "paradigm": "Paradigm III",
+  "leetcode": {
+    "url": "https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/",
+    "description": "This case is inspired by the LeetCode problem. The multi-agent version tests distributed computation and communication efficiency."
+  },
+  "metadata": {
+    "num_agents": 2,
+    "optimal_topology": "Hash-based partitioning or all-to-all coordination",
+    "optimal_message_count": "O(N) to O(N²) depending on coordination strategy",
+    "theoretical_complexity": "O(N log N) or O(N²) - Global/Shuffle",
+    "output_type": "distributed",
+    "is_segmented": false
+  },
+  "task_description": "**Task: Graph Connected Components**\n\nFind the number of connected components in an undirected graph with randomly distributed edges.\n\n**Data Distribution:**\nTotal nodes: 20. Edges RANDOMLY distributed across agents.\n\n**Your Data (RANDOM edges):**\nAgent {agent_id} holds: {input_shard} (each edge is tuple (u, v))\n\n**Algorithm:**\nUse Union-Find. Coordinate to merge components connected through edges held by different agents.\n\n**Output:**\nA single integer representing the number of connected components.\n\n**Communication Protocol:**\nTopology: All-to-All or Hash-based. Share component membership information.\nAll agents must submit the same final answer using submit_result(component_count).",
+  "agent_configs": [
+    {
+      "agent_id": 0,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 0\nTotal agents: 2\nMax agent ID: 1",
+      "user_prompt": "**Task: Graph Connected Components**\n\nFind the number of connected components in an undirected graph with randomly distributed edges.\n\n**Data Distribution:**\nTotal nodes: 20. Edges RANDOMLY distributed across agents.\n\n**Your Data (RANDOM edges):**\nAgent 0 holds: [(8, 0), (18, 6), (0, 13), (1, 5), (18, 13), (2, 5), (0, 8), (2, 7), (8, 5), (15, 9), (15, 11), (15, 14), (19, 3), (18, 9), (18, 1), (1, 13), (5, 17), (14, 3)] (each edge is tuple (u, v))\n\n**Algorithm:**\nUse Union-Find. Coordinate to merge components connected through edges held by different agents.\n\n**Output:**\nA single integer representing the number of connected components.\n\n**Communication Protocol:**\nTopology: All-to-All or Hash-based. Share component membership information.\nAll agents must submit the same final answer using submit_result(component_count).",
+      "input_shard": [
+        [
+          8,
+          0
+        ],
+        [
+          18,
+          6
+        ],
+        [
+          0,
+          13
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          18,
+          13
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          15,
+          9
+        ],
+        [
+          15,
+          11
+        ],
+        [
+          15,
+          14
+        ],
+        [
+          19,
+          3
+        ],
+        [
+          18,
+          9
+        ],
+        [
+          18,
+          1
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          5,
+          17
+        ],
+        [
+          14,
+          3
+        ]
+      ],
+      "expected_output": 1
+    },
+    {
+      "agent_id": 1,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 1\nTotal agents: 2\nMax agent ID: 1",
+      "user_prompt": "**Task: Graph Connected Components**\n\nFind the number of connected components in an undirected graph with randomly distributed edges.\n\n**Data Distribution:**\nTotal nodes: 20. Edges RANDOMLY distributed across agents.\n\n**Your Data (RANDOM edges):**\nAgent 1 holds: [(1, 7), (16, 14), (5, 7), (4, 8), (8, 2), (9, 19), (2, 19), (13, 3), (5, 15), (14, 2), (4, 2), (16, 17), (17, 7), (15, 2), (7, 8), (14, 19), (14, 9), (12, 8), (10, 19)] (each edge is tuple (u, v))\n\n**Algorithm:**\nUse Union-Find. Coordinate to merge components connected through edges held by different agents.\n\n**Output:**\nA single integer representing the number of connected components.\n\n**Communication Protocol:**\nTopology: All-to-All or Hash-based. Share component membership information.\nAll agents must submit the same final answer using submit_result(component_count).",
+      "input_shard": [
+        [
+          1,
+          7
+        ],
+        [
+          16,
+          14
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          8,
+          2
+        ],
+        [
+          9,
+          19
+        ],
+        [
+          2,
+          19
+        ],
+        [
+          13,
+          3
+        ],
+        [
+          5,
+          15
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          16,
+          17
+        ],
+        [
+          17,
+          7
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          14,
+          19
+        ],
+        [
+          14,
+          9
+        ],
+        [
+          12,
+          8
+        ],
+        [
+          10,
+          19
+        ]
+      ],
+      "expected_output": 1
+    }
+  ],
+  "expected_output": {
+    "type": "distributed",
+    "per_agent_values": [
+      1,
+      1
+    ],
+    "is_segmented": false,
+    "verification_logic": "len(agent_outputs) == num_agents and all(agent_outputs[i] == expected_output for i in range(num_agents))",
+    "verification_logic_hint": "all(agent_outputs) == networkx.connected_components(graph)",
+    "format_description": "ALL agents must submit their results using submit_result(answer). All agents should submit the same final answer after coordination."
+  },
+  "evaluation_metrics": {
+    "success_rate": "Percentage of agents that submitted correct answers over K trials",
+    "round_to_completion": "Number of communication rounds needed",
+    "communication_redundancy_ratio": "M_total / M_opt",
+    "topological_fidelity": "Jaccard(E_empirical, E_optimal)"
+  }
+}

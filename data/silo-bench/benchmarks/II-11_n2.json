@@ -1,0 +1,147 @@
+{
+  "case_id": "II-11",
+  "case_name": "Prefix Sum",
+  "paradigm": "Paradigm II",
+  "leetcode": {
+    "url": "https://leetcode.com/problems/running-sum-of-1d-array/",
+    "description": "This case is inspired by the LeetCode problem. The multi-agent version tests distributed computation and communication efficiency."
+  },
+  "metadata": {
+    "num_agents": 2,
+    "optimal_topology": "Chain (Agent 0 → 1 → 2 → ... → N-1)",
+    "optimal_message_count": "1 messages (one per chain link)",
+    "theoretical_complexity": "O(N) - Structured Mesh with Locality",
+    "output_type": "distributed",
+    "is_segmented": true
+  },
+  "task_description": "**Task: Prefix Sum (Cumulative Sum)**\n\nCompute the prefix sum (cumulative sum) of the entire array.\n\n**Agent Ordering:**\nAgent 0 → Agent 1 → ... → Agent {max_id} (sequential segments)\n\n**Your Data (Position {agent_id}):**\n{input_shard}\n\n**Algorithm:**\n- prefix_sum[i] = sum of all elements from index 0 to i\n- You need the TOTAL SUM from all previous agents to adjust your local prefix sums\n\n**Output:**\nEach agent submits THEIR portion of the prefix sum array.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → {max_id}). Communicate with neighbors only.\nEach agent submits their own segment using submit_result(your_prefix_sum_segment).",
+  "agent_configs": [
+    {
+      "agent_id": 0,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 0\nTotal agents: 2\nMax agent ID: 1",
+      "user_prompt": "**Task: Prefix Sum (Cumulative Sum)**\n\nCompute the prefix sum (cumulative sum) of the entire array.\n\n**Agent Ordering:**\nAgent 0 → Agent 1 → ... → Agent 1 (sequential segments)\n\n**Your Data (Position 0):**\n[43, 22, 40, 21, 43, 8, 47, 20, 33, 20, 43, 27, 21, 26, 45]\n\n**Algorithm:**\n- prefix_sum[i] = sum of all elements from index 0 to i\n- You need the TOTAL SUM from all previous agents to adjust your local prefix sums\n\n**Output:**\nEach agent submits THEIR portion of the prefix sum array.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 1). Communicate with neighbors only.\nEach agent submits their own segment using submit_result(your_prefix_sum_segment).",
+      "input_shard": [
+        43,
+        22,
+        40,
+        21,
+        43,
+        8,
+        47,
+        20,
+        33,
+        20,
+        43,
+        27,
+        21,
+        26,
+        45
+      ],
+      "expected_output": [
+        43,
+        65,
+        105,
+        126,
+        169,
+        177,
+        224,
+        244,
+        277,
+        297,
+        340,
+        367,
+        388,
+        414,
+        459
+      ]
+    },
+    {
+      "agent_id": 1,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 1\nTotal agents: 2\nMax agent ID: 1",
+      "user_prompt": "**Task: Prefix Sum (Cumulative Sum)**\n\nCompute the prefix sum (cumulative sum) of the entire array.\n\n**Agent Ordering:**\nAgent 0 → Agent 1 → ... → Agent 1 (sequential segments)\n\n**Your Data (Position 1):**\n[19, 36, 9, 13, 27, 43, 25, 44, 48, 12, 40, 37, 20, 26, 36]\n\n**Algorithm:**\n- prefix_sum[i] = sum of all elements from index 0 to i\n- You need the TOTAL SUM from all previous agents to adjust your local prefix sums\n\n**Output:**\nEach agent submits THEIR portion of the prefix sum array.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 1). Communicate with neighbors only.\nEach agent submits their own segment using submit_result(your_prefix_sum_segment).",
+      "input_shard": [
+        19,
+        36,
+        9,
+        13,
+        27,
+        43,
+        25,
+        44,
+        48,
+        12,
+        40,
+        37,
+        20,
+        26,
+        36
+      ],
+      "expected_output": [
+        478,
+        514,
+        523,
+        536,
+        563,
+        606,
+        631,
+        675,
+        723,
+        735,
+        775,
+        812,
+        832,
+        858,
+        894
+      ]
+    }
+  ],
+  "expected_output": {
+    "type": "distributed",
+    "per_agent_values": [
+      [
+        43,
+        65,
+        105,
+        126,
+        169,
+        177,
+        224,
+        244,
+        277,
+        297,
+        340,
+        367,
+        388,
+        414,
+        459
+      ],
+      [
+        478,
+        514,
+        523,
+        536,
+        563,
+        606,
+        631,
+        675,
+        723,
+        735,
+        775,
+        812,
+        832,
+        858,
+        894
+      ]
+    ],
+    "is_segmented": true,
+    "verification_logic": "len(agent_outputs) == num_agents and all(agent_outputs[i] == expected_output[i] for i in range(num_agents))",
+    "verification_logic_hint": "concat(agent_outputs) == cumsum(global_input)",
+    "format_description": "ALL agents must submit their results using submit_result(answer). Each agent submits their own portion of the result."
+  },
+  "evaluation_metrics": {
+    "success_rate": "Percentage of agents that submitted correct answers over K trials",
+    "round_to_completion": "Number of communication rounds needed",
+    "communication_redundancy_ratio": "M_total / M_opt",
+    "topological_fidelity": "Jaccard(E_empirical, E_optimal)"
+  }
+}

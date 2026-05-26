@@ -1,0 +1,113 @@
+{
+  "case_id": "I-10",
+  "case_name": "Standard Deviation",
+  "paradigm": "Paradigm I",
+  "leetcode": {
+    "url": "https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary/",
+    "description": "This case is inspired by the LeetCode problem. The multi-agent version tests distributed computation and communication efficiency."
+  },
+  "metadata": {
+    "num_agents": 2,
+    "optimal_topology": "Star with two-phase protocol and broadcast",
+    "optimal_message_count": "2 × 2 = 4 messages (two rounds, each with collect + broadcast)",
+    "theoretical_complexity": "O(N) - MapReduce/Aggregation",
+    "output_type": "distributed",
+    "is_segmented": false
+  },
+  "task_description": "**Task: Standard Deviation (Two-Phase)**\n\nCompute the population standard deviation of all numbers across all agents' data.\n\n**Your Data:**\nYou (Agent {agent_id}) hold: {input_shard}\n\n**Algorithm (Two Phases):**\n**Phase 1: Compute Global Mean**\n- Calculate local_sum and local_count\n- Coordinate to compute global_mean = total_sum / total_count\n\n**Phase 2: Compute Variance**\n- Calculate local variance contribution: sum((x - global_mean)² for x in local_data)\n- Coordinate to sum all variance contributions\n- Compute std_dev = sqrt(total_variance / total_count)\n\n**Output:**\nA floating-point number (precision: 2 decimal places).\n\n**Communication Protocol:**\nTopology: Star/Tree with two-phase protocol → broadcast after each phase.\nAll agents must submit the same final answer using submit_result(std_dev).",
+  "agent_configs": [
+    {
+      "agent_id": 0,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 0\nTotal agents: 2\nMax agent ID: 1",
+      "user_prompt": "**Task: Standard Deviation (Two-Phase)**\n\nCompute the population standard deviation of all numbers across all agents' data.\n\n**Your Data:**\nYou (Agent 0) hold: [40.637738983211676, 62.06615101507128, 15.455333833220465, 92.98810156936744, 86.4605696219964, 97.62060329309628, 81.07717199403969, 88.14162046633244, 2.4786361898188725, 73.6564471755082, 33.21854679464287, 93.08158860483256, 80.2235138937139, 86.40640283752793, 81.0749316574389, 26.680570959447202, 78.73745091354711, 10.809562640295711, 87.21667829060897, 85.85932513377816, 22.243371754566443, 81.65866055969289, 46.030323467894206, 30.519086733860057, 79.53454991528618, 22.759548740777035, 2.366443470145152, 19.312978832770867, 32.82619511977065, 86.43529420302863]\n\n**Algorithm (Two Phases):**\n**Phase 1: Compute Global Mean**\n- Calculate local_sum and local_count\n- Coordinate to compute global_mean = total_sum / total_count\n\n**Phase 2: Compute Variance**\n- Calculate local variance contribution: sum((x - global_mean)² for x in local_data)\n- Coordinate to sum all variance contributions\n- Compute std_dev = sqrt(total_variance / total_count)\n\n**Output:**\nA floating-point number (precision: 2 decimal places).\n\n**Communication Protocol:**\nTopology: Star/Tree with two-phase protocol → broadcast after each phase.\nAll agents must submit the same final answer using submit_result(std_dev).",
+      "input_shard": [
+        40.637738983211676,
+        62.06615101507128,
+        15.455333833220465,
+        92.98810156936744,
+        86.4605696219964,
+        97.62060329309628,
+        81.07717199403969,
+        88.14162046633244,
+        2.4786361898188725,
+        73.6564471755082,
+        33.21854679464287,
+        93.08158860483256,
+        80.2235138937139,
+        86.40640283752793,
+        81.0749316574389,
+        26.680570959447202,
+        78.73745091354711,
+        10.809562640295711,
+        87.21667829060897,
+        85.85932513377816,
+        22.243371754566443,
+        81.65866055969289,
+        46.030323467894206,
+        30.519086733860057,
+        79.53454991528618,
+        22.759548740777035,
+        2.366443470145152,
+        19.312978832770867,
+        32.82619511977065,
+        86.43529420302863
+      ],
+      "expected_output": 30.58
+    },
+    {
+      "agent_id": 1,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 1\nTotal agents: 2\nMax agent ID: 1",
+      "user_prompt": "**Task: Standard Deviation (Two-Phase)**\n\nCompute the population standard deviation of all numbers across all agents' data.\n\n**Your Data:**\nYou (Agent 1) hold: [96.68891040483612, 27.91249927218714, 64.14817386076277, 39.96783843600609, 98.11496871982601, 53.62157324787219, 93.92371403247157, 11.53417518514276, 97.0400611022228, 17.856781617246366, 96.25343157615555, 26.546636252296864, 10.84025472147111, 43.45637585646443, 72.85450606527043, 31.367731419499123, 60.62088533061433, 51.14230596694781, 38.519543334472715, 57.65880434965995, 25.472250613858193, 70.87852838341706, 0.16912782186294661, 92.55751654990827, 53.84519970927919, 71.94299991448455, 74.19500778394766, 67.06285044329995, 36.422147178126416, 6.997381112631018]\n\n**Algorithm (Two Phases):**\n**Phase 1: Compute Global Mean**\n- Calculate local_sum and local_count\n- Coordinate to compute global_mean = total_sum / total_count\n\n**Phase 2: Compute Variance**\n- Calculate local variance contribution: sum((x - global_mean)² for x in local_data)\n- Coordinate to sum all variance contributions\n- Compute std_dev = sqrt(total_variance / total_count)\n\n**Output:**\nA floating-point number (precision: 2 decimal places).\n\n**Communication Protocol:**\nTopology: Star/Tree with two-phase protocol → broadcast after each phase.\nAll agents must submit the same final answer using submit_result(std_dev).",
+      "input_shard": [
+        96.68891040483612,
+        27.91249927218714,
+        64.14817386076277,
+        39.96783843600609,
+        98.11496871982601,
+        53.62157324787219,
+        93.92371403247157,
+        11.53417518514276,
+        97.0400611022228,
+        17.856781617246366,
+        96.25343157615555,
+        26.546636252296864,
+        10.84025472147111,
+        43.45637585646443,
+        72.85450606527043,
+        31.367731419499123,
+        60.62088533061433,
+        51.14230596694781,
+        38.519543334472715,
+        57.65880434965995,
+        25.472250613858193,
+        70.87852838341706,
+        0.16912782186294661,
+        92.55751654990827,
+        53.84519970927919,
+        71.94299991448455,
+        74.19500778394766,
+        67.06285044329995,
+        36.422147178126416,
+        6.997381112631018
+      ],
+      "expected_output": 30.58
+    }
+  ],
+  "expected_output": {
+    "type": "distributed",
+    "per_agent_values": [
+      30.58,
+      30.58
+    ],
+    "is_segmented": false,
+    "verification_logic": "len(agent_outputs) == num_agents and all(abs(agent_outputs[i] - expected_output) <= 0.01 for i in range(num_agents))",
+    "verification_logic_hint": "all(abs(submitted_std - global_std) < 0.01)",
+    "format_description": "ALL agents must submit their results using submit_result(answer). All agents should submit the same final answer after coordination."
+  },
+  "evaluation_metrics": {
+    "success_rate": "Percentage of agents that submitted correct answers over K trials",
+    "round_to_completion": "Number of communication rounds needed",
+    "communication_redundancy_ratio": "M_total / M_opt",
+    "topological_fidelity": "Jaccard(E_empirical, E_optimal)"
+  }
+}

@@ -1,0 +1,229 @@
+{
+  "case_id": "III-29",
+  "case_name": "Load Balance",
+  "paradigm": "Paradigm III",
+  "leetcode": {
+    "url": "https://leetcode.com/problems/split-array-largest-sum/",
+    "description": "This case is inspired by the LeetCode problem. The multi-agent version tests distributed computation and communication efficiency."
+  },
+  "metadata": {
+    "num_agents": 2,
+    "optimal_topology": "All-to-all share tasks + one coordinator (or all compute)",
+    "optimal_message_count": "O(N²) to share tasks + O(N) broadcast stats",
+    "theoretical_complexity": "O(N log N) or O(N²) - Global/Shuffle",
+    "output_type": "distributed",
+    "is_segmented": false
+  },
+  "task_description": "**Task: Load Balancing (Deterministic Greedy LPT)**\n\nRedistribute tasks using a deterministic algorithm (LPT - Longest Processing Time first).\n\n**Data Distribution:**\nSeverely UNBALANCED. Total tasks: 40, total duration: 516.\n\n**Your Data (UNBALANCED):**\nAgent {agent_id} holds: {input_shard}\n\n**Algorithm (MUST follow exactly):**\n1. Collect ALL tasks globally\n2. Sort by duration descending\n3. Greedily assign to agent with minimum load (tie-break: smallest agent id)\n4. Compute: variance, max_load, min_load\n\n**Output:**\nStatistics dict: {\"variance\": X, \"max_load\": Y, \"min_load\": Z}\n\n**Communication Protocol:**\nTopology: All-to-All share tasks, then compute and broadcast.\nAll agents must submit the same final answer using submit_result(stats_dict).",
+  "agent_configs": [
+    {
+      "agent_id": 0,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 0\nTotal agents: 2\nMax agent ID: 1",
+      "user_prompt": "**Task: Load Balancing (Deterministic Greedy LPT)**\n\nRedistribute tasks using a deterministic algorithm (LPT - Longest Processing Time first).\n\n**Data Distribution:**\nSeverely UNBALANCED. Total tasks: 40, total duration: 516.\n\n**Your Data (UNBALANCED):**\nAgent 0 holds: [{'id': 0, 'duration': 95}, {'id': 10, 'duration': 94}, {'id': 20, 'duration': 55}, {'id': 30, 'duration': 83}]\n\n**Algorithm (MUST follow exactly):**\n1. Collect ALL tasks globally\n2. Sort by duration descending\n3. Greedily assign to agent with minimum load (tie-break: smallest agent id)\n4. Compute: variance, max_load, min_load\n\n**Output:**\nStatistics dict: {\"variance\": X, \"max_load\": Y, \"min_load\": Z}\n\n**Communication Protocol:**\nTopology: All-to-All share tasks, then compute and broadcast.\nAll agents must submit the same final answer using submit_result(stats_dict).",
+      "input_shard": [
+        {
+          "id": 0,
+          "duration": 95
+        },
+        {
+          "id": 10,
+          "duration": 94
+        },
+        {
+          "id": 20,
+          "duration": 55
+        },
+        {
+          "id": 30,
+          "duration": 83
+        }
+      ],
+      "expected_output": {
+        "variance": 0.0,
+        "max_load": 258,
+        "min_load": 258
+      }
+    },
+    {
+      "agent_id": 1,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 1\nTotal agents: 2\nMax agent ID: 1",
+      "user_prompt": "**Task: Load Balancing (Deterministic Greedy LPT)**\n\nRedistribute tasks using a deterministic algorithm (LPT - Longest Processing Time first).\n\n**Data Distribution:**\nSeverely UNBALANCED. Total tasks: 40, total duration: 516.\n\n**Your Data (UNBALANCED):**\nAgent 1 holds: [{'id': 1, 'duration': 7}, {'id': 2, 'duration': 5}, {'id': 3, 'duration': 2}, {'id': 4, 'duration': 7}, {'id': 5, 'duration': 1}, {'id': 6, 'duration': 6}, {'id': 7, 'duration': 3}, {'id': 8, 'duration': 10}, {'id': 9, 'duration': 8}, {'id': 11, 'duration': 6}, {'id': 12, 'duration': 2}, {'id': 13, 'duration': 7}, {'id': 14, 'duration': 2}, {'id': 15, 'duration': 4}, {'id': 16, 'duration': 7}, {'id': 17, 'duration': 10}, {'id': 18, 'duration': 7}, {'id': 19, 'duration': 9}, {'id': 21, 'duration': 7}, {'id': 22, 'duration': 5}, {'id': 23, 'duration': 6}, {'id': 24, 'duration': 4}, {'id': 25, 'duration': 6}, {'id': 26, 'duration': 3}, {'id': 27, 'duration': 2}, {'id': 28, 'duration': 9}, {'id': 29, 'duration': 2}, {'id': 31, 'duration': 9}, {'id': 32, 'duration': 4}, {'id': 33, 'duration': 6}, {'id': 34, 'duration': 6}, {'id': 35, 'duration': 3}, {'id': 36, 'duration': 4}, {'id': 37, 'duration': 2}, {'id': 38, 'duration': 3}, {'id': 39, 'duration': 5}]\n\n**Algorithm (MUST follow exactly):**\n1. Collect ALL tasks globally\n2. Sort by duration descending\n3. Greedily assign to agent with minimum load (tie-break: smallest agent id)\n4. Compute: variance, max_load, min_load\n\n**Output:**\nStatistics dict: {\"variance\": X, \"max_load\": Y, \"min_load\": Z}\n\n**Communication Protocol:**\nTopology: All-to-All share tasks, then compute and broadcast.\nAll agents must submit the same final answer using submit_result(stats_dict).",
+      "input_shard": [
+        {
+          "id": 1,
+          "duration": 7
+        },
+        {
+          "id": 2,
+          "duration": 5
+        },
+        {
+          "id": 3,
+          "duration": 2
+        },
+        {
+          "id": 4,
+          "duration": 7
+        },
+        {
+          "id": 5,
+          "duration": 1
+        },
+        {
+          "id": 6,
+          "duration": 6
+        },
+        {
+          "id": 7,
+          "duration": 3
+        },
+        {
+          "id": 8,
+          "duration": 10
+        },
+        {
+          "id": 9,
+          "duration": 8
+        },
+        {
+          "id": 11,
+          "duration": 6
+        },
+        {
+          "id": 12,
+          "duration": 2
+        },
+        {
+          "id": 13,
+          "duration": 7
+        },
+        {
+          "id": 14,
+          "duration": 2
+        },
+        {
+          "id": 15,
+          "duration": 4
+        },
+        {
+          "id": 16,
+          "duration": 7
+        },
+        {
+          "id": 17,
+          "duration": 10
+        },
+        {
+          "id": 18,
+          "duration": 7
+        },
+        {
+          "id": 19,
+          "duration": 9
+        },
+        {
+          "id": 21,
+          "duration": 7
+        },
+        {
+          "id": 22,
+          "duration": 5
+        },
+        {
+          "id": 23,
+          "duration": 6
+        },
+        {
+          "id": 24,
+          "duration": 4
+        },
+        {
+          "id": 25,
+          "duration": 6
+        },
+        {
+          "id": 26,
+          "duration": 3
+        },
+        {
+          "id": 27,
+          "duration": 2
+        },
+        {
+          "id": 28,
+          "duration": 9
+        },
+        {
+          "id": 29,
+          "duration": 2
+        },
+        {
+          "id": 31,
+          "duration": 9
+        },
+        {
+          "id": 32,
+          "duration": 4
+        },
+        {
+          "id": 33,
+          "duration": 6
+        },
+        {
+          "id": 34,
+          "duration": 6
+        },
+        {
+          "id": 35,
+          "duration": 3
+        },
+        {
+          "id": 36,
+          "duration": 4
+        },
+        {
+          "id": 37,
+          "duration": 2
+        },
+        {
+          "id": 38,
+          "duration": 3
+        },
+        {
+          "id": 39,
+          "duration": 5
+        }
+      ],
+      "expected_output": {
+        "variance": 0.0,
+        "max_load": 258,
+        "min_load": 258
+      }
+    }
+  ],
+  "expected_output": {
+    "type": "distributed",
+    "per_agent_values": [
+      {
+        "variance": 0.0,
+        "max_load": 258,
+        "min_load": 258
+      },
+      {
+        "variance": 0.0,
+        "max_load": 258,
+        "min_load": 258
+      }
+    ],
+    "is_segmented": false,
+    "verification_logic": "len(agent_outputs) == num_agents and all(agent_outputs[i] == expected_output for i in range(num_agents))",
+    "verification_logic_hint": "all(agent_outputs) == expected_stats_from_greedy_lpt",
+    "format_description": "ALL agents must submit their results using submit_result(answer). All agents should submit the same final answer after coordination."
+  },
+  "evaluation_metrics": {
+    "success_rate": "Percentage of agents that submitted correct answers over K trials",
+    "round_to_completion": "Number of communication rounds needed",
+    "communication_redundancy_ratio": "M_total / M_opt",
+    "topological_fidelity": "Jaccard(E_empirical, E_optimal)"
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "case_id": "I-07",
+  "case_name": "Average Value",
+  "paradigm": "Paradigm I",
+  "leetcode": {
+    "url": "https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary/",
+    "description": "This case is inspired by the LeetCode problem. The multi-agent version tests distributed computation and communication efficiency."
+  },
+  "metadata": {
+    "num_agents": 2,
+    "optimal_topology": "Star (all agents → leader with (sum, count)) then broadcast",
+    "optimal_message_count": "2 messages",
+    "theoretical_complexity": "O(N) - MapReduce/Aggregation",
+    "output_type": "distributed",
+    "is_segmented": false
+  },
+  "task_description": "**Task: Global Average**\n\nCompute the average (mean) value of all numbers across all agents' data.\n\n**Your Data:**\nYou (Agent {agent_id}) hold: {input_shard}\n\n**Algorithm:**\n1. Compute local_sum and local_count\n2. Coordinate with other agents to compute global_sum and global_count\n3. global_average = global_sum / global_count\n\n**Output:**\nA floating-point number representing the global average (precision: 2 decimal places).\n\n**Communication Protocol:**\nTopology: Star/Tree aggregation → broadcast.\nAll agents must submit the same final answer using submit_result(global_average).",
+  "agent_configs": [
+    {
+      "agent_id": 0,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 0\nTotal agents: 2\nMax agent ID: 1",
+      "user_prompt": "**Task: Global Average**\n\nCompute the average (mean) value of all numbers across all agents' data.\n\n**Your Data:**\nYou (Agent 0) hold: [16.6311110603914, 48.56411254507185, 21.374729919918167, 40.10402925494526, 5.8635399972178925, 37.89731189769161, 98.5308843779726, 26.520305817215196, 78.40706019485694, 45.500836733914326, 42.30074859901629, 95.73176408596731, 99.54226894927139, 55.57683234056182, 71.8408275296326, 15.479682527406414, 29.67078254945642, 96.87093649691589, 57.91802908162562, 54.21952013742742, 74.7975560379064, 5.716527290748308, 58.41775944589712, 50.28503829195136, 85.27198920482853]\n\n**Algorithm:**\n1. Compute local_sum and local_count\n2. Coordinate with other agents to compute global_sum and global_count\n3. global_average = global_sum / global_count\n\n**Output:**\nA floating-point number representing the global average (precision: 2 decimal places).\n\n**Communication Protocol:**\nTopology: Star/Tree aggregation → broadcast.\nAll agents must submit the same final answer using submit_result(global_average).",
+      "input_shard": [
+        16.6311110603914,
+        48.56411254507185,
+        21.374729919918167,
+        40.10402925494526,
+        5.8635399972178925,
+        37.89731189769161,
+        98.5308843779726,
+        26.520305817215196,
+        78.40706019485694,
+        45.500836733914326,
+        42.30074859901629,
+        95.73176408596731,
+        99.54226894927139,
+        55.57683234056182,
+        71.8408275296326,
+        15.479682527406414,
+        29.67078254945642,
+        96.87093649691589,
+        57.91802908162562,
+        54.21952013742742,
+        74.7975560379064,
+        5.716527290748308,
+        58.41775944589712,
+        50.28503829195136,
+        85.27198920482853
+      ],
+      "expected_output": 49.24
+    },
+    {
+      "agent_id": 1,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 1\nTotal agents: 2\nMax agent ID: 1",
+      "user_prompt": "**Task: Global Average**\n\nCompute the average (mean) value of all numbers across all agents' data.\n\n**Your Data:**\nYou (Agent 1) hold: [15.743272793948327, 96.07789032744503, 8.011146524058688, 18.58249609807232, 59.50351064500276, 67.52125536040901, 23.52038950009312, 11.98866139471242, 89.02873141294376, 24.621534778862486, 59.45191535334412, 61.93815103321031, 41.92249153358725, 58.367228929122476, 52.278271553195886, 93.47062577364272, 20.425919942353644, 71.61918007894148, 23.868595261584602, 39.57858467912545, 67.16902229599712, 29.999707979876224, 31.6177196271854, 75.18644924144022, 7.254311449315731]\n\n**Algorithm:**\n1. Compute local_sum and local_count\n2. Coordinate with other agents to compute global_sum and global_count\n3. global_average = global_sum / global_count\n\n**Output:**\nA floating-point number representing the global average (precision: 2 decimal places).\n\n**Communication Protocol:**\nTopology: Star/Tree aggregation → broadcast.\nAll agents must submit the same final answer using submit_result(global_average).",
+      "input_shard": [
+        15.743272793948327,
+        96.07789032744503,
+        8.011146524058688,
+        18.58249609807232,
+        59.50351064500276,
+        67.52125536040901,
+        23.52038950009312,
+        11.98866139471242,
+        89.02873141294376,
+        24.621534778862486,
+        59.45191535334412,
+        61.93815103321031,
+        41.92249153358725,
+        58.367228929122476,
+        52.278271553195886,
+        93.47062577364272,
+        20.425919942353644,
+        71.61918007894148,
+        23.868595261584602,
+        39.57858467912545,
+        67.16902229599712,
+        29.999707979876224,
+        31.6177196271854,
+        75.18644924144022,
+        7.254311449315731
+      ],
+      "expected_output": 49.24
+    }
+  ],
+  "expected_output": {
+    "type": "distributed",
+    "per_agent_values": [
+      49.24,
+      49.24
+    ],
+    "is_segmented": false,
+    "verification_logic": "len(agent_outputs) == num_agents and all(abs(agent_outputs[i] - expected_output) <= 0.01 for i in range(num_agents))",
+    "verification_logic_hint": "all(abs(submitted_avg - global_avg) < 0.01)",
+    "format_description": "ALL agents must submit their results using submit_result(answer). All agents should submit the same final answer after coordination."
+  },
+  "evaluation_metrics": {
+    "success_rate": "Percentage of agents that submitted correct answers over K trials",
+    "round_to_completion": "Number of communication rounds needed",
+    "communication_redundancy_ratio": "M_total / M_opt",
+    "topological_fidelity": "Jaccard(E_empirical, E_optimal)"
+  }
+}

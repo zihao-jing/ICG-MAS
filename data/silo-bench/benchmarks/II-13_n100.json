@@ -1,0 +1,835 @@
+{
+  "case_id": "II-13",
+  "case_name": "Longest Palindrome",
+  "paradigm": "Paradigm II",
+  "leetcode": {
+    "url": "https://leetcode.com/problems/longest-palindromic-substring/",
+    "description": "This case is inspired by the LeetCode problem. The multi-agent version tests distributed computation and communication efficiency."
+  },
+  "metadata": {
+    "num_agents": 100,
+    "optimal_topology": "Chain with prefix/suffix exchange, then broadcast result",
+    "optimal_message_count": "198 for boundaries + O(N) for sharing",
+    "theoretical_complexity": "O(N) - Structured Mesh with Locality",
+    "output_type": "distributed",
+    "is_segmented": false
+  },
+  "task_description": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → {max_id}\n\n**Your Data (Position {agent_id}):**\nString segment: {input_shard}\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ {max_id}). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+  "agent_configs": [
+    {
+      "agent_id": 0,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 0\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 0):**\nString segment: iyakhsiooeugchh\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "iyakhsiooeugchh",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 1,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 1\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 1):**\nString segment: wygmdjgjuknjrxm\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "wygmdjgjuknjrxm",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 2,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 2\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 2):**\nString segment: pcuckgslwphwagg\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "pcuckgslwphwagg",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 3,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 3\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 3):**\nString segment: icmajymfsbupbtk\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "icmajymfsbupbtk",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 4,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 4\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 4):**\nString segment: bcyiepkluxfmhli\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "bcyiepkluxfmhli",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 5,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 5\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 5):**\nString segment: bykpzacxxyyhnhf\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "bykpzacxxyyhnhf",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 6,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 6\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 6):**\nString segment: ithruvxiwkoclsn\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "ithruvxiwkoclsn",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 7,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 7\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 7):**\nString segment: ynwstcjsrekbinc\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "ynwstcjsrekbinc",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 8,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 8\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 8):**\nString segment: mdpcgfpdizpdcrk\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "mdpcgfpdizpdcrk",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 9,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 9\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 9):**\nString segment: mhxansbnvwnucgd\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "mhxansbnvwnucgd",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 10,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 10\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 10):**\nString segment: fdzesrzqoinumqh\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "fdzesrzqoinumqh",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 11,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 11\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 11):**\nString segment: kdxmcexygjnwdcs\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "kdxmcexygjnwdcs",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 12,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 12\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 12):**\nString segment: emggtygbsbnulqu\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "emggtygbsbnulqu",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 13,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 13\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 13):**\nString segment: eerhzaaszimhjqc\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "eerhzaaszimhjqc",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 14,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 14\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 14):**\nString segment: rnslksuvncnvyrv\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "rnslksuvncnvyrv",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 15,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 15\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 15):**\nString segment: sucixysbwrrttye\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "sucixysbwrrttye",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 16,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 16\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 16):**\nString segment: cfagxuarwfvogxn\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "cfagxuarwfvogxn",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 17,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 17\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 17):**\nString segment: gumknpulmsmlyif\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "gumknpulmsmlyif",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 18,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 18\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 18):**\nString segment: bskrefoukaujjnk\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "bskrefoukaujjnk",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 19,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 19\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 19):**\nString segment: zxmobdwnyevttrq\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "zxmobdwnyevttrq",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 20,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 20\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 20):**\nString segment: wzwylrjtvcmzlqj\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "wzwylrjtvcmzlqj",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 21,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 21\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 21):**\nString segment: scijdmqmalflohu\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "scijdmqmalflohu",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 22,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 22\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 22):**\nString segment: vitsxqykagbqgqt\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "vitsxqykagbqgqt",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 23,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 23\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 23):**\nString segment: eiiwsxbatckxiff\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "eiiwsxbatckxiff",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 24,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 24\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 24):**\nString segment: crzjgwfgvapiqoj\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "crzjgwfgvapiqoj",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 25,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 25\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 25):**\nString segment: wzlgizvuadbvouj\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "wzlgizvuadbvouj",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 26,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 26\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 26):**\nString segment: subexulpgwvlsou\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "subexulpgwvlsou",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 27,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 27\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 27):**\nString segment: frzbjmnojnjthel\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "frzbjmnojnjthel",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 28,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 28\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 28):**\nString segment: dmjzstqpifpuacw\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "dmjzstqpifpuacw",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 29,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 29\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 29):**\nString segment: qtoxfzhtqvkqosq\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "qtoxfzhtqvkqosq",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 30,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 30\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 30):**\nString segment: bmnnlkeiqrlhbhj\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "bmnnlkeiqrlhbhj",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 31,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 31\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 31):**\nString segment: nrnwogaibvabtlg\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "nrnwogaibvabtlg",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 32,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 32\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 32):**\nString segment: mlunpgpftzfnqyp\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "mlunpgpftzfnqyp",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 33,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 33\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 33):**\nString segment: mcweyqyriidjelh\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "mcweyqyriidjelh",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 34,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 34\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 34):**\nString segment: uhnafrntawrqppk\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "uhnafrntawrqppk",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 35,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 35\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 35):**\nString segment: prpglsizzjnhifq\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "prpglsizzjnhifq",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 36,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 36\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 36):**\nString segment: vlhlpjzynebnnke\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "vlhlpjzynebnnke",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 37,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 37\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 37):**\nString segment: phkwtumkleqsqby\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "phkwtumkleqsqby",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 38,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 38\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 38):**\nString segment: bcpwmszzmmnupwd\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "bcpwmszzmmnupwd",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 39,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 39\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 39):**\nString segment: knvugauxoxlsekz\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "knvugauxoxlsekz",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 40,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 40\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 40):**\nString segment: otooummrbybzzyz\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "otooummrbybzzyz",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 41,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 41\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 41):**\nString segment: afogyydhoeynykc\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "afogyydhoeynykc",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 42,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 42\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 42):**\nString segment: ekkrkptselehiub\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "ekkrkptselehiub",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 43,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 43\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 43):**\nString segment: fwcdttbmjgntzoo\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "fwcdttbmjgntzoo",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 44,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 44\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 44):**\nString segment: xsjiovojtfvzblb\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "xsjiovojtfvzblb",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 45,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 45\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 45):**\nString segment: gdryfphmsyvvfdt\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "gdryfphmsyvvfdt",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 46,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 46\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 46):**\nString segment: xdwnxypwxoczaqm\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "xdwnxypwxoczaqm",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 47,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 47\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 47):**\nString segment: msyiothrwxbergs\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "msyiothrwxbergs",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 48,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 48\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 48):**\nString segment: eordwpqszlvfpyq\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "eordwpqszlvfpyq",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 49,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 49\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 49):**\nString segment: nsaugauajldfsoz\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "nsaugauajldfsoz",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 50,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 50\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 50):**\nString segment: tvtdxnxocmchpbd\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "tvtdxnxocmchpbd",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 51,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 51\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 51):**\nString segment: qvddawogllfpqil\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "qvddawogllfpqil",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 52,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 52\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 52):**\nString segment: wdeoxwcalvwgvqw\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "wdeoxwcalvwgvqw",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 53,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 53\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 53):**\nString segment: rgjytvrovorutxi\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "rgjytvrovorutxi",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 54,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 54\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 54):**\nString segment: dlympsovxvqaqnr\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "dlympsovxvqaqnr",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 55,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 55\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 55):**\nString segment: jonekwxssmofyyh\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "jonekwxssmofyyh",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 56,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 56\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 56):**\nString segment: gjmucwoqsdppcbv\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "gjmucwoqsdppcbv",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 57,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 57\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 57):**\nString segment: ufbgprniddrtvjo\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "ufbgprniddrtvjo",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 58,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 58\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 58):**\nString segment: ipcossgqqmqirpr\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "ipcossgqqmqirpr",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 59,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 59\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 59):**\nString segment: nyhrfimtrocunrl\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "nyhrfimtrocunrl",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 60,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 60\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 60):**\nString segment: ylchcfpuvpgckez\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "ylchcfpuvpgckez",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 61,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 61\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 61):**\nString segment: rcltaigmudxesdw\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "rcltaigmudxesdw",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 62,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 62\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 62):**\nString segment: kwdvmgtwjkcvfzr\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "kwdvmgtwjkcvfzr",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 63,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 63\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 63):**\nString segment: kwqscgyaqtqcxpt\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "kwqscgyaqtqcxpt",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 64,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 64\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 64):**\nString segment: zdzdwktvqoeziqx\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "zdzdwktvqoeziqx",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 65,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 65\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 65):**\nString segment: gjhbwunpjcmpdeh\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "gjhbwunpjcmpdeh",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 66,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 66\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 66):**\nString segment: sqrtdgwtusptmqr\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "sqrtdgwtusptmqr",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 67,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 67\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 67):**\nString segment: pqttpzfzigpejwu\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "pqttpzfzigpejwu",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 68,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 68\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 68):**\nString segment: wzgnxokegxxlzzn\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "wzgnxokegxxlzzn",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 69,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 69\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 69):**\nString segment: hodavuwqvsoggkx\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "hodavuwqvsoggkx",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 70,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 70\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 70):**\nString segment: nczguvarkejpcsl\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "nczguvarkejpcsl",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 71,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 71\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 71):**\nString segment: hlgbxyooyedqodm\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "hlgbxyooyedqodm",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 72,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 72\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 72):**\nString segment: vgjkuzpqiqhsszw\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "vgjkuzpqiqhsszw",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 73,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 73\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 73):**\nString segment: ypjdglhdzwegvin\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "ypjdglhdzwegvin",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 74,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 74\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 74):**\nString segment: utfxspqhoybceip\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "utfxspqhoybceip",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 75,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 75\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 75):**\nString segment: dbcbhqhughccfso\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "dbcbhqhughccfso",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 76,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 76\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 76):**\nString segment: touiikfpunvtnmv\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "touiikfpunvtnmv",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 77,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 77\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 77):**\nString segment: fujeqfgpnmhoqrx\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "fujeqfgpnmhoqrx",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 78,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 78\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 78):**\nString segment: hchbnnpdeugwprn\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "hchbnnpdeugwprn",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 79,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 79\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 79):**\nString segment: rsihgrgywnxwyiv\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "rsihgrgywnxwyiv",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 80,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 80\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 80):**\nString segment: lvjwreohutlirvu\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "lvjwreohutlirvu",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 81,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 81\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 81):**\nString segment: dnmdisqpwdaqxyy\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "dnmdisqpwdaqxyy",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 82,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 82\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 82):**\nString segment: fxtnquetejultbs\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "fxtnquetejultbs",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 83,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 83\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 83):**\nString segment: ipedkwlmhezwkel\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "ipedkwlmhezwkel",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 84,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 84\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 84):**\nString segment: qwvqqluqecevjbe\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "qwvqqluqecevjbe",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 85,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 85\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 85):**\nString segment: gqdiazvzitxbtro\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "gqdiazvzitxbtro",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 86,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 86\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 86):**\nString segment: hchgdvzevknywra\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "hchgdvzevknywra",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 87,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 87\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 87):**\nString segment: smhuziqthnksjlu\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "smhuziqthnksjlu",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 88,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 88\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 88):**\nString segment: wvlpacwyvofpqlg\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "wvlpacwyvofpqlg",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 89,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 89\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 89):**\nString segment: zsxqwxoixzkwzpg\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "zsxqwxoixzkwzpg",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 90,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 90\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 90):**\nString segment: niditermjvadryc\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "niditermjvadryc",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 91,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 91\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 91):**\nString segment: acvfsabfxvxcaos\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "acvfsabfxvxcaos",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 92,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 92\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 92):**\nString segment: nuhmmtaeakdatzu\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "nuhmmtaeakdatzu",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 93,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 93\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 93):**\nString segment: gfxqzfdfwlracec\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "gfxqzfdfwlracec",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 94,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 94\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 94):**\nString segment: aryeysqczgkeruh\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "aryeysqczgkeruh",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 95,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 95\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 95):**\nString segment: hqqerxkkvwzuprn\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "hqqerxkkvwzuprn",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 96,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 96\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 96):**\nString segment: ptmwgxbfhzlsqqv\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "ptmwgxbfhzlsqqv",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 97,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 97\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 97):**\nString segment: mabbaaivmqglewj\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "mabbaaivmqglewj",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 98,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 98\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 98):**\nString segment: zdukbonlfwxzxgx\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "zdukbonlfwxzxgx",
+      "expected_output": 7
+    },
+    {
+      "agent_id": 99,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 99\nTotal agents: 100\nMax agent ID: 99",
+      "user_prompt": "**Task: Longest Palindrome (Cross-Boundary)**\n\nFind the length of the longest palindromic substring, including palindromes spanning agent boundaries.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts of one string: 0 → 1 → ... → 99\n\n**Your Data (Position 99):**\nString segment: gkpbxdsdnkbsetq\n\n**Algorithm:**\n1. Find longest palindrome within your local segment\n2. Exchange BOUNDARY CHARACTERS with neighbors to detect cross-boundary palindromes\n3. Coordinate to find the global maximum length\n\n**Output:**\nA single integer representing the length of the longest palindrome.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 99). Exchange prefix/suffix with neighbors.\nAll agents must submit the same final answer using submit_result(max_palindrome_length).",
+      "input_shard": "gkpbxdsdnkbsetq",
+      "expected_output": 7
+    }
+  ],
+  "expected_output": {
+    "type": "distributed",
+    "per_agent_values": [
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7
+    ],
+    "is_segmented": false,
+    "verification_logic": "len(agent_outputs) == num_agents and all(agent_outputs[i] == expected_output for i in range(num_agents))",
+    "verification_logic_hint": "all(agent_outputs) == longest_palindrome(global_string)",
+    "format_description": "ALL agents must submit their results using submit_result(answer). All agents should submit the same final answer after coordination."
+  },
+  "evaluation_metrics": {
+    "success_rate": "Percentage of agents that submitted correct answers over K trials",
+    "round_to_completion": "Number of communication rounds needed",
+    "communication_redundancy_ratio": "M_total / M_opt",
+    "topological_fidelity": "Jaccard(E_empirical, E_optimal)"
+  }
+}

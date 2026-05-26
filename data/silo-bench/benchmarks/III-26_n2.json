@@ -1,0 +1,113 @@
+{
+  "case_id": "III-26",
+  "case_name": "Global Distinct",
+  "paradigm": "Paradigm III",
+  "leetcode": {
+    "url": "https://leetcode.com/problems/intersection-of-two-arrays/",
+    "description": "This case is inspired by the LeetCode problem. The multi-agent version tests distributed computation and communication efficiency."
+  },
+  "metadata": {
+    "num_agents": 2,
+    "optimal_topology": "Hash-based shuffle (all-to-all by hash)",
+    "optimal_message_count": "O(N) elements shuffled",
+    "theoretical_complexity": "O(N log N) or O(N²) - Global/Shuffle",
+    "output_type": "distributed",
+    "is_segmented": false
+  },
+  "task_description": "**Task: Global Distinct Count (Hash-Based)**\n\nCount the total DISTINCT elements using hash-based deduplication.\n\n**Data Distribution:**\nRANDOM with duplicates. Same element may appear in multiple agents.\n\n**Your Data (RANDOM with duplicates):**\nAgent {agent_id} holds: {input_shard}\n\n**Algorithm:**\n1. Hash-based partitioning: bucket_id = hash(element) % {num_agents}\n2. SHUFFLE elements to owner agents\n3. Each agent deduplicates their buckets\n4. Aggregate counts\n\n**Output:**\nA single integer representing the global distinct count.\n\n**Communication Protocol:**\nTopology: All-to-All shuffle by hash.\nAll agents must submit the same final answer using submit_result(global_distinct_count).",
+  "agent_configs": [
+    {
+      "agent_id": 0,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 0\nTotal agents: 2\nMax agent ID: 1",
+      "user_prompt": "**Task: Global Distinct Count (Hash-Based)**\n\nCount the total DISTINCT elements using hash-based deduplication.\n\n**Data Distribution:**\nRANDOM with duplicates. Same element may appear in multiple agents.\n\n**Your Data (RANDOM with duplicates):**\nAgent 0 holds: [22, 17, 13, 3, 23, 18, 9, 26, 1, 11, 15, 7, 17, 13, 17, 27, 20, 14, 4, 11, 19, 14, 14, 3, 22, 28, 1, 29, 3, 21]\n\n**Algorithm:**\n1. Hash-based partitioning: bucket_id = hash(element) % 2\n2. SHUFFLE elements to owner agents\n3. Each agent deduplicates their buckets\n4. Aggregate counts\n\n**Output:**\nA single integer representing the global distinct count.\n\n**Communication Protocol:**\nTopology: All-to-All shuffle by hash.\nAll agents must submit the same final answer using submit_result(global_distinct_count).",
+      "input_shard": [
+        22,
+        17,
+        13,
+        3,
+        23,
+        18,
+        9,
+        26,
+        1,
+        11,
+        15,
+        7,
+        17,
+        13,
+        17,
+        27,
+        20,
+        14,
+        4,
+        11,
+        19,
+        14,
+        14,
+        3,
+        22,
+        28,
+        1,
+        29,
+        3,
+        21
+      ],
+      "expected_output": 24
+    },
+    {
+      "agent_id": 1,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 1\nTotal agents: 2\nMax agent ID: 1",
+      "user_prompt": "**Task: Global Distinct Count (Hash-Based)**\n\nCount the total DISTINCT elements using hash-based deduplication.\n\n**Data Distribution:**\nRANDOM with duplicates. Same element may appear in multiple agents.\n\n**Your Data (RANDOM with duplicates):**\nAgent 1 holds: [21, 22, 6, 4, 20, 8, 23, 2, 11, 4, 29, 1, 7, 11, 19, 13, 3, 28, 3, 15, 20, 23, 7, 14, 13, 9, 12, 20, 28, 26]\n\n**Algorithm:**\n1. Hash-based partitioning: bucket_id = hash(element) % 2\n2. SHUFFLE elements to owner agents\n3. Each agent deduplicates their buckets\n4. Aggregate counts\n\n**Output:**\nA single integer representing the global distinct count.\n\n**Communication Protocol:**\nTopology: All-to-All shuffle by hash.\nAll agents must submit the same final answer using submit_result(global_distinct_count).",
+      "input_shard": [
+        21,
+        22,
+        6,
+        4,
+        20,
+        8,
+        23,
+        2,
+        11,
+        4,
+        29,
+        1,
+        7,
+        11,
+        19,
+        13,
+        3,
+        28,
+        3,
+        15,
+        20,
+        23,
+        7,
+        14,
+        13,
+        9,
+        12,
+        20,
+        28,
+        26
+      ],
+      "expected_output": 24
+    }
+  ],
+  "expected_output": {
+    "type": "distributed",
+    "per_agent_values": [
+      24,
+      24
+    ],
+    "is_segmented": false,
+    "verification_logic": "len(agent_outputs) == num_agents and all(agent_outputs[i] == expected_output for i in range(num_agents))",
+    "verification_logic_hint": "all(agent_outputs) == len(set(global_input))",
+    "format_description": "ALL agents must submit their results using submit_result(answer). All agents should submit the same final answer after coordination."
+  },
+  "evaluation_metrics": {
+    "success_rate": "Percentage of agents that submitted correct answers over K trials",
+    "round_to_completion": "Number of communication rounds needed",
+    "communication_redundancy_ratio": "M_total / M_opt",
+    "topological_fidelity": "Jaccard(E_empirical, E_optimal)"
+  }
+}

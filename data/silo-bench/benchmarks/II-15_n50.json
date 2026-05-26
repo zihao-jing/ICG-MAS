@@ -1,0 +1,435 @@
+{
+  "case_id": "II-15",
+  "case_name": "Pattern Search",
+  "paradigm": "Paradigm II",
+  "leetcode": {
+    "url": "https://leetcode.com/problems/is-subsequence/",
+    "description": "This case is inspired by the LeetCode problem. The multi-agent version tests distributed computation and communication efficiency."
+  },
+  "metadata": {
+    "num_agents": 50,
+    "optimal_topology": "Chain with state passing (0 → 1 → 2 → ...), then broadcast result",
+    "optimal_message_count": "49 for pipeline + O(N) for sharing",
+    "theoretical_complexity": "O(N) - Structured Mesh with Locality",
+    "output_type": "distributed",
+    "is_segmented": false
+  },
+  "task_description": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → {max_id}\n\n**Your Data (Position {agent_id}):**\nString segment: {input_shard}\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → {max_id}). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+  "agent_configs": [
+    {
+      "agent_id": 0,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 0\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 0):**\nString segment: CYYBYYAYBBYCYCBZYDYC\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "CYYBYYAYBBYCYCBZYDYC",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 1,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 1\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 1):**\nString segment: DDZAXYCAZZZZYBACDXDX\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "DDZAXYCAZZZZYBACDXDX",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 2,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 2\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 2):**\nString segment: ADZABYZZDCBCZZXCZXXA\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "ADZABYZZDCBCZZXCZXXA",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 3,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 3\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 3):**\nString segment: XCBZYXXBXXBAYACACXDD\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "XCBZYXXBXXBAYACACXDD",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 4,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 4\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 4):**\nString segment: DDCXABDYADZCDDZCBXBB\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "DDCXABDYADZCDDZCBXBB",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 5,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 5\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 5):**\nString segment: YZZDAZXYCYCYXYZAZBXC\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "YZZDAZXYCYCYXYZAZBXC",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 6,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 6\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 6):**\nString segment: XZCXZCBYZYZCYZCDDZZD\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "XZCXZCBYZYZCYZCDDZZD",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 7,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 7\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 7):**\nString segment: ZDAYBXXZDCYCAZYAYXZA\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "ZDAYBXXZDCYCAZYAYXZA",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 8,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 8\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 8):**\nString segment: YCXCYDYDXBBBXYYYZZCZ\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "YCXCYDYDXBBBXYYYZZCZ",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 9,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 9\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 9):**\nString segment: XZBDZAAXZCABYDADDAXZ\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "XZBDZAAXZCABYDADDAXZ",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 10,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 10\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 10):**\nString segment: CYBDAYXDXADBAYBAZBYY\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "CYBDAYXDXADBAYBAZBYY",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 11,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 11\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 11):**\nString segment: BXXAABAZXXDDZDDBDBAB\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "BXXAABAZXXDDZDDBDBAB",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 12,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 12\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 12):**\nString segment: YDBCZCXBDCDDADYAXYYA\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "YDBCZCXBDCDDADYAXYYA",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 13,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 13\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 13):**\nString segment: CDYZCDZCZZZBXDDDACCD\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "CDYZCDZCZZZBXDDDACCD",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 14,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 14\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 14):**\nString segment: ZDBXBADCYXAXYCCDXYXD\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "ZDBXBADCYXAXYCCDXYXD",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 15,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 15\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 15):**\nString segment: YBYYAZCXXDXAAZBCBABX\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "YBYYAZCXXDXAAZBCBABX",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 16,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 16\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 16):**\nString segment: ZBDZDBCCDZXAYAXCXACA\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "ZBDZDBCCDZXAYAXCXACA",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 17,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 17\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 17):**\nString segment: ZAZCDAZCXZDZYAAAAXYA\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "ZAZCDAZCXZDZYAAAAXYA",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 18,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 18\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 18):**\nString segment: ADBXXCCDDZYBYCYDCBZD\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "ADBXXCCDDZYBYCYDCBZD",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 19,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 19\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 19):**\nString segment: ZXBZXYAXXCABAXXCXDDA\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "ZXBZXYAXXCABAXXCXDDA",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 20,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 20\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 20):**\nString segment: XBBABACCBYXYCYZYBCYA\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "XBBABACCBYXYCYZYBCYA",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 21,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 21\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 21):**\nString segment: AAXYABZCXCZYAXCBYXCA\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "AAXYABZCXCZYAXCBYXCA",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 22,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 22\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 22):**\nString segment: ZBCXDXXYZXAYYBZZBBXX\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "ZBCXDXXYZXAYYBZZBBXX",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 23,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 23\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 23):**\nString segment: YDYDDDZDAYDZBZYXXCZA\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "YDYDDDZDAYDZBZYXXCZA",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 24,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 24\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 24):**\nString segment: BZZCAYBXXZDXBXDCCYYY\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "BZZCAYBXXZDXBXDCCYYY",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 25,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 25\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 25):**\nString segment: BAXAXBDBBYZXYBYXZYZD\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "BAXAXBDBBYZXYBYXZYZD",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 26,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 26\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 26):**\nString segment: YABDZDBXBADACCXAXCAB\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "YABDZDBXBADACCXAXCAB",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 27,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 27\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 27):**\nString segment: BZZAAZDXDACDZDDZDDAX\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "BZZAAZDXDACDZDDZDDAX",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 28,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 28\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 28):**\nString segment: BYZZZYXXXBZAZBABXDCZ\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "BYZZZYXXXBZAZBABXDCZ",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 29,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 29\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 29):**\nString segment: DCACXXZBBYZABDADDDXD\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "DCACXXZBBYZABDADDDXD",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 30,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 30\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 30):**\nString segment: AXZYBCZXDYBDCCZDABDC\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "AXZYBCZXDYBDCCZDABDC",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 31,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 31\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 31):**\nString segment: XZDDCYCAYYCCBDCZBCDY\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "XZDDCYCAYYCCBDCZBCDY",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 32,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 32\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 32):**\nString segment: CZCYZZABBZCBYDYCXXAY\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "CZCYZZABBZCBYDYCXXAY",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 33,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 33\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 33):**\nString segment: AZXCAZAZACYDDBZBXZCA\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "AZXCAZAZACYDDBZBXZCA",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 34,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 34\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 34):**\nString segment: CDDCYDDAYCAYDZZZXAXX\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "CDDCYDDAYCAYDZZZXAXX",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 35,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 35\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 35):**\nString segment: BXYBAZXBCDCYABZDCXDA\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "BXYBAZXBCDCYABZDCXDA",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 36,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 36\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 36):**\nString segment: BYCYYCDBYBZBZXXBBCXC\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "BYCYYCDBYBZBZXXBBCXC",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 37,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 37\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 37):**\nString segment: BCZCDACACZZCYDZXYBDB\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "BCZCDACACZZCYDZXYBDB",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 38,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 38\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 38):**\nString segment: XXAZYBZBCYYZBDADAYXY\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "XXAZYBZBCYYZBDADAYXY",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 39,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 39\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 39):**\nString segment: YDZBYYXYDXDYCDDYZBBY\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "YDZBYYXYDXDYCDDYZBBY",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 40,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 40\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 40):**\nString segment: DABYXCYCDXZDZZYBDXAX\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "DABYXCYCDXZDZZYBDXAX",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 41,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 41\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 41):**\nString segment: ZBAZXBAYBCAZZYCYBBXZ\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "ZBAZXBAYBCAZZYCYBBXZ",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 42,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 42\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 42):**\nString segment: YAZZZDBCBYXCZYAXCCCC\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "YAZZZDBCBYXCZYAXCCCC",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 43,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 43\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 43):**\nString segment: CAZXXBCXXBACZAABCDBA\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "CAZXXBCXXBACZAABCDBA",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 44,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 44\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 44):**\nString segment: BBXBDDBCYCZXACDXZZXD\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "BBXBDDBCYCZXACDXZZXD",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 45,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 45\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 45):**\nString segment: CDADZZXXYDYBABBZYZCA\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "CDADZZXXYDYBABBZYZCA",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 46,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 46\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 46):**\nString segment: XDBZXDXCDCYBCDDAYYXZ\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "XDBZXDXCDCYBCDDAYYXZ",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 47,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 47\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 47):**\nString segment: ZXBBAXBZCXDBXXZYYCDD\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "ZXBBAXBZCXDBXXZYYCDD",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 48,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 48\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 48):**\nString segment: YBDBADBBAZXCDAADBYDB\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "YBDBADBBAZXCDAADBYDB",
+      "expected_output": 47
+    },
+    {
+      "agent_id": 49,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 49\nTotal agents: 50\nMax agent ID: 49",
+      "user_prompt": "**Task: Subsequence Pattern Search**\n\nCount how many times the subsequence pattern \"A...B...C\" appears in the global string.\n(A followed eventually by B followed eventually by C)\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE parts: 0 → 1 → 2 → ... → 49\n\n**Your Data (Position 49):**\nString segment: XZABBYDCXAXZZCZYDCXA\n\n**Algorithm:**\nTrack state machine: 0 (looking for A) → 1 (found A) → 2 (found B) → complete on C\n- State must be PASSED FORWARD through the chain (pipeline pattern)\n\n**Output:**\nA single integer representing the count of \"A...B...C\" patterns.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 49). Pass state forward.\nAll agents must submit the same final answer using submit_result(total_pattern_count).",
+      "input_shard": "XZABBYDCXAXZZCZYDCXA",
+      "expected_output": 47
+    }
+  ],
+  "expected_output": {
+    "type": "distributed",
+    "per_agent_values": [
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47,
+      47
+    ],
+    "is_segmented": false,
+    "verification_logic": "len(agent_outputs) == num_agents and all(agent_outputs[i] == expected_output for i in range(num_agents))",
+    "verification_logic_hint": "all(agent_outputs) == global_subseq_count",
+    "format_description": "ALL agents must submit their results using submit_result(answer). All agents should submit the same final answer after coordination."
+  },
+  "evaluation_metrics": {
+    "success_rate": "Percentage of agents that submitted correct answers over K trials",
+    "round_to_completion": "Number of communication rounds needed",
+    "communication_redundancy_ratio": "M_total / M_opt",
+    "topological_fidelity": "Jaccard(E_empirical, E_optimal)"
+  }
+}

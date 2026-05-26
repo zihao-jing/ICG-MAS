@@ -1,0 +1,165 @@
+{
+  "case_id": "II-20",
+  "case_name": "Pipeline Hash",
+  "paradigm": "Paradigm II",
+  "leetcode": {
+    "url": "https://en.wikipedia.org/wiki/Blockchain",
+    "description": "This case is inspired by the LeetCode problem. The multi-agent version tests distributed computation and communication efficiency."
+  },
+  "metadata": {
+    "num_agents": 5,
+    "optimal_topology": "Chain with strict sequential processing",
+    "optimal_message_count": "4 messages (hash pipeline)",
+    "theoretical_complexity": "O(N) - Structured Mesh with Locality",
+    "output_type": "distributed",
+    "is_segmented": true
+  },
+  "task_description": "**Task: Pipeline Hash (Blockchain Simulation)**\n\nCompute a hash chain where each block's hash depends on the previous block's hash.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE blocks: 0 → 1 → 2 → ... → {max_id}\n\n**Your Data (Position {agent_id}):**\nBlocks: {input_shard}\n\n**Algorithm:**\nhash[i] = (sum(ASCII_values(block[i])) XOR hash[i-1]) % 10000\nhash[0] = 0 (genesis)\n- Agent i needs the FINAL HASH from Agent i-1 to start computing\n\n**Output:**\nEach agent submits their portion of hash values.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → {max_id}). Strict sequential dependency.\nEach agent submits their own segment using submit_result(your_computed_hashes).",
+  "agent_configs": [
+    {
+      "agent_id": 0,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 0\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: Pipeline Hash (Blockchain Simulation)**\n\nCompute a hash chain where each block's hash depends on the previous block's hash.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE blocks: 0 → 1 → 2 → ... → 4\n\n**Your Data (Position 0):**\nBlocks: ['Block_0_Data', 'Block_1_Data', 'Block_2_Data', 'Block_3_Data', 'Block_4_Data']\n\n**Algorithm:**\nhash[i] = (sum(ASCII_values(block[i])) XOR hash[i-1]) % 10000\nhash[0] = 0 (genesis)\n- Agent i needs the FINAL HASH from Agent i-1 to start computing\n\n**Output:**\nEach agent submits their portion of hash values.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 4). Strict sequential dependency.\nEach agent submits their own segment using submit_result(your_computed_hashes).",
+      "input_shard": [
+        "Block_0_Data",
+        "Block_1_Data",
+        "Block_2_Data",
+        "Block_3_Data",
+        "Block_4_Data"
+      ],
+      "expected_output": [
+        1107,
+        7,
+        1106,
+        4,
+        1107
+      ]
+    },
+    {
+      "agent_id": 1,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 1\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: Pipeline Hash (Blockchain Simulation)**\n\nCompute a hash chain where each block's hash depends on the previous block's hash.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE blocks: 0 → 1 → 2 → ... → 4\n\n**Your Data (Position 1):**\nBlocks: ['Block_5_Data', 'Block_6_Data', 'Block_7_Data', 'Block_8_Data', 'Block_9_Data']\n\n**Algorithm:**\nhash[i] = (sum(ASCII_values(block[i])) XOR hash[i-1]) % 10000\nhash[0] = 0 (genesis)\n- Agent i needs the FINAL HASH from Agent i-1 to start computing\n\n**Output:**\nEach agent submits their portion of hash values.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 4). Strict sequential dependency.\nEach agent submits their own segment using submit_result(your_computed_hashes).",
+      "input_shard": [
+        "Block_5_Data",
+        "Block_6_Data",
+        "Block_7_Data",
+        "Block_8_Data",
+        "Block_9_Data"
+      ],
+      "expected_output": [
+        11,
+        1106,
+        8,
+        1107,
+        15
+      ]
+    },
+    {
+      "agent_id": 2,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 2\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: Pipeline Hash (Blockchain Simulation)**\n\nCompute a hash chain where each block's hash depends on the previous block's hash.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE blocks: 0 → 1 → 2 → ... → 4\n\n**Your Data (Position 2):**\nBlocks: ['Block_10_Data', 'Block_11_Data', 'Block_12_Data', 'Block_13_Data', 'Block_14_Data']\n\n**Algorithm:**\nhash[i] = (sum(ASCII_values(block[i])) XOR hash[i-1]) % 10000\nhash[0] = 0 (genesis)\n- Agent i needs the FINAL HASH from Agent i-1 to start computing\n\n**Output:**\nEach agent submits their portion of hash values.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 4). Strict sequential dependency.\nEach agent submits their own segment using submit_result(your_computed_hashes).",
+      "input_shard": [
+        "Block_10_Data",
+        "Block_11_Data",
+        "Block_12_Data",
+        "Block_13_Data",
+        "Block_14_Data"
+      ],
+      "expected_output": [
+        1163,
+        14,
+        1160,
+        15,
+        1159
+      ]
+    },
+    {
+      "agent_id": 3,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 3\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: Pipeline Hash (Blockchain Simulation)**\n\nCompute a hash chain where each block's hash depends on the previous block's hash.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE blocks: 0 → 1 → 2 → ... → 4\n\n**Your Data (Position 3):**\nBlocks: ['Block_15_Data', 'Block_16_Data', 'Block_17_Data', 'Block_18_Data', 'Block_19_Data']\n\n**Algorithm:**\nhash[i] = (sum(ASCII_values(block[i])) XOR hash[i-1]) % 10000\nhash[0] = 0 (genesis)\n- Agent i needs the FINAL HASH from Agent i-1 to start computing\n\n**Output:**\nEach agent submits their portion of hash values.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 4). Strict sequential dependency.\nEach agent submits their own segment using submit_result(your_computed_hashes).",
+      "input_shard": [
+        "Block_15_Data",
+        "Block_16_Data",
+        "Block_17_Data",
+        "Block_18_Data",
+        "Block_19_Data"
+      ],
+      "expected_output": [
+        14,
+        1156,
+        15,
+        1155,
+        14
+      ]
+    },
+    {
+      "agent_id": 4,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 4\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: Pipeline Hash (Blockchain Simulation)**\n\nCompute a hash chain where each block's hash depends on the previous block's hash.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE blocks: 0 → 1 → 2 → ... → 4\n\n**Your Data (Position 4):**\nBlocks: ['Block_20_Data', 'Block_21_Data', 'Block_22_Data', 'Block_23_Data', 'Block_24_Data']\n\n**Algorithm:**\nhash[i] = (sum(ASCII_values(block[i])) XOR hash[i-1]) % 10000\nhash[0] = 0 (genesis)\n- Agent i needs the FINAL HASH from Agent i-1 to start computing\n\n**Output:**\nEach agent submits their portion of hash values.\n\n**Communication Protocol:**\nTopology: Chain (0 → 1 → 2 → ... → 4). Strict sequential dependency.\nEach agent submits their own segment using submit_result(your_computed_hashes).",
+      "input_shard": [
+        "Block_20_Data",
+        "Block_21_Data",
+        "Block_22_Data",
+        "Block_23_Data",
+        "Block_24_Data"
+      ],
+      "expected_output": [
+        1163,
+        13,
+        1162,
+        2,
+        1163
+      ]
+    }
+  ],
+  "expected_output": {
+    "type": "distributed",
+    "per_agent_values": [
+      [
+        1107,
+        7,
+        1106,
+        4,
+        1107
+      ],
+      [
+        11,
+        1106,
+        8,
+        1107,
+        15
+      ],
+      [
+        1163,
+        14,
+        1160,
+        15,
+        1159
+      ],
+      [
+        14,
+        1156,
+        15,
+        1155,
+        14
+      ],
+      [
+        1163,
+        13,
+        1162,
+        2,
+        1163
+      ]
+    ],
+    "is_segmented": true,
+    "verification_logic": "len(agent_outputs) == num_agents and all(agent_outputs[i] == expected_output[i] for i in range(num_agents))",
+    "verification_logic_hint": "concat(agent_outputs) == valid_blockchain",
+    "format_description": "ALL agents must submit their results using submit_result(answer). Each agent submits their own portion of the result."
+  },
+  "evaluation_metrics": {
+    "success_rate": "Percentage of agents that submitted correct answers over K trials",
+    "round_to_completion": "Number of communication rounds needed",
+    "communication_redundancy_ratio": "M_total / M_opt",
+    "topological_fidelity": "Jaccard(E_empirical, E_optimal)"
+  }
+}

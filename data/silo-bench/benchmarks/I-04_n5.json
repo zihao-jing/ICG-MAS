@@ -1,0 +1,155 @@
+{
+  "case_id": "I-04",
+  "case_name": "Any Match",
+  "paradigm": "Paradigm I",
+  "leetcode": {
+    "url": "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/",
+    "description": "This case is inspired by the LeetCode problem. The multi-agent version tests distributed computation and communication efficiency."
+  },
+  "metadata": {
+    "num_agents": 5,
+    "optimal_topology": "Star with early termination or broadcast",
+    "optimal_message_count": "1 to 8 messages (early termination + broadcast if found)",
+    "theoretical_complexity": "O(N) - MapReduce/Aggregation",
+    "output_type": "distributed",
+    "is_segmented": false
+  },
+  "task_description": "**Task: Error Detection**\n\nDetermine if ANY string in the global dataset contains the substring \"ERROR\".\n\n**Your Data:**\nYou (Agent {agent_id}) hold: {input_shard}\n\n**Algorithm:**\n1. Check if any string in your local data contains \"ERROR\"\n2. Coordinate with other agents to determine if ERROR exists anywhere\n3. Early termination: Once ANY agent finds \"ERROR\", the answer is True\n\n**Output:**\nA boolean (True/False) indicating if \"ERROR\" was found anywhere.\n\n**Communication Protocol:**\nTopology: Star/Tree with early termination → broadcast.\nAll agents must submit the same final answer using submit_result(True/False).",
+  "agent_configs": [
+    {
+      "agent_id": 0,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 0\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: Error Detection**\n\nDetermine if ANY string in the global dataset contains the substring \"ERROR\".\n\n**Your Data:**\nYou (Agent 0) hold: ['INFO: System started', 'INFO: System started', 'WARNING: Low memory', 'WARNING: Low memory', 'WARNING: Low memory', 'SUCCESS: Task completed', 'TRACE: Function called', 'SUCCESS: Task completed', 'DEBUG: Loading config', 'SUCCESS: Task completed', 'WARNING: Low memory', 'SUCCESS: Task completed', 'INFO: System started', 'WARNING: Low memory', 'TRACE: Function called']\n\n**Algorithm:**\n1. Check if any string in your local data contains \"ERROR\"\n2. Coordinate with other agents to determine if ERROR exists anywhere\n3. Early termination: Once ANY agent finds \"ERROR\", the answer is True\n\n**Output:**\nA boolean (True/False) indicating if \"ERROR\" was found anywhere.\n\n**Communication Protocol:**\nTopology: Star/Tree with early termination → broadcast.\nAll agents must submit the same final answer using submit_result(True/False).",
+      "input_shard": [
+        "INFO: System started",
+        "INFO: System started",
+        "WARNING: Low memory",
+        "WARNING: Low memory",
+        "WARNING: Low memory",
+        "SUCCESS: Task completed",
+        "TRACE: Function called",
+        "SUCCESS: Task completed",
+        "DEBUG: Loading config",
+        "SUCCESS: Task completed",
+        "WARNING: Low memory",
+        "SUCCESS: Task completed",
+        "INFO: System started",
+        "WARNING: Low memory",
+        "TRACE: Function called"
+      ],
+      "expected_output": false
+    },
+    {
+      "agent_id": 1,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 1\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: Error Detection**\n\nDetermine if ANY string in the global dataset contains the substring \"ERROR\".\n\n**Your Data:**\nYou (Agent 1) hold: ['SUCCESS: Task completed', 'WARNING: Low memory', 'INFO: System started', 'INFO: System started', 'SUCCESS: Task completed', 'WARNING: Low memory', 'TRACE: Function called', 'DEBUG: Loading config', 'INFO: System started', 'DEBUG: Loading config', 'TRACE: Function called', 'SUCCESS: Task completed', 'INFO: System started', 'DEBUG: Loading config', 'INFO: System started']\n\n**Algorithm:**\n1. Check if any string in your local data contains \"ERROR\"\n2. Coordinate with other agents to determine if ERROR exists anywhere\n3. Early termination: Once ANY agent finds \"ERROR\", the answer is True\n\n**Output:**\nA boolean (True/False) indicating if \"ERROR\" was found anywhere.\n\n**Communication Protocol:**\nTopology: Star/Tree with early termination → broadcast.\nAll agents must submit the same final answer using submit_result(True/False).",
+      "input_shard": [
+        "SUCCESS: Task completed",
+        "WARNING: Low memory",
+        "INFO: System started",
+        "INFO: System started",
+        "SUCCESS: Task completed",
+        "WARNING: Low memory",
+        "TRACE: Function called",
+        "DEBUG: Loading config",
+        "INFO: System started",
+        "DEBUG: Loading config",
+        "TRACE: Function called",
+        "SUCCESS: Task completed",
+        "INFO: System started",
+        "DEBUG: Loading config",
+        "INFO: System started"
+      ],
+      "expected_output": false
+    },
+    {
+      "agent_id": 2,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 2\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: Error Detection**\n\nDetermine if ANY string in the global dataset contains the substring \"ERROR\".\n\n**Your Data:**\nYou (Agent 2) hold: ['DEBUG: Loading config', 'WARNING: Low memory', 'WARNING: Low memory', 'SUCCESS: Task completed', 'TRACE: Function called', 'INFO: System started', 'TRACE: Function called', 'DEBUG: Loading config', 'SUCCESS: Task completed', 'WARNING: Low memory', 'WARNING: Low memory', 'SUCCESS: Task completed', 'INFO: System started', 'TRACE: Function called', 'DEBUG: Loading config']\n\n**Algorithm:**\n1. Check if any string in your local data contains \"ERROR\"\n2. Coordinate with other agents to determine if ERROR exists anywhere\n3. Early termination: Once ANY agent finds \"ERROR\", the answer is True\n\n**Output:**\nA boolean (True/False) indicating if \"ERROR\" was found anywhere.\n\n**Communication Protocol:**\nTopology: Star/Tree with early termination → broadcast.\nAll agents must submit the same final answer using submit_result(True/False).",
+      "input_shard": [
+        "DEBUG: Loading config",
+        "WARNING: Low memory",
+        "WARNING: Low memory",
+        "SUCCESS: Task completed",
+        "TRACE: Function called",
+        "INFO: System started",
+        "TRACE: Function called",
+        "DEBUG: Loading config",
+        "SUCCESS: Task completed",
+        "WARNING: Low memory",
+        "WARNING: Low memory",
+        "SUCCESS: Task completed",
+        "INFO: System started",
+        "TRACE: Function called",
+        "DEBUG: Loading config"
+      ],
+      "expected_output": false
+    },
+    {
+      "agent_id": 3,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 3\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: Error Detection**\n\nDetermine if ANY string in the global dataset contains the substring \"ERROR\".\n\n**Your Data:**\nYou (Agent 3) hold: ['TRACE: Function called', 'WARNING: Low memory', 'SUCCESS: Task completed', 'WARNING: Low memory', 'WARNING: Low memory', 'DEBUG: Loading config', 'INFO: System started', 'INFO: System started', 'DEBUG: Loading config', 'SUCCESS: Task completed', 'TRACE: Function called', 'SUCCESS: Task completed', 'TRACE: Function called', 'INFO: System started', 'WARNING: Low memory']\n\n**Algorithm:**\n1. Check if any string in your local data contains \"ERROR\"\n2. Coordinate with other agents to determine if ERROR exists anywhere\n3. Early termination: Once ANY agent finds \"ERROR\", the answer is True\n\n**Output:**\nA boolean (True/False) indicating if \"ERROR\" was found anywhere.\n\n**Communication Protocol:**\nTopology: Star/Tree with early termination → broadcast.\nAll agents must submit the same final answer using submit_result(True/False).",
+      "input_shard": [
+        "TRACE: Function called",
+        "WARNING: Low memory",
+        "SUCCESS: Task completed",
+        "WARNING: Low memory",
+        "WARNING: Low memory",
+        "DEBUG: Loading config",
+        "INFO: System started",
+        "INFO: System started",
+        "DEBUG: Loading config",
+        "SUCCESS: Task completed",
+        "TRACE: Function called",
+        "SUCCESS: Task completed",
+        "TRACE: Function called",
+        "INFO: System started",
+        "WARNING: Low memory"
+      ],
+      "expected_output": false
+    },
+    {
+      "agent_id": 4,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 4\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: Error Detection**\n\nDetermine if ANY string in the global dataset contains the substring \"ERROR\".\n\n**Your Data:**\nYou (Agent 4) hold: ['WARNING: Low memory', 'SUCCESS: Task completed', 'DEBUG: Loading config', 'TRACE: Function called', 'WARNING: Low memory', 'SUCCESS: Task completed', 'DEBUG: Loading config', 'INFO: System started', 'DEBUG: Loading config', 'INFO: System started', 'SUCCESS: Task completed', 'DEBUG: Loading config', 'SUCCESS: Task completed', 'INFO: System started', 'WARNING: Low memory']\n\n**Algorithm:**\n1. Check if any string in your local data contains \"ERROR\"\n2. Coordinate with other agents to determine if ERROR exists anywhere\n3. Early termination: Once ANY agent finds \"ERROR\", the answer is True\n\n**Output:**\nA boolean (True/False) indicating if \"ERROR\" was found anywhere.\n\n**Communication Protocol:**\nTopology: Star/Tree with early termination → broadcast.\nAll agents must submit the same final answer using submit_result(True/False).",
+      "input_shard": [
+        "WARNING: Low memory",
+        "SUCCESS: Task completed",
+        "DEBUG: Loading config",
+        "TRACE: Function called",
+        "WARNING: Low memory",
+        "SUCCESS: Task completed",
+        "DEBUG: Loading config",
+        "INFO: System started",
+        "DEBUG: Loading config",
+        "INFO: System started",
+        "SUCCESS: Task completed",
+        "DEBUG: Loading config",
+        "SUCCESS: Task completed",
+        "INFO: System started",
+        "WARNING: Low memory"
+      ],
+      "expected_output": false
+    }
+  ],
+  "expected_output": {
+    "type": "distributed",
+    "per_agent_values": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "is_segmented": false,
+    "verification_logic": "len(agent_outputs) == num_agents and all(agent_outputs[i] == expected_output for i in range(num_agents))",
+    "verification_logic_hint": "all(submitted_bools) == (pattern in global_input)",
+    "format_description": "ALL agents must submit their results using submit_result(answer). All agents should submit the same final answer after coordination."
+  },
+  "evaluation_metrics": {
+    "success_rate": "Percentage of agents that submitted correct answers over K trials",
+    "round_to_completion": "Number of communication rounds needed",
+    "communication_redundancy_ratio": "M_total / M_opt",
+    "topological_fidelity": "Jaccard(E_empirical, E_optimal)"
+  }
+}

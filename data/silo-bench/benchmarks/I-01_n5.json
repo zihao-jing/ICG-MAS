@@ -1,0 +1,180 @@
+{
+  "case_id": "I-01",
+  "case_name": "Global Max",
+  "paradigm": "Paradigm I",
+  "leetcode": {
+    "url": "https://leetcode.com/problems/third-maximum-number/",
+    "description": "This case is inspired by the LeetCode problem. The multi-agent version tests distributed computation and communication efficiency."
+  },
+  "metadata": {
+    "num_agents": 5,
+    "optimal_topology": "Star (all agents → leader) or Tree, then broadcast result",
+    "optimal_message_count": "4 messages to collect + 4 to broadcast = 8 total",
+    "theoretical_complexity": "O(N) - MapReduce/Aggregation",
+    "output_type": "distributed",
+    "is_segmented": false
+  },
+  "task_description": "**Task: Global Maximum**\n\nFind the GLOBAL MAXIMUM value across all agents' data.\n\n**Your Data:**\nYou (Agent {agent_id}) hold: {input_shard}\n\n**Algorithm:**\n1. Compute the maximum in your local shard\n2. Coordinate with other agents to determine the global maximum\n\n**Output:**\nA single integer representing the global maximum value.\n\n**Communication Protocol:**\nTopology: Star/Tree aggregation → broadcast.\nAll agents must submit the same final answer using submit_result(global_max).",
+  "agent_configs": [
+    {
+      "agent_id": 0,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 0\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: Global Maximum**\n\nFind the GLOBAL MAXIMUM value across all agents' data.\n\n**Your Data:**\nYou (Agent 0) hold: [545, 154, 556, 186, -81, 394, 892, 806, 156, 316, 301, 279, -339, 769, 988, 284, -353, -691, -100, -861]\n\n**Algorithm:**\n1. Compute the maximum in your local shard\n2. Coordinate with other agents to determine the global maximum\n\n**Output:**\nA single integer representing the global maximum value.\n\n**Communication Protocol:**\nTopology: Star/Tree aggregation → broadcast.\nAll agents must submit the same final answer using submit_result(global_max).",
+      "input_shard": [
+        545,
+        154,
+        556,
+        186,
+        -81,
+        394,
+        892,
+        806,
+        156,
+        316,
+        301,
+        279,
+        -339,
+        769,
+        988,
+        284,
+        -353,
+        -691,
+        -100,
+        -861
+      ],
+      "expected_output": 988
+    },
+    {
+      "agent_id": 1,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 1\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: Global Maximum**\n\nFind the GLOBAL MAXIMUM value across all agents' data.\n\n**Your Data:**\nYou (Agent 1) hold: [-40, -95, 293, -380, 630, -438, 211, -885, -280, 39, -849, -365, -55, -75, -923, -884, -245, 703, -413, -843]\n\n**Algorithm:**\n1. Compute the maximum in your local shard\n2. Coordinate with other agents to determine the global maximum\n\n**Output:**\nA single integer representing the global maximum value.\n\n**Communication Protocol:**\nTopology: Star/Tree aggregation → broadcast.\nAll agents must submit the same final answer using submit_result(global_max).",
+      "input_shard": [
+        -40,
+        -95,
+        293,
+        -380,
+        630,
+        -438,
+        211,
+        -885,
+        -280,
+        39,
+        -849,
+        -365,
+        -55,
+        -75,
+        -923,
+        -884,
+        -245,
+        703,
+        -413,
+        -843
+      ],
+      "expected_output": 988
+    },
+    {
+      "agent_id": 2,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 2\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: Global Maximum**\n\nFind the GLOBAL MAXIMUM value across all agents' data.\n\n**Your Data:**\nYou (Agent 2) hold: [320, 769, 751, -816, 259, 216, 38, -213, -53, 188, 135, 954, 621, 513, 834, -916, -79, 861, 658, 170]\n\n**Algorithm:**\n1. Compute the maximum in your local shard\n2. Coordinate with other agents to determine the global maximum\n\n**Output:**\nA single integer representing the global maximum value.\n\n**Communication Protocol:**\nTopology: Star/Tree aggregation → broadcast.\nAll agents must submit the same final answer using submit_result(global_max).",
+      "input_shard": [
+        320,
+        769,
+        751,
+        -816,
+        259,
+        216,
+        38,
+        -213,
+        -53,
+        188,
+        135,
+        954,
+        621,
+        513,
+        834,
+        -916,
+        -79,
+        861,
+        658,
+        170
+      ],
+      "expected_output": 988
+    },
+    {
+      "agent_id": 3,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 3\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: Global Maximum**\n\nFind the GLOBAL MAXIMUM value across all agents' data.\n\n**Your Data:**\nYou (Agent 3) hold: [334, -615, -342, 239, -26, 26, -692, 961, -874, -78, -789, 660, 841, 714, -297, 462, -828, 33, 323, -647]\n\n**Algorithm:**\n1. Compute the maximum in your local shard\n2. Coordinate with other agents to determine the global maximum\n\n**Output:**\nA single integer representing the global maximum value.\n\n**Communication Protocol:**\nTopology: Star/Tree aggregation → broadcast.\nAll agents must submit the same final answer using submit_result(global_max).",
+      "input_shard": [
+        334,
+        -615,
+        -342,
+        239,
+        -26,
+        26,
+        -692,
+        961,
+        -874,
+        -78,
+        -789,
+        660,
+        841,
+        714,
+        -297,
+        462,
+        -828,
+        33,
+        323,
+        -647
+      ],
+      "expected_output": 988
+    },
+    {
+      "agent_id": 4,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 4\nTotal agents: 5\nMax agent ID: 4",
+      "user_prompt": "**Task: Global Maximum**\n\nFind the GLOBAL MAXIMUM value across all agents' data.\n\n**Your Data:**\nYou (Agent 4) hold: [-920, -493, 449, -104, -101, 73, 70, 248, -675, -255, -237, 879, -421, -207, -163, 586, -308, 390, 224, -893]\n\n**Algorithm:**\n1. Compute the maximum in your local shard\n2. Coordinate with other agents to determine the global maximum\n\n**Output:**\nA single integer representing the global maximum value.\n\n**Communication Protocol:**\nTopology: Star/Tree aggregation → broadcast.\nAll agents must submit the same final answer using submit_result(global_max).",
+      "input_shard": [
+        -920,
+        -493,
+        449,
+        -104,
+        -101,
+        73,
+        70,
+        248,
+        -675,
+        -255,
+        -237,
+        879,
+        -421,
+        -207,
+        -163,
+        586,
+        -308,
+        390,
+        224,
+        -893
+      ],
+      "expected_output": 988
+    }
+  ],
+  "expected_output": {
+    "type": "distributed",
+    "per_agent_values": [
+      988,
+      988,
+      988,
+      988,
+      988
+    ],
+    "is_segmented": false,
+    "verification_logic": "len(agent_outputs) == num_agents and all(agent_outputs[i] == expected_output for i in range(num_agents))",
+    "verification_logic_hint": "all(submitted_values) == max(global_data)",
+    "format_description": "ALL agents must submit their results using submit_result(answer). All agents should submit the same final answer after coordination."
+  },
+  "evaluation_metrics": {
+    "success_rate": "Percentage of agents that submitted correct answers over K trials",
+    "round_to_completion": "Number of communication rounds needed",
+    "communication_redundancy_ratio": "M_total / M_opt",
+    "topological_fidelity": "Jaccard(E_empirical, E_optimal)"
+  }
+}

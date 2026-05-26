@@ -1,0 +1,103 @@
+{
+  "case_id": "III-22",
+  "case_name": "Median of Medians",
+  "paradigm": "Paradigm III",
+  "leetcode": {
+    "url": "https://leetcode.com/problems/find-median-from-data-stream/",
+    "description": "This case is inspired by the LeetCode problem. The multi-agent version tests distributed computation and communication efficiency."
+  },
+  "metadata": {
+    "num_agents": 2,
+    "optimal_topology": "Iterative broadcast and aggregation",
+    "optimal_message_count": "O(N log N) - multiple rounds of coordination",
+    "theoretical_complexity": "O(N log N) or O(N²) - Global/Shuffle",
+    "output_type": "distributed",
+    "is_segmented": false
+  },
+  "task_description": "**Task: Global Median (Iterative)**\n\nFind the median value without collecting all data (use iterative consensus).\n\n**Data Distribution:**\nRANDOM across agents. Total elements: 50, median at position 25.\n\n**Your Data (RANDOM):**\nAgent {agent_id} holds: {input_shard}\n\n**Algorithm (Iterative):**\n1. Each agent computes local median/quantiles\n2. Estimate global pivot from local medians\n3. Each agent counts: values < pivot, = pivot, > pivot\n4. Determine which range contains median, repeat until convergence\n\n**Output:**\nA single integer representing the global median.\n\n**Communication Protocol:**\nTopology: All-to-All. Multiple rounds of coordination required.\nAll agents must submit the same final answer using submit_result(median_value).",
+  "agent_configs": [
+    {
+      "agent_id": 0,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 0\nTotal agents: 2\nMax agent ID: 1",
+      "user_prompt": "**Task: Global Median (Iterative)**\n\nFind the median value without collecting all data (use iterative consensus).\n\n**Data Distribution:**\nRANDOM across agents. Total elements: 50, median at position 25.\n\n**Your Data (RANDOM):**\nAgent 0 holds: [198, 184, 258, 764, 781, 339, 707, 779, 237, 465, 370, 233, 15, 123, 496, 974, 720, 538, 436, 567, 761, 853, 190, 547, 314]\n\n**Algorithm (Iterative):**\n1. Each agent computes local median/quantiles\n2. Estimate global pivot from local medians\n3. Each agent counts: values < pivot, = pivot, > pivot\n4. Determine which range contains median, repeat until convergence\n\n**Output:**\nA single integer representing the global median.\n\n**Communication Protocol:**\nTopology: All-to-All. Multiple rounds of coordination required.\nAll agents must submit the same final answer using submit_result(median_value).",
+      "input_shard": [
+        198,
+        184,
+        258,
+        764,
+        781,
+        339,
+        707,
+        779,
+        237,
+        465,
+        370,
+        233,
+        15,
+        123,
+        496,
+        974,
+        720,
+        538,
+        436,
+        567,
+        761,
+        853,
+        190,
+        547,
+        314
+      ],
+      "expected_output": 370
+    },
+    {
+      "agent_id": 1,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 1\nTotal agents: 2\nMax agent ID: 1",
+      "user_prompt": "**Task: Global Median (Iterative)**\n\nFind the median value without collecting all data (use iterative consensus).\n\n**Data Distribution:**\nRANDOM across agents. Total elements: 50, median at position 25.\n\n**Your Data (RANDOM):**\nAgent 1 holds: [281, 197, 604, 124, 222, 199, 739, 130, 278, 549, 757, 103, 284, 726, 290, 485, 564, 742, 304, 361, 310, 324, 612, 353, 544]\n\n**Algorithm (Iterative):**\n1. Each agent computes local median/quantiles\n2. Estimate global pivot from local medians\n3. Each agent counts: values < pivot, = pivot, > pivot\n4. Determine which range contains median, repeat until convergence\n\n**Output:**\nA single integer representing the global median.\n\n**Communication Protocol:**\nTopology: All-to-All. Multiple rounds of coordination required.\nAll agents must submit the same final answer using submit_result(median_value).",
+      "input_shard": [
+        281,
+        197,
+        604,
+        124,
+        222,
+        199,
+        739,
+        130,
+        278,
+        549,
+        757,
+        103,
+        284,
+        726,
+        290,
+        485,
+        564,
+        742,
+        304,
+        361,
+        310,
+        324,
+        612,
+        353,
+        544
+      ],
+      "expected_output": 370
+    }
+  ],
+  "expected_output": {
+    "type": "distributed",
+    "per_agent_values": [
+      370,
+      370
+    ],
+    "is_segmented": false,
+    "verification_logic": "len(agent_outputs) == num_agents and all(agent_outputs[i] == expected_output for i in range(num_agents))",
+    "verification_logic_hint": "all(agent_outputs) == median(global_data)",
+    "format_description": "ALL agents must submit their results using submit_result(answer). All agents should submit the same final answer after coordination."
+  },
+  "evaluation_metrics": {
+    "success_rate": "Percentage of agents that submitted correct answers over K trials",
+    "round_to_completion": "Number of communication rounds needed",
+    "communication_redundancy_ratio": "M_total / M_opt",
+    "topological_fidelity": "Jaccard(E_empirical, E_optimal)"
+  }
+}

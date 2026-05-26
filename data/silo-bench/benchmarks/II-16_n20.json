@@ -1,0 +1,415 @@
+{
+  "case_id": "II-16",
+  "case_name": "Trapping Rain",
+  "paradigm": "Paradigm II",
+  "leetcode": {
+    "url": "https://leetcode.com/problems/trapping-rain-water/",
+    "description": "This case is inspired by the LeetCode problem. The multi-agent version tests distributed computation and communication efficiency."
+  },
+  "metadata": {
+    "num_agents": 20,
+    "optimal_topology": "Chain with bidirectional pass, then aggregate and broadcast",
+    "optimal_message_count": "38 for passes + O(N) for sharing",
+    "theoretical_complexity": "O(N) - Structured Mesh with Locality",
+    "output_type": "distributed",
+    "is_segmented": false
+  },
+  "task_description": "**Task: Trapping Rain Water**\n\nGiven an elevation map, compute how much water can be trapped after raining.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE segments: 0 ↔ 1 ↔ ... ↔ {max_id}\n\n**Your Data (Position {agent_id}):**\nElevation heights: {input_shard}\n\n**Algorithm:**\n- water_at_i = min(max_height_to_left, max_height_to_right) - height[i]\n- Requires TWO PASSES: left-to-right (get left_max), right-to-left (get right_max)\n\n**Output:**\nA single integer representing the total trapped water units.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ {max_id}). Bidirectional pass.\nAll agents must submit the same final answer using submit_result(total_water).",
+  "agent_configs": [
+    {
+      "agent_id": 0,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 0\nTotal agents: 20\nMax agent ID: 19",
+      "user_prompt": "**Task: Trapping Rain Water**\n\nGiven an elevation map, compute how much water can be trapped after raining.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE segments: 0 ↔ 1 ↔ ... ↔ 19\n\n**Your Data (Position 0):**\nElevation heights: [2, 1, 8, 6, 6, 0, 1, 9, 8, 6]\n\n**Algorithm:**\n- water_at_i = min(max_height_to_left, max_height_to_right) - height[i]\n- Requires TWO PASSES: left-to-right (get left_max), right-to-left (get right_max)\n\n**Output:**\nA single integer representing the total trapped water units.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 19). Bidirectional pass.\nAll agents must submit the same final answer using submit_result(total_water).",
+      "input_shard": [
+        2,
+        1,
+        8,
+        6,
+        6,
+        0,
+        1,
+        9,
+        8,
+        6
+      ],
+      "expected_output": 1066
+    },
+    {
+      "agent_id": 1,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 1\nTotal agents: 20\nMax agent ID: 19",
+      "user_prompt": "**Task: Trapping Rain Water**\n\nGiven an elevation map, compute how much water can be trapped after raining.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE segments: 0 ↔ 1 ↔ ... ↔ 19\n\n**Your Data (Position 1):**\nElevation heights: [7, 1, 7, 4, 4, 2, 1, 7, 5, 8]\n\n**Algorithm:**\n- water_at_i = min(max_height_to_left, max_height_to_right) - height[i]\n- Requires TWO PASSES: left-to-right (get left_max), right-to-left (get right_max)\n\n**Output:**\nA single integer representing the total trapped water units.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 19). Bidirectional pass.\nAll agents must submit the same final answer using submit_result(total_water).",
+      "input_shard": [
+        7,
+        1,
+        7,
+        4,
+        4,
+        2,
+        1,
+        7,
+        5,
+        8
+      ],
+      "expected_output": 1066
+    },
+    {
+      "agent_id": 2,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 2\nTotal agents: 20\nMax agent ID: 19",
+      "user_prompt": "**Task: Trapping Rain Water**\n\nGiven an elevation map, compute how much water can be trapped after raining.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE segments: 0 ↔ 1 ↔ ... ↔ 19\n\n**Your Data (Position 2):**\nElevation heights: [5, 3, 4, 8, 10, 5, 1, 6, 5, 5]\n\n**Algorithm:**\n- water_at_i = min(max_height_to_left, max_height_to_right) - height[i]\n- Requires TWO PASSES: left-to-right (get left_max), right-to-left (get right_max)\n\n**Output:**\nA single integer representing the total trapped water units.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 19). Bidirectional pass.\nAll agents must submit the same final answer using submit_result(total_water).",
+      "input_shard": [
+        5,
+        3,
+        4,
+        8,
+        10,
+        5,
+        1,
+        6,
+        5,
+        5
+      ],
+      "expected_output": 1066
+    },
+    {
+      "agent_id": 3,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 3\nTotal agents: 20\nMax agent ID: 19",
+      "user_prompt": "**Task: Trapping Rain Water**\n\nGiven an elevation map, compute how much water can be trapped after raining.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE segments: 0 ↔ 1 ↔ ... ↔ 19\n\n**Your Data (Position 3):**\nElevation heights: [9, 0, 2, 8, 2, 4, 3, 1, 1, 6]\n\n**Algorithm:**\n- water_at_i = min(max_height_to_left, max_height_to_right) - height[i]\n- Requires TWO PASSES: left-to-right (get left_max), right-to-left (get right_max)\n\n**Output:**\nA single integer representing the total trapped water units.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 19). Bidirectional pass.\nAll agents must submit the same final answer using submit_result(total_water).",
+      "input_shard": [
+        9,
+        0,
+        2,
+        8,
+        2,
+        4,
+        3,
+        1,
+        1,
+        6
+      ],
+      "expected_output": 1066
+    },
+    {
+      "agent_id": 4,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 4\nTotal agents: 20\nMax agent ID: 19",
+      "user_prompt": "**Task: Trapping Rain Water**\n\nGiven an elevation map, compute how much water can be trapped after raining.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE segments: 0 ↔ 1 ↔ ... ↔ 19\n\n**Your Data (Position 4):**\nElevation heights: [5, 2, 2, 0, 0, 0, 0, 4, 5, 10]\n\n**Algorithm:**\n- water_at_i = min(max_height_to_left, max_height_to_right) - height[i]\n- Requires TWO PASSES: left-to-right (get left_max), right-to-left (get right_max)\n\n**Output:**\nA single integer representing the total trapped water units.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 19). Bidirectional pass.\nAll agents must submit the same final answer using submit_result(total_water).",
+      "input_shard": [
+        5,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        4,
+        5,
+        10
+      ],
+      "expected_output": 1066
+    },
+    {
+      "agent_id": 5,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 5\nTotal agents: 20\nMax agent ID: 19",
+      "user_prompt": "**Task: Trapping Rain Water**\n\nGiven an elevation map, compute how much water can be trapped after raining.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE segments: 0 ↔ 1 ↔ ... ↔ 19\n\n**Your Data (Position 5):**\nElevation heights: [3, 2, 10, 3, 1, 3, 1, 10, 1, 5]\n\n**Algorithm:**\n- water_at_i = min(max_height_to_left, max_height_to_right) - height[i]\n- Requires TWO PASSES: left-to-right (get left_max), right-to-left (get right_max)\n\n**Output:**\nA single integer representing the total trapped water units.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 19). Bidirectional pass.\nAll agents must submit the same final answer using submit_result(total_water).",
+      "input_shard": [
+        3,
+        2,
+        10,
+        3,
+        1,
+        3,
+        1,
+        10,
+        1,
+        5
+      ],
+      "expected_output": 1066
+    },
+    {
+      "agent_id": 6,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 6\nTotal agents: 20\nMax agent ID: 19",
+      "user_prompt": "**Task: Trapping Rain Water**\n\nGiven an elevation map, compute how much water can be trapped after raining.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE segments: 0 ↔ 1 ↔ ... ↔ 19\n\n**Your Data (Position 6):**\nElevation heights: [5, 1, 3, 0, 5, 5, 1, 0, 8, 3]\n\n**Algorithm:**\n- water_at_i = min(max_height_to_left, max_height_to_right) - height[i]\n- Requires TWO PASSES: left-to-right (get left_max), right-to-left (get right_max)\n\n**Output:**\nA single integer representing the total trapped water units.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 19). Bidirectional pass.\nAll agents must submit the same final answer using submit_result(total_water).",
+      "input_shard": [
+        5,
+        1,
+        3,
+        0,
+        5,
+        5,
+        1,
+        0,
+        8,
+        3
+      ],
+      "expected_output": 1066
+    },
+    {
+      "agent_id": 7,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 7\nTotal agents: 20\nMax agent ID: 19",
+      "user_prompt": "**Task: Trapping Rain Water**\n\nGiven an elevation map, compute how much water can be trapped after raining.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE segments: 0 ↔ 1 ↔ ... ↔ 19\n\n**Your Data (Position 7):**\nElevation heights: [10, 1, 6, 8, 2, 10, 2, 4, 4, 4]\n\n**Algorithm:**\n- water_at_i = min(max_height_to_left, max_height_to_right) - height[i]\n- Requires TWO PASSES: left-to-right (get left_max), right-to-left (get right_max)\n\n**Output:**\nA single integer representing the total trapped water units.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 19). Bidirectional pass.\nAll agents must submit the same final answer using submit_result(total_water).",
+      "input_shard": [
+        10,
+        1,
+        6,
+        8,
+        2,
+        10,
+        2,
+        4,
+        4,
+        4
+      ],
+      "expected_output": 1066
+    },
+    {
+      "agent_id": 8,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 8\nTotal agents: 20\nMax agent ID: 19",
+      "user_prompt": "**Task: Trapping Rain Water**\n\nGiven an elevation map, compute how much water can be trapped after raining.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE segments: 0 ↔ 1 ↔ ... ↔ 19\n\n**Your Data (Position 8):**\nElevation heights: [8, 2, 9, 6, 6, 9, 1, 7, 2, 7]\n\n**Algorithm:**\n- water_at_i = min(max_height_to_left, max_height_to_right) - height[i]\n- Requires TWO PASSES: left-to-right (get left_max), right-to-left (get right_max)\n\n**Output:**\nA single integer representing the total trapped water units.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 19). Bidirectional pass.\nAll agents must submit the same final answer using submit_result(total_water).",
+      "input_shard": [
+        8,
+        2,
+        9,
+        6,
+        6,
+        9,
+        1,
+        7,
+        2,
+        7
+      ],
+      "expected_output": 1066
+    },
+    {
+      "agent_id": 9,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 9\nTotal agents: 20\nMax agent ID: 19",
+      "user_prompt": "**Task: Trapping Rain Water**\n\nGiven an elevation map, compute how much water can be trapped after raining.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE segments: 0 ↔ 1 ↔ ... ↔ 19\n\n**Your Data (Position 9):**\nElevation heights: [3, 1, 7, 10, 7, 4, 2, 6, 2, 0]\n\n**Algorithm:**\n- water_at_i = min(max_height_to_left, max_height_to_right) - height[i]\n- Requires TWO PASSES: left-to-right (get left_max), right-to-left (get right_max)\n\n**Output:**\nA single integer representing the total trapped water units.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 19). Bidirectional pass.\nAll agents must submit the same final answer using submit_result(total_water).",
+      "input_shard": [
+        3,
+        1,
+        7,
+        10,
+        7,
+        4,
+        2,
+        6,
+        2,
+        0
+      ],
+      "expected_output": 1066
+    },
+    {
+      "agent_id": 10,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 10\nTotal agents: 20\nMax agent ID: 19",
+      "user_prompt": "**Task: Trapping Rain Water**\n\nGiven an elevation map, compute how much water can be trapped after raining.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE segments: 0 ↔ 1 ↔ ... ↔ 19\n\n**Your Data (Position 10):**\nElevation heights: [2, 2, 8, 2, 5, 4, 2, 1, 8, 3]\n\n**Algorithm:**\n- water_at_i = min(max_height_to_left, max_height_to_right) - height[i]\n- Requires TWO PASSES: left-to-right (get left_max), right-to-left (get right_max)\n\n**Output:**\nA single integer representing the total trapped water units.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 19). Bidirectional pass.\nAll agents must submit the same final answer using submit_result(total_water).",
+      "input_shard": [
+        2,
+        2,
+        8,
+        2,
+        5,
+        4,
+        2,
+        1,
+        8,
+        3
+      ],
+      "expected_output": 1066
+    },
+    {
+      "agent_id": 11,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 11\nTotal agents: 20\nMax agent ID: 19",
+      "user_prompt": "**Task: Trapping Rain Water**\n\nGiven an elevation map, compute how much water can be trapped after raining.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE segments: 0 ↔ 1 ↔ ... ↔ 19\n\n**Your Data (Position 11):**\nElevation heights: [2, 3, 1, 2, 3, 1, 0, 3, 9, 2]\n\n**Algorithm:**\n- water_at_i = min(max_height_to_left, max_height_to_right) - height[i]\n- Requires TWO PASSES: left-to-right (get left_max), right-to-left (get right_max)\n\n**Output:**\nA single integer representing the total trapped water units.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 19). Bidirectional pass.\nAll agents must submit the same final answer using submit_result(total_water).",
+      "input_shard": [
+        2,
+        3,
+        1,
+        2,
+        3,
+        1,
+        0,
+        3,
+        9,
+        2
+      ],
+      "expected_output": 1066
+    },
+    {
+      "agent_id": 12,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 12\nTotal agents: 20\nMax agent ID: 19",
+      "user_prompt": "**Task: Trapping Rain Water**\n\nGiven an elevation map, compute how much water can be trapped after raining.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE segments: 0 ↔ 1 ↔ ... ↔ 19\n\n**Your Data (Position 12):**\nElevation heights: [10, 3, 10, 4, 9, 1, 3, 6, 0, 1]\n\n**Algorithm:**\n- water_at_i = min(max_height_to_left, max_height_to_right) - height[i]\n- Requires TWO PASSES: left-to-right (get left_max), right-to-left (get right_max)\n\n**Output:**\nA single integer representing the total trapped water units.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 19). Bidirectional pass.\nAll agents must submit the same final answer using submit_result(total_water).",
+      "input_shard": [
+        10,
+        3,
+        10,
+        4,
+        9,
+        1,
+        3,
+        6,
+        0,
+        1
+      ],
+      "expected_output": 1066
+    },
+    {
+      "agent_id": 13,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 13\nTotal agents: 20\nMax agent ID: 19",
+      "user_prompt": "**Task: Trapping Rain Water**\n\nGiven an elevation map, compute how much water can be trapped after raining.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE segments: 0 ↔ 1 ↔ ... ↔ 19\n\n**Your Data (Position 13):**\nElevation heights: [8, 3, 6, 4, 7, 2, 1, 8, 7, 5]\n\n**Algorithm:**\n- water_at_i = min(max_height_to_left, max_height_to_right) - height[i]\n- Requires TWO PASSES: left-to-right (get left_max), right-to-left (get right_max)\n\n**Output:**\nA single integer representing the total trapped water units.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 19). Bidirectional pass.\nAll agents must submit the same final answer using submit_result(total_water).",
+      "input_shard": [
+        8,
+        3,
+        6,
+        4,
+        7,
+        2,
+        1,
+        8,
+        7,
+        5
+      ],
+      "expected_output": 1066
+    },
+    {
+      "agent_id": 14,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 14\nTotal agents: 20\nMax agent ID: 19",
+      "user_prompt": "**Task: Trapping Rain Water**\n\nGiven an elevation map, compute how much water can be trapped after raining.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE segments: 0 ↔ 1 ↔ ... ↔ 19\n\n**Your Data (Position 14):**\nElevation heights: [0, 1, 2, 7, 6, 8, 3, 10, 7, 2]\n\n**Algorithm:**\n- water_at_i = min(max_height_to_left, max_height_to_right) - height[i]\n- Requires TWO PASSES: left-to-right (get left_max), right-to-left (get right_max)\n\n**Output:**\nA single integer representing the total trapped water units.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 19). Bidirectional pass.\nAll agents must submit the same final answer using submit_result(total_water).",
+      "input_shard": [
+        0,
+        1,
+        2,
+        7,
+        6,
+        8,
+        3,
+        10,
+        7,
+        2
+      ],
+      "expected_output": 1066
+    },
+    {
+      "agent_id": 15,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 15\nTotal agents: 20\nMax agent ID: 19",
+      "user_prompt": "**Task: Trapping Rain Water**\n\nGiven an elevation map, compute how much water can be trapped after raining.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE segments: 0 ↔ 1 ↔ ... ↔ 19\n\n**Your Data (Position 15):**\nElevation heights: [2, 2, 7, 7, 5, 4, 1, 8, 10, 4]\n\n**Algorithm:**\n- water_at_i = min(max_height_to_left, max_height_to_right) - height[i]\n- Requires TWO PASSES: left-to-right (get left_max), right-to-left (get right_max)\n\n**Output:**\nA single integer representing the total trapped water units.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 19). Bidirectional pass.\nAll agents must submit the same final answer using submit_result(total_water).",
+      "input_shard": [
+        2,
+        2,
+        7,
+        7,
+        5,
+        4,
+        1,
+        8,
+        10,
+        4
+      ],
+      "expected_output": 1066
+    },
+    {
+      "agent_id": 16,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 16\nTotal agents: 20\nMax agent ID: 19",
+      "user_prompt": "**Task: Trapping Rain Water**\n\nGiven an elevation map, compute how much water can be trapped after raining.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE segments: 0 ↔ 1 ↔ ... ↔ 19\n\n**Your Data (Position 16):**\nElevation heights: [7, 0, 6, 2, 9, 0, 2, 2, 9, 1]\n\n**Algorithm:**\n- water_at_i = min(max_height_to_left, max_height_to_right) - height[i]\n- Requires TWO PASSES: left-to-right (get left_max), right-to-left (get right_max)\n\n**Output:**\nA single integer representing the total trapped water units.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 19). Bidirectional pass.\nAll agents must submit the same final answer using submit_result(total_water).",
+      "input_shard": [
+        7,
+        0,
+        6,
+        2,
+        9,
+        0,
+        2,
+        2,
+        9,
+        1
+      ],
+      "expected_output": 1066
+    },
+    {
+      "agent_id": 17,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 17\nTotal agents: 20\nMax agent ID: 19",
+      "user_prompt": "**Task: Trapping Rain Water**\n\nGiven an elevation map, compute how much water can be trapped after raining.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE segments: 0 ↔ 1 ↔ ... ↔ 19\n\n**Your Data (Position 17):**\nElevation heights: [8, 2, 7, 6, 10, 8, 2, 1, 6, 0]\n\n**Algorithm:**\n- water_at_i = min(max_height_to_left, max_height_to_right) - height[i]\n- Requires TWO PASSES: left-to-right (get left_max), right-to-left (get right_max)\n\n**Output:**\nA single integer representing the total trapped water units.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 19). Bidirectional pass.\nAll agents must submit the same final answer using submit_result(total_water).",
+      "input_shard": [
+        8,
+        2,
+        7,
+        6,
+        10,
+        8,
+        2,
+        1,
+        6,
+        0
+      ],
+      "expected_output": 1066
+    },
+    {
+      "agent_id": 18,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 18\nTotal agents: 20\nMax agent ID: 19",
+      "user_prompt": "**Task: Trapping Rain Water**\n\nGiven an elevation map, compute how much water can be trapped after raining.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE segments: 0 ↔ 1 ↔ ... ↔ 19\n\n**Your Data (Position 18):**\nElevation heights: [8, 3, 7, 1, 10, 7, 0, 1, 7, 10]\n\n**Algorithm:**\n- water_at_i = min(max_height_to_left, max_height_to_right) - height[i]\n- Requires TWO PASSES: left-to-right (get left_max), right-to-left (get right_max)\n\n**Output:**\nA single integer representing the total trapped water units.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 19). Bidirectional pass.\nAll agents must submit the same final answer using submit_result(total_water).",
+      "input_shard": [
+        8,
+        3,
+        7,
+        1,
+        10,
+        7,
+        0,
+        1,
+        7,
+        10
+      ],
+      "expected_output": 1066
+    },
+    {
+      "agent_id": 19,
+      "system_prompt": "[PLACEHOLDER] This system_prompt will be overridden at runtime by protocol-specific prompts.\n\nThe execution engine (src/engine.py) generates the actual system prompt based on the chosen communication protocol:\n- msg (P2P): send_message, receive_messages, wait, submit_result\n- broadcast: broadcast_message, receive_messages, list_agents, wait, submit_result\n- sfs (Shared File System): list_files, read_file, write_file, delete_file, wait, submit_result\n\nSee src/utils/prompts.py for the actual runtime prompt templates.\n\nAgent ID: 19\nTotal agents: 20\nMax agent ID: 19",
+      "user_prompt": "**Task: Trapping Rain Water**\n\nGiven an elevation map, compute how much water can be trapped after raining.\n\n**Agent Ordering:**\nAgents hold CONSECUTIVE segments: 0 ↔ 1 ↔ ... ↔ 19\n\n**Your Data (Position 19):**\nElevation heights: [3, 1, 7, 3, 9, 10, 3, 2, 0, 5]\n\n**Algorithm:**\n- water_at_i = min(max_height_to_left, max_height_to_right) - height[i]\n- Requires TWO PASSES: left-to-right (get left_max), right-to-left (get right_max)\n\n**Output:**\nA single integer representing the total trapped water units.\n\n**Communication Protocol:**\nTopology: Chain (0 ↔ 1 ↔ ... ↔ 19). Bidirectional pass.\nAll agents must submit the same final answer using submit_result(total_water).",
+      "input_shard": [
+        3,
+        1,
+        7,
+        3,
+        9,
+        10,
+        3,
+        2,
+        0,
+        5
+      ],
+      "expected_output": 1066
+    }
+  ],
+  "expected_output": {
+    "type": "distributed",
+    "per_agent_values": [
+      1066,
+      1066,
+      1066,
+      1066,
+      1066,
+      1066,
+      1066,
+      1066,
+      1066,
+      1066,
+      1066,
+      1066,
+      1066,
+      1066,
+      1066,
+      1066,
+      1066,
+      1066,
+      1066,
+      1066
+    ],
+    "is_segmented": false,
+    "verification_logic": "len(agent_outputs) == num_agents and all(agent_outputs[i] == expected_output for i in range(num_agents))",
+    "verification_logic_hint": "all(agent_outputs) == trap_water(global_input)",
+    "format_description": "ALL agents must submit their results using submit_result(answer). All agents should submit the same final answer after coordination."
+  },
+  "evaluation_metrics": {
+    "success_rate": "Percentage of agents that submitted correct answers over K trials",
+    "round_to_completion": "Number of communication rounds needed",
+    "communication_redundancy_ratio": "M_total / M_opt",
+    "topological_fidelity": "Jaccard(E_empirical, E_optimal)"
+  }
+}
