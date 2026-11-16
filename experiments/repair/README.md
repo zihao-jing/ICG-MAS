@@ -54,9 +54,9 @@ Validate and count calls without paying for inference:
 
 ```bash
 PYTHONPATH=. .conda-env/bin/python -m scripts.run_frozen_repair run \
-  --manifest iclr2027_paper/experiments/repair/qwen235b_silobench_n5_review.jsonl \
+  --manifest experiments/repair/qwen235b_silobench_n5_review.jsonl \
   --decisions path/to/reviewed_exact_span_decisions.jsonl \
-  --output iclr2027_paper/experiments/repair/dry_run
+  --output experiments/repair/dry_run
 ```
 
 Only after the decisions are reviewed and the API budget is approved, add `--execute --max-calls N` and choose a fresh output directory. `N` must cover the dry-run plan's call count; this is a call-count guard, not a monetary estimate. The runner never overwrites a prior result directory.

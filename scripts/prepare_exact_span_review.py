@@ -12,7 +12,7 @@ from scripts.run_frozen_repair import merge_decisions
 from src.audit.critical_fact_validation import load_jsonl
 
 
-ROOT = Path("iclr2027_paper/experiments/repair")
+ROOT = Path("experiments/repair")
 SETTINGS = (
     "gemma31b_musique", "gemma31b_silobench_n5", "gemma31b_silobench_n10",
     "gpt4omini_musique", "gpt4omini_silobench_n5", "gpt4omini_silobench_n10",

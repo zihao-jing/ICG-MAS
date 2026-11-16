@@ -19,7 +19,7 @@ from pathlib import Path
 import scripts.restore_equiv_gemini as R
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / 'iclr2027_paper/experiments/repair/results/aggregation_stage_swap_20260926/comparison_per_case.csv'
+SRC = ROOT / 'experiments/repair/results/aggregation_stage_swap_20260926/comparison_per_case.csv'
 OUT = ROOT / 'rebuttal/pilots/20261116_agg_repair_equiv'
 RESULTS = OUT / 'results.jsonl'
 R.OUT = OUT

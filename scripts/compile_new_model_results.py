@@ -4,7 +4,7 @@ compile_new_model_results.py
 
 Reads results from the 4 new model robustness runs and generates LaTeX tables
 for the paper appendix. Outputs to:
-  acl-style-files/appendix/app_new_models.tex
+  paper/appendix/app_new_models.tex
 
 Models:
   Gemini-2.5-flash-lite  (google/gemini-2.5-flash-lite)
@@ -30,7 +30,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 
 BASE = os.path.join(os.path.dirname(__file__), "..", "results")
 OUT_TEX = os.path.join(
-    os.path.dirname(__file__), "..", "acl-style-files", "appendix", "app_new_models.tex"
+    os.path.dirname(__file__), "..", "paper", "appendix", "app_new_models.tex"
 )
 
 # Model metadata

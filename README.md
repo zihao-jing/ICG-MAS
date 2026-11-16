@@ -14,12 +14,12 @@ This is the anonymous code release for the submission. It contains the code and 
 | `tests/` | Offline unit tests (no API keys, no network) |
 | `rebuttal/pilots/` | One folder per experiment: its frozen rule, prompts, `report.md` and `score*.json` |
 | `rebuttal/pilots/prereg/` | Rules and prompts written and hashed before each run |
-| `iclr2027_paper/experiments/repair/` | Reviewed cohorts, decisions and summaries of the repair studies |
+| `experiments/repair/` | Reviewed cohorts, decisions and summaries of the repair studies |
 | `data/` | Silo-Bench benchmark files; the MuSiQue dev split is downloaded separately |
 
 **Not included, by design.** Raw API call logs (`calls.jsonl`), full model traces, cached baseline runs (`results/`), author annotation packets and the manuscript sources stay local because of size or because they contain author-written material. Every report names the files it was computed from, so the numbers can be traced; re-running a script regenerates its traces and call log in a fresh output folder.
 
-**Anonymity.** Personal names, local paths and account identifiers have been removed. API keys are read from the environment or a local `.env`, which is ignored by Git.
+**Anonymity.** Personal names, local paths, account identifiers and venue references have been removed. A few pre-registered rule files were edited only for this purpose, so their file hashes differ from the hashes recorded before each run; no rule, prompt or threshold was changed. API keys are read from the environment or a local `.env`, which is ignored by Git.
 
 ### Where the reported numbers come from
 

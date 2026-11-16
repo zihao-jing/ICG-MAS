@@ -2,7 +2,7 @@
 """
 compile_multimodel_audit.py
 
-Regenerates acl-style-files/appendix/app_audit_multimodel.tex
+Regenerates paper/appendix/app_audit_multimodel.tex
 using audit_metrics.json files (including distortion if computed).
 
 Models covered: Mistral-S, Qwen-80B-T, Qwen-3.6-Flash, Ring-1T, Qwen-235B
@@ -15,7 +15,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 
 BASE = os.path.join(os.path.dirname(__file__), "..", "results")
 OUT = os.path.join(
-    os.path.dirname(__file__), "..", "acl-style-files", "appendix", "app_audit_multimodel.tex"
+    os.path.dirname(__file__), "..", "paper", "appendix", "app_audit_multimodel.tex"
 )
 
 MODELS = [

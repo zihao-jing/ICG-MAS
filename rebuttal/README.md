@@ -17,7 +17,7 @@ part of the release because of their size; each report names them, and
 re-running the listed script regenerates them in a new folder.
 
 The main README lists which folder supports each reported result. The repair
-studies are under `iclr2027_paper/experiments/repair/`.
+studies are under `experiments/repair/`.
 
 ## Offline checks
 
@@ -48,13 +48,13 @@ Without `--execute`, it makes no API calls. The output directory must not exist.
 
 ```bash
 ./run.sh python -m scripts.run_frozen_repair run \
-  --manifest iclr2027_paper/experiments/repair/qwen235b_silobench_n5_review.jsonl \
-  --decisions iclr2027_paper/experiments/repair/exact_span_decisions/qwen235b_silobench_n5_decisions.jsonl \
+  --manifest experiments/repair/qwen235b_silobench_n5_review.jsonl \
+  --decisions experiments/repair/exact_span_decisions/qwen235b_silobench_n5_decisions.jsonl \
   --output rebuttal/results/new_qwen_n5_plan
 ```
 
 For a new cohort, prepare and review its own manifest and decisions using the
-[repair-study instructions](../iclr2027_paper/experiments/repair/README.md).
+[repair-study instructions](../experiments/repair/README.md).
 Evidence-gap decisions require verified literal source spans. Keep the sample,
 condition definitions, and model choices fixed before observing new responses.
 
@@ -96,17 +96,3 @@ Lexical coverage is a diagnostic proxy, not proof that all required facts are
 present. The stage-swap study compares model placement under a one-upgrade-call
 budget; it does not by itself establish causal attribution. Report MuSiQue F1
 and Silo-Bench exact match separately, with sample sizes and uncertainty.
-
-Before sharing a reproducible snapshot, inspect `git status`: the current paper
-and many repair scripts originated as untracked local files. Include intended
-source files and reviewed artifacts in a versioned checkpoint; keep credentials,
-local environments, and disposable build files out. No automatic commit or
-artifact relocation is performed by these workflows.
-
-Build the current manuscript with:
-
-```bash
-./iclr2027_paper/build.sh
-```
-
-The output is `iclr2027_paper/build/main.pdf`.

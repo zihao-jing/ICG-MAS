@@ -7,20 +7,6 @@
 /results/
 
 
-# Personal/operational files
-/backup/
-/acl-style-files/
-/outputs/
-/schedule/
-/experiment_progress.md
-/exp_plan_4pm.md
-/new_exp_plan_24.md
-/note.md
-/revision_progress.md
-/revision_progress_v2.md
-.claude/
-.orch/
-
 # Server-specific environment files
 init_server.sh  # server-specific init script
 
@@ -239,30 +225,21 @@ rebuttal/external/*
 !rebuttal/external/MANIFEST.json
 
 # ---------------------------------------------------------------------------
-# Anonymous code release (2026-11-16): ship code plus short experiment records.
-# Everything below stays local.
+# Code release: code plus short experiment records only.
 # ---------------------------------------------------------------------------
-# Manuscripts, rebuttal text, backups and planning notes
-/iclr2027_paper_backup_*/
 *.zip
-/emnlp_paper/
-/iclr2027_rebuttal/
-/revision_plan.md
-/texput.log
 /.vscode/
 /.pytest_cache/
 
-# Paper folder: only the repair-study records under experiments/ are shared
-/iclr2027_paper/*
-!/iclr2027_paper/experiments/
-/iclr2027_paper/experiments/**
-!/iclr2027_paper/experiments/**/
-!/iclr2027_paper/experiments/**/*.md
-!/iclr2027_paper/experiments/**/*.csv
-!/iclr2027_paper/experiments/**/*_review.jsonl
-!/iclr2027_paper/experiments/**/*_decisions.jsonl
+# Repair studies: reviewed cohorts, decisions and summaries only
+/experiments/**
+!/experiments/**/
+!/experiments/**/*.md
+!/experiments/**/*.csv
+!/experiments/**/*_review.jsonl
+!/experiments/**/*_decisions.jsonl
 
-# Rebuttal experiment archive: pre-registered rules, prompts, reports and scores only.
+# Experiment records: pre-registered rules, prompts, reports and scores only.
 # Raw API call logs (calls.jsonl), traces and large result files stay local.
 /rebuttal/**
 !/rebuttal/**/
@@ -282,23 +259,7 @@ rebuttal/external/*
 !/rebuttal/**/validation_summary.json
 !rebuttal/external/MANIFEST.json
 
-# Tests that audit local-only archives (annotation packets, rebuttal drafts,
-# sealed labelling folders, raw run logs). They need files that are not
-# shipped, so they stay local.
-/tests/test_batch1_results_skeleton.py
-/tests/test_batch1_pilots.py
-/tests/test_batch1_review3.py
-/tests/test_batch1_review4.py
-/tests/test_batch1_review5.py
-/tests/test_claims_impact.py
-/tests/test_e1_judge_sealed.py
-/tests/test_e1_sets.py
-/tests/test_final_sample_and_retry_log.py
-/tests/test_judge_prompts.py
-/tests/test_labelling_folder.py
-/tests/test_rebuttal_text_answers.py
-/tests/test_status_generator.py
-/tests/test_validation_gate.py
 
-# Annotation packets and returned labels (author-written, local only)
-/rebuttal/annotation/**
+# Annotation packets and other local-only folders
+/rebuttal/annotation/
+/rebuttal/format_example/

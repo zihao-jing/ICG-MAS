@@ -2,7 +2,7 @@
 # Rebuild the completed three-model crossover report from immutable run directories.
 set -euo pipefail
 cd "$(dirname "$0")/.."
-root=iclr2027_paper/experiments/repair/results
+root=experiments/repair/results
 PYTHONPATH=. .conda-env/bin/python -m scripts.summarize_frozen_repair_matrix \
   --runs \
   "$root/gemma31b_musique_full" \

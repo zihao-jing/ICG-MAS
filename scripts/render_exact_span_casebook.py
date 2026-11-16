@@ -10,7 +10,7 @@ from pathlib import Path
 from scripts.run_frozen_repair import correction_text
 
 
-ROOT = Path("iclr2027_paper/experiments/repair/exact_span_review")
+ROOT = Path("experiments/repair/exact_span_review")
 
 
 def main() -> None:

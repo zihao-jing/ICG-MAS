@@ -1,7 +1,7 @@
 # Piece 2 pilot rule: presence-based main-table columns (frozen before any call)
 
 Written 2026-11-13, before the pilot call. Piece 2 redoes the paper's main
-table (`iclr2027_paper/items/tables/tab_audit_combined.tex`) with the
+table (the paper's combined audit table) with the
 validated per-fact **presence** label. The fidelity column is **not** redone
 and stays marked unvalidated; V10 is testing that label separately.
 

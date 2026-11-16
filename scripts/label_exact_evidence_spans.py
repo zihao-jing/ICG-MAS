@@ -12,7 +12,7 @@ from decimal import Decimal, ROUND_HALF_UP
 from pathlib import Path
 
 
-ROOT = Path("iclr2027_paper/experiments/repair/exact_span_review")
+ROOT = Path("experiments/repair/exact_span_review")
 INPUT = ROOT / "existing_evidence_gaps.jsonl"
 OUTPUT = ROOT / "labeled_evidence_gaps.jsonl"
 REVIEWER = "codex-source-board-review-2026-09-26"

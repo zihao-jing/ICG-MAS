@@ -24,7 +24,7 @@ User message to each judge: `QUESTION`, `GOLD ANSWER`, `SYSTEM ANSWER` (the answ
 - Restore figure = correct share of the 92 restore-arm answers under the final label; control figure = correct share of the 92 control-arm answers. Wilson 95% intervals. Paired comparison by McNemar exact test.
 - Agreement of Sonnet with Gemini (raw, 184 answers) and Wilson 95%.
 - On the disagreement answers: how often Opus sides with Sonnet and how often with Gemini.
-- Opus is run only on the Sonnet-vs-Gemini disagreements, so Sonnet-vs-Opus disagreement is measured on that set: the number of answers where Opus's verdict differs from Sonnet's. If that number is more than 5, the labelling package (`iclr2027_rebuttal/labelling/`) is used for the disagreements; otherwise it is not used.
+- Opus is run only on the Sonnet-vs-Gemini disagreements, so Sonnet-vs-Opus disagreement is measured on that set: the number of answers where Opus's verdict differs from Sonnet's. If that number is more than 5, the labelling package (kept locally) is used for the disagreements; otherwise it is not used.
 
 ## Logs
 

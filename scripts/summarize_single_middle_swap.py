@@ -13,7 +13,7 @@ from scripts.prepare_exact_span_review import SETTINGS
 from src.audit.critical_fact_validation import load_jsonl
 
 
-ROOT = Path("iclr2027_paper/experiments/repair/results/aggregation_stage_swap_20260926")
+ROOT = Path("experiments/repair/results/aggregation_stage_swap_20260926")
 
 
 def interval(values: list[float], *, seed: int = 42, draws: int = 2000) -> tuple[float, float]:
