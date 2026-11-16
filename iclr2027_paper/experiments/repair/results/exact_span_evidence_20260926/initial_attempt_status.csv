@@ -1,0 +1,7 @@
+setting,case,source_spans,appended_corrections,original_prediction,original_score,exact_replay_status,restoration_status,restored_prediction,restored_score
+gemma31b_silobench_n10,III-25_n10,1,0,Insufficient information.,0.0,Connection error.,Connection error.,,
+qwen235b_silobench_n5,I-02_n5,1,1,29,0.0,Connection error.,Connection error.,,
+qwen235b_silobench_n10,I-02_n10,7,7,78,0.0,Connection error.,Connection error.,,
+qwen235b_silobench_n10,I-07_n10,15,3,62.14,0.0,Connection error.,Connection error.,,
+qwen235b_silobench_n10,I-10_n10,7,0,Insufficient information.,0.0,Connection error.,Connection error.,,
+qwen235b_silobench_n10,III-25_n10,14,0,Insufficient information.,0.0,Connection error.,Connection error.,,

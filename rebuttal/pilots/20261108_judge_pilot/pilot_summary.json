@@ -1,0 +1,186 @@
+{
+ "per_task_model": [
+  {
+   "task": "E1_fact_labelling",
+   "model": "google/gemini-3.6-flash",
+   "calls": 5,
+   "failed_calls": 0,
+   "valid": 5,
+   "prompt_tokens": 11739,
+   "completion_tokens": 8137,
+   "cost_usd": 0.03932,
+   "seconds": 60.64202,
+   "truncated": 0,
+   "schema_valid_rate": 1.0,
+   "cost_per_item": 0.00786,
+   "mean_prompt_tokens": 2348,
+   "mean_completion_tokens": 1627,
+   "extrapolated_full_calls": 240,
+   "extrapolated_full_cost_usd": 1.887
+  },
+  {
+   "task": "E2_partB_natural_failure",
+   "model": "google/gemini-3.6-flash",
+   "calls": 3,
+   "failed_calls": 0,
+   "valid": 3,
+   "prompt_tokens": 7088,
+   "completion_tokens": 4086,
+   "cost_usd": 0.02064,
+   "seconds": 25.54608,
+   "truncated": 0,
+   "schema_valid_rate": 1.0,
+   "cost_per_item": 0.00688,
+   "mean_prompt_tokens": 2363,
+   "mean_completion_tokens": 1362,
+   "extrapolated_full_calls": 126,
+   "extrapolated_full_cost_usd": 0.867
+  },
+  {
+   "task": "E2_partB_natural_failure",
+   "model": "mistralai/mistral-small-2603",
+   "calls": 3,
+   "failed_calls": 0,
+   "valid": 3,
+   "prompt_tokens": 7060,
+   "completion_tokens": 615,
+   "cost_usd": 0.00147,
+   "seconds": 5.34086,
+   "truncated": 0,
+   "schema_valid_rate": 1.0,
+   "cost_per_item": 0.00049,
+   "mean_prompt_tokens": 2353,
+   "mean_completion_tokens": 205,
+   "extrapolated_full_calls": 126,
+   "extrapolated_full_cost_usd": 0.062
+  },
+  {
+   "task": "E2_wave1_base_screening",
+   "model": "google/gemini-3.6-flash",
+   "calls": 5,
+   "failed_calls": 0,
+   "valid": 5,
+   "prompt_tokens": 11498,
+   "completion_tokens": 12016,
+   "cost_usd": 0.05368,
+   "seconds": 84.9967,
+   "truncated": 0,
+   "schema_valid_rate": 1.0,
+   "cost_per_item": 0.01074,
+   "mean_prompt_tokens": 2300,
+   "mean_completion_tokens": 2403,
+   "extrapolated_full_calls": 68,
+   "extrapolated_full_cost_usd": 0.73
+  },
+  {
+   "task": "E2_wave1_base_screening",
+   "model": "mistralai/mistral-small-2603",
+   "calls": 5,
+   "failed_calls": 0,
+   "valid": 5,
+   "prompt_tokens": 11373,
+   "completion_tokens": 2800,
+   "cost_usd": 0.00341,
+   "seconds": 21.95825,
+   "truncated": 0,
+   "schema_valid_rate": 1.0,
+   "cost_per_item": 0.00068,
+   "mean_prompt_tokens": 2275,
+   "mean_completion_tokens": 560,
+   "extrapolated_full_calls": 68,
+   "extrapolated_full_cost_usd": 0.046
+  }
+ ],
+ "gemini_mistral_agreement": {
+  "E2_wave1_base_screening:defect_free": {
+   "n_common_valid": 5,
+   "agree": 3,
+   "percent": 60.0,
+   "kappa": 0.0,
+   "pairs": [
+    [
+     "2hop__24661_81961",
+     "no",
+     "no"
+    ],
+    [
+     "2hop__466700_214359",
+     "yes",
+     "no"
+    ],
+    [
+     "2hop__66708_573255",
+     "yes",
+     "no"
+    ],
+    [
+     "2hop__809096_491515",
+     "no",
+     "no"
+    ],
+    [
+     "3hop1__131783_131926_13165",
+     "no",
+     "no"
+    ]
+   ]
+  },
+  "E2_wave1_base_screening:eligible": {
+   "n_common_valid": 5,
+   "agree": 1,
+   "percent": 20.0,
+   "kappa": 0.0,
+   "pairs": [
+    [
+     "2hop__24661_81961",
+     "yes",
+     "no"
+    ],
+    [
+     "2hop__466700_214359",
+     "yes",
+     "no"
+    ],
+    [
+     "2hop__66708_573255",
+     "yes",
+     "no"
+    ],
+    [
+     "2hop__809096_491515",
+     "no",
+     "no"
+    ],
+    [
+     "3hop1__131783_131926_13165",
+     "yes",
+     "no"
+    ]
+   ]
+  },
+  "E2_partB_natural_failure:class": {
+   "n_common_valid": 3,
+   "agree": 2,
+   "percent": 66.7,
+   "kappa": 0.0,
+   "pairs": [
+    [
+     "2hop__24661_81961",
+     "single",
+     "single"
+    ],
+    [
+     "2hop__809096_491515",
+     "single",
+     "single"
+    ],
+    [
+     "3hop1__131783_131926_13165",
+     "multiple",
+     "single"
+    ]
+   ]
+  }
+ },
+ "note": "Items are reserved pilot items only. n is 3-5, so agreement figures are descriptive, not estimates."
+}

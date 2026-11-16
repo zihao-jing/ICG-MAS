@@ -1,0 +1,12 @@
+{
+ "version": "v2",
+ "file": "labeller_prompt_v2.json",
+ "file_sha256": "7f9e281669ca06e00eac86405312bb54c05cc69834eb51a732e48a669e8268c6",
+ "system_sha256": "585d0d453ffceffe2372169ae7d312a2fbcab9d5854e241e96244f33dfdb8e6e",
+ "frozen_utc": "2026-11-12T00:00:00Z",
+ "recorded_utc": "2026-11-12",
+ "recorded_before_re_pilot": false,
+ "recorded_before_full_150": true,
+ "reference": "file_sha256 is the frozen file identity; system_sha256 identifies the prompt text embedded in that file",
+ "note": "The file hash was computed after the 20-trace re-pilot and before the 150-trace run. It matches the prompt file used in both; the re-pilot call log records the system hash only."
+}

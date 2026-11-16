@@ -1,0 +1,13 @@
+{
+ "calls": 240,
+ "valid": 192,
+ "format_invalid": 0,
+ "failed_calls": 48,
+ "refusals": 0,
+ "prompt_tokens": 843183,
+ "completion_tokens": 423245,
+ "cost_usd": 2.2113,
+ "sealed_manifest_sha256": "eb8e44281b3051fb600f0bf30cf40962925039f935ab045dc6e49ca3a2988717",
+ "sealed_files": 195,
+ "version_sha256": "193161cd9d18ca0e4c2a9732494382e16deeda5d31f53f99846a3d8e654ed03d"
+}

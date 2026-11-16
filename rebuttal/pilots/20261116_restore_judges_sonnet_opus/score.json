@@ -1,0 +1,58 @@
+{
+ "n": 184,
+ "sonnet_invalid": 0,
+ "sonnet_gemini_agree": {
+  "k": 183,
+  "n": 184,
+  "rate": 0.995,
+  "wilson95": [
+   0.97,
+   0.999
+  ]
+ },
+ "disagreements": 1,
+ "opus_sides": {
+  "with_gemini": 1
+ },
+ "opus_overturns_sonnet": 1,
+ "restore_final": {
+  "k": 41,
+  "n": 92,
+  "rate": 0.446,
+  "wilson95": [
+   0.348,
+   0.547
+  ]
+ },
+ "restore_gemini_only": {
+  "k": 41,
+  "n": 92,
+  "rate": 0.446
+ },
+ "control_final": {
+  "k": 5,
+  "n": 92,
+  "rate": 0.054,
+  "wilson95": [
+   0.023,
+   0.121
+  ]
+ },
+ "control_gemini_only": {
+  "k": 5,
+  "n": 92,
+  "rate": 0.054
+ },
+ "mcnemar_restore_vs_control": {
+  "restore_only_correct": 36,
+  "control_only_correct": 0,
+  "p_exact": 2.9103830456733704e-11,
+  "p_exact_text": "2.9×10⁻¹¹ (two-sided)",
+  "p_exact_two_sided": 2.9103830456733704e-11
+ },
+ "cost_usd": {
+  "sonnet": 0.598846,
+  "opus": 0.039576
+ },
+ "human_fallback_triggered": false
+}

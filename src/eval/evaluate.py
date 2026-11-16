@@ -15,7 +15,6 @@ Functions:
 from __future__ import annotations
 
 import re
-import string
 from collections import Counter
 from typing import Optional
 
@@ -25,15 +24,18 @@ from typing import Optional
 # ---------------------------------------------------------------------------
 
 def normalize(text: str) -> list[str]:
-    """Lowercase, strip articles/punctuation, return token list.
+    """Lowercase, strip articles, map punctuation to a space, return tokens.
 
-    Matches the SQuAD / MuSiQue official normalisation procedure.
+    Differs from the SQuAD / MuSiQue official normalisation in one point:
+    punctuation becomes a space instead of being deleted. Deleting it fuses
+    tokens ("fleur-de-lis" -> "fleurdelis") while the gold "fleur - de-lis"
+    keeps a space, so the two no longer match.
     """
     text = text.lower()
     # Remove articles
     text = re.sub(r'\b(a|an|the)\b', ' ', text)
-    # Remove punctuation
-    text = text.translate(str.maketrans('', '', string.punctuation))
+    # Map punctuation to a space (do not delete: it fuses adjacent tokens)
+    text = re.sub(r'[^\w\s]', ' ', text)
     return text.split()
 
 

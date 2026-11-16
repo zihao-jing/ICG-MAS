@@ -1,0 +1,293 @@
+{
+ "n": 30,
+ "unmerged": {
+  "k": 6,
+  "rate": 0.2,
+  "ci": [
+   0.09505107121882947,
+   0.3730569656380418
+  ]
+ },
+ "merged": {
+  "k": 6,
+  "rate": 0.2,
+  "ci": [
+   0.09505107121882947,
+   0.3730569656380418
+  ]
+ },
+ "spend_usd": 0.016964,
+ "rule_sha256": "04f30ba30b7a6f2789ad4e64af3af623291e9fd8cb4cbc540cfd5a3708cd6bf0",
+ "rows": [
+  {
+   "instance": "2hop__107690_124896",
+   "gold": "extraction",
+   "unmerged": "aggregation",
+   "merged": "aggregation",
+   "groups": 2,
+   "equiv_valid": true,
+   "equivalent_facts": 1
+  },
+  {
+   "instance": "2hop__142621_225454",
+   "gold": "extraction",
+   "unmerged": "aggregation",
+   "merged": "aggregation",
+   "groups": 2,
+   "equiv_valid": true,
+   "equivalent_facts": 1
+  },
+  {
+   "instance": "2hop__194469_83289",
+   "gold": "extraction",
+   "unmerged": "aggregation",
+   "merged": "aggregation",
+   "groups": 2,
+   "equiv_valid": true,
+   "equivalent_facts": 0
+  },
+  {
+   "instance": "2hop__203437_152093",
+   "gold": "extraction",
+   "unmerged": "aggregation",
+   "merged": "aggregation",
+   "groups": 2,
+   "equiv_valid": true,
+   "equivalent_facts": 1
+  },
+  {
+   "instance": "2hop__284789_52835",
+   "gold": "extraction",
+   "unmerged": "aggregation",
+   "merged": "aggregation",
+   "groups": 3,
+   "equiv_valid": true,
+   "equivalent_facts": 1
+  },
+  {
+   "instance": "2hop__402530_774333",
+   "gold": "aggregation",
+   "unmerged": "aggregation",
+   "merged": "aggregation",
+   "groups": 2,
+   "equiv_valid": true,
+   "equivalent_facts": 1
+  },
+  {
+   "instance": "2hop__433694_20273",
+   "gold": "extraction",
+   "unmerged": "extraction",
+   "merged": "extraction",
+   "groups": 2,
+   "equiv_valid": true,
+   "equivalent_facts": 1
+  },
+  {
+   "instance": "2hop__450600_158262",
+   "gold": "extraction",
+   "unmerged": "aggregation",
+   "merged": "aggregation",
+   "groups": 2,
+   "equiv_valid": true,
+   "equivalent_facts": 2
+  },
+  {
+   "instance": "2hop__458672_20057",
+   "gold": "extraction",
+   "unmerged": "aggregation",
+   "merged": "aggregation",
+   "groups": 3,
+   "equiv_valid": true,
+   "equivalent_facts": 2
+  },
+  {
+   "instance": "2hop__496961_554601",
+   "gold": "extraction",
+   "unmerged": "aggregation",
+   "merged": "aggregation",
+   "groups": 1,
+   "equiv_valid": true,
+   "equivalent_facts": 0
+  },
+  {
+   "instance": "2hop__525242_52835",
+   "gold": "extraction",
+   "unmerged": "aggregation",
+   "merged": "aggregation",
+   "groups": 3,
+   "equiv_valid": true,
+   "equivalent_facts": 2
+  },
+  {
+   "instance": "2hop__631139_75487",
+   "gold": "aggregation",
+   "unmerged": "aggregation",
+   "merged": "aggregation",
+   "groups": 2,
+   "equiv_valid": true,
+   "equivalent_facts": 1
+  },
+  {
+   "instance": "2hop__64175_90973",
+   "gold": "extraction",
+   "unmerged": "aggregation",
+   "merged": "aggregation",
+   "groups": 2,
+   "equiv_valid": true,
+   "equivalent_facts": 1
+  },
+  {
+   "instance": "2hop__71755_463572",
+   "gold": "extraction",
+   "unmerged": "aggregation",
+   "merged": "aggregation",
+   "groups": 2,
+   "equiv_valid": true,
+   "equivalent_facts": 2
+  },
+  {
+   "instance": "2hop__81659_52835",
+   "gold": "extraction",
+   "unmerged": "aggregation",
+   "merged": "aggregation",
+   "groups": 3,
+   "equiv_valid": true,
+   "equivalent_facts": 1
+  },
+  {
+   "instance": "2hop__846844_47134",
+   "gold": "extraction",
+   "unmerged": "aggregation",
+   "merged": "aggregation",
+   "groups": 2,
+   "equiv_valid": true,
+   "equivalent_facts": 1
+  },
+  {
+   "instance": "3hop1__109113_720914_41132",
+   "gold": "extraction",
+   "unmerged": "aggregation",
+   "merged": "aggregation",
+   "groups": 3,
+   "equiv_valid": true,
+   "equivalent_facts": 0
+  },
+  {
+   "instance": "3hop1__131820_59747_48534",
+   "gold": "extraction",
+   "unmerged": "aggregation",
+   "merged": "aggregation",
+   "groups": 3,
+   "equiv_valid": true,
+   "equivalent_facts": 1
+  },
+  {
+   "instance": "3hop1__132795_40769_64047",
+   "gold": "extraction",
+   "unmerged": "extraction",
+   "merged": "extraction",
+   "groups": 4,
+   "equiv_valid": true,
+   "equivalent_facts": 3
+  },
+  {
+   "instance": "3hop1__133292_40769_64047",
+   "gold": "extraction",
+   "unmerged": "aggregation",
+   "merged": "aggregation",
+   "groups": 3,
+   "equiv_valid": true,
+   "equivalent_facts": 3
+  },
+  {
+   "instance": "3hop1__147225_30587_83479",
+   "gold": "extraction",
+   "unmerged": "aggregation",
+   "merged": "aggregation",
+   "groups": 3,
+   "equiv_valid": true,
+   "equivalent_facts": 1
+  },
+  {
+   "instance": "3hop1__251085_831637_91775",
+   "gold": "extraction",
+   "unmerged": "extraction",
+   "merged": "extraction",
+   "groups": 37,
+   "equiv_valid": false,
+   "equivalent_facts": 0
+  },
+  {
+   "instance": "3hop1__389955_132457_47686",
+   "gold": "extraction",
+   "unmerged": "aggregation",
+   "merged": "aggregation",
+   "groups": 4,
+   "equiv_valid": true,
+   "equivalent_facts": 2
+  },
+  {
+   "instance": "3hop1__389955_132457_51423",
+   "gold": "extraction",
+   "unmerged": "aggregation",
+   "merged": "aggregation",
+   "groups": 3,
+   "equiv_valid": true,
+   "equivalent_facts": 1
+  },
+  {
+   "instance": "3hop1__398232_326948_59893",
+   "gold": "extraction",
+   "unmerged": "aggregation",
+   "merged": "aggregation",
+   "groups": 2,
+   "equiv_valid": true,
+   "equivalent_facts": 0
+  },
+  {
+   "instance": "3hop1__404541_629431_124169",
+   "gold": "extraction",
+   "unmerged": "aggregation",
+   "merged": "aggregation",
+   "groups": 4,
+   "equiv_valid": true,
+   "equivalent_facts": 1
+  },
+  {
+   "instance": "3hop1__41865_55331_34700",
+   "gold": "extraction",
+   "unmerged": "extraction",
+   "merged": "extraction",
+   "groups": 5,
+   "equiv_valid": true,
+   "equivalent_facts": 2
+  },
+  {
+   "instance": "3hop1__465684_160545_62931",
+   "gold": "extraction",
+   "unmerged": "aggregation",
+   "merged": "aggregation",
+   "groups": 2,
+   "equiv_valid": true,
+   "equivalent_facts": 0
+  },
+  {
+   "instance": "3hop1__49236_89752_49923",
+   "gold": "extraction",
+   "unmerged": "aggregation",
+   "merged": "aggregation",
+   "groups": 3,
+   "equiv_valid": true,
+   "equivalent_facts": 1
+  },
+  {
+   "instance": "3hop1__53690_161697_73916",
+   "gold": "extraction",
+   "unmerged": "aggregation",
+   "merged": "aggregation",
+   "groups": 3,
+   "equiv_valid": true,
+   "equivalent_facts": 2
+  }
+ ]
+}

@@ -126,10 +126,24 @@ def test_run_ablation_study_uses_batched_provider(monkeypatch):
 
     output = run_ablation_study(args)
 
-    assert set(output["table"]) == set(ABLATION_ROWS)
+    assert set(output["table"]) == {
+        "csc_redundancy", "csc_topk", "random_relay", "relevance_only",
+        "criticality_only", "no_uniqueness", "summary_exchange",
+        "no_evidence_board", "local_scoring_fails",
+    }
     assert output["n_instances"] == 1
     assert output["anchors"]["single_local_acc"] == pytest.approx(1.0)
     assert output["anchors"]["full_sharing_acc"] == pytest.approx(1.0)
     assert output["table"]["csc_topk"]["acc"] == pytest.approx(1.0)
     assert output["table"]["local_scoring_fails"]["n"] == 0
     assert batch_sizes
+
+
+def test_print_ablation_includes_legacy_relay_rows(capsys):
+    from src.eval.ablation_study import print_ablation_table
+
+    row = {"acc": 0.5, "mean_comm_tokens": 10, "cscov": 0.8, "recovery": 0.2}
+    print_ablation_table({"csc_redundancy": row, "csc_topk": row})
+    output = capsys.readouterr().out
+    assert "Redundancy-Aware Evidence Relay" in output
+    assert "Score-Ranked Evidence Relay" in output

@@ -1,0 +1,27 @@
+{
+  "screening_traces": 47,
+  "class_confirmation_traces": 108,
+  "class_confirmation_MQ": 93,
+  "class_confirmation_SB": 15,
+  "screening_passes": 94,
+  "assignments": {
+    "A": 26,
+    "B": 26,
+    "C": 21,
+    "D": 21
+  },
+  "model_counts": {
+    "qwen": 24,
+    "gemma": 23
+  },
+  "shortfall_before_losses_per_type": {
+    "extraction": 0,
+    "selection": 0,
+    "distortion": 0,
+    "aggregation": 3
+  },
+  "human_timing_available": false,
+  "evidence_target_candidates_per_type": 118,
+  "aggregation_candidates": 47,
+  "evidence_screening_loss_allowance": 0.576271186440678
+}

@@ -1,0 +1,21 @@
+{
+ "n": 15,
+ "invalid_checkpoints": 19,
+ "checkpoints": 60,
+ "status": {
+  "board/absent": 30,
+  "board/partial": 13,
+  "board/present": 20,
+  "extraction/absent": 30,
+  "extraction/partial": 12,
+  "extraction/present": 21
+ },
+ "gold_stage": {
+  "extraction": 11,
+  "aggregation": 4
+ },
+ "gold_stage_partial_as_failure": {
+  "extraction": 15
+ },
+ "spend_usd": 0.031945
+}

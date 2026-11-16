@@ -1,0 +1,66 @@
+{
+  "aggregation_shortfall_before_screening": 0,
+  "aggregation_targets": 68,
+  "aggregation_targets_per_model": {
+    "gemma": 23,
+    "gpt": 21,
+    "qwen": 24
+  },
+  "base_counts_per_model": {
+    "gemma": 23,
+    "gpt": 21,
+    "qwen": 24
+  },
+  "correct_GPT_reserved_excluded": 0,
+  "evidence_targets_per_type": 170,
+  "hours": {
+    "A": {
+      "E2A_screening_combined_hours_estimate": 4.316666666666666,
+      "E2A_screening_hours_estimate": 3.033333333333333,
+      "E2A_supplement_hours_estimate": 1.2833333333333334,
+      "E2C_full_pool_hours_upper_estimate": 8.383333333333322,
+      "basis": "planning minutes only; measured human times unavailable",
+      "calibration_reserved_hours": 2.1,
+      "post_wave2_max200_hours": 4.166666666666667,
+      "post_wave2_reserved_hours": 2.5
+    },
+    "B": {
+      "E2A_screening_combined_hours_estimate": 4.316666666666666,
+      "E2A_screening_hours_estimate": 3.033333333333333,
+      "E2A_supplement_hours_estimate": 1.2833333333333334,
+      "E2C_full_pool_hours_upper_estimate": 8.383333333333322,
+      "basis": "planning minutes only; measured human times unavailable",
+      "calibration_reserved_hours": 2.1,
+      "post_wave2_max200_hours": 4.166666666666667,
+      "post_wave2_reserved_hours": 2.5
+    },
+    "C": {
+      "E2A_screening_combined_hours_estimate": 3.6166666666666667,
+      "E2A_screening_hours_estimate": 2.45,
+      "E2A_supplement_hours_estimate": 1.1666666666666667,
+      "E2C_full_pool_hours_upper_estimate": 7.466666666666658,
+      "basis": "planning minutes only; measured human times unavailable",
+      "calibration_reserved_hours": 2.1,
+      "post_wave2_max200_hours": 4.166666666666667,
+      "post_wave2_reserved_hours": 2.5
+    },
+    "D": {
+      "E2A_screening_combined_hours_estimate": 3.6166666666666667,
+      "E2A_screening_hours_estimate": 2.45,
+      "E2A_supplement_hours_estimate": 1.1666666666666667,
+      "E2C_full_pool_hours_upper_estimate": 7.466666666666658,
+      "basis": "planning minutes only; measured human times unavailable",
+      "calibration_reserved_hours": 2.1,
+      "post_wave2_max200_hours": 4.166666666666667,
+      "post_wave2_reserved_hours": 2.5
+    }
+  },
+  "supplement_assignments": {
+    "A": 11,
+    "B": 11,
+    "C": 10,
+    "D": 10
+  },
+  "supplement_bases": 21,
+  "total_bases": 68
+}

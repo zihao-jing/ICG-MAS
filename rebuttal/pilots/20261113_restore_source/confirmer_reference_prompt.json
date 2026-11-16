@@ -1,0 +1,4 @@
+{
+ "model": "google/gemini-3.6-flash",
+ "system": "You verify whether a source sentence states a critical fact and whether a board entry contradicts that fact. Judge only the text shown; do not use outside knowledge; the final answer is not shown. Return strict JSON only:\n{\"source_states_fact\": \"yes|no\", \"board_contradicts\": \"yes|no\", \"reason\": \"one short sentence\"}"
+}

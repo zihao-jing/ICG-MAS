@@ -1,0 +1,103 @@
+{
+ "cells": {
+  "audit_qwen": {
+   "n": 89,
+   "correct": 70,
+   "accuracy": 0.7865168539325843,
+   "cp_ci": [
+    0.6868682365658607,
+    0.8663025521980969
+   ],
+   "by_population": {
+    "injected": {
+     "n": 30,
+     "correct": 26
+    },
+    "cohort": {
+     "n": 59,
+     "correct": 44
+    }
+   }
+  },
+  "judge_gemini": {
+   "n": 89,
+   "correct": 67,
+   "accuracy": 0.7528089887640449,
+   "cp_ci": [
+    0.6500075957036853,
+    0.8381478007602157
+   ],
+   "by_population": {
+    "injected": {
+     "n": 30,
+     "correct": 24
+    },
+    "cohort": {
+     "n": 59,
+     "correct": 43
+    }
+   }
+  },
+  "judge_qwen": {
+   "n": 89,
+   "correct": 56,
+   "accuracy": 0.6292134831460674,
+   "cp_ci": [
+    0.5202981134675726,
+    0.7292700663656853
+   ],
+   "by_population": {
+    "injected": {
+     "n": 30,
+     "correct": 27
+    },
+    "cohort": {
+     "n": 59,
+     "correct": 29
+    }
+   }
+  },
+  "audit_gemini": {
+   "n": 89,
+   "correct": 61,
+   "accuracy": 0.6853932584269663,
+   "cp_ci": [
+    0.5783015229069397,
+    0.7797423683861584
+   ],
+   "by_population": {
+    "injected": {
+     "n": 30,
+     "correct": 21
+    },
+    "cohort": {
+     "n": 59,
+     "correct": 40
+    }
+   }
+  }
+ },
+ "pairs": {
+  "audit": {
+   "n": 89,
+   "qwen_acc": 0.7865168539325843,
+   "gemini_acc": 0.6853932584269663,
+   "diff_qwen_minus_gemini": 0.10112359550561797,
+   "diff_ci": [
+    0.044444444444444446,
+    0.16853932584269662
+   ]
+  },
+  "judge": {
+   "n": 89,
+   "qwen_acc": 0.6292134831460674,
+   "gemini_acc": 0.7528089887640449,
+   "diff_qwen_minus_gemini": -0.12359550561797752,
+   "diff_ci": [
+    -0.24444444444444444,
+    -0.011111111111111112
+   ]
+  }
+ },
+ "spend_usd": 0.862423
+}

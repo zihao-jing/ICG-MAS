@@ -1,0 +1,22 @@
+{
+ "k": 1,
+ "definition": "paired on exact match (F1 = 1.0); drop = base exact & dup not exact; rise = reverse",
+ "protocols": {
+  "score_ranked": {
+   "exact_base": 52,
+   "exact_dup": 54,
+   "net": 2,
+   "drop": 2,
+   "rise": 4,
+   "check_net_matches": true
+  },
+  "redundancy_aware": {
+   "exact_base": 51,
+   "exact_dup": 53,
+   "net": 2,
+   "drop": 2,
+   "rise": 4,
+   "check_net_matches": true
+  }
+ }
+}

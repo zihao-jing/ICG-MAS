@@ -1,0 +1,12 @@
+{
+  "score.py": {
+    "sha256": "08abf6e6949f78e3addd3e799e7816b1d68605cfaa442d463fbd229000b434d0",
+    "pinned_commit": "14369dcb079c7cdf86ed2924145d5a28ff5c73b2",
+    "identical_to_local": true
+  },
+  "parse.py": {
+    "sha256": "03686d68e507aa0a17893d1d89e48f2469d33c4a35986b4e1348b10f5b6dd624",
+    "pinned_commit": "14369dcb079c7cdf86ed2924145d5a28ff5c73b2",
+    "identical_to_local": true
+  }
+}

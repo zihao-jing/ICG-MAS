@@ -1,0 +1,18 @@
+{
+  "planned": 852,
+  "valid": 852,
+  "failed": 0,
+  "failed_reason": {},
+  "model": "qwen/qwen3-235b-a22b-2507",
+  "temperature": 0,
+  "max_tokens": 512,
+  "pilot": false,
+  "start_utc": "2026-11-09T16:53:33Z",
+  "calls": 852,
+  "calls_failed": 0,
+  "cost_usd": 0.076322,
+  "end_utc": "2026-11-09T17:34:55Z",
+  "runner_sha256": "398eaac4de239eac67a51fbfd7d5efaf1efcef04565ae8e9a44769d88b1f6a5c",
+  "config_sha256": "835d936c3eb221d967193b7143448738977db23fae4ada12eb946fbf7cb18280",
+  "prereg_sha256": "06aef4be34c298ceac46e8877a953e496c404887c9cdf1ab7bdb1e55e9b4d7a6"
+}

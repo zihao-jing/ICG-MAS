@@ -1,0 +1,81 @@
+{
+ "n": 59,
+ "spend_usd": 0.89974,
+ "control": {
+  "new": 2,
+  "old": 0,
+  "cp_ci": [
+   0.004131932972365082,
+   0.11714846388839312
+  ],
+  "paired_new_minus_old": [
+   0.03389830508474576,
+   0.0,
+   0.0847457627118644
+  ],
+  "contain_new": 6,
+  "contain_old": 1,
+  "paired_contain_new_minus_old": [
+   0.0847457627118644,
+   0.0,
+   0.1694915254237288
+  ]
+ },
+ "insert": {
+  "new": 22,
+  "old": 32,
+  "cp_ci": [
+   0.25043956926130384,
+   0.5085452451250776
+  ],
+  "paired_new_minus_old": [
+   -0.1694915254237288,
+   -0.3050847457627119,
+   -0.03389830508474576
+  ],
+  "contain_new": 47,
+  "contain_old": 40,
+  "paired_contain_new_minus_old": [
+   0.11864406779661017,
+   0.01694915254237288,
+   0.23728813559322035
+  ]
+ },
+ "insert_minus_control_new": [
+  0.3389830508474576,
+  0.22033898305084745,
+  0.4745762711864407
+ ],
+ "insert_minus_control_old": [
+  0.5423728813559322,
+  0.423728813559322,
+  0.6610169491525424
+ ],
+ "flips_insert_new_vs_old": {
+  "worse": 14,
+  "better": 4
+ },
+ "by_label": {
+  "present": {
+   "n": 33,
+   "new_insert": 10,
+   "old_insert": 19,
+   "new_control": 2,
+   "old_control": 0
+  },
+  "partial": {
+   "n": 6,
+   "new_insert": 1,
+   "old_insert": 0,
+   "new_control": 0,
+   "old_control": 0
+  },
+  "absent": {
+   "n": 20,
+   "new_insert": 11,
+   "old_insert": 13,
+   "new_control": 0,
+   "old_control": 0
+  }
+ }
+}

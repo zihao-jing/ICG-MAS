@@ -1,0 +1,88 @@
+{
+ "rule_sha256": "1d3d1928ad214eb46aa406d4a206056db2d0c59a826265ad54f0383bd9ec6ab0",
+ "spend_usd": 0.054741,
+ "traces": 31,
+ "samples": {
+  "sample1_uniform": {
+   "n_both": 30,
+   "agree": 6,
+   "rate": 0.2,
+   "wilson": [
+    0.09504978102401235,
+    0.37306047381027446
+   ],
+   "confusion": {
+    "extraction": {
+     "extraction": 2,
+     "transmission": 0,
+     "aggregation": 2
+    },
+    "transmission": {
+     "extraction": 2,
+     "transmission": 0,
+     "aggregation": 0
+    },
+    "aggregation": {
+     "extraction": 20,
+     "transmission": 0,
+     "aggregation": 4
+    }
+   },
+   "no_stage": 0
+  },
+  "sample2_coarse": {
+   "n_both": 30,
+   "agree": 6,
+   "rate": 0.2,
+   "wilson": [
+    0.09504978102401235,
+    0.37306047381027446
+   ],
+   "confusion": {
+    "extraction": {
+     "extraction": 2,
+     "transmission": 0,
+     "aggregation": 2
+    },
+    "transmission": {
+     "extraction": 2,
+     "transmission": 0,
+     "aggregation": 0
+    },
+    "aggregation": {
+     "extraction": 20,
+     "transmission": 0,
+     "aggregation": 4
+    }
+   },
+   "no_stage": 0
+  },
+  "sample3_atom": {
+   "n_both": 30,
+   "agree": 6,
+   "rate": 0.2,
+   "wilson": [
+    0.09504978102401235,
+    0.37306047381027446
+   ],
+   "confusion": {
+    "extraction": {
+     "extraction": 2,
+     "transmission": 0,
+     "aggregation": 2
+    },
+    "transmission": {
+     "extraction": 2,
+     "transmission": 0,
+     "aggregation": 0
+    },
+    "aggregation": {
+     "extraction": 20,
+     "transmission": 0,
+     "aggregation": 4
+    }
+   },
+   "no_stage": 0
+  }
+ }
+}

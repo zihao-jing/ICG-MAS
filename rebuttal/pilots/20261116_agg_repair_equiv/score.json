@@ -1,0 +1,29 @@
+{
+ "cases": 213,
+ "original_equivalent": 61,
+ "failures": 152,
+ "recovered": 31,
+ "share": 0.2039,
+ "wilson95": [
+  0.1476,
+  0.2749
+ ],
+ "by_setting": {
+  "gemma31b_musique": [
+   8,
+   59
+  ],
+  "gpt4omini_musique": [
+   16,
+   54
+  ],
+  "qwen235b_musique": [
+   7,
+   39
+  ]
+ },
+ "unparsed_count_as_not_equivalent": 1,
+ "verdicts_read_from_truncated_output": 15,
+ "exact_f1_1_recovered_all213": 25,
+ "spend_total_usd": 0.41
+}

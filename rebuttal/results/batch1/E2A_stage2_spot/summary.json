@@ -1,0 +1,18 @@
+{
+  "by_type": {
+    "aggregation": 0,
+    "distortion": 0,
+    "extraction_omission": 0,
+    "selection_omission": 0
+  },
+  "calls": 4,
+  "completed_items": 7,
+  "cost_cap_usd": 0.5,
+  "cost_usd": 0.001342,
+  "end_utc": "2026-11-09T21:48:28Z",
+  "max_calls": 50,
+  "outcome_read": false,
+  "planned_items": 7,
+  "selection_sha256": "7a6e524fe73241ae0a69af75880f2e37e2c8865116b4addd5fc4ee5fd8c93870",
+  "well_formed": 0
+}

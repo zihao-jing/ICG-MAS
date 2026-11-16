@@ -1,0 +1,73 @@
+{
+ "traces": 607,
+ "failed": 1,
+ "spent_usd": 0.400727,
+ "cells": {
+  "SB|summary_exchange": {
+   "n": 52,
+   "v2_correct": 0.1154,
+   "lexical_acc": 0.0962
+  },
+  "SB|random_relay": {
+   "n": 52,
+   "v2_correct": 0.2308,
+   "lexical_acc": 0.1731
+  },
+  "SB|score_ranked_relay": {
+   "n": 52,
+   "v2_correct": 0.2308,
+   "lexical_acc": 0.1923
+  },
+  "SB|redundancy_aware_relay": {
+   "n": 52,
+   "v2_correct": 0.2115,
+   "lexical_acc": 0.1923
+  },
+  "MQ|summary_exchange": {
+   "n": 100,
+   "v2_correct": 0.5,
+   "lexical_acc": 0.19
+  },
+  "MQ|random_relay": {
+   "n": 100,
+   "v2_correct": 0.38,
+   "lexical_acc": 0.24
+  },
+  "MQ|score_ranked_relay": {
+   "n": 100,
+   "v2_correct": 0.47,
+   "lexical_acc": 0.28
+  },
+  "MQ|redundancy_aware_relay": {
+   "n": 99,
+   "v2_correct": 0.4141,
+   "lexical_acc": 0.2424
+  }
+ },
+ "pooled": {
+  "SB": {
+   "n": 208,
+   "v2_correct": 0.1971,
+   "lexical_acc": 0.1635,
+   "agree": 0.9663,
+   "kappa": 0.8864,
+   "kappa_ci": [
+    0.7453,
+    0.9657
+   ]
+  },
+  "MQ": {
+   "n": 399,
+   "v2_correct": 0.4411,
+   "lexical_acc": 0.2381,
+   "agree": 0.792,
+   "kappa": 0.5566,
+   "kappa_ci": [
+    0.4429,
+    0.6615
+   ]
+  }
+ },
+ "lenient": 89,
+ "strict": 1
+}

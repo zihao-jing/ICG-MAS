@@ -1,0 +1,23 @@
+{
+ "arms_executed": [
+  "R-dist",
+  "Rerun",
+  "V-dist"
+ ],
+ "calls": 126,
+ "contrast_computed": false,
+ "cost_cap_usd": 1.0,
+ "cost_usd": 0.032297,
+ "end_utc": "2026-11-11T15:06:59Z",
+ "failed_calls": 0,
+ "max_calls": 150,
+ "outcome_read": false,
+ "part": "distortion",
+ "per_group": {
+  "distortion": 25
+ },
+ "rows": 25,
+ "rows_completed": 25,
+ "runs_completed": 75,
+ "runs_planned": 75
+}

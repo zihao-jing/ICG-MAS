@@ -1,0 +1,10 @@
+{
+ "version": "swap-v1",
+ "family": "labeller-v2",
+ "file_sha256": "f2499ad68780e5ba147aec6d6586d9e74a439ac1b11ee72137ab35beb27fe095",
+ "system_sha256": "f6edc28eb401888d808ab64c861089416358a2a471dadef128638637ad31ef3e",
+ "model": "anthropic/claude-haiku-5.5",
+ "frozen_utc": "2026-11-12T00:00:00Z",
+ "recorded_before_first_call": true,
+ "note": "File hash computed and written before any model call."
+}

@@ -1,0 +1,27 @@
+{
+ "traces_scored": 30,
+ "proxy_vs_new_gold_agree": 7,
+ "pairs": 30,
+ "confusion_proxy_by_new_gold": {
+  "aggregation -> extraction": 23,
+  "extraction -> extraction": 4,
+  "aggregation -> aggregation": 3
+ },
+ "new_gold_stage_counts": {
+  "extraction": 27,
+  "aggregation": 3
+ },
+ "old_gold_stage_counts": {
+  "extraction": 28,
+  "aggregation": 2
+ },
+ "atom_agreement_gemini_vs_opus_extraction": [
+  47,
+  47
+ ],
+ "extraction_absent_agreement_gemini_vs_opus": [
+  8,
+  8
+ ],
+ "spend_usd": 0.418703
+}

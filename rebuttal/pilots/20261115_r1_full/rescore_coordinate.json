@@ -1,0 +1,12 @@
+{
+ "n": 89,
+ "cohort_right": 26,
+ "cohort_n": 59,
+ "injected_right": 27,
+ "injected_n": 30,
+ "overall_right": 53,
+ "accuracy": 0.5955056179775281,
+ "map_sha256": "2015e084",
+ "spend_usd": 0.870774,
+ "note": "stages read from the released step coordinate under the hashed rule; the mode-map score is withdrawn"
+}

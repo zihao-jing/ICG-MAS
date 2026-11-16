@@ -1,0 +1,23 @@
+{
+ "n": 20,
+ "truncated": 0,
+ "truncation_ci": [
+  0.0,
+  0.1684334709830853
+ ],
+ "facts_mean": 7.65,
+ "facts_max": 10,
+ "gold_mean": 8.0,
+ "granularity_factor": 0.95625,
+ "equivalence": 0.9869281045751634,
+ "equivalence_n": 153,
+ "equivalence_ci": [
+  0.9535792292148784,
+  0.9984129938379556
+ ],
+ "spend_usd": 0.226981,
+ "truncation_pass": true,
+ "gen_failed": 0,
+ "granularity_pass": true,
+ "passes": true
+}

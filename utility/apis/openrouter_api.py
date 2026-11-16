@@ -113,6 +113,18 @@ def _get_client():
     if _client is not None:
         return _client
 
+    # Try loading .env from project root if key isn't set yet
+    if not os.environ.get("OPENROUTER_API_KEY"):
+        _root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        _env_file = os.path.join(_root, ".env")
+        if os.path.exists(_env_file):
+            with open(_env_file) as _f:
+                for _line in _f:
+                    _line = _line.strip()
+                    if _line and not _line.startswith("#") and "=" in _line:
+                        _k, _v = _line.split("=", 1)
+                        os.environ.setdefault(_k.strip(), _v.strip())
+
     try:
         import openai  # noqa: PLC0415
     except ImportError as exc:
@@ -140,6 +152,7 @@ def _get_client():
         api_key=api_key,
         base_url=OPENROUTER_BASE_URL,
         default_headers=extra_headers or None,
+        timeout=120.0,
     )
     return _client
 
@@ -166,15 +179,23 @@ def single_request(request: APIRequest) -> APIResponse:
 
     with _Timer() as timer:
         try:
-            response = client.chat.completions.create(
-                model=request.model or DEFAULT_MODEL,
-                messages=[
+            request_kwargs = {
+                "model": request.model or DEFAULT_MODEL,
+                "messages": [
                     {"role": "system", "content": request.system_query},
                     {"role": "user", "content": request.user_query},
                 ],
-                max_tokens=request.max_tokens,
-                temperature=request.temperature,
-            )
+                "max_tokens": request.max_tokens,
+                "temperature": request.temperature,
+            }
+            extra_body = {}
+            if "openrouter_reasoning" in request.metadata:
+                extra_body["reasoning"] = {"enabled": bool(request.metadata["openrouter_reasoning"])}
+            if request.metadata.get("openrouter_provider_ignore"):
+                extra_body["provider"] = {"ignore": list(request.metadata["openrouter_provider_ignore"])}
+            if extra_body:
+                request_kwargs["extra_body"] = extra_body
+            response = client.chat.completions.create(**request_kwargs)
         except Exception as exc:
             api_err = handle_openai_error(exc, "openrouter")
             return APIResponse.error_response(

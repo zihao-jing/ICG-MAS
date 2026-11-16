@@ -1,0 +1,53 @@
+{
+ "rows": 30,
+ "valid_opus": 30,
+ "invalid_opus": 0,
+ "agreement_3class": {
+  "k": 23,
+  "n": 30,
+  "rate": 0.767,
+  "wilson95": [
+   0.591,
+   0.882
+  ]
+ },
+ "kappa_unweighted_3class": 0.608,
+ "agreement_absent_vs_not": {
+  "k": 24,
+  "n": 30,
+  "rate": 0.8,
+  "wilson95": [
+   0.627,
+   0.905
+  ]
+ },
+ "absent_precision_haiku_absent": {
+  "k": 9,
+  "n": 15,
+  "rate": 0.6,
+  "wilson95": [
+   0.357,
+   0.802
+  ]
+ },
+ "cost_usd": 1.879235,
+ "confusion_haiku_to_opus": {
+  "present->present": 14,
+  "present->partial": 0,
+  "present->absent": 0,
+  "partial->present": 1,
+  "partial->partial": 0,
+  "partial->absent": 0,
+  "absent->present": 1,
+  "absent->partial": 5,
+  "absent->absent": 9
+ },
+ "bars": {
+  "valid_opus>=28": true,
+  "agreement_3class>=0.85": false,
+  "kappa>=0.70": false,
+  "agreement_absent_vs_not>=0.90": false,
+  "absent_precision>=0.85": false
+ },
+ "pass": false
+}

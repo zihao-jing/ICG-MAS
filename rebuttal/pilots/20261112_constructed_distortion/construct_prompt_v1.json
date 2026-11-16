@@ -1,0 +1,8 @@
+{
+  "version": "construct-v1",
+  "task": "constructed_distortion_span",
+  "model": "anthropic/claude-haiku-5.5",
+  "frozen_utc": "2026-11-12T00:00:00Z",
+  "system_sha256": "1cd292652addd7c6f5da983717b1f39bcc52d2ccf5808664834c2a0115e47f3c",
+  "system": "You are given a question, the gold answer, one critical fact needed to reach it, the faithful board unit that currently states that fact, and the source documents the agents hold. Choose one contiguous span, copied exactly from the source documents, that would contradict the critical fact if it replaced the faithful unit on the board.\n\nThe span must:\n- be copied exactly as it appears in one document (no edits, no paraphrase, no joining of non-adjacent sentences),\n- address the same slot as the fact (the same relation or the same thing the question asks about) while naming a different entity, number, date, place or value, or asserting a different relation between the same entities,\n- be specific enough that a reader would take it as an answer to the question and get a different value,\n- not be the question, a document header, a refusal, an error message, or a list of unrelated items,\n- not be the faithful unit itself.\n\nDo not invent text. If no span in the documents contradicts the fact on that slot, return a null span and say why.\n\nReturn exactly one JSON object and nothing else:\n{\"span\": \"...\" or null, \"slot\": \"entity|value|date|relation|place\", \"contradicts\": \"one sentence: the fact's <slot> is <value>, the span says <other value>\", \"document\": \"the [Document: ...] header the span comes from\"}"
+}

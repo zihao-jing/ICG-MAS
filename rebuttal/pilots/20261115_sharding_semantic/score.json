@@ -1,0 +1,81 @@
+{
+ "gemini": {
+  "n": 87,
+  "correct": 66,
+  "old_correct": 61,
+  "confusion": {
+   "extraction->sharding": 4,
+   "sharding->extraction": 8,
+   "transmission->aggregation": 2,
+   "transmission->extraction": 4,
+   "extraction->transmission": 2,
+   "transmission->sharding": 1
+  },
+  "sharding_known_called_extraction": 8,
+  "sharding_known_called_extraction_old": 15,
+  "moved_to_sharding": [
+   "coh/gemma31b/2hop__128342_375952",
+   "coh/gemma31b/2hop__304852_758385",
+   "coh/gemma31b/2hop__342746_679190",
+   "coh/gemma31b/2hop__64537_482364",
+   "coh/gemma31b/4hop1__58323_375563_161848_44231",
+   "coh/gpt4omini/2hop__55032_786853",
+   "coh/gpt4omini/2hop__71294_494136",
+   "coh/gpt4omini/3hop1__702699_792411_51423"
+  ],
+  "broke": [
+   "coh/gemma31b/2hop__554145_88622",
+   "coh/gemma31b/2hop__723404_58556",
+   "coh/gemma31b/4hop1__3496_5274_458768_33637",
+   "coh/gpt4omini/3hop1__593288_720914_41132",
+   "coh/qwen235b/3hop1__274148_792411_51423"
+  ]
+ },
+ "qwen": {
+  "n": 89,
+  "correct": 64,
+  "old_correct": 57,
+  "confusion": {
+   "extraction->transmission": 11,
+   "transmission->aggregation": 2,
+   "sharding->transmission": 6,
+   "transmission->extraction": 1,
+   "sharding->extraction": 2,
+   "extraction->sharding": 1,
+   "sharding->aggregation": 2
+  },
+  "sharding_known_called_extraction": 2,
+  "sharding_known_called_extraction_old": 9,
+  "moved_to_sharding": [
+   "coh/gemma31b/2hop__128342_375952",
+   "coh/gemma31b/2hop__342746_679190",
+   "coh/gemma31b/2hop__50068_494136",
+   "coh/gemma31b/2hop__64537_482364",
+   "coh/gemma31b/3hop1__454441_55349_651302",
+   "coh/gemma31b/4hop1__58323_375563_161848_44231",
+   "coh/gpt4omini/2hop__55032_786853"
+  ],
+  "broke": [
+   "coh/gemma31b/3hop1__715607_792411_51423"
+  ]
+ },
+ "labels": {
+  "new_counts": {
+   "absent": 21,
+   "present": 38,
+   "partial": 12
+  },
+  "transitions": {
+   "partial->absent": 12,
+   "partial->present": 8,
+   "present->absent": 6,
+   "present->present": 29,
+   "absent->partial": 4,
+   "absent->absent": 3,
+   "absent->present": 1,
+   "present->partial": 3,
+   "partial->partial": 5
+  }
+ },
+ "spend_usd": 0.018639
+}

@@ -61,6 +61,31 @@ _AGGREGATION_SYSTEM = (
     "If the units are insufficient, write:\nANSWER: Insufficient information."
 )
 
+_RESCORE_SYSTEM = (
+    "You are scoring whether an evidence unit should be added to a shared evidence board.\n"
+    "Some units have already been transmitted. Score the remaining units on marginal value.\n\n"
+    "Return JSON only with no extra text:\n"
+    '{"relevance": <0-1>, "complementarity": <0-1>, "uniqueness_given_board": <0-1>, "overall": <0-1>}'
+)
+
+
+def _build_rescore_prompt(question: str, unit: str, board_units: list[str]) -> str:
+    if board_units:
+        board_str = "\n".join(f"  - {u}" for u in board_units)
+    else:
+        board_str = "  (empty)"
+    return (
+        f"Question: {question}\n\n"
+        f"Already on the evidence board:\n{board_str}\n\n"
+        f"Candidate unit to add: {unit}\n\n"
+        "Score this unit's marginal value given the current board:\n"
+        "- relevance: Does the unit relate to the question?\n"
+        "- complementarity: Would this combine with board units to help answer the question?\n"
+        "- uniqueness_given_board: Is this NOT already covered by units on the board?\n\n"
+        "Return JSON only: "
+        '{"relevance": ..., "complementarity": ..., "uniqueness_given_board": ..., "overall": ...}'
+    )
+
 
 def _build_extraction_prompt(context: str, question: str, max_units: int) -> str:
     return (
@@ -128,8 +153,9 @@ def _parse_units(text: str, max_units: int) -> list[str]:
     return units
 
 
-# Keep old name as alias for callers that use _parse_states
-_parse_states = _parse_units
+def _parse_states(text: str, max_states: int) -> list[str]:
+    """Compatibility wrapper preserving the historical keyword argument."""
+    return _parse_units(text, max_units=max_states)
 
 
 # ---------------------------------------------------------------------------
@@ -713,3 +739,209 @@ def run_redundancy_aware_relay_batch(
 # Backward-compatible aliases
 run_csc_topk_batch = run_score_ranked_relay_batch
 run_csc_redundancy_batch = run_redundancy_aware_relay_batch
+
+
+# ---------------------------------------------------------------------------
+# Multi-round relay (fixed total budget k per agent across n_rounds)
+# ---------------------------------------------------------------------------
+
+def _rescore_round(
+    instance: dict,
+    remaining_units: list[list[str]],     # per agent: units not yet selected
+    current_board: list[str],             # all units transmitted so far
+    batch_fn: Callable,
+    model: str,
+    max_workers: int,
+) -> list[list[dict]]:
+    """Score each agent's remaining units given the current board (board-aware)."""
+    all_requests: list[APIRequest] = []
+    index_map: list[tuple[int, int]] = []
+
+    for agent_j, units in enumerate(remaining_units):
+        for unit_k, unit in enumerate(units):
+            all_requests.append(APIRequest(
+                system_query=_RESCORE_SYSTEM,
+                user_query=_build_rescore_prompt(instance["question"], unit, current_board),
+                model=model,
+                max_tokens=128,
+                temperature=0.0,
+                metadata={"instance_id": instance["id"], "agent": agent_j,
+                           "unit_idx": unit_k, "phase": "rescore"},
+            ))
+            index_map.append((agent_j, unit_k))
+
+    new_scores: list[list[dict]] = [[{} for _ in units] for units in remaining_units]
+    if not all_requests:
+        return new_scores
+
+    responses = batch_fn(all_requests, max_workers=max_workers)
+    total_tok = 0
+    for resp, (agent_j, unit_k) in zip(responses, index_map):
+        total_tok += resp.usage.get("total_tokens", 0)
+        new_scores[agent_j][unit_k] = (
+            parse_score_json(resp.content)
+            if resp.success and resp.content.strip()
+            else {"relevance": 0.5, "complementarity": 0.5,
+                  "uniqueness_given_board": 0.5, "overall": 0.5}
+        )
+    return new_scores, total_tok
+
+
+def run_multistep_relay_batch(
+    instances: list[dict],
+    shards_list: list[list[AgentShard]],
+    batch_fn: Callable,
+    model: str,
+    max_tokens: int,
+    total_budget_per_agent: int = 3,
+    n_rounds: int = 2,
+    precomputed_states: list[list[list[str]]] | None = None,
+    precomputed_scores: list[list[list[dict]]] | None = None,
+    precomputed_extract_tokens: list[int] | None = None,
+    precomputed_score_tokens: list[int] | None = None,
+    max_workers: int = 5,
+) -> list[ProtocolResult]:
+    """Fixed-budget multi-round evidence relay.
+
+    Each agent transmits exactly `total_budget_per_agent` units spread across
+    `n_rounds` rounds.  In rounds 2+, agents see the cumulative board and
+    re-score their remaining units for board-aware selection.
+
+    Round allocations (total_budget_per_agent=3):
+      n_rounds=1: [3]
+      n_rounds=2: [1, 2]
+      n_rounds=3: [1, 1, 1]
+
+    All final aggregation happens once after all rounds complete.
+    """
+    assert n_rounds >= 1, "n_rounds must be >= 1"
+
+    # Distribute budget across rounds: round 1 gets 1 unit, remainder split over later rounds
+    if n_rounds == 1:
+        round_budgets = [total_budget_per_agent]
+    else:
+        # Give 1 unit to each intermediate round; last round gets the remainder
+        per_round = [1] * (n_rounds - 1)
+        per_round.append(total_budget_per_agent - sum(per_round))
+        round_budgets = per_round
+
+    # Phase 1: extract
+    if precomputed_states is not None:
+        all_states = precomputed_states
+        extract_tokens = precomputed_extract_tokens or [0] * len(instances)
+    else:
+        all_states, extract_tokens = extract_states_batch(
+            instances, shards_list, batch_fn, model, max_tokens,
+            total_budget_per_agent, max_workers
+        )
+
+    # Phase 2: initial score (round 1, no board context)
+    if precomputed_scores is not None:
+        all_scores = precomputed_scores
+        score_tokens = precomputed_score_tokens or [0] * len(instances)
+    else:
+        all_scores, score_tokens = score_states_batch(
+            instances, all_states, batch_fn, model, max_workers
+        )
+
+    rescore_tokens_total = [0] * len(instances)
+
+    # Phase 3: multi-round selection
+    # all_selected[inst_i][agent_j] = accumulated selected units after all rounds
+    all_selected: list[list[list[str]]] = [
+        [[] for _ in shards] for shards in shards_list
+    ]
+    # remaining[inst_i][agent_j] = units not yet selected
+    all_remaining: list[list[list[str]]] = [
+        [list(states) for states in inst_states]
+        for inst_states in all_states
+    ]
+    all_remaining_scores: list[list[list[dict]]] = [
+        [list(scores) for scores in inst_scores]
+        for inst_scores in all_scores
+    ]
+
+    for round_idx, k_this_round in enumerate(round_budgets):
+        is_first_round = (round_idx == 0)
+
+        if not is_first_round:
+            # Re-score all remaining units using current board context
+            rescore_requests: list[APIRequest] = []
+            rescore_index: list[tuple[int, int, int]] = []
+
+            for inst_i, (instance, remaining) in enumerate(
+                zip(instances, all_remaining)
+            ):
+                current_board = [u for ag in all_selected[inst_i] for u in ag]
+                for agent_j, units in enumerate(remaining):
+                    for unit_k, unit in enumerate(units):
+                        rescore_requests.append(APIRequest(
+                            system_query=_RESCORE_SYSTEM,
+                            user_query=_build_rescore_prompt(
+                                instance["question"], unit, current_board
+                            ),
+                            model=model,
+                            max_tokens=128,
+                            temperature=0.0,
+                            metadata={
+                                "instance_id": instance["id"],
+                                "agent": agent_j,
+                                "unit_idx": unit_k,
+                                "phase": f"rescore_r{round_idx + 1}",
+                            },
+                        ))
+                        rescore_index.append((inst_i, agent_j, unit_k))
+
+            if rescore_requests:
+                rescore_responses = batch_fn(rescore_requests, max_workers=max_workers)
+                for resp, (inst_i, agent_j, unit_k) in zip(rescore_responses, rescore_index):
+                    rescore_tokens_total[inst_i] += resp.usage.get("total_tokens", 0)
+                    all_remaining_scores[inst_i][agent_j][unit_k] = (
+                        parse_score_json(resp.content)
+                        if resp.success and resp.content.strip()
+                        else {"relevance": 0.5, "complementarity": 0.5,
+                              "uniqueness_given_board": 0.5, "overall": 0.5}
+                    )
+
+        # Select k_this_round units per agent from remaining pool
+        for inst_i in range(len(instances)):
+            for agent_j in range(len(all_remaining[inst_i])):
+                remaining = all_remaining[inst_i][agent_j]
+                rem_scores = all_remaining_scores[inst_i][agent_j]
+                if not remaining:
+                    continue
+                selected_this_round = _topk_select(remaining, rem_scores, k_this_round)
+                all_selected[inst_i][agent_j].extend(selected_this_round)
+                # Remove selected from remaining pool
+                selected_set = set(selected_this_round)
+                new_rem, new_scores = [], []
+                for u, sc in zip(remaining, rem_scores):
+                    if u not in selected_set:
+                        new_rem.append(u)
+                        new_scores.append(sc)
+                    else:
+                        selected_set.discard(u)  # handle duplicates
+                all_remaining[inst_i][agent_j] = new_rem
+                all_remaining_scores[inst_i][agent_j] = new_scores
+
+    # Phase 4: aggregate once over all collected units
+    agg_results = _aggregate_evidence_board_batch(
+        instances, all_selected, batch_fn, model, max_tokens, max_workers
+    )
+
+    return [
+        ProtocolResult(
+            instance_id=instance["id"],
+            pred=pred,
+            f1=f1,
+            comm_tokens=comm_tokens,
+            total_llm_tokens=(
+                extract_tokens[i] + score_tokens[i] +
+                rescore_tokens_total[i] + agg_tok
+            ),
+            transmitted_states=[s for ag in selected for s in ag],
+        )
+        for i, (instance, selected, (pred, f1, comm_tokens, agg_tok)) in enumerate(
+            zip(instances, all_selected, agg_results)
+        )
+    ]

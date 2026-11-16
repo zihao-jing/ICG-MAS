@@ -1,0 +1,36 @@
+{
+ "rule_sha256": "cb577da58d3d4a8ca5819ce31f3a683ddd40e9b4158cca077fcd06d7628cf0db",
+ "n_facts": 19,
+ "missing": 11,
+ "boards": 29,
+ "agreement": {
+  "k": 18,
+  "n": 19,
+  "rate": 0.947,
+  "wilson95": [
+   0.754,
+   0.991
+  ]
+ },
+ "kappa": {
+  "value": 0.883,
+  "cluster_bootstrap95": [
+   0.587,
+   1.0
+  ]
+ },
+ "three_class_agreement": {
+  "k": 17,
+  "n": 19,
+  "rate": 0.895
+ },
+ "confusion_binary": {
+  "stored_True|ref_True": 6,
+  "stored_True|ref_False": 1,
+  "stored_False|ref_True": 0,
+  "stored_False|ref_False": 12
+ },
+ "verdict": "PASS",
+ "spend_api_equiv_usd": 1.000976,
+ "spend_cli_usd": 0.90621
+}

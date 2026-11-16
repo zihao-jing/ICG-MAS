@@ -1,0 +1,110 @@
+{
+ "recorded_before_first_call": true,
+ "rule": "rebuttal/pilots/20261112_missing_fact_repair/TABLE_PROMPT_RULE.md",
+ "rule_sha256": "63e9767633c6125e478ec43291e58184a83bce1d2b0a810e13a95b74414f22e3",
+ "system_sha256": "4de768720782a186d409b52eda998e0d4979adc2f7cb86d54bc707f128e37634",
+ "cases_sha256": "8e0b425d035bb2ac7d8d482942caf66d5a4e021e4a001fc39658a3fffb34f8b6",
+ "model_temperature": 0,
+ "max_units": 3,
+ "per_case": {
+  "2hop__123148_5385": {
+   "extract_user_sha256": "686ff367c6352133030e00ae5652f402d619910b0c5f6a342007bb614ff3177e"
+  },
+  "2hop__157285_556157": {
+   "extract_user_sha256": "11e4fc89a704df7c9e2be433d1dc02ab62ddddb153b74fe9d7fa771c1d2d9ad5"
+  },
+  "2hop__207597_73244": {
+   "extract_user_sha256": "e060c4773a59be557f0682478e87ef5fdd0688ec3c70f9965dfb1fb1b9c45d32"
+  },
+  "2hop__242753_658778": {
+   "extract_user_sha256": "9d29e57c4d4d709d6f06452abc57dcb46e8704f534a50d8c4b22e4bde2cd5382"
+  },
+  "2hop__25396_212301": {
+   "extract_user_sha256": "7c515a60c44bf84ea080ca29c137f71cdd2593c876e50092f59b3ad852ae397b"
+  },
+  "2hop__435184_84856": {
+   "extract_user_sha256": "aaee5b42c710008aede4da1befa2b60a243f998be144b0efee315232d5d80b9c"
+  },
+  "2hop__504464_708278": {
+   "extract_user_sha256": "9c410c5e90c0a03f84029c1c317c0f4ef84abc4ba70f8a266448d7a77da1fe75"
+  },
+  "2hop__51760_602275": {
+   "extract_user_sha256": "df4059fef683f23cae91b0d20197ab3adc1bd32c906807ea97d5de013aa7230a"
+  },
+  "2hop__520033_123956": {
+   "extract_user_sha256": "f96e9cd79cb95cb82264161da334ebba04e1d967a2d3483439776f33f7e1f53d"
+  },
+  "2hop__528263_865831": {
+   "extract_user_sha256": "ade4f0f9490b54a3aaaec9efe7f2b6201232e8fd9ce9ecc2ac23c9024cc0e35f"
+  },
+  "2hop__551235_310309": {
+   "extract_user_sha256": "0c74c2bdb059cac50b502bbbe5d60ac37dc4f4926c7848f55999db99d394e16d"
+  },
+  "2hop__619265_45326": {
+   "extract_user_sha256": "903cda91672cb911d90b9d8a240ced01e0e373166761b1eec1a282f8fb7d1fb2"
+  },
+  "2hop__639445_567836": {
+   "extract_user_sha256": "24850b127c0f2a77a51a73bb171e112438fe307c3f9dacb20690317d3723733f"
+  },
+  "2hop__655505_110949": {
+   "extract_user_sha256": "053853f970507038e202bab1727717bee859cd801932e4e47e4731bc086a5ecc"
+  },
+  "2hop__673655_316668": {
+   "extract_user_sha256": "45d3d30ebd8b455f5fa6dfd20a215cfd82ad7c7d5871400fcd1ae0ba55d7096a"
+  },
+  "2hop__677160_110882": {
+   "extract_user_sha256": "b57539086a1ac18d52dfccff4bfd06f884af40478fc67a338d08d412182af0e2"
+  },
+  "2hop__693444_220151": {
+   "extract_user_sha256": "1373759c9870d364209f9548a1360cbd712893fdb5448953e29916d207bad2f1"
+  },
+  "2hop__734582_71302": {
+   "extract_user_sha256": "91c1bb21bb9b99dc5088ca888457e5b00ef50340eab042006319569a5da4ee44"
+  },
+  "2hop__765678_310556": {
+   "extract_user_sha256": "5b8d766217650701deaf3d01bb6965e31b0ff4fea585006fc8512e08446663b6"
+  },
+  "2hop__788306_131879": {
+   "extract_user_sha256": "190572a73bb3b182818da92f840895662359a26fe3d2149769ae1dbca4c43657"
+  },
+  "2hop__804417_126089": {
+   "extract_user_sha256": "20cfd53c7d812c61c5a832070f980af501b99021806f5c8adc1f3f5616573aa9"
+  },
+  "2hop__810884_22402": {
+   "extract_user_sha256": "32f1f734c400cc7044aaa9a5bf7c5a2368d0fe6c904973dbe4542586e6a2bb08"
+  },
+  "2hop__88834_425488": {
+   "extract_user_sha256": "f91eaed2dcdf1ffc721311ee089fafc419608e9c770b86e64cf8b33bfa57afb1"
+  },
+  "2hop__94507_654855": {
+   "extract_user_sha256": "0de3a2a0396073c523bdc5d6c408a07af46f4f3f91f8a3c5046e51c872e53dd2"
+  },
+  "2hop__95970_456836": {
+   "extract_user_sha256": "903f51947928014439052dba02779e0885630a43be303509664ceeb88265bc83"
+  },
+  "3hop1__274148_792411_51423": {
+   "extract_user_sha256": "5a20d9a982fe69c8be0d5f8804450bec314a861c80cf709d1c9cbd726f6a8168"
+  },
+  "3hop1__389761_567566_84283": {
+   "extract_user_sha256": "972879a986e337ca9f0c94f8d624615dd6ee9c239c0fedacd896ea2cd477334c"
+  },
+  "3hop1__506062_792411_51423": {
+   "extract_user_sha256": "a3e841c1aba416abb9fcb92b1f6a416c6a4ff91f79e32f1898b0bb2a8022f369"
+  },
+  "3hop1__593288_720914_41132": {
+   "extract_user_sha256": "c6eb59ad74bb0c982c42d43025d9927cb05c56181c0401ddf687c11e85f1e4b2"
+  },
+  "3hop1__662618_339990_54675": {
+   "extract_user_sha256": "b251bdcf88542125263816ad5fe7138198d64da03b0344a4b44b5d65eb9f4eb3"
+  },
+  "4hop1__3496_5274_458768_33637": {
+   "extract_user_sha256": "10f0a85f7da4cef94afa07e1403148e8ad348d5aeb8c2ad737b7a467b82f4324"
+  },
+  "4hop2__9988_158985_70784_61381": {
+   "extract_user_sha256": "b978b9adcf5dd54c3f5494897724896e841dbc37b8529d472d7dbcfdcaef6e22"
+  },
+  "4hop3__131775_29339_508306_70744": {
+   "extract_user_sha256": "0a9daa18a625fa5d3da552e74fadc56a04f2244b67d51a4818124119c813eba0"
+  }
+ }
+}

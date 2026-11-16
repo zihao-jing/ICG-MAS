@@ -1,0 +1,152 @@
+{
+ "rule_sha256": "49e56cf86bd0ebc8f090078ca266340b099ae4262e45057c8ff84bdbfcf214b0",
+ "spend_usd": 0.071431,
+ "traces": 30,
+ "n_both": 30,
+ "agree": 6,
+ "rate": 0.2,
+ "wilson": [
+  0.09504978102401235,
+  0.37306047381027446
+ ],
+ "confusion": {
+  "extraction": {
+   "extraction": 4,
+   "transmission": 0,
+   "aggregation": 0
+  },
+  "transmission": {
+   "extraction": 0,
+   "transmission": 0,
+   "aggregation": 0
+  },
+  "aggregation": {
+   "extraction": 24,
+   "transmission": 0,
+   "aggregation": 2
+  }
+ },
+ "no_stage": 0,
+ "stages": {
+  "2hop__107690_124896": {
+   "gold": "extraction",
+   "proxy": "aggregation"
+  },
+  "2hop__142621_225454": {
+   "gold": "extraction",
+   "proxy": "aggregation"
+  },
+  "2hop__194469_83289": {
+   "gold": "extraction",
+   "proxy": "aggregation"
+  },
+  "2hop__203437_152093": {
+   "gold": "extraction",
+   "proxy": "aggregation"
+  },
+  "2hop__284789_52835": {
+   "gold": "extraction",
+   "proxy": "aggregation"
+  },
+  "2hop__402530_774333": {
+   "gold": "aggregation",
+   "proxy": "aggregation"
+  },
+  "2hop__433694_20273": {
+   "gold": "extraction",
+   "proxy": "extraction"
+  },
+  "2hop__450600_158262": {
+   "gold": "extraction",
+   "proxy": "aggregation"
+  },
+  "2hop__458672_20057": {
+   "gold": "extraction",
+   "proxy": "aggregation"
+  },
+  "2hop__496961_554601": {
+   "gold": "extraction",
+   "proxy": "aggregation"
+  },
+  "2hop__525242_52835": {
+   "gold": "extraction",
+   "proxy": "aggregation"
+  },
+  "2hop__631139_75487": {
+   "gold": "aggregation",
+   "proxy": "aggregation"
+  },
+  "2hop__64175_90973": {
+   "gold": "extraction",
+   "proxy": "aggregation"
+  },
+  "2hop__71755_463572": {
+   "gold": "extraction",
+   "proxy": "aggregation"
+  },
+  "2hop__81659_52835": {
+   "gold": "extraction",
+   "proxy": "aggregation"
+  },
+  "2hop__846844_47134": {
+   "gold": "extraction",
+   "proxy": "aggregation"
+  },
+  "3hop1__109113_720914_41132": {
+   "gold": "extraction",
+   "proxy": "aggregation"
+  },
+  "3hop1__131820_59747_48534": {
+   "gold": "extraction",
+   "proxy": "aggregation"
+  },
+  "3hop1__132795_40769_64047": {
+   "gold": "extraction",
+   "proxy": "extraction"
+  },
+  "3hop1__133292_40769_64047": {
+   "gold": "extraction",
+   "proxy": "aggregation"
+  },
+  "3hop1__147225_30587_83479": {
+   "gold": "extraction",
+   "proxy": "aggregation"
+  },
+  "3hop1__251085_831637_91775": {
+   "gold": "extraction",
+   "proxy": "extraction"
+  },
+  "3hop1__389955_132457_47686": {
+   "gold": "extraction",
+   "proxy": "aggregation"
+  },
+  "3hop1__389955_132457_51423": {
+   "gold": "extraction",
+   "proxy": "aggregation"
+  },
+  "3hop1__398232_326948_59893": {
+   "gold": "extraction",
+   "proxy": "aggregation"
+  },
+  "3hop1__404541_629431_124169": {
+   "gold": "extraction",
+   "proxy": "aggregation"
+  },
+  "3hop1__41865_55331_34700": {
+   "gold": "extraction",
+   "proxy": "extraction"
+  },
+  "3hop1__465684_160545_62931": {
+   "gold": "extraction",
+   "proxy": "aggregation"
+  },
+  "3hop1__49236_89752_49923": {
+   "gold": "extraction",
+   "proxy": "aggregation"
+  },
+  "3hop1__53690_161697_73916": {
+   "gold": "extraction",
+   "proxy": "aggregation"
+  }
+ }
+}

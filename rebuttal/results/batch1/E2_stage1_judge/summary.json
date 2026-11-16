@@ -1,0 +1,30 @@
+{
+ "planned": 12,
+ "calls": 12,
+ "valid": 12,
+ "format_invalid": 0,
+ "failed": 0,
+ "failed_keys": [],
+ "format_invalid_keys": [],
+ "resolved_models": {
+  "google/gemini-3.6-flash": 12
+ },
+ "model_mismatch": 0,
+ "prompt_tokens": 35847,
+ "completion_tokens": 29187,
+ "cost_usd": 0.134967,
+ "end_utc": "2026-11-09T10:59:46Z",
+ "config_sha256": "863f7cbfa24fb7e02ed4167db6daeee74110916ecf88633c8f9bc789b0b6e4f6",
+ "prereg_sha256": "2e671369c5190636433c7557e99448503577d9a54bc386881f174290e3ce6659",
+ "freeze": {
+  "frozen_utc": "2026-11-09T11:05:00Z",
+  "prompts_file_sha256": "3b4257a1de364511c062e565c5ae3e41759ab1a96b0594e153bae0d1646dc4e7",
+  "prompts_sha256": "e89cd06cd6bbe12740959be072422ff2df42304726aa00ce5b0420377a6c5098",
+  "system_sha256": "2e91cc21bc3c6bf8bb62e38eb30d838d65a610f2d98a3e758ceee3a7d2248780",
+  "code_sha256": {
+   "scripts/run_e2_stage1_judge.py": "2484a6a17fcbce7f55ec3f40ff6d07fe4912ffa359751f81d5891a4843031ef2",
+   "src/audit/judge_render.py": "e5c16eeb7f2465f9e12198ab32fa2051bda210dc9de2b46f88aaa3d20af2979a",
+   "src/audit/pilot_common.py": "b8f4a24180276aa193009f5a544a23c0fddbf8cb4b8ef39282ab382fda42c2ed"
+  }
+ }
+}

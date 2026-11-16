@@ -1,0 +1,11 @@
+{
+ "traces": 51,
+ "supports": 380,
+ "atoms": 380,
+ "atom_presence": 0.6763157894736842,
+ "support_complete": 0.6763157894736842,
+ "trace_atom_cr_mean": 0.6823529411764707,
+ "spend_usd": 0.162332,
+ "prompt_sha": "86d84ff6d57c53461a9ffb36666a246b1d7a0eef47d7226570dffdbe8c33483a",
+ "cap_usd": 6.0
+}

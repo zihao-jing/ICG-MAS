@@ -1,0 +1,36 @@
+{
+ "prompt_sha": "7210ce146aa6b7fb8e1f7e1b625748d2f09e89911207bc544bcc5bad58dafe7e",
+ "user_template_fields": [
+  "question",
+  "documents"
+ ],
+ "traces": [
+  {
+   "key": "qwen235b|SB|results/run_qwen235b_n5|summary_exchange|I-10_n5",
+   "documents": 5,
+   "gold_supports": 5,
+   "documents_that_are_gold_supports": 5,
+   "gold_supports_present_in_rendered_prompt": 5,
+   "documents_equal_gold_list": true,
+   "gold_field_names_in_prompt": []
+  },
+  {
+   "key": "qwen235b|SB|results/run_qwen235b_n5|score_ranked_relay|III-26_n5",
+   "documents": 5,
+   "gold_supports": 5,
+   "documents_that_are_gold_supports": 5,
+   "gold_supports_present_in_rendered_prompt": 5,
+   "documents_equal_gold_list": true,
+   "gold_field_names_in_prompt": []
+  },
+  {
+   "key": "qwen235b|SB|results/run_qwen235b_n10|score_ranked_relay|III-27_n10",
+   "documents": 10,
+   "gold_supports": 10,
+   "documents_that_are_gold_supports": 10,
+   "gold_supports_present_in_rendered_prompt": 10,
+   "documents_equal_gold_list": true,
+   "gold_field_names_in_prompt": []
+  }
+ ]
+}

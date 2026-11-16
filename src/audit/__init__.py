@@ -8,4 +8,6 @@ Modules:
   interventions           — Controlled evidence deletion experiments
   local_importance_analysis — Correlation between local scores and true criticality
   reporting               — Export JSONL and LaTeX tables
+  critical_fact_validation — Offline dual-annotation validation workflow
+  repair_study             — Frozen-diagnosis paired repair evaluation
 """

@@ -1,0 +1,56 @@
+{
+ "traces": 208,
+ "supports": 1560,
+ "atoms": 28284,
+ "atom_presence": 0.5598571630603875,
+ "support_present": 0.5153846153846153,
+ "support_partial": 0.175,
+ "trace_atom_cr_mean": 0.5734036272594742,
+ "invalid": 0,
+ "cells": {
+  "qwen235b|random_relay|n10": {
+   "traces": 26,
+   "atoms": 4720,
+   "atom_presence": 0.7364406779661017
+  },
+  "qwen235b|random_relay|n5": {
+   "traces": 26,
+   "atoms": 2351,
+   "atom_presence": 0.7566992769034453
+  },
+  "qwen235b|redundancy_aware_relay|n10": {
+   "traces": 26,
+   "atoms": 4720,
+   "atom_presence": 0.7396186440677966
+  },
+  "qwen235b|redundancy_aware_relay|n5": {
+   "traces": 26,
+   "atoms": 2351,
+   "atom_presence": 0.767333049766057
+  },
+  "qwen235b|score_ranked_relay|n10": {
+   "traces": 26,
+   "atoms": 4720,
+   "atom_presence": 0.7275423728813559
+  },
+  "qwen235b|score_ranked_relay|n5": {
+   "traces": 26,
+   "atoms": 2351,
+   "atom_presence": 0.7873245427477669
+  },
+  "qwen235b|summary_exchange|n10": {
+   "traces": 26,
+   "atoms": 4720,
+   "atom_presence": 0.0
+  },
+  "qwen235b|summary_exchange|n5": {
+   "traces": 26,
+   "atoms": 2351,
+   "atom_presence": 0.0
+  }
+ },
+ "spend_new_usd": 1.056094,
+ "prior_supports": 380,
+ "prompt_sha": "86d84ff6d57c53461a9ffb36666a246b1d7a0eef47d7226570dffdbe8c33483a",
+ "cap_usd": 3.0
+}

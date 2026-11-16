@@ -1,0 +1,14 @@
+{
+ "calls": 48,
+ "valid": 48,
+ "format_invalid": 0,
+ "failed_calls": 0,
+ "refusals": 0,
+ "prompt_tokens": 191266,
+ "completion_tokens": 117101,
+ "cost_usd": 0.5826,
+ "sealed_manifest_sha256": "bacbfb22afa476e7ccb655f3da44e24f59c8eddeabc9f56c639988f0764c1339",
+ "sealed_files": 49,
+ "version_sha256": "193161cd9d18ca0e4c2a9732494382e16deeda5d31f53f99846a3d8e654ed03d",
+ "end_utc": "2026-11-08T14:00:25Z"
+}

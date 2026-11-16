@@ -438,7 +438,14 @@ def print_ablation_table(table: dict[str, dict]) -> None:
     )
     print(header)
     print("-" * len(header))
+    legacy_keys = {
+        "redundancy_aware_relay": "csc_redundancy",
+        "score_ranked_relay": "csc_topk",
+    }
     for name in _DISPLAY_ORDER:
+        # Historical result files retain CSC keys; show each row once.
+        if name not in table:
+            name = legacy_keys.get(name, name)
         if name not in table:
             continue
         row = table[name]

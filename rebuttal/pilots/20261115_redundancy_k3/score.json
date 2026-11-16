@@ -1,0 +1,62 @@
+{
+ "k": 3,
+ "cases": 90,
+ "arms": {
+  "base/score_ranked": {
+   "n": 90,
+   "exact": 83,
+   "exact_wilson95": [
+    0.848,
+    0.962
+   ],
+   "mean_f1": 0.973
+  },
+  "duplicated/score_ranked": {
+   "n": 90,
+   "exact": 74,
+   "exact_wilson95": [
+    0.731,
+    0.888
+   ],
+   "mean_f1": 0.894
+  },
+  "base/redundancy_aware": {
+   "n": 90,
+   "exact": 84,
+   "exact_wilson95": [
+    0.862,
+    0.969
+   ],
+   "mean_f1": 0.981
+  },
+  "duplicated/redundancy_aware": {
+   "n": 90,
+   "exact": 81,
+   "exact_wilson95": [
+    0.821,
+    0.946
+   ],
+   "mean_f1": 0.958
+  }
+ },
+ "paired": {
+  "score_ranked": {
+   "drop": 11,
+   "rise": 2,
+   "unchanged": 77,
+   "mean_diff": -0.079
+  },
+  "redundancy_aware": {
+   "drop": 4,
+   "rise": 0,
+   "unchanged": 86,
+   "mean_diff": -0.023
+  }
+ },
+ "duplicate_selected": {
+  "base/score_ranked": 0,
+  "duplicated/score_ranked": 90,
+  "base/redundancy_aware": 0,
+  "duplicated/redundancy_aware": 0
+ }
+}

@@ -1,0 +1,106 @@
+{
+  "planned": 240,
+  "attempted": 240,
+  "ok": 227,
+  "failed": 13,
+  "failed_keys": [
+    "023305a535023a923f993b9bab46254b759913205f2c4c6bfdca3d2a49bcb7f5",
+    "295db626b0a55b8d5e4575d361919c0a3d61f14546180497f4c1aa80ddd65718",
+    "357f9ca66a5b9c9b910f01d593ad5ec72b0a41c55639012d4d091eef5f7d3394",
+    "38e57d39a72bfba0d09f8aa4c0df7a5bb6a80ed6bf803e80ccb4f9b0e6d6912f",
+    "52ff98eeee635d78f1425feada85bfc73a4fd88569403d79418426f4dbb6aacd",
+    "54ff6123fae23660cd0d65b5324844f86817a2723b7ec5f98e7be91c0f75f766",
+    "5bc0e5d55a8ac2df7e1bbec7059636e7a7e3d9c9edd341b6df0acbcbf0ea12c6",
+    "79bd288f3d31c4e379c5e33be72902747d27a93e745c78e477d272e7d2eba0de",
+    "813e88e26ebb217026af7c48689691c13975a938cfbd72acf43b2521989775bc",
+    "9a4533441b012d48b44c36ca19387192166c9fe7b710bc22b92efd85386a13a9",
+    "a2393eea031750eed431a8384af191b52d301bda661d155189b6c5a40fbb1971",
+    "a7349fb3bbc1fa9dbe009df6935c74a594bc0bd693d4f01d5cb0cf8489431842",
+    "c83bc329aac94359768ef14a78df01feb1a7d65f0a6af5ccf4c01fef8c380092"
+  ],
+  "failed_error_types": {
+    "schema_exhausted": 13
+  },
+  "case_planned": 232,
+  "case_ok": 219,
+  "case_failed": 13,
+  "case_failed_keys": [
+    "023305a535023a923f993b9bab46254b759913205f2c4c6bfdca3d2a49bcb7f5",
+    "295db626b0a55b8d5e4575d361919c0a3d61f14546180497f4c1aa80ddd65718",
+    "357f9ca66a5b9c9b910f01d593ad5ec72b0a41c55639012d4d091eef5f7d3394",
+    "38e57d39a72bfba0d09f8aa4c0df7a5bb6a80ed6bf803e80ccb4f9b0e6d6912f",
+    "52ff98eeee635d78f1425feada85bfc73a4fd88569403d79418426f4dbb6aacd",
+    "54ff6123fae23660cd0d65b5324844f86817a2723b7ec5f98e7be91c0f75f766",
+    "5bc0e5d55a8ac2df7e1bbec7059636e7a7e3d9c9edd341b6df0acbcbf0ea12c6",
+    "79bd288f3d31c4e379c5e33be72902747d27a93e745c78e477d272e7d2eba0de",
+    "813e88e26ebb217026af7c48689691c13975a938cfbd72acf43b2521989775bc",
+    "9a4533441b012d48b44c36ca19387192166c9fe7b710bc22b92efd85386a13a9",
+    "a2393eea031750eed431a8384af191b52d301bda661d155189b6c5a40fbb1971",
+    "a7349fb3bbc1fa9dbe009df6935c74a594bc0bd693d4f01d5cb0cf8489431842",
+    "c83bc329aac94359768ef14a78df01feb1a7d65f0a6af5ccf4c01fef8c380092"
+  ],
+  "label_status": "matcher_labels_only_no_outcomes",
+  "calls_dispatched": 507,
+  "calls_failed": 0,
+  "cost_usd": 0.437891,
+  "end_utc": "2026-11-09T16:34:58Z",
+  "per_model_benchmark": {
+    "gpt4omini|SB-5": {
+      "traces": 11,
+      "ok": 9,
+      "failed": 2
+    },
+    "gemma31b|MQ": {
+      "traces": 60,
+      "ok": 60,
+      "failed": 0
+    },
+    "gpt4omini|MQ": {
+      "traces": 60,
+      "ok": 60,
+      "failed": 0
+    },
+    "qwen235b|MQ": {
+      "traces": 60,
+      "ok": 60,
+      "failed": 0
+    },
+    "gemma31b|SB-5": {
+      "traces": 11,
+      "ok": 9,
+      "failed": 2
+    },
+    "qwen235b|SB-5": {
+      "traces": 11,
+      "ok": 9,
+      "failed": 2
+    },
+    "qwen235b|SB-10": {
+      "traces": 9,
+      "ok": 7,
+      "failed": 2
+    },
+    "gpt4omini|SB-10": {
+      "traces": 9,
+      "ok": 6,
+      "failed": 3
+    },
+    "gemma31b|SB-10": {
+      "traces": 9,
+      "ok": 7,
+      "failed": 2
+    }
+  },
+  "runner_sha256": "4612a35ecf7317f75cf1bc3446dce967f8ea9412ee434333b38fd0cebc0c9be9",
+  "config_sha256": "6d296ecb888a6b99485259f67139ddd50a963524000a8f04b67c9fed7b6815a3",
+  "prereg_sha256": "4abef81bc3313b11d56e516ca7073ffceb169f90737a9b1b7467c968dd584363",
+  "matcher_config_sha256": "765e0ae8d15c481b3498b43244a2a7a43bf5dcc4dfc26fb78ff184a6f9cdc9c7",
+  "freeze": {
+    "version": "semantic-dev-v2",
+    "prompt_sha256": "3d97341d410e0d2e93df919a28af59c7e2d389751ae43f6eb5258038f8ddc57c",
+    "frozen_utc": "2026-11-09T10:43:26Z",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "temperature": 0,
+    "max_tokens": 4096
+  }
+}

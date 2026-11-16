@@ -1,0 +1,92 @@
+{
+ "rule_sha256": "df249e896bc80ca5b8ef44562a78bd4901d7df2ee38bb5af47c3e40e208a8cc9",
+ "prompt_sha256": "f0b845499d3ccc9b82ded97acc1ddb64a27169d38af60b072201fe42bd497d94",
+ "spend_usd": 0.240377,
+ "sets": {
+  "A": {
+   "traces": 30,
+   "both_stages": 29,
+   "agree": 5,
+   "rate": 0.1724,
+   "wilson95": [
+    0.076,
+    0.3455
+   ],
+   "no_stage": 1,
+   "confusion_proxy_by_gold": {
+    "extraction": {
+     "extraction": 4,
+     "transmission": 0,
+     "aggregation": 1
+    },
+    "transmission": {
+     "extraction": 1,
+     "transmission": 0,
+     "aggregation": 0
+    },
+    "aggregation": {
+     "extraction": 22,
+     "transmission": 0,
+     "aggregation": 1
+    }
+   }
+  },
+  "B": {
+   "traces": 30,
+   "both_stages": 29,
+   "agree": 9,
+   "rate": 0.3103,
+   "wilson95": [
+    0.1728,
+    0.4923
+   ],
+   "no_stage": 1,
+   "confusion_proxy_by_gold": {
+    "extraction": {
+     "extraction": 3,
+     "transmission": 0,
+     "aggregation": 0
+    },
+    "transmission": {
+     "extraction": 0,
+     "transmission": 0,
+     "aggregation": 0
+    },
+    "aggregation": {
+     "extraction": 20,
+     "transmission": 0,
+     "aggregation": 6
+    }
+   }
+  },
+  "C": {
+   "traces": 30,
+   "both_stages": 27,
+   "agree": 11,
+   "rate": 0.4074,
+   "wilson95": [
+    0.2451,
+    0.5927
+   ],
+   "no_stage": 3,
+   "confusion_proxy_by_gold": {
+    "extraction": {
+     "extraction": 7,
+     "transmission": 0,
+     "aggregation": 2
+    },
+    "transmission": {
+     "extraction": 1,
+     "transmission": 0,
+     "aggregation": 0
+    },
+    "aggregation": {
+     "extraction": 13,
+     "transmission": 0,
+     "aggregation": 4
+    }
+   }
+  }
+ },
+ "pass": false
+}

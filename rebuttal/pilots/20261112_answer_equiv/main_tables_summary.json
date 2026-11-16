@@ -1,0 +1,23 @@
+{
+ "scored_sb": 208,
+ "scored_all": 608,
+ "rows": 608,
+ "agree_sb": 0.9951923076923077,
+ "kappa_sb": 0.9826261276311394,
+ "agree_all": 0.8125,
+ "kappa_all": 0.5760267185378207,
+ "spent_usd": 0.083332,
+ "disagreements": [
+  {
+   "key": "qwen235b|SB|results/run_qwen235b_n5|summary_exchange|II-12_n5",
+   "benchmark": "SB",
+   "protocol": "summary_exchange",
+   "lexical": 0.0,
+   "equiv": "EQUIVALENT",
+   "lex_f1": 0.0,
+   "gold": "[63.67, 44.33, 23.67, 10.0, 20.67, 43.0, 43.0, 53.33, 55.33, 65.33, 56.33, 31.33, 30.0, 31.0, 47.0, 67.67, 53.67, 68.0, 58.67, 65.67, 59.33, 57.67, 54.33, 59.0, 53.0, 53.0, 29.67, 25.0, 30.67, 36.33, ",
+   "answer": "We are given 5 agents in a chain, each holding a shard of 15 values. The goal is to compute the **global moving average with window size 3**, excluding the **first and last global positions**. All agents must submit the **same global result** after exchanging boundary data.\n\n---\n\n### Step 1: Concate",
+   "reason": "The system's computed values (63.67, 44.33, 23.67, 10.00, ..., 43.00, 42.00) match the gold answer element by element across all 73 positions."
+  }
+ ]
+}

@@ -1,0 +1,72 @@
+{
+ "runs_82": 82,
+ "runs_51_matched": 51,
+ "judge_alone_82": {
+  "k": 68,
+  "n": 82,
+  "rate": 0.829,
+  "wilson95": [
+   0.734,
+   0.895
+  ]
+ },
+ "judge_alone_82_qwen": {
+  "k": 34,
+  "n": 41,
+  "rate": 0.829,
+  "wilson95": [
+   0.687,
+   0.915
+  ]
+ },
+ "judge_alone_82_gemini": {
+  "k": 34,
+  "n": 41,
+  "rate": 0.829,
+  "wilson95": [
+   0.687,
+   0.915
+  ]
+ },
+ "judge_alone_51": {
+  "k": 44,
+  "n": 51,
+  "rate": 0.863,
+  "wilson95": [
+   0.743,
+   0.932
+  ]
+ },
+ "judge_alone_51_qwen": {
+  "k": 23,
+  "n": 28,
+  "rate": 0.821,
+  "wilson95": [
+   0.644,
+   0.921
+  ]
+ },
+ "judge_alone_51_gemini": {
+  "k": 21,
+  "n": 23,
+  "rate": 0.913,
+  "wilson95": [
+   0.732,
+   0.976
+  ]
+ },
+ "judge_with_audit": {
+  "n": 51,
+  "alone_correct": 44,
+  "with_audit_correct": 47,
+  "with_audit_rate": 0.922,
+  "wilson95": [
+   0.815,
+   0.969
+  ],
+  "alone_only_correct": 1,
+  "audit_only_correct": 4,
+  "mcnemar_exact_p": 0.375
+ },
+ "cost_note": "see a2_calls.jsonl (per-call cost); pilot and full run logged there"
+}

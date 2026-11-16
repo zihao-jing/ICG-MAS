@@ -1,0 +1,26 @@
+{
+ "recorded_before_first_call": true,
+ "extraction_system_sha256": "810084ff7eca533c5c986d9e6992207e527911209fa1b6ed3dae5ded20a38dc2",
+ "aggregation_system_sha256": "62f0a128fc091a679f9065ff1da671d8329dde319609d49d8c93ba7f679f0b60",
+ "cases_sha256": "ae207d02e39698f68f5c27c27f9e50146e305bfb9256b5a47b2a3ba657e6b5bf",
+ "model_temperature": 0,
+ "max_units": 3,
+ "per_case": {
+  "2hop__280583_229757": {
+   "extract_user_sha256": "1a8303b98b1452d0083e82e6d35ee49cd7a34210902a96bc8471f51a3925b330",
+   "answer_user_sha256": "01ffee7d28f0143f500294596d15a4376e0776b79c212409d3930f3cd6ae73b4"
+  },
+  "2hop__142621_225454": {
+   "extract_user_sha256": "69463162af88780ff8893b7cf6b8726696997a59b96a934e37190a4c1a824b9d",
+   "answer_user_sha256": "1ce7c11b6f1c40e6bedd3813fcff61c6205c30d8510e717b95b411ba3d748d7d"
+  },
+  "2hop__28287_89399": {
+   "extract_user_sha256": "07d9a14b79f141109b9500f6bd49072fea3e60c62bcee965f4aae7b64d6fbdb8",
+   "answer_user_sha256": "2b8b6d0a9b925989ad338b232f2fac758e4e34d3168d6bbdbc52da95c3754c4a"
+  },
+  "4hop1__802394_153080_33897_81096": {
+   "extract_user_sha256": "cb1af0c1098b745760cacfa537023ab828edf6ee793da5480856e21a1e979ffb",
+   "answer_user_sha256": "0ec8ca370e2ad3af1a137a756d4907f4004930ad08e4c763ff8a0973ccdf0854"
+  }
+ }
+}

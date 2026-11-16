@@ -1,0 +1,14 @@
+{
+ "n": 30,
+ "audit_exact": 15,
+ "judge_exact": 14,
+ "discordant_audit_only": 7,
+ "discordant_judge_only": 6,
+ "mcnemar_p": 1.0,
+ "diff": 0.03333333333333333,
+ "diff_ci": [
+  -0.2,
+  0.26666666666666666
+ ],
+ "spend_usd": 0.107562
+}

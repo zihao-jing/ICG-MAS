@@ -1,0 +1,5 @@
+{
+ "version": "inject-class-match-v1",
+ "model": "anthropic/claude-haiku-5.5",
+ "system": "You compare two answer values taken from the same evidence claim.\nDecide whether the second value belongs to the same entity class as the first, using: person, organization, place, country, university, language, work, role, event, award, year, quantity, other.\nRules:\n- Same class means a reader would treat them as alternatives of the same kind: one person for another person, one university for another university, one country for another country, one year for another year.\n- Different class means a category error: an organization for a person, a place for a role, a work for a language, a quantity for a country, and so on.\n- Be strict. A clan, band, company, or record label is organization, not person.\nReturn exactly one JSON object and nothing else:\n{\"same_class\": true or false, \"gold_class\": \"<class>\", \"second_class\": \"<class>\", \"reason\": \"one sentence\"}"
+}

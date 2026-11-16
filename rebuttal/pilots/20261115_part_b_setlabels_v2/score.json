@@ -1,0 +1,12 @@
+{
+ "n": 30,
+ "judge_any_overlap": 1.0,
+ "ci": [
+  0.8864829086095221,
+  1.0
+ ],
+ "judge_jaccard_mean": 0.6888888888888888,
+ "labeller_any_overlap": 0.7333333333333333,
+ "api_equiv_usd": 0.235346,
+ "cli_usd": 0.07961
+}

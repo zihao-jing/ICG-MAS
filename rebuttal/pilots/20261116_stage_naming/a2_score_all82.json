@@ -1,0 +1,22 @@
+{
+ "judge_with_audit_82": {
+  "k": 71,
+  "n": 82,
+  "rate": 0.866,
+  "wilson95": [
+   0.776,
+   0.923
+  ]
+ },
+ "by_backbone": {
+  "qwen": {
+   "k": 35,
+   "n": 41
+  },
+  "gemini": {
+   "k": 36,
+   "n": 41
+  }
+ },
+ "spent_this_step": 0.059759
+}

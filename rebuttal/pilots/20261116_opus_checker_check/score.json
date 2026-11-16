@@ -1,0 +1,51 @@
+{
+ "n_scored": 40,
+ "unparsed_opus": 0,
+ "agreement_raw_unweighted": 0.925,
+ "agreement_weighted_to_150": 0.976,
+ "kappa_weighted": 0.946,
+ "kappa_unweighted": 0.851,
+ "kappa_unweighted_row_bootstrap95": [
+  0.66,
+  1.0
+ ],
+ "kappa_interval_note": "reported interval is the unweighted row bootstrap; the stratified bootstrap cannot vary (see script comment)",
+ "equivalent_recall_vs_opus_weighted": 0.93,
+ "bars": {
+  "agreement>=0.90": true,
+  "kappa>=0.75": true,
+  "recall>=0.85": true
+ },
+ "pass": true,
+ "by_stratum": {
+  "DEFECT/EQUIVALENT": {
+   "scored": 7,
+   "agree": 7
+  },
+  "DEFECT/NOT_EQUIVALENT": {
+   "scored": 16,
+   "agree": 16
+  },
+  "DEFECT/None": {
+   "scored": 3,
+   "agree": 0
+  },
+  "CORRECT/EQUIVALENT": {
+   "scored": 12,
+   "agree": 12
+  },
+  "CORRECT/NOT_EQUIVALENT": {
+   "scored": 2,
+   "agree": 2
+  }
+ },
+ "population_unique_items": {
+  "DEFECT/NOT_EQUIVALENT": 82,
+  "DEFECT/None": 3,
+  "CORRECT/EQUIVALENT": 33,
+  "CORRECT/NOT_EQUIVALENT": 2,
+  "DEFECT/EQUIVALENT": 7
+ },
+ "spend_usd": 0.941412,
+ "cap_usd": 1.0
+}

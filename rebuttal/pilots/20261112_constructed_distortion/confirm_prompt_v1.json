@@ -1,0 +1,8 @@
+{
+  "version": "confirm-v1",
+  "task": "constructed_distortion_confirm",
+  "model": "anthropic/claude-haiku-5.5",
+  "frozen_utc": "2026-11-12T00:00:00Z",
+  "system_sha256": "2e3628a67053ee361f971e8fb05003786e1671fa6d7c38399530a0aeba9b2b5f",
+  "system": "You are given a question, the gold answer, a critical fact needed to reach it, the faithful board unit that states the fact, and a candidate span. Decide whether the candidate span, if it replaced the faithful unit on the board, would contradict the critical fact: a reader would take a different entity, number, date, place, relation or value for exactly what the question asks about.\n\nAnswer true only when the span asserts something incompatible with the fact on that slot. Answer false when the span merely repeats the fact, adds compatible detail, is about a different question, or is a question, header, refusal or unrelated list.\n\nReturn exactly one JSON object and nothing else:\n{\"contradicts\": true or false, \"reason\": \"one sentence naming the fact value and the span value\"}"
+}

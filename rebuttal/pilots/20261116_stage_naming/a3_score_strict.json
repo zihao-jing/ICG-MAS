@@ -1,0 +1,64 @@
+{
+ "rule_sha256": "d8ac0cac79df66867ffdd35db7d188c843caa3cfa9e7c7d940a5c8589ba817b8",
+ "table": "fact_tables_strict.json",
+ "cases_known_cause": 41,
+ "runs_total": 82,
+ "runs_matched": 53,
+ "runs_excluded": 29,
+ "cases_excluded_no_unique_fact_match": 13,
+ "excluded_reasons": {
+  "no carrier record": 3,
+  "no audit fact reaches content recall 0.8": 26
+ },
+ "cells": {
+  "injected|qwen": {
+   "named": 17,
+   "matched": 17,
+   "rate": 1.0,
+   "wilson95": [
+    0.816,
+    1
+   ],
+   "loose_any_nonfaithful": 17
+  },
+  "injected|gemini": {
+   "named": 13,
+   "matched": 14,
+   "rate": 0.929,
+   "wilson95": [
+    0.685,
+    0.987
+   ],
+   "loose_any_nonfaithful": 13
+  },
+  "deleted|qwen": {
+   "named": 8,
+   "matched": 11,
+   "rate": 0.727,
+   "wilson95": [
+    0.434,
+    0.903
+   ],
+   "loose_any_nonfaithful": 3
+  },
+  "deleted|gemini": {
+   "named": 11,
+   "matched": 11,
+   "rate": 1.0,
+   "wilson95": [
+    0.741,
+    1
+   ],
+   "loose_any_nonfaithful": 0
+  }
+ },
+ "all_matched": {
+  "named": 49,
+  "matched": 53,
+  "rate": 0.925,
+  "wilson95": [
+   0.821,
+   0.97
+  ]
+ }
+}

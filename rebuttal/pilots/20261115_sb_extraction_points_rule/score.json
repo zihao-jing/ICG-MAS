@@ -1,0 +1,30 @@
+{
+ "traces": 51,
+ "supports": 380,
+ "atoms": 6821,
+ "atom_presence": 0.737428529541123,
+ "support_present": 0.6789473684210526,
+ "support_partial": 0.24210526315789474,
+ "trace_atom_cr_mean": 0.7577426218080865,
+ "invalid": 0,
+ "by_kind": {
+  "list": {
+   "supports": 320,
+   "atoms": 6701,
+   "atom_presence": 0.7369049395612595
+  },
+  "single": {
+   "supports": 30,
+   "atoms": 30,
+   "atom_presence": 1.0
+  },
+  "dict": {
+   "supports": 30,
+   "atoms": 90,
+   "atom_presence": 0.6888888888888889
+  }
+ },
+ "spend_usd": 0.395763,
+ "prompt_sha": "86d84ff6d57c53461a9ffb36666a246b1d7a0eef47d7226570dffdbe8c33483a",
+ "cap_usd": 2.0
+}

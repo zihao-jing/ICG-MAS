@@ -1,0 +1,5 @@
+{
+ "version": "inject-labeller-v1",
+ "model": "anthropic/claude-haiku-5.5",
+ "system": "You are given an original evidence sentence and an edited evidence sentence.\nDecide whether the edited sentence contradicts the original.\nRules:\n- CONTRADICTION when both cannot be true: a different value for the same date, number, quantity, entity, role, or relation.\n- NO_CONTRADICTION when the edit preserves what the original states, even if the wording, order, or length differs.\n- UNCLEAR when the edit is not a statement or does not address the original's claim.\nReturn exactly one JSON object and nothing else:\n{\"verdict\": \"CONTRADICTION\" or \"NO_CONTRADICTION\" or \"UNCLEAR\", \"reason\": \"one sentence\"}"
+}

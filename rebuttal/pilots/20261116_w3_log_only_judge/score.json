@@ -1,0 +1,26 @@
+{
+ "n": 89,
+ "correct": 68,
+ "accuracy": 0.764,
+ "wilson95": [
+  0.666,
+  0.84
+ ],
+ "full_trace_correct_same_cases": 67,
+ "unparsed": 0,
+ "named_agent_is_last": 37,
+ "named_agent_is_last_share": 0.416,
+ "true_owner_is_last_share": 0.517,
+ "confusion": {
+  "transmission -> transmission": 27,
+  "extraction -> sharding": 12,
+  "extraction -> extraction": 27,
+  "sharding -> sharding": 14,
+  "transmission -> extraction": 2,
+  "sharding -> extraction": 5,
+  "transmission -> sharding": 1,
+  "sharding -> aggregation": 1
+ },
+ "spend_usd": 0.324135,
+ "rule_sha256": "b036321785e39fc5e0108fd967080ffabdc0d36313d06a769d9b88e2e389623c"
+}

@@ -1,0 +1,44 @@
+{
+ "rule_sha256": "18e3ec9c82a4787f19f853bbd601d0131e71a4b08552e5100807c8a36ef5423d",
+ "scoreable_traces": 26,
+ "new_gold_stage_scored": 26,
+ "proxy_vs_new_gold_agree": 18,
+ "confusion_proxy_to_new_gold": {
+  "aggregation -> aggregation": 17,
+  "extraction -> aggregation": 3,
+  "aggregation -> extraction": 5,
+  "extraction -> extraction": 1
+ },
+ "new_gold_stage_counts": {
+  "aggregation": 20,
+  "extraction": 6
+ },
+ "old_figure": {
+  "agree": 6,
+  "n": 30,
+  "note": "first-support gold, Haiku labels (20261115_q1_second_sample/score.json)"
+ },
+ "opus_extraction_stage": {
+  "n": 26,
+  "agree": 25,
+  "agreement": 0.962,
+  "kappa": 0.885
+ },
+ "opus_atom_agreement": [
+  29,
+  34
+ ],
+ "bars": {
+  "stage_agreement_vs_opus>=0.90": true,
+  "kappa_vs_opus>=0.75": true
+ },
+ "outcome": "Q1 uses new figure",
+ "spend_usd": 0.791544,
+ "cap_usd": 1.0,
+ "not_scoreable": [
+  "2hop__284789_52835",
+  "2hop__525242_52835",
+  "2hop__81659_52835",
+  "3hop1__131820_59747_48534"
+ ]
+}

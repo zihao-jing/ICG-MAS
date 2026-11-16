@@ -1,0 +1,11 @@
+# E2-A technical pilot — not a final evaluation
+User-authorised exception: dev matcher labels marked pilot_provisional may drive technical pilots only. Never export these labels to annotators, never reuse them in final evaluation. No failure-group outcome summaries.
+Five reserved MuSiQue IDs: ["2hop__466700_214359", "2hop__66708_573255", "2hop__809096_491515", "2hop__24661_81961", "3hop1__131783_131926_13165"].
+One trace per ID; base model cycles Qwen/GPT/Gemma/Qwen/GPT in fixed ID order. k=1; all approved arms/backbones retained. E2A may exercise the injection and attribution path on an unkept trace for software validation only; mark ineligible/keep=false, never count it as evidence of causal attribution accuracy. Eligibility and keep metrics are provisional, not human-certified.
+Action manifest: rebuttal/pilots/20261108_technical_inputs/actions.json; SHA256 6e8ff2e906d7150061aa780d9d64cfcd7d471917e825aa580cf883b6aa985653. Targets, donors, source-span swaps, placement hash agents fixed therein before outcomes. Exact base tokenizers count newly inserted unit text without chat framing. Source spans are verbatim; provisional checks do not stand in for author swap checks.
+Config SHA256: 0ba8f072eb3e478e29f0a857cd075fdcf3c032ec7222537c8eafa6694874174b. Temperature0, seed42, max4096. Ledger caps and append-only attempts apply. Carrier checks use semantic-dev-v2 and at most2 retries, no label repair. Full runs and human validation stay blocked pending lead approval of E1 criteria and sample design.
+E4-P enlargement(a) remains off by default; option(b) dropped because no second paper benchmark has both requested cached failure types.
+
+Fixed injection schedule in reserved ID order: extraction omission, selection omission, distortion, aggregation, extraction omission. All four baselines (including W&W step-by-step), both backbones, gold-answer absent/present. Run baseline mechanics on unkept traces as explicitly unscored technical checks. No human eligibility or causal accuracy claimed.
+
+Pilot taxonomy scoring map SHA256: 954a5b31c37c5178ef96a6e81d8501fcc5e392a2d9b694a405387918bf03c567. Stage comes from native step; family type sets are not collapsed into a false one-to-one mapping. Family reference V/C/R/R for the four injections as documented.

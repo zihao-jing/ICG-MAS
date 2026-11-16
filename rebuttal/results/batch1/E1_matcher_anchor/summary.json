@@ -1,0 +1,52 @@
+{
+  "planned": 90,
+  "attempted": 84,
+  "ok": 78,
+  "failed": 6,
+  "failed_keys": [
+    "0726821a34548acb583224e17b4c0404d40749ea413ba19add3c07bccb7e3c2c",
+    "38aeaa689b4bb6704d6630aabf99c520d801b61f5d83eecf6c4aea786b9b1dbe",
+    "0ed6c94d0cc322a89011030c0ce98a8884c88aa6264116585eb37224f344944d",
+    "dd83a384ac1d3120c12e207824a543f2baadf1f4c2870d27715f36df8b733dbe",
+    "77c26f2b7a43bf9802dc9fef4b571554850915bd5661fd5383f19f4777dc56bc",
+    "a5b0bebbf8800e08d40221492727f3a0f1b80f15f3425cdbe233359e5dee72ef"
+  ],
+  "failed_error_types": {
+    "JSONDecodeError": 19
+  },
+  "stopped_early": true,
+  "calls_dispatched": 178,
+  "calls_failed": 0,
+  "cost_usd": 0.152535,
+  "per_model": {
+    "qwen235b": {
+      "planned": 30,
+      "ok": 26,
+      "failed": 2
+    },
+    "gpt4omini": {
+      "planned": 30,
+      "ok": 26,
+      "failed": 2
+    },
+    "gemma31b": {
+      "planned": 30,
+      "ok": 26,
+      "failed": 2
+    }
+  },
+  "end_utc": "2026-11-09T11:45:45Z",
+  "config_sha256": "a98bbae1ea477b603add4e9062463344bc76b1fb43dab08ed2d207e22a185794",
+  "prereg_sha256": "43da16b079f852939712412b47a5111656e18ea098e70411f0086a8b5d51edf4",
+  "freeze": {
+    "frozen_utc": "2026-11-09T10:43:26Z",
+    "prompt_sha256": "3d97341d410e0d2e93df919a28af59c7e2d389751ae43f6eb5258038f8ddc57c",
+    "settings_file_sha256": "622a78554f5f3379ae9780a60ac3e56fa99d6e47e03644a97a5edbd154dc935c",
+    "settings_object_sha256": "31a64de8bc8bc902bd097b7220a5345560947d621d57a68cbde6aafa2e4b4c14",
+    "code_sha256": {
+      "src/audit/matcher_v2.py": "571b6d1ed86975fb4d83f6a3471100977de683b820ac203fde38dc7f5030d00a",
+      "src/audit/semantic_matcher.py": "42ac20c4022b0eecbd14db72be144a46c21561ba4774f781631421b0a32fda8b",
+      "src/audit/pilot_common.py": "b8f4a24180276aa193009f5a544a23c0fddbf8cb4b8ef39282ab382fda42c2ed"
+    }
+  }
+}

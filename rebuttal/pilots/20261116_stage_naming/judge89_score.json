@@ -1,0 +1,31 @@
+{
+ "n_cases": 89,
+ "populations": {
+  "cohort": 59,
+  "injected": 30
+ },
+ "gemini": {
+  "k": 67,
+  "n": 89,
+  "rate": 0.753,
+  "wilson95": [
+   0.654,
+   0.831
+  ],
+  "correct_injected": 24,
+  "correct_cohort": 43
+ },
+ "qwen": {
+  "k": 56,
+  "n": 89,
+  "rate": 0.629,
+  "wilson95": [
+   0.525,
+   0.722
+  ],
+  "correct_injected": 27,
+  "correct_cohort": 29
+ },
+ "cases_beyond_82_cohort": 59,
+ "note": "The 82 known-cause runs = 30 injected cases + 11 deleted-fact cases; the 89 = 30 injected + 59 cohort. The 59 cohort cases are not in the 82, so naming (A2, A3) cannot be scored on them."
+}

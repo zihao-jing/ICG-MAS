@@ -1,0 +1,7 @@
+{
+ "version": "confirm-v1",
+ "model": "anthropic/claude-haiku-5.5",
+ "file_sha256": "194d3bbe6c8673bb90900faacb0e603eca14f2ec8b4b86999db3a41892e9676c",
+ "system_sha256": "2e3628a67053ee361f971e8fb05003786e1671fa6d7c38399530a0aeba9b2b5f",
+ "recorded_before_first_call": true
+}

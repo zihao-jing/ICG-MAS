@@ -1,0 +1,112 @@
+{
+ "rule_sha256": "cb89d3f54c6728958e461716cc2e895be413b925e7ec49f78f1307e896f9c638",
+ "amendment_sha256": "fe4ff406476de086824063a5f8136a6bce1db6d4f4d4b0741da0b500de283fd5",
+ "self_check_ok": true,
+ "self_check": {
+  "transmission": [
+   19,
+   19
+  ],
+  "extraction": [
+   5,
+   5
+  ],
+  "aggregation": [
+   70,
+   70
+  ],
+  "sharding": [
+   2,
+   2
+  ]
+ },
+ "samples": {
+  "sample1_uniform": {
+   "n_gold": 13,
+   "n_both": 12,
+   "agree": 1,
+   "rate": 0.08333333333333333,
+   "wilson": [
+    0.014864709450773478,
+    0.35388592179859524
+   ],
+   "no_proxy_stage": 1,
+   "no_gold_stage": 17,
+   "confusion": {
+    "extraction": {
+     "extraction": 0,
+     "transmission": 0,
+     "aggregation": 0
+    },
+    "transmission": {
+     "extraction": 2,
+     "transmission": 0,
+     "aggregation": 1
+    },
+    "aggregation": {
+     "extraction": 8,
+     "transmission": 0,
+     "aggregation": 1
+    }
+   }
+  },
+  "sample2_coarse": {
+   "n_gold": 11,
+   "n_both": 10,
+   "agree": 0,
+   "rate": 0.0,
+   "wilson": [
+    0.0,
+    0.2775401687666166
+   ],
+   "no_proxy_stage": 1,
+   "no_gold_stage": 19,
+   "confusion": {
+    "extraction": {
+     "extraction": 0,
+     "transmission": 0,
+     "aggregation": 0
+    },
+    "transmission": {
+     "extraction": 0,
+     "transmission": 0,
+     "aggregation": 1
+    },
+    "aggregation": {
+     "extraction": 9,
+     "transmission": 0,
+     "aggregation": 0
+    }
+   }
+  },
+  "sample3_atom": {
+   "n_gold": 15,
+   "n_both": 14,
+   "agree": 2,
+   "rate": 0.14285714285714285,
+   "wilson": [
+    0.040093073737921175,
+    0.39941907763863693
+   ],
+   "no_proxy_stage": 1,
+   "no_gold_stage": 15,
+   "confusion": {
+    "extraction": {
+     "extraction": 0,
+     "transmission": 0,
+     "aggregation": 0
+    },
+    "transmission": {
+     "extraction": 3,
+     "transmission": 0,
+     "aggregation": 1
+    },
+    "aggregation": {
+     "extraction": 8,
+     "transmission": 0,
+     "aggregation": 2
+    }
+   }
+  }
+ }
+}

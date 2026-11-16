@@ -219,7 +219,7 @@ class TestPrintResultsTable:
         }
         print_results_table(table)
         out = capsys.readouterr().out
-        assert "csc_topk" in out.lower() or "CSC" in out
+        assert "Score-Ranked Evidence Relay" in out
         assert "full_sharing" in out.lower() or "Full" in out
 
     def test_contains_accuracy_values(self, capsys):

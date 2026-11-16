@@ -1,0 +1,12 @@
+{
+ "n": 30,
+ "class_agreement": 0.7666666666666667,
+ "class_agreement_ci": [
+  0.6,
+  0.9333333333333333
+ ],
+ "kappa": 0.4615384615384617,
+ "truth_rule_right": 30,
+ "api_equiv_usd": 2.26634,
+ "cli_usd": 2.228619
+}

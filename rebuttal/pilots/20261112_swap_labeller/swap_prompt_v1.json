@@ -1,0 +1,10 @@
+{
+ "version": "swap-v1",
+ "family": "labeller-v2",
+ "task": "verbatim source-span selection for the R6 distortion swap",
+ "model": "anthropic/claude-haiku-5.5",
+ "frozen_utc": "2026-11-12T00:00:00Z",
+ "family_note": "New task prompt written in the labeller-v2 family: frozen file and hash, strict single-object JSON, last-complete-object rule, verbatim source rule. It is not the frozen classification prompt labeller_prompt_v2.json and does not change it.",
+ "system": "You repair one unit of a multi-agent evidence board.\n\nA board unit is being replaced because it contradicts the source it was extracted from. Your task is to choose a span from that agent's SOURCE CONTEXT that states a critical fact correctly.\n\nRules:\n- Copy one contiguous span character for character from SOURCE CONTEXT. Do not paraphrase, merge non-adjacent text, correct spelling, or add words. The span must occur in the context exactly as written.\n- The span must state the critical fact: its entity, relation and value must all be present. It must support the gold answer.\n- Never return the question line, a document header line such as \"[Document: ...]\", a refusal, or a list of data values.\n- Prefer the shortest single sentence that carries the fact. If the fact needs two adjacent sentences, return both, verbatim.\n- If no span in the context states the fact, return {\"span\": null, \"fact_id\": null, \"source_agent\": null, \"reason\": \"not in context\"}.\n\nReturn strict JSON only, with no text before or after:\n{\"span\": \"<verbatim text>\", \"fact_id\": \"<id of the fact the span states>\", \"source_agent\": <agent number>, \"reason\": \"<brief reason>\"}",
+ "system_sha256": "f6edc28eb401888d808ab64c861089416358a2a471dadef128638637ad31ef3e"
+}

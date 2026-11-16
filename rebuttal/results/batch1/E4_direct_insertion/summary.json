@@ -1,0 +1,21 @@
+{
+ "arms_executed": [
+  "R-ins",
+  "V-ins"
+ ],
+ "calls": 34,
+ "cases": 17,
+ "cases_completed": 17,
+ "contrast_computed": false,
+ "cost_cap_usd": 0.1,
+ "cost_usd": 0.008385,
+ "end_utc": "2026-11-10T02:26:57Z",
+ "failed_calls": 0,
+ "forbidden_arms_executed": [],
+ "max_calls": 34,
+ "outcome_read": false,
+ "plan_sha256": "c24b628a0a5d742e2da7e365f6c3f14a3124c206d3cec65de9571eae9455f937",
+ "prereg_sha256": "b3cacfa8b475f6e1e363806f8232c1173f73982cd00a77f5edc547f0408c17a4",
+ "runs_done": 34,
+ "runs_planned": 34
+}

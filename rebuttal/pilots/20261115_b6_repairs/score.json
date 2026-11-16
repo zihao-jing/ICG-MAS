@@ -1,0 +1,640 @@
+{
+ "cells": {
+  "extraction": {
+   "n": 39,
+   "delivered": 18,
+   "undelivered": 21,
+   "correct_all": {
+    "repaired": 12,
+    "original": 0,
+    "diff": 0.3076923076923077,
+    "diff_ci": [
+     0.1794871794871795,
+     0.46153846153846156
+    ]
+   },
+   "f1_all": {
+    "repaired": 0.3828366078366079,
+    "original": 0.042055167055167056,
+    "diff": 0.3407814407814408,
+    "diff_ci": [
+     0.20830280830280834,
+     0.4884004884004884
+    ]
+   },
+   "flips_all": {
+    "gain": 12,
+    "loss": 0,
+    "tie": 27
+   },
+   "correct_pairs": {
+    "repaired": 12,
+    "original": 0,
+    "diff": 0.6666666666666666,
+    "diff_ci": [
+     0.4444444444444444,
+     0.8888888888888888
+    ]
+   },
+   "f1_pairs": {
+    "repaired": 0.7916005291005291,
+    "original": 0.053240740740740734,
+    "diff": 0.7383597883597884,
+    "diff_ci": [
+     0.5518518518518518,
+     0.9074074074074076
+    ]
+   },
+   "flips": {
+    "gain": 12,
+    "loss": 0,
+    "tie": 6
+   },
+   "vs_control": {
+    "n": 18,
+    "control_correct": 0,
+    "repaired_minus_control": {
+     "diff": 0.6666666666666666,
+     "diff_ci": [
+      0.4444444444444444,
+      0.8888888888888888
+     ]
+    },
+    "f1": {
+     "repaired": 0.7916005291005291,
+     "control": 0.06925925925925926,
+     "diff": 0.7223412698412699,
+     "diff_ci": [
+      0.5263227513227513,
+      0.8998412698412699
+     ]
+    },
+    "control_minus_original": {
+     "diff": 0.0,
+     "diff_ci": [
+      0.0,
+      0.0
+     ]
+    },
+    "control_flips": {
+     "to_correct": 0,
+     "to_wrong": 0
+    }
+   }
+  },
+  "sharding": {
+   "n": 20,
+   "delivered": 0,
+   "undelivered": 20,
+   "correct_all": {
+    "repaired": 0,
+    "original": 0,
+    "diff": 0.0,
+    "diff_ci": [
+     0.0,
+     0.0
+    ]
+   },
+   "f1_all": {
+    "repaired": 0.07777777777777778,
+    "original": 0.07777777777777778,
+    "diff": 0.0,
+    "diff_ci": [
+     0.0,
+     0.0
+    ]
+   },
+   "flips_all": {
+    "gain": 0,
+    "loss": 0,
+    "tie": 20
+   }
+  },
+  "all": {
+   "n": 59,
+   "delivered": 18,
+   "undelivered": 41,
+   "correct_all": {
+    "repaired": 12,
+    "original": 0,
+    "diff": 0.2033898305084746,
+    "diff_ci": [
+     0.11864406779661017,
+     0.3050847457627119
+    ]
+   },
+   "f1_all": {
+    "repaired": 0.2794268349353095,
+    "original": 0.054164526622153736,
+    "diff": 0.22526230831315577,
+    "diff_ci": [
+     0.13559322033898305,
+     0.32808716707021784
+    ]
+   },
+   "flips_all": {
+    "gain": 12,
+    "loss": 0,
+    "tie": 47
+   },
+   "correct_pairs": {
+    "repaired": 12,
+    "original": 0,
+    "diff": 0.6666666666666666,
+    "diff_ci": [
+     0.4444444444444444,
+     0.8888888888888888
+    ]
+   },
+   "f1_pairs": {
+    "repaired": 0.7916005291005291,
+    "original": 0.053240740740740734,
+    "diff": 0.7383597883597884,
+    "diff_ci": [
+     0.5518518518518518,
+     0.9074074074074076
+    ]
+   },
+   "flips": {
+    "gain": 12,
+    "loss": 0,
+    "tie": 6
+   },
+   "vs_control": {
+    "n": 18,
+    "control_correct": 0,
+    "repaired_minus_control": {
+     "diff": 0.6666666666666666,
+     "diff_ci": [
+      0.4444444444444444,
+      0.8888888888888888
+     ]
+    },
+    "f1": {
+     "repaired": 0.7916005291005291,
+     "control": 0.06925925925925926,
+     "diff": 0.7223412698412699,
+     "diff_ci": [
+      0.5263227513227513,
+      0.8998412698412699
+     ]
+    },
+    "control_minus_original": {
+     "diff": 0.0,
+     "diff_ci": [
+      0.0,
+      0.0
+     ]
+    },
+    "control_flips": {
+     "to_correct": 0,
+     "to_wrong": 0
+    }
+   }
+  }
+ },
+ "spend_usd": 0.011524,
+ "rows": 59,
+ "cells_sens": {
+  "extraction": {
+   "n": 21,
+   "delivered": 13,
+   "no_unit": 8,
+   "correct_pairs": {
+    "repaired": 3,
+    "original": 0,
+    "diff": 0.14285714285714285,
+    "diff_ci": [
+     0.0,
+     0.2857142857142857
+    ]
+   },
+   "f1_pairs": {
+    "repaired": 0.18176725235548766,
+    "original": 0.032467532467532464,
+    "diff": 0.14929971988795518,
+    "diff_ci": [
+     0.03025210084033613,
+     0.2969187675070028
+    ]
+   },
+   "flips": {
+    "gain": 3,
+    "loss": 0,
+    "tie": 18
+   }
+  },
+  "sharding": {
+   "n": 20,
+   "delivered": 12,
+   "no_unit": 8,
+   "correct_pairs": {
+    "repaired": 2,
+    "original": 0,
+    "diff": 0.1,
+    "diff_ci": [
+     0.0,
+     0.25
+    ]
+   },
+   "f1_pairs": {
+    "repaired": 0.17777777777777776,
+    "original": 0.07777777777777778,
+    "diff": 0.1,
+    "diff_ci": [
+     0.0,
+     0.25
+    ]
+   },
+   "flips": {
+    "gain": 2,
+    "loss": 0,
+    "tie": 18
+   }
+  },
+  "all": {
+   "n": 41,
+   "delivered": 25,
+   "no_unit": 16,
+   "correct_pairs": {
+    "repaired": 5,
+    "original": 0,
+    "diff": 0.12195121951219512,
+    "diff_ci": [
+     0.024390243902439025,
+     0.21951219512195122
+    ]
+   },
+   "f1_pairs": {
+    "repaired": 0.1798211671956292,
+    "original": 0.05457009115545701,
+    "diff": 0.12525107604017216,
+    "diff_ci": [
+     0.04390243902439024,
+     0.22209469153515063
+    ]
+   },
+   "flips": {
+    "gain": 5,
+    "loss": 0,
+    "tie": 36
+   }
+  }
+ },
+ "copied": {
+  "n": 19,
+  "ge80": 16,
+  "ge50": 19
+ },
+ "fact_in_input": {
+  "n": 18,
+  "ge80": 15,
+  "ge50": 18
+ },
+ "combine": {
+  "n": 20,
+  "delivered": 1,
+  "delivered_ci": [
+   0.001265089497949845,
+   0.24873276277202777
+  ],
+  "undelivered": 19,
+  "spend_usd": 0.011524,
+  "correct": {
+   "repaired": 0,
+   "original": 0,
+   "diff": 0.0,
+   "diff_ci": [
+    0.0,
+    0.0
+   ]
+  }
+ },
+ "verbatim": {
+  "n": 6,
+  "delivered": 0,
+  "delivered_ci": [
+   0.0,
+   0.4592581264399006
+  ],
+  "undelivered": 6,
+  "spend_usd": 0.011524,
+  "cases": [
+   {
+    "key": "coh/gemma31b/2hop__128342_375952",
+    "fact_id": "f2",
+    "best_recall": 0.9,
+    "fact_text": "Los Alamos, New Mexico is located in Los Alamos County.",
+    "n_units": 1,
+    "n_delivered": 0,
+    "units": [
+     "KABG (98.5 MHz) is an American radio station licensed to Los Alamos, New Mexico serving the Santa Fe and Albuquerque radio markets."
+    ],
+    "status": "undelivered",
+    "orig_f1": 0.0,
+    "orig_correct": false
+   },
+   {
+    "key": "coh/gemma31b/2hop__46213_494136",
+    "fact_id": "f2",
+    "best_recall": 0.833,
+    "fact_text": "Dennis Quaid is married to Meg Ryan in the film Flesh and Bone.",
+    "n_units": 1,
+    "n_delivered": 0,
+    "units": [
+     "No sentences from the provided text bear on the question."
+    ],
+    "status": "undelivered",
+    "orig_f1": 0.0,
+    "orig_correct": false
+   },
+   {
+    "key": "coh/gpt4omini/2hop__71294_494136",
+    "fact_id": "f2",
+    "best_recall": 0.857,
+    "fact_text": "Meg Ryan is the spouse of Dennis Quaid.",
+    "n_units": 3,
+    "n_delivered": 0,
+    "units": [
+     "\"Flesh and Bone is a 1993 neo noir film drama written and directed by Steve Kloves that stars Meg Ryan, Dennis Quaid and James Caan.\"",
+     "\"Gwyneth Paltrow is featured in an early role.\"",
+     "\"Janet Maslin of 'The New York Times' described Paltrow as a scene-stealer 'who is Blythe Danner's daughter and has her mother's way of making a camera fall in love with her.'\""
+    ],
+    "status": "undelivered",
+    "orig_f1": 0.0,
+    "orig_correct": false
+   },
+   {
+    "key": "coh/gemma31b/2hop__304852_758385",
+    "fact_id": "f2",
+    "best_recall": 1.0,
+    "fact_text": "Park Rapids is located in Hubbard County, Minnesota.",
+    "n_units": 1,
+    "n_delivered": 0,
+    "units": [
+     "The provided text does not contain information regarding KPRM."
+    ],
+    "status": "undelivered",
+    "orig_f1": 0.0,
+    "orig_correct": false
+   },
+   {
+    "key": "coh/gemma31b/3hop1__454441_55349_651302",
+    "fact_id": "f3",
+    "best_recall": 0.857,
+    "fact_text": "Trey Parker was born in Denver, Colorado.",
+    "n_units": 1,
+    "n_delivered": 0,
+    "units": [
+     "The provided text does not contain information about the man who does the voice of Stan or his birthplace."
+    ],
+    "status": "undelivered",
+    "orig_f1": 0.0,
+    "orig_correct": false
+   },
+   {
+    "key": "coh/gemma31b/2hop__342746_679190",
+    "fact_id": "f2",
+    "best_recall": 1.0,
+    "fact_text": "Ruth Gordon was married to Garson Kanin.",
+    "n_units": 1,
+    "n_delivered": 0,
+    "units": [
+     "I am sorry, but the provided text does not contain information about the screenwriter of *The Actress* or their spouse."
+    ],
+    "status": "undelivered",
+    "orig_f1": 0.0,
+    "orig_correct": false
+   }
+  ]
+ },
+ "bridge": {
+  "n": 6,
+  "delivered": 0,
+  "delivered_ci": [
+   0.0,
+   0.4592581264399006
+  ],
+  "undelivered": 6,
+  "spend_usd": 0.011524,
+  "cases": [
+   {
+    "key": "coh/gemma31b/2hop__128342_375952",
+    "fact_id": "f2",
+    "best_recall": 0.9,
+    "fact_text": "Los Alamos, New Mexico is located in Los Alamos County.",
+    "n_units": 1,
+    "n_delivered": 0,
+    "units": [
+     "I am sorry, but the provided text does not contain information regarding which county the city of KABG (or Los Alamos) is located in."
+    ],
+    "status": "undelivered",
+    "orig_f1": 0.0,
+    "orig_correct": false
+   },
+   {
+    "key": "coh/gemma31b/2hop__46213_494136",
+    "fact_id": "f2",
+    "best_recall": 0.833,
+    "fact_text": "Dennis Quaid is married to Meg Ryan in the film Flesh and Bone.",
+    "n_units": 1,
+    "n_delivered": 0,
+    "units": [
+     "I am sorry, but the provided text does not contain information about the film *I Can Only Imagine* or the actors appearing in it. Therefore, I cannot answer the question using the provided source."
+    ],
+    "status": "undelivered",
+    "orig_f1": 0.0,
+    "orig_correct": false
+   },
+   {
+    "key": "coh/gpt4omini/2hop__71294_494136",
+    "fact_id": "f2",
+    "best_recall": 0.857,
+    "fact_text": "Meg Ryan is the spouse of Dennis Quaid.",
+    "n_units": 5,
+    "n_delivered": 0,
+    "units": [
+     "\"Flesh and Bone is a 1993 neo noir film drama written and directed by Steve Kloves that stars Meg Ryan, Dennis Quaid and James Caan.\"",
+     "\"Gwyneth Paltrow is featured in an early role.\"",
+     "\"Janet Maslin of 'The New York Times' described Paltrow as a scene-stealer 'who is Blythe Danner's daughter and has her mother's way of making a camera fall in love with her.'\"",
+     "\"Blythe Danner is the mother of Gwyneth Paltrow.\"",
+     "\"The actor who plays the father in I Can Only Imagine is Dennis Quaid.\""
+    ],
+    "status": "undelivered",
+    "orig_f1": 0.0,
+    "orig_correct": false
+   },
+   {
+    "key": "coh/gemma31b/2hop__304852_758385",
+    "fact_id": "f2",
+    "best_recall": 1.0,
+    "fact_text": "Park Rapids is located in Hubbard County, Minnesota.",
+    "n_units": 1,
+    "n_delivered": 0,
+    "units": [
+     "I am sorry, but the provided text does not contain information about KPRM or where it is licensed to broadcast."
+    ],
+    "status": "undelivered",
+    "orig_f1": 0.0,
+    "orig_correct": false
+   },
+   {
+    "key": "coh/gemma31b/3hop1__454441_55349_651302",
+    "fact_id": "f3",
+    "best_recall": 0.857,
+    "fact_text": "Trey Parker was born in Denver, Colorado.",
+    "n_units": 1,
+    "n_delivered": 0,
+    "units": [
+     "I am sorry, but the provided text does not contain information about the voice actor for Stan, the series that includes the episode The Hobbit, or that person's birthplace."
+    ],
+    "status": "undelivered",
+    "orig_f1": 0.0,
+    "orig_correct": false
+   },
+   {
+    "key": "coh/gemma31b/2hop__342746_679190",
+    "fact_id": "f2",
+    "best_recall": 1.0,
+    "fact_text": "Ruth Gordon was married to Garson Kanin.",
+    "n_units": 1,
+    "n_delivered": 0,
+    "units": [
+     "I am sorry, but the provided text does not contain information about the screenwriter of *The Actress* or their spouse."
+    ],
+    "status": "undelivered",
+    "orig_f1": 0.0,
+    "orig_correct": false
+   }
+  ]
+ },
+ "shard_support": {
+  "n": 20,
+  "stated_ge80": 6,
+  "unsupported": 14,
+  "cases": [
+   {
+    "key": "coh/gemma31b/2hop__304852_758385",
+    "fact": "Park Rapids is located in Hubbard County, Minnesota.",
+    "best_recall": 1.0,
+    "passage_agent": 1
+   },
+   {
+    "key": "coh/gemma31b/2hop__342746_679190",
+    "fact": "Ruth Gordon was married to Garson Kanin.",
+    "best_recall": 1.0,
+    "passage_agent": 0
+   },
+   {
+    "key": "coh/gemma31b/2hop__128342_375952",
+    "fact": "Los Alamos, New Mexico is located in Los Alamos County.",
+    "best_recall": 0.9,
+    "passage_agent": 1
+   },
+   {
+    "key": "coh/gpt4omini/2hop__71294_494136",
+    "fact": "Meg Ryan is the spouse of Dennis Quaid.",
+    "best_recall": 0.857,
+    "passage_agent": 1
+   },
+   {
+    "key": "coh/gemma31b/3hop1__454441_55349_651302",
+    "fact": "Trey Parker was born in Denver, Colorado.",
+    "best_recall": 0.857,
+    "passage_agent": 2
+   },
+   {
+    "key": "coh/gemma31b/2hop__46213_494136",
+    "fact": "Dennis Quaid is married to Meg Ryan in the film Flesh and Bone.",
+    "best_recall": 0.833,
+    "passage_agent": 0
+   },
+   {
+    "key": "coh/gemma31b/2hop__50068_494136",
+    "fact": "Dennis Quaid is married to Meg Ryan.",
+    "best_recall": 0.714,
+    "passage_agent": 0
+   },
+   {
+    "key": "coh/gpt4omini/2hop__55032_786853",
+    "fact": "The spouse of Will Arnett is Amy Poehler.",
+    "best_recall": 0.714,
+    "passage_agent": 0
+   },
+   {
+    "key": "coh/gpt4omini/2hop__47808_198548",
+    "fact": "Katharine Ross is the wife of Sam Elliott.",
+    "best_recall": 0.714,
+    "passage_agent": 1
+   },
+   {
+    "key": "coh/gemma31b/3hop1__637555_339990_15538",
+    "fact": "New York reinstated the death penalty in 1984.",
+    "best_recall": 0.714,
+    "passage_agent": 0
+   },
+   {
+    "key": "coh/gemma31b/2hop__554145_88622",
+    "fact": "The head of the National Security Agency is the Director of the NSA.",
+    "best_recall": 0.667,
+    "passage_agent": 0
+   },
+   {
+    "key": "coh/gemma31b/4hop1__37608_32392_823060_610794",
+    "fact": "Forest Acres shares a border with Columbia, South Carolina.",
+    "best_recall": 0.625,
+    "passage_agent": 1
+   },
+   {
+    "key": "coh/gemma31b/4hop1__58323_375563_161848_44231",
+    "fact": "Australia is near New Zealand.",
+    "best_recall": 0.6,
+    "passage_agent": 1
+   },
+   {
+    "key": "coh/gemma31b/2hop__64537_482364",
+    "fact": "Aeson is the father of Jason.",
+    "best_recall": 0.6,
+    "passage_agent": 0
+   },
+   {
+    "key": "coh/gpt4omini/3hop1__702699_792411_51423",
+    "fact": "Toronto is the birth city of Jane Siberry.",
+    "best_recall": 0.571,
+    "passage_agent": 0
+   },
+   {
+    "key": "coh/gpt4omini/3hop1__127716_157828_239539",
+    "fact": "The Radio Television of Kosovo is headquartered in Pristina.",
+    "best_recall": 0.5,
+    "passage_agent": 0
+   },
+   {
+    "key": "coh/gpt4omini/4hop1__28352_53706_795904_580996",
+    "fact": "Sacramento, California shares a border with Rio Linda.",
+    "best_recall": 0.429,
+    "passage_agent": 2
+   },
+   {
+    "key": "coh/qwen235b/4hop1__89632_32392_823060_610794",
+    "fact": "The city sharing a border with the state capital of the US state where The Patriot was filmed is Forest Acres.",
+    "best_recall": 0.375,
+    "passage_agent": 0
+   },
+   {
+    "key": "coh/gpt4omini/3hop1__127837_157828_239539",
+    "fact": "The Radio Television of Kosovo has its headquarters in Pristina.",
+    "best_recall": 0.333,
+    "passage_agent": 1
+   },
+   {
+    "key": "coh/gpt4omini/4hop3__661103_698586_91248_54362",
+    "fact": "Shawty Lo died in a car accident in Atlanta on September 21, 2016.",
+    "best_recall": 0.333,
+    "passage_agent": 0
+   }
+  ]
+ },
+ "pass1_rows": 20,
+ "pass1_spend": 0.00252828
+}

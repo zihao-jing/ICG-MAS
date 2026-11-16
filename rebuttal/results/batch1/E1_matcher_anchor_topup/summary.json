@@ -1,0 +1,44 @@
+{
+  "planned": 6,
+  "attempted": 6,
+  "ok": 6,
+  "failed": 0,
+  "failed_keys": [],
+  "failed_error_types": {},
+  "one_attempt": true,
+  "calls_dispatched": 12,
+  "calls_failed": 0,
+  "cost_usd": 0.007944,
+  "per_model": {
+    "qwen235b": {
+      "planned": 2,
+      "ok": 2,
+      "failed": 0
+    },
+    "gpt4omini": {
+      "planned": 2,
+      "ok": 2,
+      "failed": 0
+    },
+    "gemma31b": {
+      "planned": 2,
+      "ok": 2,
+      "failed": 0
+    }
+  },
+  "end_utc": "2026-11-09T13:06:37Z",
+  "runner_sha256": "e0932e5deee3e1f984ee34fb64e0a82f31dd4951c5921fcd8953cdd891000b3f",
+  "config_sha256": "a98bbae1ea477b603add4e9062463344bc76b1fb43dab08ed2d207e22a185794",
+  "prereg_sha256": "0449aa52378276cc69f76f6fcc584086c8e1e4ad84e2c4c15a4cd905b791e2bd",
+  "freeze": {
+    "frozen_utc": "2026-11-09T10:43:26Z",
+    "prompt_sha256": "3d97341d410e0d2e93df919a28af59c7e2d389751ae43f6eb5258038f8ddc57c",
+    "settings_file_sha256": "622a78554f5f3379ae9780a60ac3e56fa99d6e47e03644a97a5edbd154dc935c",
+    "settings_object_sha256": "31a64de8bc8bc902bd097b7220a5345560947d621d57a68cbde6aafa2e4b4c14",
+    "code_sha256": {
+      "src/audit/matcher_v2.py": "571b6d1ed86975fb4d83f6a3471100977de683b820ac203fde38dc7f5030d00a",
+      "src/audit/semantic_matcher.py": "42ac20c4022b0eecbd14db72be144a46c21561ba4774f781631421b0a32fda8b",
+      "src/audit/pilot_common.py": "b8f4a24180276aa193009f5a544a23c0fddbf8cb4b8ef39282ab382fda42c2ed"
+    }
+  }
+}

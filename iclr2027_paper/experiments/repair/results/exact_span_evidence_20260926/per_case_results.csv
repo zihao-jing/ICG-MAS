@@ -1,0 +1,7 @@
+setting,case,gold_answer,source_spans,appended_corrections,original_prediction,original_score,restored_prediction,restored_score,score_change,exact_replay_score
+gemma31b_silobench_n10,III-25_n10,"[[25.98, 14.89], [27.42, 67.78], [79.61, 46.73]]",1,0,Insufficient information.,0.0,Insufficient information.,0.0,0.0,0.0
+qwen235b_silobench_n5,I-02_n5,28,1,1,29,0.0,28,1.0,1.0,0.0
+qwen235b_silobench_n10,I-02_n10,80,7,7,78,0.0,73,0.0,0.0,0.0
+qwen235b_silobench_n10,I-07_n10,51.62,15,3,62.14,0.0,56.76,0.0,0.0,0.0
+qwen235b_silobench_n10,I-10_n10,29.04,7,0,Insufficient information.,0.0,Insufficient information.,0.0,0.0,0.0
+qwen235b_silobench_n10,III-25_n10,"[[25.98, 14.89], [27.42, 67.78], [79.61, 46.73]]",14,0,Insufficient information.,0.0,"[(55.74603035907123, 42.25572053681904), (18.74431556701071, 59.71637400277191), (76.09802300201104, 45.45864935020505)]",0.0,0.0,0.0

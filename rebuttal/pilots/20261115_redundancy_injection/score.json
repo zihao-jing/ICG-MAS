@@ -1,0 +1,85 @@
+{
+ "cases": 90,
+ "by_model": {
+  "gemma31b": 30,
+  "gpt4omini": 30,
+  "qwen235b": 30
+ },
+ "arms": {
+  "base/score_ranked": {
+   "n": 90,
+   "mean_f1": 0.857,
+   "exact_f1_1": 71,
+   "exact_wilson95": [
+    0.694,
+    0.86
+   ],
+   "gold_in_board_lexical": 85,
+   "gold_in_board_wilson95": [
+    0.876,
+    0.976
+   ]
+  },
+  "duplicated/score_ranked": {
+   "n": 90,
+   "mean_f1": 0.665,
+   "exact_f1_1": 55,
+   "exact_wilson95": [
+    0.508,
+    0.705
+   ],
+   "gold_in_board_lexical": 72,
+   "gold_in_board_wilson95": [
+    0.706,
+    0.87
+   ]
+  },
+  "base/redundancy_aware": {
+   "n": 90,
+   "mean_f1": 0.857,
+   "exact_f1_1": 72,
+   "exact_wilson95": [
+    0.706,
+    0.87
+   ],
+   "gold_in_board_lexical": 85,
+   "gold_in_board_wilson95": [
+    0.876,
+    0.976
+   ]
+  },
+  "duplicated/redundancy_aware": {
+   "n": 90,
+   "mean_f1": 0.853,
+   "exact_f1_1": 72,
+   "exact_wilson95": [
+    0.706,
+    0.87
+   ],
+   "gold_in_board_lexical": 85,
+   "gold_in_board_wilson95": [
+    0.876,
+    0.976
+   ]
+  }
+ },
+ "paired": {
+  "score_ranked": {
+   "duplicated_minus_base_mean": -0.192,
+   "drop": 22,
+   "rise": 1,
+   "unchanged": 67
+  },
+  "redundancy_aware": {
+   "duplicated_minus_base_mean": -0.005,
+   "drop": 2,
+   "rise": 2,
+   "unchanged": 86
+  }
+ },
+ "verification": {
+  "duplicate_selected_score_ranked_dup_condition": 87,
+  "duplicate_selected_redundancy_aware_dup_condition": 0,
+  "duplicate_selected_base_condition": 0
+ }
+}

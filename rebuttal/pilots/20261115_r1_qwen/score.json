@@ -1,0 +1,17 @@
+{
+ "n": 89,
+ "right": 62,
+ "accuracy": 0.6966292134831461,
+ "by_population": {
+  "cohort": {
+   "n": 59,
+   "right": 37
+  },
+  "injected": {
+   "n": 30,
+   "right": 25
+  }
+ },
+ "map": "step coordinate, rule 2015e084",
+ "spend_usd": 0.034209
+}

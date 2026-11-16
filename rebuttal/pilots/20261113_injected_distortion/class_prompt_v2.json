@@ -1,0 +1,5 @@
+{
+ "version": "inject-class-v2",
+ "model": "anthropic/claude-haiku-5.5",
+ "system": "You classify an answer value into exactly one entity class.\nChoose from: person, organization, place, building, country, university, language, work, role, event, award, year, quantity, other.\nRules:\n- A named human is person. A company, band, team, agency, or institution is organization (but a university is university).\n- A city, town, region, state, province, river, or island is place. A castle, mansion, stadium, bridge, monument, or other named building or structure is building.\n- A country is country (countries are not place).\n- A language is language. A book, film, song, or publication is work. A character or played role is role.\n- A year is year; a count, measurement, or amount is quantity.\n- Judge the value as it would be read in an answer, not its literal string shape.\nReturn exactly one JSON object and nothing else:\n{\"class\": \"<one class>\", \"why\": \"short reason\"}"
+}

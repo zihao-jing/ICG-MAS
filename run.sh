@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# run.sh — Run any command in the icg-mas conda environment.
+# run.sh — Run a command using the local environment, active Python, or the ef-audit conda environment.
 #
 # Usage examples:
 #   ./run.sh python -m src.eval.run_experiment --test
@@ -16,4 +16,20 @@ if [[ -f "$SCRIPT_DIR/.env" ]]; then
     set +a
 fi
 
-exec conda run --no-capture-output -n icg-mas "$@"
+LOCAL_PYTHON="$SCRIPT_DIR/.conda-env/bin/python"
+if [[ -x "$LOCAL_PYTHON" ]]; then
+    # Preserve the documented `./run.sh python ...` interface while using the
+    # repository-local environment created for this project.
+    if [[ "${1:-}" == "python" ]]; then
+        shift
+        exec "$LOCAL_PYTHON" "$@"
+    fi
+    export PATH="$SCRIPT_DIR/.conda-env/bin:$PATH"
+    exec "$@"
+fi
+
+if [[ -n "${CONDA_PREFIX:-}${VIRTUAL_ENV:-}" ]]; then
+    exec "$@"
+fi
+
+exec conda run --no-capture-output -n ef-audit "$@"

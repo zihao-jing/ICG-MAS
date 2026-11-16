@@ -1,0 +1,1442 @@
+{
+ "2hop__108158_83769": {
+  "agent-0": {
+   "units": [
+    "\"Push, Nevada\" was created by Ben Affleck and Sean Bailey.",
+    "Ben Affleck co-produced \"Push, Nevada\" with Matt Damon and Chris Moore.",
+    "Christin Hinojosa played Sabrina in \"Dazed and Confused\".",
+    "Ben Affleck is the creator of \"Push, Nevada\".",
+    "Christin Hinojosa is an American actress born on October 3, 1975."
+   ],
+   "overall": [
+    0.59,
+    0.72,
+    0.175,
+    0.82,
+    0.1
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "Matthew McConaughey played David Wooderson in Dazed and Confused (1993).",
+    "Matthew McConaughey is considered to have had his breakout role in Dazed and Confused.",
+    "Matthew McConaughey was born on November 4, 1969.",
+    "The creator of Push, Nevada is Matthew McConaughey.",
+    "David Wooderson is a character in Dazed and Confused portrayed as a man in his early 20s who still socializes with high school students."
+   ],
+   "overall": [
+    0.9,
+    0.83,
+    0.23,
+    0.82,
+    0.83
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "2hop__119423_779396": {
+  "agent-0": {
+   "units": [
+    "The Lap Engine was designed by James Watt.",
+    "James Watt was a Scottish inventor and mechanical engineer.",
+    "James Watt was born in Greenock, Renfrewshire, Scotland.",
+    "James Watt was largely self-educated, with some early education at the University of Glasgow.",
+    "James Watt attended the University of Glasgow."
+   ],
+   "overall": [
+    0.76,
+    0.71,
+    0.5,
+    0.86,
+    0.85
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "James Watt worked as an instrument maker at the University of Glasgow.",
+    "James Watt became interested in the technology of steam engines while at the University of Glasgow.",
+    "The University of Glasgow is where James Watt developed improvements to steam engine design.",
+    "James Watt introduced the separate condenser while associated with the University of Glasgow.",
+    "James Watt adapted his steam engine to produce rotary motion during his time at the University of Glasgow."
+   ],
+   "overall": [
+    0.72,
+    0.71,
+    0.56,
+    0.74,
+    0.25
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "2hop__135822_46621": {
+  "agent-0": {
+   "units": [
+    "Heliocentrism is the astronomical model in which the Earth and planets revolve around the Sun at the center of the Solar System.",
+    "The notion that the Earth revolves around the Sun had been proposed as early as the 3rd century BC by Aristarchus of Samos.",
+    "The Sun is the star at the center of the Solar System.",
+    "Aristarchus of Samos proposed Heliocentrism in the 3rd century BC.",
+    "Heliocentrism historically attracted little attention in the medieval world due to the loss of scientific works from the Hellenistic Era."
+   ],
+   "overall": [
+    0.66,
+    0.75,
+    0.76,
+    0.82,
+    0.48
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "Solgr\u00e4nd is a Swedish term meaning \"Sun Alley\".",
+    "The Sun is the star to which Solgr\u00e4nd is named after.",
+    "The Sun is the center of the solar system.",
+    "Nicolaus Copernicus published the heliocentric theory in 1543, placing the Sun at the center of the solar system.",
+    "The heliocentric model was formally proposed by Copernicus in the 16th century."
+   ],
+   "overall": [
+    0.66,
+    0.76,
+    0.82,
+    0.85,
+    0.77
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "2hop__151705_141308": {
+  "agent-0": {
+   "units": [
+    "\"I Dig Love\" is a track from the album \"All Things Must Pass\" by George Harrison.",
+    "George Harrison worked with Stephen Stills on Doris Troy's eponymous album for Apple Records in 1969\u201370.",
+    "Apple Records is the label for which George Harrison produced music, including work with Doris Troy.",
+    "\"I Dig Love\" was recorded during the same era as other Apple Records releases by George Harrison.",
+    "Apple Records is the record label associated with George Harrison's \"All Things Must Pass\" album."
+   ],
+   "overall": [
+    0.4,
+    0.18,
+    0.66,
+    0.44,
+    0.125
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "Apple Records is a record label founded by the Beatles in 1968 as a division of Apple Corps Ltd.",
+    "Allen Klein managed Apple Records from 1969 to 1973.",
+    "Neil Aspinall managed Apple Records on behalf of the Beatles and their heirs after 1973.",
+    "Aspinall retired in 2007 and was replaced by Jeff Jones at Apple Records.",
+    "\"Love Sign\" is a song by Prince released by NPG Records in 1994."
+   ],
+   "overall": [
+    0.71,
+    0.18,
+    0.66,
+    0.1875,
+    0.22
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "2hop__151750_141308": {
+  "agent-0": {
+   "units": [
+    "Apple Records is a record label founded by the Beatles in 1968 as a division of Apple Corps Ltd.",
+    "Apple Records was initially intended as a creative outlet for the Beatles and other artists.",
+    "Allen Klein managed Apple Records from 1969 to 1973.",
+    "Neil Aspinall managed Apple Records on behalf of the Beatles and their heirs after 1973.",
+    "Jeff Jones replaced Neil Aspinall as manager of Apple Records in 2007."
+   ],
+   "overall": [
+    0.74,
+    0.48,
+    0.44,
+    0.4,
+    0.18
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "Magic Christian Music is the debut album by the British rock band Badfinger, released in early 1970 on Apple Records.",
+    "Apple Records released the album Magic Christian Music.",
+    "Sony Music Entertainment was renamed on January 1, 1991, and acquired the international rights to the Columbia label from EMI in 1990.",
+    "Sleaszy Rider Records is mainly distributed in Europe by Sony Music/EMI.",
+    "Apple Records was a subsidiary of Apple Corps, which is not directly mentioned as part of Sony Music."
+   ],
+   "overall": [
+    0.76,
+    0.9,
+    0.3,
+    0.185,
+    0.73
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "2hop__161273_92673": {
+  "agent-0": {
+   "units": [
+    "The North Pole is the northernmost point on the Earth, lying diametrically opposite the South Pole.",
+    "The North Pole defines geodetic latitude 90\u00b0 North.",
+    "At the North Pole, all directions point south.",
+    "All lines of longitude converge at the North Pole.",
+    "The North Pole is at the center of the Northern Hemisphere."
+   ],
+   "overall": [
+    0.76,
+    0.76,
+    0.77,
+    0.76,
+    0.76
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "Salomon August Andr\u00e9e proposed a plan for a hydrogen balloon to travel from Svalbard across the Arctic Sea to the Bering Strait, passing near or over the North Pole.",
+    "The North Pole is located at the northernmost point of the Earth, where the Earth's rotational axis intersects the surface.",
+    "Svalbard is an archipelago in the Arctic Ocean, situated north of Norway.",
+    "The Bering Strait lies between Russia and Alaska, connecting the Arctic Ocean to the Bering Sea.",
+    "The International Date Line runs from the North Pole to the South Pole, roughly following the 180\u00b0 line of longitude."
+   ],
+   "overall": [
+    0.91,
+    0.85,
+    0.73,
+    0.71,
+    0.72
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "2hop__17192_77606": {
+  "agent-0": {
+   "units": [
+    "Mount Hermon is called \"the eyes of the nation\" in Israel because its elevation makes it Israel's primary strategic early warning system.",
+    "Mount Hermon's springs and mountain are contested by nations in the area for water use.",
+    "The Battle of Maroun al-Ras took place in Maroun ar-Ras, a village in southern Lebanon on the border with Israel.",
+    "Maroun ar-Ras is near Jall ad-Dayr, a Hizbullah stronghold.",
+    "The Fortress of an-Nekhel is located at the exact center of the Sinai Peninsula in Egypt and has a strategic location."
+   ],
+   "overall": [
+    0.78,
+    0.65,
+    0.6,
+    0.56,
+    0.2
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "On 11 March 1978, a PLO guerrilla raid from Lebanon led to the Coastal Road Massacre.",
+    "Israel responded to the Coastal Road Massacre by launching an invasion of southern Lebanon to destroy PLO bases south of the Litani River.",
+    "Israel secured southern Lebanon in 1978 until a UN force and the Lebanese army could take over.",
+    "The PLO resumed attacks against Israel after Israel secured southern Lebanon.",
+    "In the years following 1978, the PLO infiltrated southern Lebanon and conducted sporadic shelling across the border into Israel."
+   ],
+   "overall": [
+    0.82,
+    0.86,
+    0.77,
+    0.68,
+    0.78
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "2hop__280583_229757": {
+  "agent-0": {
+   "units": [
+    "The Mighty B is an American animated television series created by Amy Poehler, Cynthia True, and Erik Wiese for Nickelodeon.",
+    "Amy Poehler is one of the creators of The Mighty B.",
+    "Amy Poehler provides the voice of Bessie in The Mighty B.",
+    "Bessie Higgenbottom is the main character of The Mighty B.",
+    "The series is set in San Francisco, where Bessie lives with her mother Hilary, brother Ben, and dog Happy."
+   ],
+   "overall": [
+    0.76,
+    0.81,
+    0.1875,
+    0.075,
+    0.2
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "On Broadway is an independent film starring Amy Poehler and Will Arnett.",
+    "Amy Poehler and Will Arnett are actors who starred together in the film On Broadway.",
+    "Will Arnett is married to Amy Poehler.",
+    "Amy Poehler is a co-creator of The Mighty B.",
+    "The spouse of Amy Poehler is Will Arnett."
+   ],
+   "overall": [
+    0.1,
+    0.26,
+    0.88,
+    0.82,
+    0.91
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "2hop__28287_89399": {
+  "agent-0": {
+   "units": [
+    "Mary Jo Catlett is the voice of Mrs. Puff in SpongeBob SquarePants, a role she has held since the show's debut.",
+    "Mrs. Puff is a character in SpongeBob SquarePants.",
+    "Annelid larvae live in a form similar to worm-like larvae.",
+    "In holometabolism, insect larvae are often worm-like in form.",
+    "Tom Kenny voices SpongeBob SquarePants, Gary the Snail, and other characters in the show."
+   ],
+   "overall": [
+    0.82,
+    0.38,
+    0.58,
+    0.19,
+    0.85
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "Annelid larvae live as plankton and develop into trochophore larvae.",
+    "The character SpongeBob SquarePants shares his name with the creature that annelid larvae live like (plankton).",
+    "Derek Drymon (born November 19, 1968) is an American writer and supervising producer best known for his work on \"SpongeBob SquarePants\".",
+    "Derek Drymon served as creative director and storyboard artist for \"SpongeBob SquarePants\".",
+    "SpongeBob SquarePants debuted on May 1, 1999, and is an animated television series produced by Nickelodeon."
+   ],
+   "overall": [
+    0.625,
+    0.81,
+    0.4,
+    0.23,
+    0.14
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "2hop__284613_87295": {
+  "agent-0": {
+   "units": [
+    "The author of The Last of the Really Great Whangdoodles is Julie Andrews.",
+    "Julie Andrews played Queen dowager Clarisse Renaldi in The Princess Diaries (2001).",
+    "The Princess Diaries is a 2001 American teen romantic comedy film.",
+    "Anne Hathaway stars as Mia Thermopolis in The Princess Diaries.",
+    "The film is based on Meg Cabot's 2000 novel of the same name."
+   ],
+   "overall": [
+    0.81,
+    0.82,
+    0.15,
+    0.82,
+    0.1
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "The Last of the Really Great Whangdoodles is a children's novel written by Julie Edwards, the married name of singer and actress Dame Julie Andrews.",
+    "More recent editions of The Last of the Really Great Whangdoodles credit the book to \"Julie Andrews Edwards\".",
+    "Dame Julie Andrews is the author of The Last of the Really Great Whangdoodles.",
+    "Julie Andrews played Queen Clarisse Renaldi in The Princess Diaries.",
+    "Julie Andrews is a singer and actress who portrayed a royal character in The Princess Diaries."
+   ],
+   "overall": [
+    0.71,
+    0.1875,
+    0.83,
+    0.82,
+    0.74
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "2hop__307218_161450": {
+  "agent-0": {
+   "units": [
+    "Golestan Province is located in the north-east of Iran, south of the Caspian Sea.",
+    "Gorgan is the capital of Golestan Province.",
+    "Minudasht County is not mentioned in any of the provided documents.",
+    "The Motru Coal Mine is located in Motru, Gorj County, Romania.",
+    "Szelment is located in Suwa\u0142ki County, Podlaskie Voivodeship, in north-eastern Poland."
+   ],
+   "overall": [
+    0.71,
+    0.42,
+    0.02,
+    0.075,
+    0.075
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "Minudasht County is in Golestan Province in Iran.",
+    "The capital of Minudasht County is Minudasht.",
+    "Golestan Province is in Iran.",
+    "Minudasht County consists of the Central District.",
+    "Minudasht County has one city, which is Minudasht."
+   ],
+   "overall": [
+    0.9,
+    0.44,
+    0.48,
+    0.38,
+    0.24
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "2hop__31085_23241": {
+  "agent-0": {
+   "units": [
+    "In 2010, 48.8 percent of Nigeria's population was Muslim, according to a Pew Research Center report published on 18 December 2012.",
+    "Ibn Tufail was a Muslim philosopher from Al-Andalus.",
+    "In 2010, 49.3 percent of Nigeria's population was Christian, according to a Pew Research Center report.",
+    "In 2010, 1.9 percent of Nigeria's population followed indigenous religions or were unaffiliated, according to Pew Research Center.",
+    "According to Pew Research Center, in 2010, Protestants made up 17.8% of Europe's Christian population."
+   ],
+   "overall": [
+    1.0,
+    0.83,
+    0.71,
+    0.79,
+    0.075
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "Abu Bakr Ibn Tufail was an Andalusian Muslim philosopher in the 12th century CE.",
+    "Ibn Tufail wrote the Arabic philosophical novel Hayy ibn Yaqdhan, which influenced John Locke's theory of tabula rasa.",
+    "According to the Pew Research Center, 85 percent of Oklahoma's religious adherents are Christian, accounting for about 80 percent of the population.",
+    "In 2010, agriculture in Nigeria provided employment for about 30% of the population.",
+    "In 2010, Blacks/African-Americans comprised 13 percent of Michigan's population."
+   ],
+   "overall": [
+    0.71,
+    0.35,
+    0.0,
+    0.1,
+    0.0
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "2hop__363216_787353": {
+  "agent-0": {
+   "units": [
+    "The 1st Combat Communications Squadron is located at Ramstein Air Base, Germany.",
+    "The 1st Combat Communications Squadron is part of the United States Air Forces in Europe.",
+    "Ramstein Air Base is the location of the 1st Combat Communications Squadron headquarters.",
+    "The 1st Combat Communications Squadron belongs to the 435th Air Ground Operations Wing.",
+    "The 1st Combat Communications Squadron is a unit of the United States Air Force."
+   ],
+   "overall": [
+    0.85,
+    0.72,
+    0.91,
+    0.6,
+    0.44
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "Ramstein-Miesenbach is a municipality in the district of Kaiserslautern in Rhineland-Palatinate in Germany.",
+    "Ramstein-Miesenbach is adjacent to the US Ramstein Air Base.",
+    "The 8th Air Support Operations Squadron was located at Aviano AB, Italy.",
+    "The 8th Air Support Operations Squadron was disbanded in 2013.",
+    "Minsk Region is a region of Belarus with administrative center Minsk."
+   ],
+   "overall": [
+    0.38,
+    0.62,
+    0.125,
+    0.2,
+    0.075
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "2hop__403060_92763": {
+  "agent-0": {
+   "units": [
+    "The Miami Hurricane is the official student newspaper at the University of Miami in Coral Gables, Florida.",
+    "The University of Miami is located in Coral Gables, Florida, in the United States.",
+    "The Miami Hurricane was founded in 1929.",
+    "The Miami Hurricanes are the college football team of the University of Miami.",
+    "The University of Miami's student newspaper is published weekly by a staff of mostly undergraduate students."
+   ],
+   "overall": [
+    0.83,
+    0.56,
+    0.38,
+    0.85,
+    0.22
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "The University of Miami is a private university established in 1925 and located in Coral Gables, Florida.",
+    "The University of Miami has 16,801 total students, including 10,849 undergraduates and 5,952 postgraduates.",
+    "The University of Miami's athletic teams are known as the Miami Hurricanes.",
+    "The University of Miami's mascot is Sebastian the Ibis.",
+    "The University of Miami competes in NCAA Division I and is a member of the ACC."
+   ],
+   "overall": [
+    0.71,
+    0.91,
+    0.82,
+    0.48,
+    0.66
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "2hop__415518_616002": {
+  "agent-0": {
+   "units": [
+    "The Skin of Our Teeth is a play by Thornton Wilder which won the Pulitzer Prize for Drama.",
+    "Thornton Wilder is the author of The Happy Journey to Trenton and Camden.",
+    "The play The Skin of Our Teeth opened on October 15, 1942, at the Shubert Theatre in New Haven, Connecticut.",
+    "The Skin of Our Teeth was produced by Michael Myerberg and directed by Elia Kazan.",
+    "Thornton Wilder received the Pulitzer Prize for Drama for The Skin of Our Teeth."
+   ],
+   "overall": [
+    0.38,
+    0.82,
+    0.1,
+    0.1875,
+    0.6
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "The Happy Journey to Trenton and Camden is a one-act play by American novelist and playwright Thornton Wilder.",
+    "Thornton Wilder is the author of The Happy Journey to Trenton and Camden.",
+    "The Happy Journey to Trenton and Camden was written in 1931.",
+    "Thornton Wilder was a playwright and novelist.",
+    "Thornton Wilder received the Pulitzer Prize for Drama for his play Our Town, though this specific award is not mentioned in the provided documents."
+   ],
+   "overall": [
+    0.8,
+    0.82,
+    0.28,
+    0.71,
+    0.82
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "2hop__42464_718451": {
+  "agent-0": {
+   "units": [
+    "Henry Cavendish was a chemist and physicist.",
+    "The Cavendish Professorship and Cavendish Laboratory were founded in honor of Henry Cavendish.",
+    "Henry Cavendish was the first to measure the value of the Newton Universal Gravitation Constant.",
+    "The Cavendish Laboratory is associated with the University of Cambridge.",
+    "William Cavendish, 7th Duke of Devonshire, endowed the professorship and laboratory in honor of Henry Cavendish."
+   ],
+   "overall": [
+    0.8,
+    0.48,
+    0.85,
+    0.28,
+    0.2
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "Henry Cavendish made the first measurement of Newton's Universal Gravitation Constant in 1798.",
+    "Henry Cavendish used a torsion balance to measure the Newton Universal Gravitation Constant.",
+    "The value of Newton's Universal Gravitation Constant was unknown during Newton's lifetime.",
+    "The measurement of the Newton Universal Gravitation Constant allowed calculation of the Earth's mass.",
+    "Newton's Law of Gravitation applies universally to all celestial bodies."
+   ],
+   "overall": [
+    0.92,
+    1.0,
+    0.66,
+    0.75,
+    0.64
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "2hop__486314_544665": {
+  "agent-0": {
+   "units": [
+    "Menucha Rochel Slonim was born in 1798 and died in 1888.",
+    "Menucha Rochel Slonim was the daughter of Rabbi Dovber Schneuri.",
+    "Rabbi Dovber Schneuri was the second Rebbe of the Chabad Hasidic dynasty.",
+    "Menucha Rochel Slonim is regarded as a matriarch to the Chabad dynasty.",
+    "Menucha Rochel Slonim is regarded as a matriarch to Hebron's Jewish population."
+   ],
+   "overall": [
+    0.18,
+    0.74,
+    0.45,
+    0.76,
+    0.44
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "Menucha Rochel Slonim was the daughter of Rabbi Dovber Schneuri.",
+    "Rabbi Dovber Schneuri was the second Rebbe of the Chabad Hasidic movement.",
+    "Rabbi Menachem Mendel Schneersohn was the third Rebbe of the Chabad Hasidic movement.",
+    "Chaya Mushka Schneersohn was the daughter of Rabbi Dovber Schneuri.",
+    "Rabbi Menachem Mendel Schneersohn was the husband of Chaya Mushka Schneersohn."
+   ],
+   "overall": [
+    0.83,
+    0.38,
+    0.38,
+    0.18,
+    0.14
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "2hop__488811_30113": {
+  "agent-0": {
+   "units": [
+    "Erich Zakowski was born on 25 November 1934 in East Prussia.",
+    "East Prussia is a historical region that is now part of Russia, specifically the Kaliningrad Oblast.",
+    "The northern part of East Prussia, where Zakowski was born, became part of the Russian Federation after World War II.",
+    "After World War II, the region of East Prussia was divided, with the northern part incorporated into the Soviet Union and later becoming part of Russia.",
+    "The city of Kaliningrad, located in the former northern part of East Prussia, is now a Russian exclave between Poland and Lithuania."
+   ],
+   "overall": [
+    0.6,
+    0.72,
+    0.81,
+    0.82,
+    0.81
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "After the expulsion of the German population, ethnic Russians, Belarusians, and Ukrainians were settled in the northern part of East Prussia.",
+    "In the Soviet part of East Prussia, a policy of eliminating all remnants of German history was pursued.",
+    "All German place names in the northern part of East Prussia were replaced by new Russian names.",
+    "The exclave in the northern part of East Prussia was a military zone closed to foreigners, and Soviet citizens could only enter with special permission.",
+    "In 1967, the remnants of K\u00f6nigsberg Castle were demolished on the orders of Leonid Brezhnev to make way for a new \"House of the Soviets\"."
+   ],
+   "overall": [
+    0.82,
+    0.81,
+    0.82,
+    0.82,
+    0.88
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "2hop__491195_265959": {
+  "agent-0": {
+   "units": [
+    "Jag tror p\u00e5 sommaren is a song written by Stig Olin.",
+    "Jag tror p\u00e5 sommaren was recorded by Mats Olin and released in 1967.",
+    "Stig Olin is the composer of Jag tror p\u00e5 sommaren.",
+    "Ann J\u00e4derlund is a Swedish poet and playwright born in 1955.",
+    "On the Good Ship Lollipop was composed by Richard A. Whiting."
+   ],
+   "overall": [
+    0.82,
+    0.28,
+    0.82,
+    0.075,
+    0.075
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "Stig Olin was the father of actress Lena Olin and singer Mats Olin.",
+    "Stig Olin was married to film actresses Britta Holmberg and Helena Kallenb\u00e4ck.",
+    "Vi p\u00e5 Saltkr\u00e5kan is a Swedish TV series from 1964 written by Astrid Lindgren.",
+    "Jagged Edge is the name of a music group with albums released between 1997 and 2017.",
+    "Nissene p\u00e5 l\u00e5ven is a Nordic Christmas calendar that aired on TVNorge in 2001."
+   ],
+   "overall": [
+    0.075,
+    0.18,
+    0.2,
+    0.075,
+    0.075
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "2hop__495316_660579": {
+  "agent-0": {
+   "units": [
+    "Hickory Grove Estates is an unincorporated community located in Oktibbeha County, Mississippi.",
+    "Oktibbeha County is a county in the state of Mississippi.",
+    "The capital of Oktibbeha County is Starkville.",
+    "Starkville is the county seat of Oktibbeha County, Mississippi.",
+    "Hickory Grove Estates is located approximately south-southwest of Clayton Village in Oktibbeha County."
+   ],
+   "overall": [
+    0.9,
+    0.78,
+    0.85,
+    0.85,
+    1.0
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "Hickory Grove Estates is located in Oktibbeha County, Mississippi.",
+    "The Oktibbeha County School District served communities in Oktibbeha County, Mississippi.",
+    "Starkville is a city in Oktibbeha County, Mississippi.",
+    "The Starkville School District is located in Oktibbeha County, Mississippi.",
+    "In 2013, the Mississippi Legislature required all Oktibbeha County schools to merge into the Starkville School District."
+   ],
+   "overall": [
+    0.94,
+    0.73,
+    0.46,
+    0.71,
+    0.62
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "2hop__511454_120259": {
+  "agent-0": {
+   "units": [
+    "\u00c6thelfl\u00e6d died in 918.",
+    "\u00c6lfwynn succeeded as 'Second Lady of the Mercians' in 918.",
+    "Edward deprived \u00c6lfwynn of authority in Mercia within six months of 918.",
+    "Kavangoland was abolished in May 1989.",
+    "Our Lady of Guadaloupe Church was built in 1926."
+   ],
+   "overall": [
+    0.125,
+    0.22,
+    0.22,
+    0.2,
+    0.2
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "Spalding Priory was founded in 1052 by Leofric, Earl of Mercia, and his wife Godiva, Countess of Leicester.",
+    "Damaraland was abolished in May 1989.",
+    "The sentence of hanging, drawing, and quartering was abolished in England in 1870.",
+    "The death penalty for treason was abolished in the United Kingdom in 1998.",
+    "Spalding Priory was a cell of Croyland Abbey."
+   ],
+   "overall": [
+    0.62,
+    0.18,
+    0.2,
+    0.1,
+    0.38
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "2hop__51760_122023": {
+  "agent-0": {
+   "units": [
+    "Mel Brooks appears as a celebrity guest on the game show The Face Is Familiar, which aired on CBS from May 7 to September 3, 1966.",
+    "Mr. Peabody and Sherman is an animated television series featuring a fictional character named Mr. Peabody, a highly intelligent anthropomorphic dog.",
+    "Mel Brooks voices the character of Mr. Peabody in the 2014 film Mr. Peabody & Sherman.",
+    "Mr. Peabody is depicted as a child prodigy who graduated from Harvard University at the age of 7 in the 2014 film Mr. Peabody & Sherman.",
+    "Albert Einstein attended the Luitpold Gymnasium in Munich for seven years before leaving the German Empire."
+   ],
+   "overall": [
+    0.1,
+    0.3,
+    0.71,
+    0.91,
+    0.09
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "Mel Brooks voices the character of Albert Einstein in the film Mr. Peabody & Sherman.",
+    "Albert Einstein is portrayed as a historical figure in Mr. Peabody & Sherman.",
+    "The film Mr. Peabody & Sherman features historical figures such as Albert Einstein, Leonardo da Vinci, and King Tut.",
+    "Albert Einstein was a theoretical physicist who developed the theory of relativity.",
+    "Albert Einstein attended the Swiss Federal Polytechnic in Zurich, later known as ETH Zurich."
+   ],
+   "overall": [
+    0.81,
+    0.14,
+    0.35,
+    0.15,
+    0.15
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "2hop__525581_161450": {
+  "agent-0": {
+   "units": [
+    "Aqqala County is a county in Golestan Province in Iran.",
+    "Golestan Province was split off from the province of Mazandaran in 1997.",
+    "Golestan Province has twelve counties, including Aqqala County.",
+    "The capital of Aqqala County is the city of Aqqala.",
+    "Aqqala County is also known as Sepid Dez in Persian."
+   ],
+   "overall": [
+    0.875,
+    0.72,
+    0.85,
+    0.56,
+    0.44
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "Golestan Province is one of the 31 provinces of Iran, located in the north-east of the country south of the Caspian Sea.",
+    "The capital of Golestan Province is Gorgan.",
+    "Aqqala County is a county in Golestan Province, Iran.",
+    "Golestan Province is located south of the Caspian Sea.",
+    "Aqqala County is located in the north-east of Iran."
+   ],
+   "overall": [
+    0.7,
+    0.5,
+    0.9,
+    0.66,
+    0.91
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "2hop__60001_512508": {
+  "agent-0": {
+   "units": [
+    "James Chadwick discovered the neutron in 1932.",
+    "After 1932, an element's atomic number Z was realized to be identical to the proton number of its nuclei.",
+    "The discovery of the neutron ended all consideration of nuclear electrons.",
+    "An atom of gold contains 79 protons.",
+    "James Chadwick participated in the discovery of the neutron."
+   ],
+   "overall": [
+    0.2,
+    0.6,
+    0.34,
+    0.45,
+    0.45
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "James Chadwick participated in the Tube Alloys project during the Second World War.",
+    "James Chadwick became part of the British Mission after the Quebec Agreement merged the Tube Alloys project with the American Manhattan Project.",
+    "James Chadwick worked at the Los Alamos Laboratory and in Washington, D.C., as part of the Manhattan Project.",
+    "James Chadwick viewed the Trinity nuclear test in July 1945.",
+    "James Chadwick served as the British scientific advisor to the United Nations Atomic Energy Commission after World War II."
+   ],
+   "overall": [
+    0.38,
+    0.2,
+    0.77,
+    0.21,
+    0.2
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "2hop__636597_480615": {
+  "agent-0": {
+   "units": [
+    "Qiantong is a town in southwestern Ninghai County in eastern Zhejiang province, China.",
+    "Ninghai County is located in eastern Zhejiang province, China.",
+    "The county seat of Ninghai County is located northeast of Qiantong.",
+    "Qiantong is situated along the G15 Shenyang\u2013Haikou Expressway.",
+    "Qiantong has 29 villages under its administration."
+   ],
+   "overall": [
+    0.85,
+    0.82,
+    0.78,
+    0.23,
+    0.18
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "Ninghai is located in Ningbo, Zhejiang Province.",
+    "Ninghai is a county in Zhejiang Province.",
+    "Qiantong is a town in Ninghai County.",
+    "Ningbo is a city in Zhejiang Province.",
+    "Ninghai County is part of Ningbo."
+   ],
+   "overall": [
+    0.71,
+    0.71,
+    1.0,
+    0.56,
+    0.76
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "2hop__661847_288421": {
+  "agent-0": {
+   "units": [
+    "Def Squad is a rap supergroup consisting of Erick Sermon, Redman, and Keith Murray.",
+    "Jamal is considered an honorary member of the Def Squad.",
+    "Def Squad officially formed as a group to release an album in 1998.",
+    "The Def Squad was formed following the disbandment of the Hit Squad.",
+    "Before officially forming, members had each been featured on tracks by each other."
+   ],
+   "overall": [
+    0.9,
+    0.5,
+    0.68,
+    0.56,
+    0.5
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "\"Full Cooperation\" is a song by the American hip hop group Def Squad.",
+    "Def Squad recorded \"Full Cooperation\" for their album \"El Ni\u00f1o\" (1998).",
+    "\"Full Cooperation\" was released as a single on April 14, 1998.",
+    "Def Squad is an American hip hop group.",
+    "\"El Ni\u00f1o\" is the sole album by Def Squad."
+   ],
+   "overall": [
+    0.88,
+    0.85,
+    0.28,
+    0.71,
+    0.18
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "2hop__677929_696450": {
+  "agent-0": {
+   "units": [
+    "The publisher of \"The Final Testament of the Holy Bible\" is not mentioned in the provided documents.",
+    "Gagosian is a contemporary art gallery owned and directed by Larry Gagosian.",
+    "\"Testament of Youth\" is a memoir by Vera Brittain, published in 1933.",
+    "The deuterocanonical books were defined as part of the Christian Old Testament by the Council of Trent in 1546.",
+    "The term \"sola scriptura\" emerged during the Reformation and emphasizes that scripture alone is the source of religious authority."
+   ],
+   "overall": [
+    0.28,
+    0.075,
+    0.1,
+    0.18,
+    0.18
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "The Final Testament of the Holy Bible is a novel written by James Frey.",
+    "The Final Testament of the Holy Bible was published by Gagosian Gallery in 2011.",
+    "The book is published in the UK by John Murray under the shortened title \"The Final Testament\".",
+    "Gagosian Gallery published The Final Testament of the Holy Bible in 2011.",
+    "James Frey is the author of The Final Testament of the Holy Bible."
+   ],
+   "overall": [
+    0.82,
+    0.75,
+    0.66,
+    0.76,
+    0.71
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "2hop__6956_192417": {
+  "agent-0": {
+   "units": [
+    "The New England Patriots are a professional American football team based in the Greater Boston region.",
+    "The New England Patriots compete in the National Football League (NFL).",
+    "The New England Patriots are a member club of the American Football Conference (AFC) East division of the NFL.",
+    "The New England Patriots play their home games at Gillette Stadium in Foxborough, Massachusetts.",
+    "The New England Patriots were founded in 1960 as the Boston Patriots and changed their name after relocating."
+   ],
+   "overall": [
+    0.5,
+    0.85,
+    0.85,
+    0.2,
+    0.28
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "The New England Patriots belong to the National Football League (NFL).",
+    "The National Football League (NFL) is a professional American football league.",
+    "The NFL consists of teams divided into conferences, such as the American Football Conference (AFC).",
+    "The New England Patriots were the defending Super Bowl LI champions in the 2017 NFL season.",
+    "Super Bowl XX was played between the NFC champion Chicago Bears and the AFC champion New England Patriots to decide the NFL champion for the 1985 season."
+   ],
+   "overall": [
+    0.85,
+    0.87,
+    0.76,
+    0.76,
+    0.79
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "2hop__70338_36240": {
+  "agent-0": {
+   "units": [
+    "The phrase \"skin of my teeth\" comes from the Bible, specifically Job 19:20.",
+    "In the King James Version of the Bible, Job 19:20 states: \"My bone cleaveth to my skin and to my flesh, and I am escaped with the skin of my teeth.\"",
+    "The Hebrew phrase for \"skin of my teeth\" is \u05e2\u05a3\u05d5\u05b9\u05e8 \u05e9\u05b4\u05c1\u05e0\u05b8\u05bc\u05bd\u05d9 ('\u014d-wr \u0161in-n\u0101y).",
+    "The Geneva Bible renders Job 19:20 as: \"I have escaped with the skinne of my tethe.\"",
+    "The quote \"by the skin of your teeth\" is derived from the biblical passage Job 19:20."
+   ],
+   "overall": [
+    0.85,
+    0.91,
+    0.71,
+    0.88,
+    0.85
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "The papal bull Ineffabilis Deus defines the dogma of the Immaculate Conception and references Mary as eternally at enmity with the serpent from Genesis 3:15.",
+    "Ineffabilis Deus interprets biblical figures such as the ark of Noah, the ladder of Jacob, and the burning bush as foreshadowings of Mary's divine gifts and original innocence.",
+    "The burning bush seen by Moses, which was not consumed, is cited in Ineffabilis Deus as a biblical type symbolizing Mary.",
+    "The ladder Jacob saw reaching from earth to heaven, with angels ascending and descending, is referenced in Ineffabilis Deus as a prefiguration of Mary.",
+    "The ark of Noah, which escaped safely from the world's shipwreck, is interpreted in Ineffabilis Deus as a symbol of Mary\u2019s preservation from original sin."
+   ],
+   "overall": [
+    0.72,
+    0.2,
+    0.18,
+    0.1875,
+    0.35
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "2hop__81379_84616": {
+  "agent-0": {
+   "units": [
+    "Audrey Hepburn won the 1954 Tony Award for Best Performance by a Leading Actress in a Play in Ondine.",
+    "Audrey Hepburn was the singer of the original version of \"Moon River.\"",
+    "Audrey Hepburn received a Special Tony Award in 1968.",
+    "Audrey Hepburn won a record three BAFTA Awards for Best British Actress in a Leading Role.",
+    "Audrey Hepburn was awarded the 1954 Academy Award for Best Actress for her performance in Roman Holiday."
+   ],
+   "overall": [
+    0.96,
+    0.71,
+    0.82,
+    0.075,
+    0.175
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "agent-1": {
+   "units": [
+    "Audrey Hepburn originally performed \"Moon River\" in the 1961 movie Breakfast at Tiffany's.",
+    "\"Moon River\" was composed by Henry Mancini with lyrics by Johnny Mercer.",
+    "Audrey Hepburn did not win a Tony Award for her performance of \"Moon River.\"",
+    "Ezio Pinza won the Tony Award for Best Actor in 1950 for his role in the original Broadway production of South Pacific, where he performed \"Some Enchanted Evening.\"",
+    "Ted Ross won a Tony Award for the original 1975 Broadway production of The Wiz."
+   ],
+   "overall": [
+    0.71,
+    0.28,
+    0.72,
+    0.44,
+    0.1875
+   ],
+   "parsed": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ }
+}

@@ -1,0 +1,26 @@
+{
+ "arms_executed": [
+  "R-sel",
+  "Rerun",
+  "V-sel"
+ ],
+ "calls": 9,
+ "contrast_computed": false,
+ "cost_cap_usd": 0.1,
+ "cost_usd": 0.000938,
+ "end_utc": "2026-11-13T23:06:40Z",
+ "failed_calls": 0,
+ "forbidden_arms_executed": [],
+ "max_calls": 9,
+ "outcome_read": false,
+ "per_group": {
+  "correct_control": 0,
+  "extraction_omission": 0,
+  "partial": 0,
+  "selection_omission": 3
+ },
+ "rows": 3,
+ "rows_completed": 3,
+ "runs_completed": 9,
+ "runs_planned": 9
+}

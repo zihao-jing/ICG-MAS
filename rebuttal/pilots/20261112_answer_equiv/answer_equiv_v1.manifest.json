@@ -1,0 +1,8 @@
+{
+ "version": "answer-equiv-v1",
+ "model": "anthropic/claude-haiku-5.5",
+ "file_sha256": "51082bc881a19231299de0e9fab4e574895760637276abce7845294b9eec8153",
+ "system_sha256": "2831314b99da86c2fc8d7879a401b1ebea8c5617ff2c01102bba28e044d8ba63",
+ "recorded_before_first_call": true,
+ "frozen_utc": "2026-11-12T00:00:00Z"
+}

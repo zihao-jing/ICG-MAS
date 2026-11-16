@@ -1,0 +1,14 @@
+{
+ "n_rows": 150,
+ "unique_items": 126,
+ "unparsed": 4,
+ "agree": 137,
+ "agreement": 0.913,
+ "kappa": 0.848,
+ "equivalent_recall_on_author_correct": 0.947,
+ "not_equivalent_recall_on_author_defect": 0.935,
+ "gate_pass": true,
+ "spend_total_usd": 0.153498,
+ "model": "google/gemini-3.6-flash",
+ "prompt_sha256": "51082bc881a19231299de0e9fab4e574895760637276abce7845294b9eec8153"
+}
